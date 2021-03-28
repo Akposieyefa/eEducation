@@ -30,12 +30,16 @@ class Arm extends Component
         'level_id' => 'required',
         'name' => 'required'
     ];
-
+    /**
+     * works like the __construct() function 
+     */
     public function mount()
     {
         $this->classes = Level::all();
     }
-
+    /**
+     * submit fomr data
+     */
     public function submit()
     {
         $this->validate();
@@ -46,16 +50,20 @@ class Arm extends Component
          if ($arm) {
              session()->flash('success', 'Class arm created successfully');
          }else {
-             session()->flash('errMsg', 'Unable to create arm teacher');
+             session()->flash('errMsg', 'Sorry an error occured');
          }
     }
-
+    /**
+     * open form modal
+     */
     public function open($id = null)
     {
         $this->model_id = $id;
         $this->isCreateArmOpen = true;
     }
-
+    /**
+     * close form modal
+     */
     public function close()
     {
         $this->model_id = '';

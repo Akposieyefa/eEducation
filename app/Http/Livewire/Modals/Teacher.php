@@ -19,12 +19,11 @@ use Illuminate\Support\Facades\Storage;
 class Teacher extends Component
 {
     use WithFileUploads;
-
+    
     public $states;
     public $lgas;
     public $levels;
     public $arms;
-
     public $selectedState = NULL;
     public $selectedClass = NULL;
 
@@ -46,6 +45,7 @@ class Teacher extends Component
     public $passport;
     public $resume;
     public $employment_date;
+    public $teacherId;
 
     protected $listeners = [
         'showFormTeacherModal' => 'open',
@@ -72,6 +72,66 @@ class Teacher extends Component
         'resume' => 'required'
     ];
 
+     /**
+     * display edit form 
+     */
+    public function editForm($id)
+    {
+        $this->studentId = $id;
+        $this->update_mode = true;
+        $teacher = TeacherData::with(['user','level','arm','lga'])->where('id', $this->studentId)->first();
+        $this->fname = $teacher->fname;
+        $this->mname = $teacher->mname;
+        $this->lname = $teacher->lname;
+        $this->dob   = $teacher->dob;
+        $this->nationality = $teacher->nationality;
+        $this->address = $teacher->address;
+        $this->email = $teacher->user->email;
+        $this->gender = $teacher->gender;
+        $this->selectedState = $teacher->state_id;
+        $this->selectedClass = $teacher->level_id;    
+        $this->selectedLga = $teacher->lga_id;
+        $this->selectedArm = $teacher->arm_id;
+        $this->passport = $teacher->passport;
+        $this->employment_date = $teacher->employment_date;
+        $this->isStudentOpen  = true;
+    }
+    /**
+     * update teachers details
+     */
+    public function updateTeacher()
+    {
+        $this->validate();
+        $teacher = TeacherData::find($this->teacherId);
+        $teacher->update([
+            'fname' => $this->fname,
+            'mname' => $this->mname,
+            'lname' => $this->lname,
+            'dob' => $this->dob,
+            'gender' => $this->gender,
+            'nationality' => $this->nationality,
+            'address' => $this->address,
+            'state_id' => $this->selectedState,
+            'lga_id' => $this->selectedLga,
+            'level_id' => $this->selectedClass,
+            'arm_id' => $this->selectedArm,
+            'employment_date' => $this->employment_date
+        ]);
+        if ($teacher) {
+            $user = User::where('id', $teacher->user_id)->update([
+                'name' => $this->fname,
+                'email' => $this->email
+            ]);
+            session()->flash('success', 'Teacher profile updated successfully');
+        }else {
+            session()->flash('errMsg', 'Sorry an error occured');
+        }
+        $this->update_mode = false;
+        $this->close();
+    }
+   /**
+     * works like the __construct() function 
+     */
     public function mount()
     {
         $this->states = State::all();
@@ -79,23 +139,31 @@ class Teacher extends Component
         $this->levels = Level::all();
         $this->arms = collect();
     }
-
+    /**
+     * opend teacher form modal
+     */
     public function open($id = null)
     {
         $this->model_id = $id;
         $this->isTeacherOpen = true;
     }
-
+    /**
+     * Lifecycle Hooks for selectedState drop down
+     */
     public function updatedSelectedState($state) 
     {
         $this->lgas = Lga::where('state_id', $state)->get();
     }
-
+    /**
+     * Lifecycle Hooks for selectedClass drop down
+     */
     public function updatedSelectedClass($class) 
     {
         $this->arms = Arm::where('level_id', $class)->get();
     }
-
+    /**
+     * submit form data
+     */
     public function submit()
     {
         $this->validate();
@@ -151,9 +219,12 @@ class Teacher extends Component
              session()->flash('success', 'Teacher profile created successfully');
          }else {
              User::where('id', $user->id)->delete();
-             session()->flash('errMsg', 'Unable to register teacher');
+             session()->flash('errMsg', 'Sorry an error occured');
          }
     }
+    /**
+     * close form modal
+     */
     public function close()
     {
         $this->model_id = '';

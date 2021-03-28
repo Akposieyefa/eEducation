@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Mail;
 
 class MailBlast extends Component
 {
-
     public $isCreateMailOpen = false;
     public $modal_id;
 
@@ -22,13 +21,17 @@ class MailBlast extends Component
         'closeFormMailModal' => 'close',
     ];
     protected $queryString = ['isCreateMailOpen'];
-
+    /**
+     * open form modal
+     */
     public function open($id = null)
     {
         $this->model_id = $id;
         $this->isCreateMailOpen = true;
     }
-
+    /**
+     * submit form data
+     */
     public function submit()
     {
         $this->validate([
@@ -51,7 +54,9 @@ class MailBlast extends Component
         session()->flash('success', 'Mail sent successfully');
         $this->close();
     }
-
+    /**
+     * close form modal
+     */
     public function close()
     {
         $this->model_id = '';

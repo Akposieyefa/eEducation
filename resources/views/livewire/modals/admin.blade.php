@@ -1,23 +1,23 @@
 <div>
        <x-jumbotron>
-              <h3> {{ "Guardian" }} </h3>
+              <h3> {{ "Administrators" }} </h3>
               <div class="col-1 offset-11">
-                     <x-forms.buttons.secondary data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormGuardianModal')">
+                     <x-forms.buttons.secondary data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormAdminModal')">
                       Create 
                      </x-forms.buttons.secondary>
               </div>
        </x-jumbotron>
        <!-- Modal -->
-       @if($isGuardianOpen)
+       @if($isCreateAdminOpen)
        <div class="modal d-block" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                      <div class="modal-content">
                             <div class="modal-header">
                                    <h5 class="modal-title" id="exampleModalLongTitle">
                                           @if ($update_mode)
-                                                 Edit Guardian Details
+                                                 Edit Administrator Details
                                           @else
-                                                 Guardian Registration Form
+                                                 Administrator Registration Form
                                           @endif
                                    </h5>
                                    <button type="button" class="close" wire:click="close()" data-dismiss="modal" aria-label="Close">
@@ -29,7 +29,7 @@
                             <x-alerts.error />
                                    <div class="form-group row">
                                           <div class="col-md-6">
-                                                 <x-forms.input wire:model="fname" type="text" placeholder="Enter First Name" title="Enter Middle Name" />
+                                                 <x-forms.input wire:model="fname" type="text" placeholder="Enter First Name" title="Enter First Name" />
                                                         @error('fname') <span class="text-danger">{{ $message }}</span> @enderror
                                           </div>
                                           <div class="col-md-6">
@@ -45,36 +45,18 @@
                                    </div>
                                    <div class="form-group row">
                                           <div class="col-md-6">
-                                                 <x-forms.input wire:model="occupation" type="text" placeholder="Enter Occupuation" title="Enter Occupation" />
-                                                 @error('occupation') <span class="text-danger">{{ $message }}</span> @enderror
+                                                 <x-forms.input wire:model="phone" type="text" placeholder="Phone Number" title="Enter Phone Number" />
+                                                 @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
                                           </div>
                                           <div class="col-md-6">
-                                                 <x-forms.input wire:model="email" type="text" placeholder="Enter Email Address" title="EnterEmail Address" />
+                                                 <x-forms.input wire:model="email" type="text" placeholder="Enter Email" title="Student Email Address" />
                                                         @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                                           </div>
                                    </div>
                                    <div class="form-group row">
                                           <div class="col-md-12">
-                                                 <x-forms.input wire:model="home_address" type="text" placeholder="Residential Address" title="Residental Address" />
-                                                        @error('home_address') <span class="text-danger">{{ $message }}</span> @enderror
-                                          </div>
-                                   </div>
-                                    <div class="form-group row">
-                                          <div class="col-md-12">
-                                                 <x-forms.input wire:model="office_address" type="text" placeholder="Office Address" title="Office Address" />
-                                                        @error('office_address') <span class="text-danger">{{ $message }}</span> @enderror
-                                          </div>
-                                   </div>
-                                    <div class="form-group row">
-                                          <div class="col-md-12">
-                                                 <x-forms.input wire:model="student_id" type="text" placeholder="Enter Student ID" title="Enter Student ID" />
-                                                        @error('student_id') <span class="text-danger">{{ $message }}</span> @enderror
-                                          </div>
-                                   </div>
-                                    <div class="form-group row">
-                                          <div class="col-md-12">
-                                                 <x-forms.input wire:model="phone" type="text" placeholder="Enter Phone Number" title="Enter Phone Number" />
-                                                        @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
+                                                 <x-forms.input wire:model="address" type="text" placeholder="Residential Address" title="Enter Residental Address" />
+                                                        @error('address') <span class="text-danger">{{ $message }}</span> @enderror
                                           </div>
                                    </div>
                                    <div class="form-group row">
@@ -85,9 +67,10 @@
                                           </div>
                                                  @error('gender') <span class="text-danger">{{ $message }}</span> @enderror
                                    </div>
+                                   
                                    <div class="form-group row">
                                           <div class="col-md-12">
-                                                 <x-forms.input wire:model="passport" type="file" title="Student Recent Passport" />
+                                                 <x-forms.input wire:model="passport" type="file" title="Pick Recent Passport" />
                                                         @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                                           </div>
                                    </div>
@@ -95,7 +78,7 @@
                             <div class="modal-footer">
                                    <x-forms.buttons.danger wire:click="close()" data-dismiss="modal">Close</x-forms.buttons.danger>
                                    @if ($update_mode)
-                                          <x-forms.buttons.success wire:click="updateGuardian()">Update</x-forms.buttons.success>
+                                          <x-forms.buttons.success wire:click="updateAdmin()">Update</x-forms.buttons.success>
                                    @else
                                           <x-forms.buttons.success wire:click="submit()">Create</x-forms.buttons.success>
                                    @endif
@@ -106,5 +89,4 @@
 
        @endif
 </div>
-
 

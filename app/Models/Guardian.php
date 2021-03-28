@@ -8,4 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Guardian extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id','fname', 'mname', 'lname', 'email' ,'occupation','gender','phone','home_address','office_address' ,
+        'passport' 
+    ];
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
+    public function getFullnameAttribute() {
+        return $this->fname." ". $this->mname." ". $this->lname;
+    }
+
+    public function students() {
+        return $this->hasMany(Student::class);
+    }
 }
+

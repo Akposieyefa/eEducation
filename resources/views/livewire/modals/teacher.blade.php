@@ -13,14 +13,19 @@
               <div class="modal-dialog" role="document">
                      <div class="modal-content">
                             <div class="modal-header">
-                                   <h5 class="modal-title" id="exampleModalLongTitle">Teachers Registration Form</h5>
+                                   <h5 class="modal-title" id="exampleModalLongTitle">
+                                   @if ($update_mode)
+                                          Edit Teachers Details
+                                   @else
+                                          Teachers Registration Form
+                                   @endif
+                                   </h5>
                                    <button type="button" wire:click="close()" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                    </button>
                             </div>
                             <div class="modal-body">
                               <x-alerts.success />
-                                   <form wire:submit.prevent="submit" enctype="multipart/form-data">
                                           <div class="form-group row">
                                                  <div class="col-md-6">
                                                         <x-forms.input wire:model="fname" type="text" placeholder="Enter First Name" title="First Name of Teacher" />
@@ -127,11 +132,14 @@
                                                         @error('resume') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>
-                                          <div class="modal-footer">
-                                                 <x-forms.buttons.danger data-dismiss="modal">Close</x-forms.buttons.danger>
-                                                 <x-forms.buttons.success>Save</x-forms.buttons.success>
-                                          </div>
-                            </form>
+                            </div>
+                            <div class="modal-footer">
+                                   <x-forms.buttons.danger data-dismiss="modal">Close</x-forms.buttons.danger>
+                                   @if ($update_mode)
+                                          <x-forms.buttons.success wire:click="updateTeacher()">Update</x-forms.buttons.success>
+                                   @else
+                                          <x-forms.buttons.success wire:click="submit()">Create</x-forms.buttons.success>
+                                   @endif
                             </div>
                      </div>
               </div>

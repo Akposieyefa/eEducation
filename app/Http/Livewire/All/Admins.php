@@ -3,15 +3,15 @@
 namespace App\Http\Livewire\All;
 
 use Livewire\Component;
-use App\Models\Guardian;
+use App\Models\Admin;
 use Livewire\WithPagination;
 
-class Guardians extends Component
+class Admins extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $selectedGuardians = [];
+    public $selectedAdmins = [];
     public $selectAll = false;
 
     /**
@@ -19,9 +19,9 @@ class Guardians extends Component
      */
     public function updatedSelectAll($value) {
         if ($value) {
-            $this->selectedGuardians = $this->guardians->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedAdmins = $this->admins->pluck('id')->map(fn($item) => (string) $item)->toArray();
         }else{
-            $this->selectedGuardians = [];
+            $this->selectedAdmins = [];
         }
     }
     /**
@@ -32,18 +32,17 @@ class Guardians extends Component
         $this->checkedAll = false;
     }
     /**
-     * get all guardians from database
+     * get all admins from database
      */
-    public function getGuardiansProperty()
+    public function getAdminsProperty()
     {
-        return Guardian::with(['user'])->latest()->paginate(3);
+        return Admin::with(['user'])->latest()->paginate(3);
     }
     
-
     public function render()
     {
-        return view('livewire.all.guardians',[
-            'guardians' => $this->guardians
+        return view('livewire.all.admins',[
+            'admins' => $this->admins
         ])->extends('layouts.app')->section('content');
     }
 }

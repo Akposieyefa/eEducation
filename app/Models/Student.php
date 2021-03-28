@@ -15,8 +15,7 @@ class Student extends Model
         'state_id', 'lga_id', 'level_id', 'arm_id', 'passport', 'addmited_date'
     ];
 
-    public function getFullnameAttribute() 
-    {
+    public function getFullnameAttribute() {
         return $this->fname." ". $this->mname." ". $this->lname;
     }
 
@@ -40,8 +39,11 @@ class Student extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeSearch($query, $term)
-    {
+    public function guardain() {
+        return $this->hasOne(Guardian::class);
+    }
+
+    public function scopeSearch($query, $term) {
         $term = "%$term%";
         $query->where(function ($query) use ($term) {
             $query->where('fname', 'like', $term)

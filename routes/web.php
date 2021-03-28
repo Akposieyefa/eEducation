@@ -27,4 +27,5 @@ Route::get('/notifications', App\Http\Livewire\All\Notifications::class)->name('
 Route::get('/class', App\Http\Livewire\All\Arms::class)->name('class');
 Route::get('/mails', App\Http\Livewire\All\MailBlasts::class)->name('mails');
 Route::get('/guardians', App\Http\Livewire\All\Guardians::class)->name('guardians');
+Route::get('/admins', App\Http\Livewire\All\Admins::class)->name('admins');
 

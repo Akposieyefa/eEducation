@@ -35,18 +35,24 @@ class Notification extends Component
         'title' => 'required',
         'body' => 'required'
     ];
-
+    /**
+     * works like the __construct() function 
+     */
     public function mount()
     {
         $this->roles = Role::all();
     }
-
+    /**
+     * opens the notification form
+     */
     public function open($id = null)
     {
         $this->model_id = $id;
         $this->isNotificationOpen = true;
     }
-
+    /**
+     * close form modal
+     */
     public function close()
     {
         $this->model_id = '';
@@ -57,7 +63,9 @@ class Notification extends Component
         $this->body = "";
         $this->role_id = "";
     }
-
+    /**
+     * submit form data
+     */
     public function submit()
     {
         $this->validate();

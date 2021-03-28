@@ -1,5 +1,5 @@
 <div class="nk-block">
-        @livewire('modals.guardian')
+        @livewire('modals.admin')
         <div class="mb-3 nk-tb-list is-separate">
                <div class="nk-tb-item nk-tb-head">
                       <div class="nk-tb-col nk-tb-col-check">
@@ -7,12 +7,12 @@
                                     <input type="checkbox" class="custom-control" wire:model="selectAll">
                              </div>
                       </div>
-                      <div class="nk-tb-col"><span class="sub-text">Guardian</span></div>
-                      <div class="nk-tb-col tb-col-mb"><span class="sub-text">Phone</span></div>
-                      <div class="nk-tb-col tb-col-md"><span class="sub-text">Occupation</span></div>
-                      <div class="nk-tb-col tb-col-lg"><span class="sub-text">Home Address</span></div>
-                      <div class="nk-tb-col tb-col-md"><span class="sub-text">Office Address</span></div>
+                      <div class="nk-tb-col"><span class="sub-text">Administrator</span></div>
+                      <div class="nk-tb-col tb-col-mb"><span class="sub-text">Gender</span></div>
+                      <div class="nk-tb-col tb-col-md"><span class="sub-text">Address</span></div>
+                      <div class="nk-tb-col tb-col-lg"><span class="sub-text">Phone</span></div>
                       <div class="nk-tb-col tb-col-md"><span class="sub-text">Date</span></div>
+                      <div class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></div>
                       <div class="nk-tb-col nk-tb-col-tools">
                              <ul class="nk-tb-actions gx-1 my-n1">
                                     <li>
@@ -29,11 +29,11 @@
                              </ul>
                       </div>
                </div><!-- .nk-tb-item -->
-               @foreach($guardians as $guardian)
+               @foreach($admins as $admin)
                      <div class="nk-tb-item">
                             <div class="nk-tb-col nk-tb-col-check">
                                    <div class="custom-control custom-control-sm custom-checkbox notext">
-                                          <input type="checkbox" class="custom-control" wire:model="selectedGuardians" value="{{ $guardian->id }}">
+                                          <input type="checkbox" class="custom-control" wire:model="selectedAdmins" value="{{ $admin->id }}">
                                           <label class="custom-control"></label>
                                    </div>
                             </div>
@@ -43,32 +43,32 @@
                                                  <div class="user-avatar bg-primary">
                                                         <span>
                                                                <img class="profile-user-img img-fluid img-circle"
-                                                               src="{{asset('storage/passports/'.$guardian->passport) }}"
-                                                               alt="Student Passport"
+                                                               src="{{asset('storage/passports/'.$admin->passport) }}"
+                                                               alt="Passport"
                                                                >
                                                         </span>
                                                  </div>
                                                  <div class="user-info">
-                                                        <span class="tb-lead">{{ $guardian->fullname }} <span class="ml-1 dot dot-success d-md-none"></span></span>
-                                                        <span>{{ $guardian->user->email }}</span>
+                                                        <span class="tb-lead">{{ $admin->fullname }} <span class="ml-1 dot dot-success d-md-none"></span></span>
+                                                        <span>{{ $admin->user->email }}</span>
                                                  </div>
                                           </div>
                                    </a>
                             </div>
                             <div class="nk-tb-col tb-col-mb">
-                                   <span class="tb-amount">{{ $guardian->phone }}</span>
+                                   <span class="tb-amount">{{ $admin->gender }}</span>
                             </div>
                             <div class="nk-tb-col tb-col-md">
-                                   <span>{{ $guardian->occupation }}</span>
+                                   <span>{{ $admin->address }}</span>
                             </div>
                             <div class="nk-tb-col tb-col-lg">
-                                   <span>{{ $guardian->home_address }}</span>
+                                   <span>{{ $admin->phone }}</span>
                             </div>
                              <div class="nk-tb-col tb-col-lg">
-                                   <span>{{ $guardian->office_address }}</span>
+                                   <span>{{ $admin->created_at->diffForHumans() }}</span>
                             </div>
-                             <div class="nk-tb-col tb-col-lg">
-                                   <span>{{ $guardian->created_at->diffForHumans() }}</span>
+                            <div class="nk-tb-col tb-col-md">
+                                   <span class="tb-status text-success">Active</span>
                             </div>
                             <div class="nk-tb-col nk-tb-col-tools">
                                    <ul class="nk-tb-actions gx-1">
@@ -88,8 +88,8 @@
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                                <ul class="link-list-opt no-bdr">
                                                                       <li><a href="#"><em class="icon ni ni-eye"></em><span>Profile</span></a></li>
-                                                                      <li><a href="#" wire:click="editGuardian({{ $guardian->id }})"><em class="icon ni ni-edit"></em><span>Edit </span></a></li>
-                                                                      <li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteSingleRecords({{ $guardian->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
+                                                                      <li><a href="#" wire:click="editAdmin({{ $admin->id }})"><em class="icon ni ni-edit"></em><span>Edit </span></a></li>
+                                                                      <li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteSingleRecords({{ $admin->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
                                                                </ul>
                                                         </div>
                                                  </div>
@@ -99,7 +99,7 @@
                      </div><!-- .nk-tb-item -->
                @endforeach
         </div><!-- .nk-tb-list -->
-       {{ $guardians->links() }}
+       {{ $admins->links() }}
  </div><!-- .nk-block -->
 
 

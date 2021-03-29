@@ -11,6 +11,8 @@ class GuardainStudent extends Model
 {
     use HasFactory;
 
+    protected $table ='guardian_student';
+
     protected $fillable =[
         'guardian_id', 'student_id'
     ];

@@ -38,7 +38,9 @@ class Admins extends Component
     {
         return Admin::with(['user'])->latest()->paginate(3);
     }
-    
+    /**
+     * render the admins livewire view
+     */
     public function render()
     {
         return view('livewire.all.admins',[

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\All;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Teacher;
+use App\Models\User;
 
 class Teachers extends Component
 {
@@ -45,6 +46,7 @@ class Teachers extends Component
     public function deleteRecords()
     {
         $teacher = Teacher::whereKey($this->checked)->delete();
+        User::whereKey('id', $teacher->user_id)->delete();
         $this->checked = []; 
     }
     /**
@@ -53,6 +55,7 @@ class Teachers extends Component
     public function deleteSingleRecord($teacher_id)
     {
         $teacher = Teacher::findOrFail($teacher_id);
+        User::where('id', $teacher->user_id)->delete();
         $teacher->delete();
     }
     /**
@@ -62,7 +65,9 @@ class Teachers extends Component
     {
         $this->emit('editForm', $teacher_id);
     }
-
+    /**
+     * render the teachers livewire view
+     */
     public function render()
     {
         return view('livewire.all.teachers',[

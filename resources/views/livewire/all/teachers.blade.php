@@ -54,7 +54,7 @@
                                                  <div class="user-info">
                                                         <span class="tb-lead">{{ $teacher->fullname }} <span class="ml-1 dot dot-success d-md-none"></span></span>
                                                         <span>{{ $teacher->user->email }}</span>
-                                                         <span>Reg Number : {{ $teacher->student_id }}</span>
+                                                         <span>Reg Number : {{ $teacher->teacher_id }}</span>
                                                  </div>
                                           </div>
                                    </a>
@@ -102,7 +102,7 @@
                                                                <ul class="link-list-opt no-bdr">
                                                                       <li><a href="#"><em class="icon ni ni-eye"></em><span>Profile</span></a></li>
                                                                       <li><a href="#" wire:click="editTeacher({{ $teacher->id }})"><em class="icon ni ni-edit"></em><span>Edit </span></a></li>
-                                                                      <li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteSingleRecords({{ $teacher->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
+                                                                      <li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteSingleRecord({{ $teacher->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
                                                                </ul>
                                                         </div>
                                                  </div>

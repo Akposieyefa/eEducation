@@ -1,27 +1,26 @@
 <?php
 
 namespace App\Http\Livewire\All;
+use Livewire\WithPagination;
+use App\Models\Complain;
 
 use Livewire\Component;
-use App\Models\MailBlast;
-use Livewire\WithPagination;
 
-class MailBlasts extends Component
+class Complains extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $selectedMails = [];
+    public $selectedComplains = [];
     public $selectAll = false;
-    public $bulkDisabled = true;
     /**
      * update the select all value
      */
     public function updatedSelectAll($value) {
         if ($value) {
-            $this->selectedMails = $this->mails->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedComplains = $this->complains->pluck('id')->map(fn($item) => (string) $item)->toArray();
         }else{
-            $this->selectedMails = [];
+            $this->selectedComplains = [];
         }
     }
     /**
@@ -32,19 +31,16 @@ class MailBlasts extends Component
         $this->checkedAll = false;
     }
     /**
-     * get all notifications from database
+     * get all complains from database
      */
-    public function getMailsProperty()
+    public function getComplainsProperty()
     {
-        return MailBlast::latest()->paginate(3);
+        return Complain::with(['user'])->latest()->paginate(3);
     }
-    /**
-     * render the mail-blasts livewire view
-     */
     public function render()
     {
-        return view('livewire.all.mail-blasts', [
-            'mails' => $this->mails
+        return view('livewire.all.complains', [
+            'complains' => $this->complains
         ])->extends('layouts.app')->section('content');
     }
 }

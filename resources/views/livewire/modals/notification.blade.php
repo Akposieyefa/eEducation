@@ -38,13 +38,14 @@
                                                         @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>
-                                          <div class="form-group row">
+
+                                          <div class="form-group row" wire:model="body" wire:ignore>
                                                  <div class="col-md-12">
-                                                        <x-forms.textarea wire:model="body" placeholder="Message" title="Enter Notification Message"></x-forms.textarea>
+                                                       <input id="body"  value=""  type="hidden"  name="content" />
+                                                        <trix-editor input="body"></trix-editor>
                                                         @error('body') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>
-
                                           <div class="modal-footer">
                                                  <x-forms.buttons.danger data-dismiss="modal">Close</x-forms.buttons.danger>
                                                  <x-forms.buttons.success type="submit">Save</x-forms.buttons.success>

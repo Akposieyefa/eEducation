@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Concerns\UsesUuid;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -51,15 +52,15 @@ class User extends Authenticatable
     }
 
     public function student() {
-        return $this->belongsTo(Student::class);
+        return $this->hasOne(Student::class);
     }
 
     public function guardian() {
-        return $this->belongsTo(Guardian::class);
+        return $this->hasOne(Guardian::class);
     }
 
     public function teacher() {
-        return $this->belongsTo(Teacher::class);
+        return $this->hasOne(Teacher::class);
     }
 
 }

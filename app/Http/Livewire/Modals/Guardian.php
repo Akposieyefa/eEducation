@@ -91,7 +91,6 @@ class Guardian extends Component
         ]);
         if ($guardian) {
             $user = User::where('id', $guardian->user_id)->update([
-                'name' => $this->fname,
                 'email' => $this->email
             ]);
             session()->flash('success', 'Guardian profile updated successfully');
@@ -151,7 +150,6 @@ class Guardian extends Component
         }
 
         $user = User::create([
-            'name' => $this->fname,
             'email' => $this->email,
             'password' => Hash::make('password'),
         ]);

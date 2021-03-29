@@ -89,7 +89,7 @@
                                                                <ul class="link-list-opt no-bdr">
                                                                       <li><a href="#"><em class="icon ni ni-eye"></em><span>Profile</span></a></li>
                                                                       <li><a href="#" wire:click="editGuardian({{ $guardian->id }})"><em class="icon ni ni-edit"></em><span>Edit </span></a></li>
-                                                                      <li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteSingleRecords({{ $guardian->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
+                                                                      <li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteSingleRecord({{ $guardian->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
                                                                </ul>
                                                         </div>
                                                  </div>

@@ -39,7 +39,7 @@
                                           <div class="user-card">
                                                  <div class="user-avatar bg-primary">
                                                         <span>
-                                                              {{ $arm->name }}
+                                                              {{ substr($arm->name, 0,1) }}
                                                         </span>
                                                  </div>
                                                  <div class="user-info">

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\All;
 
 use Livewire\Component;
 use App\Models\Guardian;
+use App\Models\User;
 use Livewire\WithPagination;
 
 class Guardians extends Component
@@ -13,7 +14,6 @@ class Guardians extends Component
 
     public $selectedGuardians = [];
     public $selectAll = false;
-
     /**
      * update the select all value
      */
@@ -31,6 +31,24 @@ class Guardians extends Component
     {
         $this->checkedAll = false;
     }
+     /**
+     *  delete mutiple guardians records
+     */
+    public function deleteRecords()
+    {
+        $guardian = Guardian::whereKey($this->checked)->delete();
+        User::whereKey('id', $guardian->user_id)->delete();
+        $this->checked = []; 
+    }
+    /**
+     * delete single record
+     */
+    public function deleteSingleRecord($guardian_id)
+    {
+        $guardian = Guardian::findOrFail($guardian_id);
+        User::where('id', $guardian->user_id)->delete();
+        $guardian->delete();
+    }
     /**
      * get all guardians from database
      */
@@ -38,8 +56,9 @@ class Guardians extends Component
     {
         return Guardian::with(['user'])->latest()->paginate(3);
     }
-    
-
+    /**
+     * render the guardians livewire view
+     */
     public function render()
     {
         return view('livewire.all.guardians',[

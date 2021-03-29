@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Teacher extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'user_id','teacher_id','fname', 'mname', 'lname', 'dob', 'gender', 'nationality', 'address', 'religion',
-        'state_id', 'lga_id', 'level_id', 'arm_id', 'passport', 'employment_date'
+        'state_id', 'lga_id', 'level_id', 'arm_id', 'passport', 'employment_date', 'resume'
     ];
 
     public function level() {

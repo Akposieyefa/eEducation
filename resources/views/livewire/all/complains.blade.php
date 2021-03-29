@@ -1,5 +1,5 @@
 <div class="nk-block">
-       @livewire('modals.notification')
+       @livewire('modals.complain')
        <div class="mb-3 nk-tb-list is-separate">
               <div class="nk-tb-item nk-tb-head">
                      <div class="nk-tb-col nk-tb-col-check">
@@ -8,7 +8,6 @@
                             </div>
                      </div>
                      <div class="nk-tb-col"><span class="sub-text">Title</span></div>
-                     <div class="nk-tb-col tb-col-mb"><span class="sub-text">Role</span></div>
                      <div class="nk-tb-col tb-col-md"><span class="sub-text">Date</span></div>
                      <div class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></div>
                      <div class="nk-tb-col nk-tb-col-tools">
@@ -26,11 +25,11 @@
                             </ul>
                      </div>
               </div><!-- .nk-tb-item -->
-              @foreach($notifications as $notification)
+              @foreach($complains as $complain)
               <div class="nk-tb-item">
                      <div class="nk-tb-col nk-tb-col-check">
                             <div class="custom-control custom-control-sm custom-checkbox notext">
-                                   <input type="checkbox" class="custom-control" wire:model="selectedNotifications" value="{{ $notification->id }}">
+                                   <input type="checkbox" class="custom-control" wire:model="selectedNotifications" value="{{ $complain->id }}">
                                    <label class="custom-control"></label>
                             </div>
                      </div>
@@ -38,19 +37,16 @@
                             <a href="">
                                    <div class="user-card">
                                           <div class="user-avatar bg-primary">
-                                                 <span>{{ substr($notification->title, 0,1) }}</span>
+                                                 <span>{{ substr($complain->title, 0,1) }}</span>
                                           </div>
                                           <div class="user-info">
-                                                 <span class="tb-lead">{{ $notification->title }}<span class="ml-1 dot dot-success d-md-none"></span></span>
+                                                 <span class="tb-lead">{{ $complain->title }}<span class="ml-1 dot dot-success d-md-none"></span></span>
                                           </div>
                                    </div>
                             </a>
                      </div>
-                     <div class="nk-tb-col tb-col-mb">
-                            <span class="tb-amount">{{ $notification->role->name }}</span>
-                     </div>
                      <div class="nk-tb-col tb-col-md">
-                            <span>{{ $notification->created_at->diffForHumans() }}</span>
+                            <span>{{ $complain->created_at->diffForHumans() }}</span>
                      </div>
 
                      <div class="nk-tb-col tb-col-md">
@@ -74,6 +70,7 @@
               </div><!-- .nk-tb-item -->
               @endforeach
        </div><!-- .nk-tb-list -->
-        {{ $notifications->links() }}
+        {{ $complains->links() }}
 </div><!-- .nk-block -->
+
 

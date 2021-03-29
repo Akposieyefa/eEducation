@@ -26,12 +26,13 @@
                                             @error('subject') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                 </div>
-                                <div class="form-group row">
-                                        <div class="col-md-12">
-                                            <x-forms.textarea wire:model="message" placeholder="Message" title="Enter Mail Message"></x-forms.textarea>
-                                            @error('message') <span class="text-danger">{{ $message }}</span> @enderror
-                                        </div>
-                                </div>
+                                  <div class="form-group row" wire:model="message" wire:ignore>
+                                          <div class="col-md-12">
+                                                 <input id="message"  value=""  type="hidden"  name="content" />
+                                                 <trix-editor input="message"></trix-editor>
+                                                 @error('message') <span class="text-danger">{{ $message }}</span> @enderror
+                                          </div>
+                                   </div>
                             </div>
                              <div class="modal-footer">
                                     <x-forms.buttons.danger data-dismiss="modal">Close</x-forms.buttons.danger>

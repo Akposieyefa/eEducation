@@ -112,7 +112,6 @@ class Student extends Component
         ]);
         if ($student) {
             $user = User::where('id', $student->user_id)->update([
-                'name' => $this->fname,
                 'email' => $this->email
             ]);
             session()->flash('success', 'Student profile updated successfully');
@@ -199,7 +198,6 @@ class Student extends Component
         }
 
         $user = User::create([
-            'name' => $this->fname,
             'email' => $this->email,
             'password' => Hash::make('password'),
         ]);
@@ -227,7 +225,7 @@ class Student extends Component
             session()->flash('success', 'Student profile created successfully');
         }else {
             User::where('id', $user->id)->delete();
-            session()->flash('errMsg', 'Unable to register student');
+            session()->flash('errMsg', 'Sorry an error occured');
         }
     }
 

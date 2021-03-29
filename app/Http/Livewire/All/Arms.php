@@ -38,7 +38,9 @@ class Arms extends Component
     {
         return Arm::with(['level','students'])->latest()->paginate(3);
     }
-    
+    /**
+     * render the arms livewire view
+     */
     public function render()
     {
         return view('livewire.all.arms', [

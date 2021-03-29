@@ -119,7 +119,6 @@ class Teacher extends Component
         ]);
         if ($teacher) {
             $user = User::where('id', $teacher->user_id)->update([
-                'name' => $this->fname,
                 'email' => $this->email
             ]);
             session()->flash('success', 'Teacher profile updated successfully');
@@ -168,6 +167,7 @@ class Teacher extends Component
     {
         $this->validate();
         $imageHasName;//local variable
+        $fileNameToStore;
         $t=time(); //local variable
  
          if (!empty($this->passport) && !empty($this->resume)) {
@@ -190,7 +190,6 @@ class Teacher extends Component
          }
  
          $user = User::create([
-             'name' => $this->fname,
              'email' => $this->email,
              'password' => Hash::make('password'),
          ]);

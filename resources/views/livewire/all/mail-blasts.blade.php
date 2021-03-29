@@ -34,21 +34,21 @@
                             </div>
                      </div>
                             <div class="nk-tb-col">
-                                   <a href="html/ecommerce/customer-details.html">
+                                   <a href="$">
                                           <div class="user-card">
                                                  <div class="user-avatar bg-primary">
                                                         <span>
-                                                              {{ $mail->title }}
+                                                              {{ substr($mail->subject, 0,1) }}
                                                         </span>
                                                  </div>
                                                  <div class="user-info">
-                                                        <span class="tb-lead">{{ $mail->title }} <span class="ml-1 dot dot-success d-md-none"></span></span>
+                                                        <span class="tb-lead">{{ $mail->subject }} <span class="ml-1 dot dot-success d-md-none"></span></span>
                                                  </div>
                                           </div>
                                    </a>
                             </div>
                             <div class="nk-tb-col tb-col-mb">
-                                   <span class="tb-amount">{{ $mail->message }}</span>
+                                   <span class="tb-amount">{!! $mail->message !!}</span>
                             </div>
                             <div class="nk-tb-col tb-col-md">
                                    <span>{{ $mail->created_at->diffForHumans() }}</span>

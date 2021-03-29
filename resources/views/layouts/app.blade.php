@@ -10,6 +10,7 @@
        <!-- Styles -->
        <link rel="stylesheet" href=" {{ asset('assets/css/dashlite.css?ver=2.4.0') }}">
        <link id="skin-default" rel="stylesheet" href=" {{ asset('assets/css/theme.css?ver=2.4.0') }}">
+       <link rel="stylesheet" href=" {{ asset('assets/trix/trix.css') }}">
        @livewireStyles
 </head>
 <body>
@@ -39,6 +40,7 @@
        <script src=" {{ asset('assets/js/bundle.js?ver=2.4.0') }} "></script>
        <script src=" {{ asset('assets/js/scripts.js?ver=2.4.0') }}"></script>
        <script src=" {{ asset('assets/js/charts/chart-ecommerce.js?ver=2.4.0') }} "></script>
+       <script src=" {{ asset('assets/trix/trix.js') }} "></script>
        @livewireScripts
 </body>
 </html>

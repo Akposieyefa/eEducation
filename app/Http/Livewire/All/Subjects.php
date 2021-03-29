@@ -3,25 +3,25 @@
 namespace App\Http\Livewire\All;
 
 use Livewire\Component;
-use App\Models\MailBlast;
+use App\Models\Subject;
 use Livewire\WithPagination;
 
-class MailBlasts extends Component
+class Subjects extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $selectedMails = [];
+    public $selectedSubjects = [];
     public $selectAll = false;
-    public $bulkDisabled = true;
+
     /**
      * update the select all value
      */
     public function updatedSelectAll($value) {
         if ($value) {
-            $this->selectedMails = $this->mails->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedSubjects = $this->subjects->pluck('id')->map(fn($item) => (string) $item)->toArray();
         }else{
-            $this->selectedMails = [];
+            $this->selectedSubjects = [];
         }
     }
     /**
@@ -32,19 +32,19 @@ class MailBlasts extends Component
         $this->checkedAll = false;
     }
     /**
-     * get all notifications from database
+     * get all subjects from database
      */
-    public function getMailsProperty()
+    public function getSubjectsProperty()
     {
-        return MailBlast::latest()->paginate(3);
+        return Subject::latest()->paginate(3);
     }
     /**
-     * render the mail-blasts livewire view
+     * render the subjects livewire view
      */
     public function render()
     {
-        return view('livewire.all.mail-blasts', [
-            'mails' => $this->mails
+        return view('livewire.all.subjects', [
+            'subjects' => $this->subjects
         ])->extends('layouts.app')->section('content');
     }
 }

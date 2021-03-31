@@ -36,7 +36,7 @@ class Subjects extends Component
      */
     public function getSubjectsProperty()
     {
-        return Subject::latest()->paginate(3);
+        return Subject::latest()->paginate(10);
     }
     /**
      * render the subjects livewire view

@@ -43,7 +43,7 @@
                                                  <div class="user-avatar bg-primary">
                                                         <span>
                                                                <img class="profile-user-img img-fluid img-circle"
-                                                               src="{{asset('storage/passports/'.$admin->passport) }}"
+                                                               src="{{asset('storage/passports/'.$admin->profileimage) }}"
                                                                alt="Passport"
                                                                >
                                                         </span>

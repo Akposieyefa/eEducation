@@ -18,6 +18,10 @@ class Admin extends Model
         return $this->fname." ". $this->mname." ". $this->lname;
     }
 
+    public function getProfileimageAttribute() {
+        return $this->passport;
+    }
+
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }

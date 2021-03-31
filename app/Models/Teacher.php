@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Storage;
 
 class Teacher extends Model
 {
@@ -16,6 +17,14 @@ class Teacher extends Model
         'user_id','teacher_id','fname', 'mname', 'lname', 'dob', 'gender', 'nationality', 'address', 'religion',
         'state_id', 'lga_id', 'level_id', 'arm_id', 'passport', 'employment_date', 'resume'
     ];
+
+    public function getFullnameAttribute() {
+        return $this->fname." ". $this->mname." ". $this->lname;
+    }
+
+    public function getProfileimageAttribute() {
+        return $this->passport;
+    }
 
     public function level() {
        return $this->belongsTo(Level::class, 'level_id');

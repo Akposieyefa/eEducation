@@ -79,7 +79,6 @@ class Admin extends Component
         ]);
         if ($admin) {
             $user = User::where('id', $admin->user_id)->update([
-                'name' => $this->fname,
                 'email' => $this->email
             ]);
             session()->flash('success', 'Administrator profile updated successfully');
@@ -111,7 +110,6 @@ class Admin extends Component
          }
  
          $user = User::create([
-             'name' => $this->fname,
              'email' => $this->email,
              'password' => Hash::make('password'),
          ]);

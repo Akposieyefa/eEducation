@@ -54,15 +54,21 @@
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
-                                        <a href="{{ route('class') }}" class="nk-menu-link">
+                                        <a href="{{ route('class-arm') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-chat-fill"></em></span>
-                                            <span class="nk-menu-text">Class</span>
+                                            <span class="nk-menu-text">Arms</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('notifications') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-opt-alt-fill"></em></span>
                                             <span class="nk-menu-text">Notification</span>
+                                        </a>
+                                    </li><!-- .nk-menu-item -->
+                                    <li class="nk-menu-item">
+                                        <a href="{{ route('classes') }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-opt-alt-fill"></em></span>
+                                            <span class="nk-menu-text">Class</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">

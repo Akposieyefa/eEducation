@@ -13,7 +13,7 @@ class CreateLevelSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('level_subjects', function (Blueprint $table) {
+        Schema::create('level_subject', function (Blueprint $table) {
             $table->bigInteger('subject_id')->unsigned();
             $table->bigInteger('level_id')->unsigned();
 

@@ -19,6 +19,10 @@ class Guardian extends Model
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function getProfileimageAttribute() {
+        return $this->passport;
+    }
     
     public function getFullnameAttribute() {
         return $this->fname." ". $this->mname." ". $this->lname;

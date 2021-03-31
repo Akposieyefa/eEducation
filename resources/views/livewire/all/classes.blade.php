@@ -1,5 +1,5 @@
 <div class="nk-block">
-        @livewire('modals.arm')
+        @livewire('modals.classe')
         <div class="mb-3 nk-tb-list is-separate">
                <div class="nk-tb-item nk-tb-head">
                      <div class="nk-tb-col nk-tb-col-check">
@@ -7,8 +7,7 @@
                                    <input type="checkbox" class="custom-control" wire:model="selectAll">
                             </div>
                      </div>
-                      <div class="nk-tb-col"><span class="sub-text">Class Arms</span></div>
-                      <div class="nk-tb-col tb-col-md"><span class="sub-text">Class Name</span></div>
+                      <div class="nk-tb-col"><span class="sub-text">Class </span></div>
                       <div class="nk-tb-col tb-col-lg"><span class="sub-text">Students</span></div>
                        <div class="nk-tb-col tb-col-lg"><span class="sub-text">Subjects</span></div>
                       <div class="nk-tb-col tb-col-md"><span class="sub-text">Created Date</span></div>
@@ -27,11 +26,11 @@
                              </ul>
                       </div>
                </div><!-- .nk-tb-item -->
-               @foreach($arms as $arm)
+               @foreach($classes as $class)
                      <div class="nk-tb-item">
                              <div class="nk-tb-col nk-tb-col-check">
                             <div class="custom-control custom-control-sm custom-checkbox notext">
-                                   <input type="checkbox" class="custom-control" wire:model="selectedArms" value="{{ $arm->id }}">
+                                   <input type="checkbox" class="custom-control" wire:model="selectedClasses" value="{{ $class->id }}">
                                    <label class="custom-control"></label>
                             </div>
                      </div>
@@ -40,26 +39,23 @@
                                           <div class="user-card">
                                                  <div class="user-avatar bg-primary">
                                                         <span>
-                                                              {{ substr($arm->name, 0,1) }}
+                                                              {{ substr($class->name, 0,1) }}
                                                         </span>
                                                  </div>
                                                  <div class="user-info">
-                                                        <span class="tb-lead">{{ $arm->name }} <span class="ml-1 dot dot-success d-md-none"></span></span>
+                                                        <span class="tb-lead">{{ $class->name }} <span class="ml-1 dot dot-success d-md-none"></span></span>
                                                  </div>
                                           </div>
                                    </a>
                             </div>
                             <div class="nk-tb-col tb-col-mb">
-                                   <span class="tb-amount">{{ $arm->level->name }}</span>
+                                   <span class="tb-amount">{{ $class->students->count() }}</span>
                             </div>
                             <div class="nk-tb-col tb-col-mb">
-                                   <span class="tb-amount">{{ $arm->students->count() }}</span>
-                            </div>
-                            <div class="nk-tb-col tb-col-mb">
-                                   <span class="tb-amount">{{ $arm->level->subjects->count() }}</span>
+                                   <span class="tb-amount">{{ $class->subjects->count() }}</span>
                             </div>
                             <div class="nk-tb-col tb-col-md">
-                                   <span>{{ $arm->created_at->diffForHumans() }}</span>
+                                   <span>{{ $class->created_at->diffForHumans() }}</span>
                             </div>
                             <div class="nk-tb-col nk-tb-col-tools">
                                    <ul class="nk-tb-actions gx-1">
@@ -78,7 +74,8 @@
                      </div><!-- .nk-tb-item -->
                @endforeach
         </div><!-- .nk-tb-list -->
-       {{ $arms->links() }}
+       {{ $classes->links() }}
  </div><!-- .nk-block -->
+
 
 

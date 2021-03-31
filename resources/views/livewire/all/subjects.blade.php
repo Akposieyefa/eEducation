@@ -28,7 +28,7 @@
               <div class="nk-tb-item">
                      <div class="nk-tb-col nk-tb-col-check">
                             <div class="custom-control custom-control-sm custom-checkbox notext">
-                                   <input type="checkbox" class="custom-control" wire:model="selectedNotifications" value="{{ $subject->id }}">
+                                   <input type="checkbox" class="custom-control" wire:model="selectedSubjects" value="{{ $subject->id }}">
                                    <label class="custom-control"></label>
                             </div>
                      </div>

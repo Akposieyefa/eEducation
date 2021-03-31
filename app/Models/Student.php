@@ -21,6 +21,10 @@ class Student extends Model
         return $this->fname." ". $this->mname." ". $this->lname;
     }
 
+    public function getProfileimageAttribute() {
+        return $this->passport;
+    }
+
     public function level() {
        return $this->belongsTo(Level::class, 'level_id');
     }

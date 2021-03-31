@@ -10,6 +10,7 @@ class LevelSubject extends Model
 {
     use HasFactory;
 
+    protected $table ="level_subject";
     protected $fillable = [
         'subject_id','level_id'
     ];

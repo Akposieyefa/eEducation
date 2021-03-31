@@ -10,12 +10,20 @@ class Level extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+       'name'
+    ];
+     
     public function students() {
-       return $this->belongsToMany(Student::class);
+       return $this->hasMany(Student::class);
     }
 
     public function teachers() {
        return $this->belongsToMany(Teacher::class);
+    }
+
+    public function subjects() {
+       return $this->belongsToMany(Subject::class);
     }
 
     public function arms() {

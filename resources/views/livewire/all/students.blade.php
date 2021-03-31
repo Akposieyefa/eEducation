@@ -46,7 +46,7 @@
                                                  <div class="user-avatar bg-primary">
                                                         <span>
                                                                <img class="profile-user-img img-fluid img-circle"
-                                                               src="{{asset('storage/passports/'.$student->passport) }}"
+                                                               src="{{asset('storage/passports/'.$student->profileimage) }}"
                                                                alt="Student Passport"
                                                                >
                                                         </span>
@@ -102,6 +102,9 @@
                                                                <ul class="link-list-opt no-bdr">
                                                                       <li><a href="#"><em class="icon ni ni-eye"></em><span>Profile</span></a></li>
                                                                       <li><a href="#" wire:click="editStudent({{ $student->id }})"><em class="icon ni ni-edit"></em><span>Edit </span></a></li>
+                                                                      @teacher
+                                                                             <li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="promoteStudent({{ $student->id }})"><em class="icon ni ni-plane"></em><span> Promote</span></a></li>
+                                                                      @endteacher
                                                                       <li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteSingleRecord({{ $student->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
                                                                </ul>
                                                         </div>

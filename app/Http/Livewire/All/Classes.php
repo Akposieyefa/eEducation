@@ -3,15 +3,15 @@
 namespace App\Http\Livewire\All;
 
 use Livewire\Component;
-use App\Models\Admin;
+use App\Models\Level;
 use Livewire\WithPagination;
 
-class Admins extends Component
+class Classes extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $selectedAdmins = [];
+    public $selectedClasses = [];
     public $selectAll = false;
 
     /**
@@ -19,9 +19,9 @@ class Admins extends Component
      */
     public function updatedSelectAll($value) {
         if ($value) {
-            $this->selectedAdmins = $this->admins->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedClasses = $this->classes->pluck('id')->map(fn($item) => (string) $item)->toArray();
         }else{
-            $this->selectedAdmins = [];
+            $this->selectedClasses = [];
         }
     }
     /**
@@ -32,19 +32,16 @@ class Admins extends Component
         $this->checkedAll = false;
     }
     /**
-     * get all admins from database
+     * get all classes from database
      */
-    public function getAdminsProperty()
+    public function getClassesProperty()
     {
-        return Admin::with(['user'])->latest()->paginate(5);
+        return Level::with(['students','subjects'])->latest()->paginate(10);
     }
-    /**
-     * render the admins livewire view
-     */
     public function render()
     {
-        return view('livewire.all.admins',[
-            'admins' => $this->admins
+        return view('livewire.all.classes',[
+            'classes' => $this->classes
         ])->extends('layouts.app')->section('content');
     }
 }

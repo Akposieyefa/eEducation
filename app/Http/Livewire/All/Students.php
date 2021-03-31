@@ -44,13 +44,13 @@ class Students extends Component
     {
         $userRoles = auth()->user()->roles->pluck('name');
         if ($userRoles[0] == 'Admin') {
-            return Student::with(['level','user','state','lga'])->latest()->paginate(2);
+            return Student::with(['level','user','state','lga'])->latest()->paginate(10);
         }elseif($userRoles[0] == 'Teacher'){
             $level_id = auth()->user()->teacher->level_id;
             $arm_id = auth()->user()->teacher->arm_id;
             return Student::with(['level','user','state','lga'])
                     ->where('level_id', $level_id)
-                    ->where('arm_id', $arm_id)->latest()->paginate(2);
+                    ->where('arm_id', $arm_id)->latest()->paginate(10);
         }
         
     }
@@ -78,6 +78,19 @@ class Students extends Component
     public function editStudent($id)
     {
         $this->emit('editForm', $id);
+    }
+    /**
+     * student promotion
+     */
+    public function promoteStudent($id)
+    {
+        $data = Student::findOrFail($id);
+        $data->update(
+            [
+                'level_id' => $data->level_id +1
+            ]
+        );
+        session()->flash('success', 'Student have been promoted successfully');
     }
     /**
      * render the students livewire view

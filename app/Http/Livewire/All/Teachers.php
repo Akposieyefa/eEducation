@@ -38,7 +38,7 @@ class Teachers extends Component
      */
     public function getTeachersProperty()
     {
-        return Teacher::with(['level','user','state','lga'])->latest()->paginate(2);
+        return Teacher::with(['level','user','state','lga'])->latest()->paginate(10);
     }
     /**
      *  delete mutiple teachers records

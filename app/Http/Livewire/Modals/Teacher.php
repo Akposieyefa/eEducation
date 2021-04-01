@@ -172,7 +172,7 @@ class Teacher extends Component
  
          if (!empty($this->passport) && !empty($this->resume)) {
              $imageHasName = $this->passport->hashName();
- 
+            
              $validate = array_merge($this->validate(), [
                  'passport' => 'image',
              ]);

@@ -57,7 +57,7 @@
                                                                              </div>
                                                                              <div class="user-info">
                                                                                     <span class="tb-lead">{{ $teacher->fullname }} <span class="ml-1 dot dot-success d-md-none"></span></span>
-                                                                                    <span>{{ $teacher->user->email }}</span>
+                                                                                    <span>{{ $teacher->user->email }}</span> <br/>
                                                                                     <span>Reg Number : {{ $teacher->teacher_id }}</span>
                                                                              </div>
                                                                       </div>

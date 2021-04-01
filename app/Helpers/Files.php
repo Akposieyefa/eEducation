@@ -1,6 +1,11 @@
 <?php 
 use App\Models\Notification;
 use App\Models\Complain;
+use App\Models\User;
+use App\Models\Guardian;
+use App\Models\Teacher;
+use App\Models\Student;
+use App\Models\Admin;
 use Carbon\Carbon;
 
 function notification() {
@@ -16,10 +21,11 @@ function complains() {
 }
 
 function username($role) {
+       
        if($role == "Teacher"){
-             return auth()->user()->teacher->fullname;
+              return auth()->user()->teacher->fullname;
        }elseif($role == "Admin") {
-             return auth()->user()->admin->fullname;
+              return auth()->user()->admin->fullname;
        }elseif($role == "Guardian") {
               return auth()->user()->guardian->fullname;
        }else {
@@ -30,11 +36,11 @@ function username($role) {
 function userimage($role) {
 
        if($role == "Teacher"){
-              return auth()->user()->teacher->profileimage;
+              return auth()->user()->email;
         }elseif($role == "Admin") {
               return auth()->user()->admin->profileimage;
         }elseif($role == "Guardian") {
-               return auth()->user()->guardian->profileimage;
+               return auth()->user()->email;
         }else {
                return auth()->user()->student->profileimage;
         }

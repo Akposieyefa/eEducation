@@ -1,19 +1,19 @@
 <div>
-       <x-jumbotron>
-              <h3> {{ "Complain" }} </h3>
-              <div class="col-1 offset-11">
-                     <x-forms.buttons.secondary data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormComplainModal')">
-                            Create
-                     </x-forms.buttons.secondary>
+       <div class="row mt-5 mb-5">
+              <div class="col-9"><h3> Send {{ "Complain" }} </h3></div>
+              <div class="col-3">
+                     <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormComplainModal')">
+                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Create New Complain
+                     </x-forms.buttons.success>
               </div>
-       </x-jumbotron>
+       </div>
        <!-- Modal -->
        @if($isComplainOpen)
-       <div class="modal d-block" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+       <div class="modal d-block" id="exampleModalLong" style="background: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                      <div class="modal-content">
                             <div class="modal-header">
-                                   <h5 class="modal-title" id="exampleModalLongTitle">Send Complian</h5>
+                                   <h5 class="modal-title" id="exampleModalLongTitle">Send Complain</h5>
                                    <button type="button" wire:click="close()" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                    </button>

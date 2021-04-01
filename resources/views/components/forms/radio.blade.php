@@ -1,1 +1,1 @@
-<input type="radio" {{ $attributes }}>
+<input type="radio" {{ $attributes }} class="custom-radio">

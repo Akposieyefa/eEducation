@@ -1,15 +1,15 @@
 <div>
-       <x-jumbotron>
-              <h3> {{ "Classes" }} </h3>
-              <div class="col-1 offset-11">
-                     <x-forms.buttons.secondary data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormClassModal')">
-                            Create
-                     </x-forms.buttons.secondary>
+       <div class="row mt-5 mb-5">
+              <div class="col-9"><h3> Manage {{ "Classes" }} </h3></div>
+              <div class="col-3">
+                     <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormClassModal')">
+                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Create New Class
+                     </x-forms.buttons.success>
               </div>
-       </x-jumbotron>
+       </div>
        <!-- Modal -->
        @if($isCreateClasseOpen)
-       <div class="modal d-block" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+       <div class="modal d-block" id="exampleModalLong" style="background: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                      <div class="modal-content">
                             <div class="modal-header">
@@ -29,7 +29,7 @@
                                           </div>
 
                                           <div class="modal-footer">
-                                                 <x-forms.buttons.danger data-dismiss="modal">Close</x-forms.buttons.danger>
+                                                 <x-forms.buttons.danger data-dismiss="modal" wire:click="close()">Close</x-forms.buttons.danger>
                                                  <x-forms.buttons.success type="submit">Save</x-forms.buttons.success>
                                           </div>
                                    </form>

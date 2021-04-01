@@ -1,7 +1,7 @@
             <div class="nk-sidebar nk-sidebar-fixed is-light " data-content="sidebarMenu">
                 <div class="nk-sidebar-element nk-sidebar-head">
                     <div class="nk-sidebar-brand">
-                        <a href="html/index.html" class="logo-link nk-sidebar-logo">
+                        <a href="{{ route('dashboard') }}" class="logo-link nk-sidebar-logo">
                             <img class="logo-light logo-img" src="{{ asset('assets/logo.jpeg') }}" srcset="{{ asset('assets/logo.jpeg') }} 2x" alt="logo">
                             <img class="logo-dark logo-img" src=" {{ asset('assets/logo.jpeg') }}" srcset="{{ asset('assets/logo.jpeg') }} 2x" alt="logo-dark">
                             <img class="logo-small logo-img logo-img-small" src=" {{ asset('assets/logo.jpeg') }} " srcset="{{ asset('assets/logo.jpeg') }} 2x" alt="logo-small">
@@ -25,56 +25,56 @@
                                 @admin
                                     <li class="nk-menu-item">
                                         <a href="{{ route('students') }}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
-                                            <span class="nk-menu-text">Students</span>
+                                            <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                            <span class="nk-menu-text">Manage Students</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('teachers') }}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-package-fill"></em></span>
-                                            <span class="nk-menu-text">Teachers</span>
+                                            <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                            <span class="nk-menu-text">Manage Staff</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('guardians') }}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
-                                            <span class="nk-menu-text">Guardinas</span>
+                                            <span class="nk-menu-icon"><em class="icon ni ni-user-check"></em></span>
+                                            <span class="nk-menu-text">Manage Guardians</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('subjects') }}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-chat-fill"></em></span>
-                                            <span class="nk-menu-text">Subjects</span>
+                                            <span class="nk-menu-icon"><em class="icon ni ni-book-read"></em></span>
+                                            <span class="nk-menu-text">Manage Subjects</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                      <li class="nk-menu-item">
                                         <a href="{{ route('assign-subjects') }}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-chat-fill"></em></span>
+                                            <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
                                             <span class="nk-menu-text">Assign Subject</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('class-arm') }}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-chat-fill"></em></span>
+                                            <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
                                             <span class="nk-menu-text">Arms</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('notifications') }}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-opt-alt-fill"></em></span>
+                                            <span class="nk-menu-icon"><em class="icon ni ni-notice"></em></span>
                                             <span class="nk-menu-text">Notification</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('classes') }}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-opt-alt-fill"></em></span>
-                                            <span class="nk-menu-text">Class</span>
+                                            <span class="nk-menu-icon"><em class="icon ni ni-property-add"></em></span>
+                                            <span class="nk-menu-text">Manage Classes</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="html/ecommerce/integration.html" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-server-fill"></em></span>
-                                            <span class="nk-menu-text">Results</span>
+                                            <span class="nk-menu-icon"><em class="icon ni ni-check-circle"></em></span>
+                                            <span class="nk-menu-text">Manage Results</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-heading">
@@ -82,14 +82,14 @@
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('mails') }}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-dashlite-alt"></em></span>
-                                            <span class="nk-menu-text">Mail Blast</span>
+                                            <span class="nk-menu-icon"><em class="icon ni ni-emails"></em></span>
+                                            <span class="nk-menu-text">Send Mails </span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('admins') }}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-layers-fill"></em></span>
-                                            <span class="nk-menu-text">Admins</span>
+                                            <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
+                                            <span class="nk-menu-text">Manage Admins</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                 @endadmin

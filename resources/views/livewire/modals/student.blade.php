@@ -1,15 +1,15 @@
 <div>
-       <x-jumbotron>
-              <h3> {{ "Students" }} </h3>
-              <div class="col-1 offset-11">
-                     <x-forms.buttons.secondary data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormStudentModal')">
-                      Create 
-                     </x-forms.buttons.secondary>
+       <div class="row mt-5 mb-5">
+              <div class="col-9"><h3>Manage  {{ "Students" }} </h3> </div>
+              <div class="col-3">
+                     <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormStudentModal')">
+                            <em class="ni ni-plus"></em> &nbsp;&nbsp;Create New Student
+                     </x-forms.buttons.success>
               </div>
-       </x-jumbotron>
+       </div>
        <!-- Modal -->
        @if($isStudentOpen)
-       <div class="modal d-block" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+       <div class="modal d-block" id="exampleModalLong" style="background: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                      <div class="modal-content">
                             <div class="modal-header">
@@ -126,7 +126,7 @@
                                    </div>
                             </div>
                             <div class="modal-footer">
-                                   <x-forms.buttons.danger wire:click="close()" data-dismiss="modal">Close</x-forms.buttons.danger>
+                                   <x-forms.buttons.danger wire:click="close()" wire:click="close()" data-dismiss="modal">Close</x-forms.buttons.danger>
                                    @if ($update_mode)
                                           <x-forms.buttons.success wire:click="updateStudent()">Update</x-forms.buttons.success>
                                    @else

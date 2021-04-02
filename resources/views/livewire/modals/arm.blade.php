@@ -1,7 +1,7 @@
 <div>
        <div class="row mt-5 mb-5">
-              <div class="col-10"><h3> Manage {{ "Arm" }} </h3></div>
-              <div class="col-2">
+              <div class="col-9"><h3> Manage {{ "Arm" }} </h3></div>
+              <div class="col-3">
                      <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormArmModal')">
                             <em class="ni ni-plus"></em> &nbsp;&nbsp; Create New Arm
                      </x-forms.buttons.success>

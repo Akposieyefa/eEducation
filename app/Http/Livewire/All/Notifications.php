@@ -35,7 +35,12 @@ class Notifications extends Component
      */
     public function getNotificationsProperty()
     {
-        return Notification::with(['role'])->latest()->paginate(3);
+        $userRoles = auth()->user()->roles->pluck('name');
+        if ($userRoles == "Admin") {
+            return Notification::with(['role'])->latest()->paginate(3);
+        }else {
+            return Notification::with(['role'])->where('role_id', auth()->user()->roles[0]['name'])->latest()->paginate(3);
+        }
     }
     /**
      * render the notifications livewire view

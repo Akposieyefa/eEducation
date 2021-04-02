@@ -2,6 +2,9 @@
 use App\Models\Notification;
 use App\Models\Complain;
 use Carbon\Carbon;
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\Subject;
 
 function notification() {
        return $message = Notification::whereDate(
@@ -13,6 +16,19 @@ function complains() {
        return  $complain = Complain::where(
              'status', NULL
        )->get();
+}
+
+function studentCount(){
+      return Student::count(); 
+}
+function teacherCount(){
+       return Teacher::count(); 
+}
+function allStudents() {
+       return Student::with(['level','user','state','lga','guardian'])->latest()->paginate(10);
+}
+function subjectCount(){
+       return Subject::count(); 
 }
 
 function username($role) {

@@ -52,7 +52,7 @@
                                                 </ul><!-- .chat-list -->
                                             </div><!-- .nk-dropdown-body -->
                                             <div class="dropdown-foot center">
-                                                <a href="html/apps-chats.html">View All</a>
+                                                <a href="{{ route('complains') }}">View All</a>
                                             </div>
                                         </div>
                                     </li>

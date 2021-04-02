@@ -17,8 +17,8 @@
                                             <div class="card">
                                                 <div class="card-inner">                                            
                                                     <div class="w-100">
-                                                        <h4 class="text-center">Welcome Admin</h4>
-                                                        <h4 class="text-center mt-3 mb-5">Today's Date is {{ date('F m, Y') }}</h4>
+                                                        <h4 class="text-center">Welcome {{ auth()->user()->roles[0]['name'] }}</h4>
+                                                        <h4 class="text-center mt-3 mb-5">Today's Date is {{ date('F d, Y') }}</h4>
                                                         <div class="fs-20px text-center fw-bold">
                                                             Current Session: <span class="badge badge-primary badge-pill badge-outline fs-20px p-2"> 2020/2021</span>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -41,7 +41,7 @@
                                                         </div>
                                                         <div class="data">
                                                             <div class="data-group">
-                                                                <div class="amount">1,945</div>
+                                                                <div class="amount">{{ studentCount() }}</div>
                                                                 <em class="icon ni ni-users" style="font-size: 4rem"></em>
                                                             </div>
                                                         </div>
@@ -60,7 +60,7 @@
                                                         </div>
                                                         <div class="data">
                                                             <div class="data-group">
-                                                                <div class="amount">35</div>
+                                                                <div class="amount">{{ subjectCount() }}</div>
                                                                 <em class="icon ni ni-book-read" style="font-size: 4rem"></em>
                                                             </div>
                                                         </div>
@@ -79,7 +79,7 @@
                                                         </div>
                                                         <div class="data">
                                                             <div class="data-group">
-                                                                <div class="amount">73</div>
+                                                                <div class="amount">{{ teacherCount() }}</div>
                                                                 <em class="icon ni ni-user-list" style="font-size: 4rem"></em>
                                                             </div>
                                                         </div>
@@ -105,38 +105,35 @@
                                                         <div class="nk-tb-col tb-col-md"><span>Parent Name</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Mobile Number</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Address</span></div>
-                                                        <div class="nk-tb-col"><span class="d-none d-sm-inline">Action</span></div>
                                                     </div>
-                                                    <div class="nk-tb-item">
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-lead"><a href="#">PRE1234</a></span>
+                                                    @foreach(allStudents() as $student)
+                                                        <div class="nk-tb-item">
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-lead"><a href="#">{{ $student->student_id }}</a></span>
+                                                            </div>
+                                                            <div class="nk-tb-col tb-col-sm">
+                                                                <span class="tb-lead">{{ $student->fullname}}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col tb-col-md">
+                                                                <span class="tb-sub">{{ $student->level->name }}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-sub">{{ $student->dob }}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-sub">{{isset($student->guardian->fullname)?$student->guardian->fullname:'No Guardian Yet' }}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-sub">{{isset($student->guardian->phone)?$student->guardian->phone:'No Guardian Phone Number Yet' }}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-sub">{{ $student->address }}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="nk-tb-col tb-col-sm">
-                                                            <span class="tb-lead">Abu Bin Ishtiyak</span>
-                                                        </div>
-                                                        <div class="nk-tb-col tb-col-md">
-                                                            <span class="tb-sub">JSS 2</span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-sub">26th April, 2006</span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-sub">Abu Bin</span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-sub">0909890743</span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-sub">3979 Ashwood Drive, Zaria</span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-sub"></span>
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
                                             </div><!-- .card -->
                                         </div>
-
                                     </div><!-- .row -->
                                 </div><!-- .nk-block -->
                             </div>
@@ -144,5 +141,4 @@
                     </div>
                 </div>
                 <!-- content @e -->
-    
 @endsection

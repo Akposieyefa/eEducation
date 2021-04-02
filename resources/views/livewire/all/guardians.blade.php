@@ -63,7 +63,7 @@
                                                                <span class="tb-amount">{{ $guardian->phone }}</span>
                                                         </div>
                                                         <div class="nk-tb-col tb-col-md">
-                                                               <span>{{ $guardian->occupation }}</span>
+                                                               <span>{{ $guardian->occupation }} </span>
                                                         </div>
                                                         <div class="nk-tb-col tb-col-lg">
                                                                <span>{{ $guardian->home_address }}</span>

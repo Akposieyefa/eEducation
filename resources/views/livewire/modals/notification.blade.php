@@ -1,11 +1,15 @@
 <div>
-       <div class="row mt-5 mb-5">
-              <div class="col-9"><h3> Manage {{ "Notifications" }} </h3></div>
-              <div class="col-3">
-                     <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormNotificationModal')">
-                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Create New Notification
-                     </x-forms.buttons.success>
-              </div>
+       <div class="row mt-3 mb-5">
+              @admin
+                     <div class="col-9"><h3> Manage {{ "Notifications" }} </h3></div>
+                     <div class="col-3">
+                            <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormNotificationModal')">
+                                   <em class="ni ni-plus"></em> &nbsp;&nbsp; Create New Notification
+                            </x-forms.buttons.success>
+                     </div>
+              @else
+                     <div class="col-9"><h3> {{ "Notifications" }} </h3></div>
+              @endadmin
        </div>
        <!-- Modal -->
        @if($isNotificationOpen)

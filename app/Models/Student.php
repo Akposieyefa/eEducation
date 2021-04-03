@@ -45,8 +45,8 @@ class Student extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function guardain() {
-        return $this->hasOne(Guardian::class);
+    public function guardian() {
+        return $this->belongsTo(Guardian::class);
     }
 
     public function scopeSearch($query, $term) {

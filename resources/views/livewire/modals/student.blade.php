@@ -1,5 +1,5 @@
 <div>
-       <div class="row mt-5 mb-5">
+       <div class="row mt-3 mb-5">
               <div class="col-9"><h3>Manage  {{ "Students" }} </h3> </div>
               <div class="col-3">
                      <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormStudentModal')">

@@ -10,6 +10,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\GuardainStudent;
 use Intervention\Image\ImageManager;
+use App\Models\Student;
 
 class Guardian extends Component
 {
@@ -170,9 +171,8 @@ class Guardian extends Component
             'passport' => $imageHasName
         ]);
         if ($guardian) {
-            GuardainStudent::create([
-                'guardian_id' => $guardian->id,
-                'student_id' => $this->student_id
+            $student = Student::where('student_id', $this->student_id)->update([
+                'guardian_id' => $guardian->id
             ]);
             session()->flash('success', 'Guardian profile created successfully');
         }else {

@@ -58,7 +58,12 @@
                                                                              <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                                              <div class="dropdown-menu dropdown-menu-right">
                                                                                     <ul class="link-list-opt no-bdr">
-                                                                                           <li><a href="html/ecommerce/customer-details.html"><em class="icon ni ni-trash"></em><span>Remove</span></a></li>
+                                                                                           @admin
+                                                                                           <li><a href="#"><em class="icon ni ni-trash"></em><span>Remove</span></a></li>
+                                                                                           @endadmin
+                                                                                           @teacher
+                                                                                                  <li><a href="#" wire:click="exportStudents()"><em class="icon ni ni-list"></em><span> Download Sheet</span></a></li>
+                                                                                           @endteacher
                                                                                     </ul>
                                                                              </div>
                                                                       </div>
@@ -68,7 +73,9 @@
                                           </div><!-- .nk-tb-item -->
                                           @endforeach
                                    </div><!-- .nk-tb-list -->
+                                   @admin
                                    {{ $subjects->links() }}
+                                   @endadmin
                             </div><!-- .nk-block -->
                      </div>
               </div>

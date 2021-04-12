@@ -4,13 +4,6 @@
                     <div class="container-fluid">
                         <div class="nk-content-inner">
                             <div class="nk-content-body">
-                                <!--<div class="nk-block-head nk-block-head-sm">
-                                    <div class="nk-block-between">
-                                        <div class="nk-block-head-content">
-                                            <h4 class="nk-block-title page-title">Dashboard</h4>
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <div class="nk-block">
                                     <div class="row mb-5">
                                         <div class="col-12">
@@ -20,9 +13,9 @@
                                                         <h4 class="text-center">Welcome {{ auth()->user()->roles[0]['name'] }}</h4>
                                                         <h4 class="text-center mt-3 mb-5">Today's Date is {{ date('F d, Y') }}</h4>
                                                         <div class="fs-20px text-center fw-bold">
-                                                            Current Session: <span class="badge badge-primary badge-pill badge-outline fs-20px p-2"> 2020/2021</span>
+                                                            Current Session: <span class="badge badge-primary badge-pill badge-outline fs-20px p-2"> {{ activeSection() }}</span>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                                            Current Term: <span class="badge badge-primary badge-pill fs-20px p-2"> 2nd Term</span>
+                                                            Current Term: <span class="badge badge-primary badge-pill fs-20px p-2"> {{ activeTerm() }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -68,6 +61,7 @@
                                                 </div><!-- .nk-ecwg -->
                                             </div><!-- .card -->
                                         </div><!-- .col -->
+                                        @admin
                                         <div class="col-xxl-4">
                                             <div class="card">
                                                 <div class="nk-ecwg nk-ecwg6">
@@ -87,6 +81,7 @@
                                                 </div><!-- .nk-ecwg -->
                                             </div><!-- .card -->
                                         </div><!-- .col -->
+                                        @endadmin
                                         <div class="col-xxl-12">
                                             <div class="card card-full">
                                                 <div class="card-inner">

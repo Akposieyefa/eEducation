@@ -4,6 +4,8 @@ namespace App\Http\Livewire\All;
 
 use Livewire\Component;
 use App\Models\Subject;
+use App\Exports\SubjectResultSheet;
+use Maatwebsite\Excel\Facades\Excel;
 use Livewire\WithPagination;
 
 class Subjects extends Component
@@ -32,14 +34,28 @@ class Subjects extends Component
         $this->checkedAll = false;
     }
     /**
-     * get all subjects from database
+     * get all from database
      */
     public function getSubjectsProperty()
     {
-        return Subject::latest()->paginate(10);
+        $userRoles = auth()->user()->roles->pluck('name');
+        if ($userRoles[0] == 'Admin') {
+            return Subject::latest()->paginate(10);
+        }elseif($userRoles[0] == 'Teacher'){
+            return auth()->user()->teacher->level->subjects;
+        }
     }
     /**
-     * render the subjects livewire view
+     * download excel file
+     */
+    public function exportStudents()
+    {
+        $level = auth()->user()->teacher->level_id;
+        $arm = auth()->user()->teacher->arm_id;
+        return Excel::download(new SubjectResultSheet($level, $arm), 'result-sheet.xlsx');
+    }
+    /**
+     * render the livewire view
      */
     public function render()
     {

@@ -77,9 +77,9 @@ class Teacher extends Component
      */
     public function editForm($id)
     {
-        $this->studentId = $id;
+        $this->teacherId = $id;
         $this->update_mode = true;
-        $teacher = TeacherData::with(['user','level','arm','lga'])->where('id', $this->studentId)->first();
+        $teacher = TeacherData::with(['user','level','arm','lga'])->where('id', $this->teacherId)->first();
         $this->fname = $teacher->fname;
         $this->mname = $teacher->mname;
         $this->lname = $teacher->lname;
@@ -94,7 +94,7 @@ class Teacher extends Component
         $this->selectedArm = $teacher->arm_id;
         $this->passport = $teacher->passport;
         $this->employment_date = $teacher->employment_date;
-        $this->isStudentOpen  = true;
+        $this->isTeacherOpen  = true;
     }
     /**
      * update teachers details

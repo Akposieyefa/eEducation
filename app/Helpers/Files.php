@@ -5,6 +5,9 @@ use Carbon\Carbon;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Subject;
+use App\Models\Role;
+use App\Models\Section;
+use App\Models\Term;
 
 function notification() {
        return $message = Notification::whereDate(
@@ -19,16 +22,49 @@ function complains() {
 }
 
 function studentCount(){
-      return Student::count(); 
+       $userRoles = auth()->user()->roles->pluck('name');
+        if ($userRoles[0] == 'Admin') {
+             return Student::count();
+        }elseif($userRoles[0] == 'Teacher'){
+            $level_id = auth()->user()->teacher->level_id;
+            $arm_id = auth()->user()->teacher->arm_id;
+            return Student::where('level_id', $level_id)
+                    ->where('arm_id', $arm_id)->count();
+        }
 }
 function teacherCount(){
        return Teacher::count(); 
 }
 function allStudents() {
-       return Student::with(['level','user','state','lga','guardian'])->latest()->paginate(10);
+
+       $userRoles = auth()->user()->roles->pluck('name');
+        if ($userRoles[0] == 'Admin') {
+            return Student::with(['level','user','state','lga','guardian'])->latest()->paginate(10);
+        }elseif($userRoles[0] == 'Teacher'){
+            $level_id = auth()->user()->teacher->level_id;
+            $arm_id = auth()->user()->teacher->arm_id;
+            return Student::with(['level','user','state','lga','guardian'])
+                    ->where('level_id', $level_id)
+                    ->where('arm_id', $arm_id)->latest()->paginate(10);
+        }
 }
+
 function subjectCount(){
        return Subject::count(); 
+}
+
+function activeSection(){
+      $sections = Section::where('status', 'open')->get();
+      foreach($sections as $section){
+       return $name = $section->name;
+      }
+}
+
+function activeTerm(){
+       $terms = Term::where('status', 'open')->get();
+      foreach($terms as $term){
+       return $name = $term->name;
+      }
 }
 
 function username($role) {

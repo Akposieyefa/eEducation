@@ -90,11 +90,6 @@
                                                         <div class="nk-tb-col nk-tb-col-tools">
                                                                <ul class="nk-tb-actions gx-1">
                                                                       <li class="nk-tb-action-hidden">
-                                                                             <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Send Email">
-                                                                                    <em class="icon ni ni-mail-fill"></em>
-                                                                             </a>
-                                                                      </li>
-                                                                      <li class="nk-tb-action-hidden">
                                                                              <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Suspend">
                                                                                     <em class="icon ni ni-user-cross-fill"></em>
                                                                              </a>

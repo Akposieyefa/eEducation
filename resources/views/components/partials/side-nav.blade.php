@@ -107,9 +107,15 @@
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
+                                        <a href="{{ route('subjects') }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-book-read"></em></span>
+                                            <span class="nk-menu-text">Manage Subjects</span>
+                                        </a>
+                                    </li><!-- .nk-menu-item -->
+                                    <li class="nk-menu-item">
                                         <a href="html/ecommerce/integration.html" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-server-fill"></em></span>
-                                            <span class="nk-menu-text">Results</span>
+                                            <span class="nk-menu-text">Upload Results</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                 @endteacher

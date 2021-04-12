@@ -81,11 +81,6 @@
                                                                                     <em class="icon ni ni-mail-fill"></em>
                                                                              </a>
                                                                       </li>
-                                                                      <li class="nk-tb-action-hidden">
-                                                                             <a href="#" class="btn btn-trigger btn-icon" data-toggle="tooltip" data-placement="top" title="Suspend">
-                                                                                    <em class="icon ni ni-user-cross-fill"></em>
-                                                                             </a>
-                                                                      </li>
                                                                       <li>
                                                                              <div class="drodown">
                                                                                     <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>

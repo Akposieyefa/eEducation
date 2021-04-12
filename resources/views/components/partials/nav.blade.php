@@ -11,8 +11,8 @@
                                 </a>
                             </div><!-- .nk-header-brand -->
                             <div class="ml-3 nk-header-search ml-xl-0">
-                                <em class="icon ni ni-search"></em>
-                                <input type="text" class="border-transparent form-control form-focus-none" placeholder="Search anything">
+                                <!--<em class="icon ni ni-search"></em>
+                                <input type="text" class="border-transparent form-control form-focus-none" placeholder="Search anything">-->
                             </div><!-- .nk-header-news -->
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">

@@ -1,7 +1,7 @@
             <div class="nk-sidebar nk-sidebar-fixed is-light " data-content="sidebarMenu">
                 <div class="nk-sidebar-element nk-sidebar-head">
                     <div class="nk-sidebar-brand">
-                        <a href="{{ route('dashboard') }}" class="logo-link nk-sidebar-logo">
+                        <a href="{{ route('/') }}" class="logo-link nk-sidebar-logo">
                             <img class="logo-light logo-img" src="{{ asset('assets/logo.jpeg') }}" srcset="{{ asset('assets/logo.jpeg') }} 2x" alt="logo">
                             <img class="logo-dark logo-img" src=" {{ asset('assets/logo.jpeg') }}" srcset="{{ asset('assets/logo.jpeg') }} 2x" alt="logo-dark">
                             <img class="logo-small logo-img logo-img-small" src=" {{ asset('assets/logo.jpeg') }} " srcset="{{ asset('assets/logo.jpeg') }} 2x" alt="logo-small">
@@ -21,7 +21,7 @@
                                         <span class="nk-menu-icon"><em class="icon ni ni-dashboard-fill"></em></span>
                                         <span class="nk-menu-text">Dashboard</span>
                                     </a>
-                                </li><!-- .nk-menu-item -->
+                                </li>
                                 @admin
                                     <li class="nk-menu-item">
                                         <a href="{{ route('students') }}" class="nk-menu-link">
@@ -77,6 +77,12 @@
                                             <span class="nk-menu-text">Manage Results</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
+                                    <li class="nk-menu-item">
+                                        <a href="#" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
+                                            <span class="nk-menu-text">Manage Sessions &amp; Terms</span>
+                                        </a>
+                                    </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-heading">
                                         <h6 class="overline-title text-primary-alt">More Links</h6>
                                     </li><!-- .nk-menu-item -->
@@ -114,7 +120,7 @@
                                     </li><!-- .nk-menu-item -->
                                 @endteacher
                                 @guardian
-                                      <li class="nk-menu-item">
+                                    <li class="nk-menu-item">
                                         <a href="{{ route('complains') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">Complain</span>

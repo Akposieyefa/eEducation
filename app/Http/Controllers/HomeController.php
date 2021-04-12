@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
+
+    public function staffIndex()
+    {
+        return view('staff-dashboard');
+    }
+
+    public function guardianIndex()
+    {
+        return view('guardian-dashboard');
+    }
 }

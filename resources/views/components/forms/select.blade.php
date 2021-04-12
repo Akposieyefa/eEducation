@@ -1,3 +1,3 @@
- <select class="form-select form-control" id="inputGroupSelect03" {{ $attributes }}>
+ <select class="form-select form-control " data-search="on" id="" {{ $attributes }}>
        {{ $slot }}
  </select>

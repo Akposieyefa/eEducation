@@ -20,7 +20,9 @@
                                                                              <a href="#" class="dropdown-toggle btn btn-icon btn-trigger mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                                              <div class="dropdown-menu dropdown-menu-right">
                                                                                     <ul class="link-list-opt no-bdr">
-                                                                                           <li><a href="#"><em class="icon ni ni-trash"></em><span>Remove </span></a></li>
+                                                                                           @admin
+                                                                                                  <li><a href="#"><em class="icon ni ni-trash"></em><span>Remove </span></a></li>
+                                                                                           @endadmin
                                                                                     </ul>
                                                                              </div>
                                                                       </div>

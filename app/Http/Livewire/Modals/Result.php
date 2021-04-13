@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Modals;
 
 use Livewire\Component;
 use App\Models\Reuslt as SubjectResult;
-use App\App\Imports\SubjectResultSheet;
+use App\Imports\SubjectResultSheet;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Subject;
 use App\Models\Term;
@@ -13,12 +13,12 @@ use Livewire\WithFileUploads;
 class Result extends Component
 {
     use WithFileUploads;
-    
+
     public $subjects;
     public $terms;
 
-    public $resultSheet;
     public $term;
+    public $resultSheet;
     public $subject;
 
     public function mount()
@@ -36,8 +36,8 @@ class Result extends Component
         ]);
         if (!empty($this->resultSheet)) {
             $level = auth()->user()->teacher->level_id;
-            $result = new SubjectResultSheet($this->term,$this->subjct,$level);
-            Excel::import($result,request()->file('file'));            
+            $result = new SubjectResultSheet($this->term,$this->subject,$level);
+            Excel::import($result,$this->resultSheet);            
         }
         session()->flash('success', 'Result uploaded successfully');
     }

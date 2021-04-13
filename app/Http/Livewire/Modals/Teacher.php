@@ -23,7 +23,7 @@ class Teacher extends Component
     public $states;
     public $lgas;
     public $levels;
-    public $arms;
+    public $arms = NULL;
     public $selectedState = NULL;
     public $selectedClass = NULL;
 
@@ -57,19 +57,19 @@ class Teacher extends Component
 
     protected $rules = [
         'fname' => 'required',
-        'mname' => 'required',
+        'mname' => 'string|max:255|nullable',
         'lname' => 'required',
         'email' => 'required|email|unique:users',
         'dob' => 'required',
         'nationality' => 'required',
         'address' => 'required',
         'selectedLga' => 'required',
-        'selectedArm' => 'required',
+        'selectedArm' => 'string|max:255|nullable',
         'selectedState' => 'required',
         'selectedClass' => 'required',
         'gender' => 'required',
-        'employment_date' => 'required',
-        'resume' => 'required'
+        'employment_date' => 'string|max:255|nullable',
+        'resume' => 'string|max:255|nullable'
     ];
 
      /**
@@ -91,7 +91,7 @@ class Teacher extends Component
         $this->selectedState = $teacher->state_id;
         $this->selectedClass = $teacher->level_id;    
         $this->selectedLga = $teacher->lga_id;
-        $this->selectedArm = $teacher->arm_id;
+        //$this->selectedArm = $teacher->arm_id;
         $this->passport = $teacher->passport;
         $this->employment_date = $teacher->employment_date;
         $this->isTeacherOpen  = true;
@@ -114,7 +114,6 @@ class Teacher extends Component
             'state_id' => $this->selectedState,
             'lga_id' => $this->selectedLga,
             'level_id' => $this->selectedClass,
-            'arm_id' => $this->selectedArm,
             'employment_date' => $this->employment_date
         ]);
         if ($teacher) {
@@ -169,57 +168,69 @@ class Teacher extends Component
         $imageHasName;//local variable
         $fileNameToStore;
         $t=time(); //local variable
+
+        session()->flash('info', 'Please wait...');
+
+        DB::beginTransaction();
+
+        try {
  
-         if (!empty($this->passport) && !empty($this->resume)) {
-             $imageHasName = $this->passport->hashName();
- 
-             $validate = array_merge($this->validate(), [
-                 'passport' => 'image',
-             ]);
-             $this->passport->store('public/passports');
-             $manager = new ImageManager();
-             $image = $manager->make('storage/passports/'.$imageHasName)->resize(300, 200);
-             $image->save('storage/passports_thumb/'.$imageHasName);
-             //reume
-             $this->resume->store('public/resume');
-             $filenameWithExt = $this->resume->getClientOriginalName();
-             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME );
-             $extension = $this->resume->getClientOriginalExtension();
-             $fileNameToStore = $filename  .'_'.time().'.'.$extension;
-             $path = $this->resume->storeAs('public/resume', $fileNameToStore);
-         }
- 
-         $user = User::create([
-             'email' => $this->email,
-             'password' => Hash::make('password'),
-         ]);
-         $role = Role::where('name', "Teacher",)->first();
-         $user->roles()->attach($role->id);
- 
-         $teacher = TeacherData::create([
-             'user_id' => $user->id,
-             'teacher_id' => Helpers::customIDGenerator(new TeacherData, 'teacher_id', 5, 'NHS'),
-             'fname' => $this->fname,
-             'mname' => $this->mname,
-             'lname' => $this->lname,
-             'dob' => $this->dob,
-             'gender' => $this->gender,
-             'nationality' => $this->nationality,
-             'address' => $this->address,
-             'state_id' => $this->selectedState,
-             'lga_id' => $this->selectedLga,
-             'level_id' => $this->selectedClass,
-             'arm_id' => $this->selectedArm,
-             'employment_date' => $this->employment_date,
-             'passport' => $imageHasName,
-             'resume' => $fileNameToStore
-         ]);
-         if ($teacher) {
-             session()->flash('success', 'Teacher profile created successfully');
-         }else {
-             User::where('id', $user->id)->delete();
-             session()->flash('errMsg', 'Sorry an error occured');
-         }
+            if (!empty($this->passport) && !empty($this->resume)) {
+                $imageHasName = $this->passport->hashName();
+    
+                $validate = array_merge($this->validate(), [
+                    'passport' => 'image',
+                ]);
+                $this->passport->store('public/passports');
+                $manager = new ImageManager();
+                $image = $manager->make('storage/passports/'.$imageHasName)->resize(300, 200);
+                $image->save('storage/passports_thumb/'.$imageHasName);
+                //reume
+                $this->resume->store('public/resume');
+                $filenameWithExt = $this->resume->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME );
+                $extension = $this->resume->getClientOriginalExtension();
+                $fileNameToStore = $filename  .'_'.time().'.'.$extension;
+                $path = $this->resume->storeAs('public/resume', $fileNameToStore);
+            }
+    
+            $user = User::create([
+                'email' => $this->email,
+                'password' => Hash::make('password'),
+            ]);
+            $role = Role::where('name', "Teacher",)->first();
+            $user->roles()->attach($role->id);
+    
+            $teacher = TeacherData::create([
+                'user_id' => $user->id,
+                'teacher_id' => Helpers::customIDGenerator(new TeacherData, 'teacher_id', 5, 'NHS'),
+                'fname' => $this->fname,
+                'mname' => $this->mname,
+                'lname' => $this->lname,
+                'dob' => $this->dob,
+                'gender' => $this->gender,
+                'nationality' => $this->nationality,
+                'address' => $this->address,
+                'state_id' => $this->selectedState,
+                'lga_id' => $this->selectedLga,
+                'level_id' => $this->selectedClass,
+                'employment_date' => $this->employment_date,
+                'passport' => $imageHasName,
+                'resume' => $fileNameToStore
+            ]);
+
+            DB::commit();
+
+            if ($teacher) {
+                session()->flash('success', 'Teacher profile created successfully');
+            }else {
+                User::where('id', $user->id)->delete();
+                session()->flash('errMsg', 'Sorry an error occured');
+            }
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            session()->flash('errMsg', 'Sorry an error occured. Try again');
+        }
     }
     /**
      * close form modal

@@ -52,10 +52,9 @@ class Students extends Component
                     ->where('level_id', $level_id)
                     ->where('arm_id', $arm_id)->latest()->paginate(10);
         }
-        
     }
     /**
-     *  delete mutiple students records
+     *  delete mutiple records
      */
     public function deleteRecords()
     {
@@ -73,7 +72,7 @@ class Students extends Component
         $student->delete();
     }
     /**
-     * edit student record
+     * edit record
      */
     public function editStudent($id)
     {

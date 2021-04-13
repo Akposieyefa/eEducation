@@ -31,7 +31,6 @@ class Guardian extends Component
     public $phone;
     public $home_address;
     public $office_address;
-    public $student_id;
     public $guardianId;
 
     protected $listeners = [
@@ -59,7 +58,7 @@ class Guardian extends Component
      */
     public function editForm($id)
     {
-        $this->studentId = $id;
+        $this->guardianId = $id;
         $this->update_mode = true;
         $guardian = GuardianData::with(['user','students'])->where('id', $this->guardianId)->first();
         $this->fname = $guardian->fname;

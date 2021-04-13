@@ -28,32 +28,65 @@
                                             </div>
                                             <div class="dropdown-body">
                                                 <ul class="chat-list">
-                                                    <li class="chat-item">
-                                                        <a class="chat-link" href="html/apps-chats.html">
-                                                            <div class="chat-media user-avatar">
-                                                                <span>IH</span>
-                                                                <span class="status dot dot-lg dot-gray"></span>
-                                                            </div>
-                                                            <div class="chat-info">
-                                                                <div class="chat-from">
-                                                                    <div class="name">Iliash Hossain</div>
-                                                                    <span class="time">Now</span>
+                                                    @foreach(complains() as $complain)
+                                                        <li class="chat-item">
+                                                            <a class="chat-link" href="{{ route('complains') }}">
+                                                                <div class="chat-media user-avatar">
+                                                                    <span> {{ substr($complain->name, 0,1) }}</span>
+                                                                    <span class="status dot dot-lg dot-gray"></span>
                                                                 </div>
-                                                                <div class="chat-context">
-                                                                    <div class="text">You: Please confrim if you got my last messages.</div>
-                                                                    <div class="status delivered">
-                                                                        <em class="icon ni ni-check-circle-fill"></em>
+                                                                <div class="chat-info">
+                                                                    <div class="chat-from">
+                                                                        <div class="name">{{$complain->user()->name}}</div>
+                                                                        <span class="time">{{ $complain->created_at->diffForHumans() }}</span>
+                                                                    </div>
+                                                                    <div class="chat-context">
+                                                                        <div class="text">{{   $complain->title  }}</div>
+                                                                        <div class="status delivered">
+                                                                            <em class="icon ni ni-check-circle-fill"></em>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </a>
-                                                    </li><!-- .chat-item -->
+                                                            </a>
+                                                        </li><!-- .chat-item -->
 
+                                                    @endforeach
                                                 </ul><!-- .chat-list -->
                                             </div><!-- .nk-dropdown-body -->
                                             <div class="dropdown-foot center">
                                                 <a href="{{ route('complains') }}">View All</a>
                                             </div>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown chats-dropdown hide-mb-xs">
+                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
+                                            <div class="icon-status icon-status-na"><em class="icon ni ni-setting"></em></div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right">
+                                            <div class="dropdown-head">
+                                                <span class="sub-title nk-dropdown-title">System Settings</span>
+                                                <a href="#">Setting</a>
+                                            </div>
+                                            <div class="dropdown-body">
+                                                <ul class="chat-list">
+                                                        <li class="chat-item">
+                                                            <a class="chat-link" href="{{ route('fees') }}">
+                                                               Manage School Fees
+                                                            </a>
+                                                        </li><!-- .chat-item -->
+                                                        <li class="chat-item">
+                                                            <a class="chat-link" href="{{ route('sections') }}">
+                                                               Manage Section
+                                                            </a>
+                                                        </li><!-- .chat-item -->
+                                                        <li class="chat-item">
+                                                            <a class="chat-link" href="{{ route('terms') }}">
+                                                               Manage Term
+                                                            </a>
+                                                        </li><!-- .chat-item -
+                                                </ul><!-- .chat-list -->
+                                            </div><!-- .nk-dropdown-body -->
+            
                                         </div>
                                     </li>
                                     @endadmin
@@ -65,7 +98,7 @@
                                             <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right">
                                                 <div class="dropdown-head">
                                                     <span class="sub-title nk-dropdown-title">Notifications</span>
-                                                    <a href="#">Mark All as Read</a>
+                                                    <a href="{{ route('notifications') }}">Mark All as Read</a>
                                                 </div>
                                                 @foreach(notification() as $notificate)
                                                     <div class="dropdown-body">

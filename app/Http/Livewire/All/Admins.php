@@ -32,14 +32,30 @@ class Admins extends Component
         $this->checkedAll = false;
     }
     /**
-     * get all admins from database
+     * get all from database
      */
     public function getAdminsProperty()
     {
         return Admin::with(['user'])->latest()->paginate(5);
     }
     /**
-     * render the admins livewire view
+     * delete single record
+     */
+    public function deleteSingleRecord($admin_id)
+    {
+        $admin = Admin::findOrFail($admin_id);
+        User::where('id', $admin->user_id)->delete();
+        $admin->delete();
+    }
+    /**
+     * edit  record
+     */
+    public function editAdmin($id)
+    {
+        $this->emit('editForm', $id);
+    }
+    /**
+     * render the livewire view
      */
     public function render()
     {

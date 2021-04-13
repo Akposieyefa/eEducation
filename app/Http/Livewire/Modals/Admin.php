@@ -60,7 +60,8 @@ class Admin extends Component
         $this->address = $admin->address;
         $this->email = $admin->user->email;
         $this->passport = $admin->passport;
-        $this->isAdminOpen  = true;
+        $this->isCreateAdminOpen  = true;
+        
     }
     /**
      * update admin details

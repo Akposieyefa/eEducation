@@ -57,6 +57,13 @@ class Guardians extends Component
         return Guardian::with(['user'])->latest()->paginate(3);
     }
     /**
+     * edit  record
+     */
+    public function editGuardian($id)
+    {
+        $this->emit('editForm', $id);
+    }
+    /**
      * render the guardians livewire view
      */
     public function render()

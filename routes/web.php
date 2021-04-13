@@ -32,3 +32,6 @@ Route::get('/complains', App\Http\Livewire\All\Complains::class)->name('complain
 Route::get('/subjects', App\Http\Livewire\All\Subjects::class)->name('subjects');
 Route::get('/assign-subjects', App\Http\Livewire\Modals\AssignSubject::class)->name('assign-subjects');
 Route::get('/classes', App\Http\Livewire\All\Classes::class)->name('classes');
+Route::get('/sections', App\Http\Livewire\All\Sections::class)->name('sections');
+Route::get('/terms', App\Http\Livewire\All\Terms::class)->name('terms');
+Route::get('/fees', App\Http\Livewire\All\Fees::class)->name('fees');

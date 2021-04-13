@@ -31,6 +31,11 @@ class HomeController extends Controller
         return view('profile');
     }
 
+    public function feesPayment()
+    {
+        return view('fees_payment');
+    }
+
     public function staffIndex()
     {
         return view('staff-dashboard');

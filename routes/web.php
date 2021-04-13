@@ -35,3 +35,4 @@ Route::get('/classes', App\Http\Livewire\All\Classes::class)->name('classes');
 Route::get('/sections', App\Http\Livewire\All\Sections::class)->name('sections');
 Route::get('/terms', App\Http\Livewire\All\Terms::class)->name('terms');
 Route::get('/fees', App\Http\Livewire\All\Fees::class)->name('fees');
+Route::get('/result-upload',App\Http\Livewire\Modals\Result::class)->name('result-upload');

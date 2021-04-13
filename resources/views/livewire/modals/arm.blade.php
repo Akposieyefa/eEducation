@@ -34,7 +34,7 @@
                                           </div>
                                           <div class="form-group row">
                                                  <div class="col-md-12">
-                                                        <x-forms.input type="text" wire:model="name" placeholder="Enter Arm Name" title="Enter Arm Name" />
+                                                        <x-forms.input type="text" wire:model="name" placeholder="Enter Class Name" title="Enter Class Name" />
                                                         @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>

@@ -26,6 +26,11 @@ class HomeController extends Controller
         return view('dashboard');
     }
 
+    public function profile()
+    {
+        return view('profile');
+    }
+
     public function staffIndex()
     {
         return view('staff-dashboard');

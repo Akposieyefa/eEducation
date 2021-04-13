@@ -53,12 +53,12 @@
                                             <span class="nk-menu-text">Assign Subject</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
-                                    <li class="nk-menu-item">
+                                    <!--<li class="nk-menu-item">
                                         <a href="{{ route('class-arm') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
                                             <span class="nk-menu-text">Arms</span>
                                         </a>
-                                    </li><!-- .nk-menu-item -->
+                                    </li>--><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('notifications') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-notice"></em></span>
@@ -78,9 +78,27 @@
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
+                                        <a href="{{ route('sections') }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
+                                            <span class="nk-menu-text">Manage Sessions</span>
+                                        </a>
+                                    </li><!-- .nk-menu-item -->
+                                    <li class="nk-menu-item">
+                                        <a href="{{ route('terms') }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
+                                            <span class="nk-menu-text">Manage Terms</span>
+                                        </a>
+                                    </li><!-- .nk-menu-item -->
+                                    <li class="nk-menu-item">
+                                        <a href="{{ route('fees') }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
+                                            <span class="nk-menu-text">Manage Fees</span>
+                                        </a>
+                                    </li><!-- .nk-menu-item -->
+                                    <li class="nk-menu-item">
                                         <a href="#" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
-                                            <span class="nk-menu-text">Manage Sessions &amp; Terms</span>
+                                            <span class="nk-menu-text">Manage Fees Payments</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-heading">

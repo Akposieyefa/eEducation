@@ -76,12 +76,12 @@
                                                         </li><!-- .chat-item -->
                                                         <li class="chat-item">
                                                             <a class="chat-link" href="{{ route('sections') }}">
-                                                               Manage Section
+                                                               Manage Sessions
                                                             </a>
                                                         </li><!-- .chat-item -->
                                                         <li class="chat-item">
                                                             <a class="chat-link" href="{{ route('terms') }}">
-                                                               Manage Term
+                                                               Manage Terms
                                                             </a>
                                                         </li><!-- .chat-item -
                                                 </ul><!-- .chat-list -->
@@ -136,14 +136,6 @@
                                         <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                                 <div class="user-card">
-                                                    <div class="user-avatar">
-                                                        <span> 
-                                                            <img class="profile-user-img img-fluid img-circle"
-                                                               src="{{asset('storage/passports/'.userimage(auth()->user()->roles[0]['name']) ) }}"
-                                                               alt="Passport"
-                                                               >
-                                                        </span>
-                                                    </div>
                                                     <div class="user-info">
                                                         <span class="lead-text">
                                                            {{ username(auth()->user()->roles[0]['name']) }}
@@ -154,7 +146,7 @@
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="html/ecommerce/user-profile.html"><em class="icon ni ni-user-alt"></em><span>Profile</span></a></li>
+                                                    <li><a href="{{ route('my-profile') }}"><em class="icon ni ni-user-alt"></em><span>Profile</span></a></li>
                                                 </ul>
                                             </div>
                                             <div class="dropdown-inner">

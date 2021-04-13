@@ -1,9 +1,9 @@
 <div>
        <div class="row mt-5 mb-5">
-              <div class="col-9"><h3> Manage {{ "Section" }} </h3></div>
+              <div class="col-9"><h3> Manage {{ "Session" }} </h3></div>
               <div class="col-3">
                      <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormSectionModal')">
-                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Create New Section
+                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Create New Session
                      </x-forms.buttons.success>
               </div>
        </div>
@@ -13,7 +13,7 @@
               <div class="modal-dialog" role="document">
                      <div class="modal-content">
                             <div class="modal-header">
-                                   <h5 class="modal-title" id="exampleModalLongTitle">Create New Section</h5>
+                                   <h5 class="modal-title" id="exampleModalLongTitle">Create New Session</h5>
                                    <button type="button" wire:click="close()" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                    </button>
@@ -23,19 +23,19 @@
                                    <form wire:submit.prevent="submit">
                                           <div class="form-group row">
                                                  <div class="col-md-12">
-                                                        <x-forms.input type="text" wire:model="name" placeholder="Enter Section Name" title="EnterSection Name" />
+                                                        <x-forms.input type="text" wire:model="name" placeholder="Enter Session Name" title="Enter Session Name" />
                                                         @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>
                                           <div class="form-group row">
                                                  <div class="col-md-12">
-                                                        <x-forms.input type="date" wire:model="start_date" placeholder="Enter Section Start Date" title="Enter Section Start Date" />
+                                                        <x-forms.input type="date" wire:model="start_date" placeholder="Enter Session Start Date" title="Enter Session Start Date" />
                                                         @error('start_date') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>
                                           <div class="form-group row">
                                                  <div class="col-md-12">
-                                                        <x-forms.input type="date" wire:model="end_date" placeholder="Enter Section End Date" title="Enter Section End Date" />
+                                                        <x-forms.input type="date" wire:model="end_date" placeholder="Enter Session End Date" title="Enter Session End Date" />
                                                         @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>

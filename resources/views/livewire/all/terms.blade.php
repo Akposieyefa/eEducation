@@ -12,7 +12,7 @@
                                                         </div>
                                                  </div>
                                                  <div class="nk-tb-col"><span class="sub-text">Term Name</span></div>
-                                                 <div class="nk-tb-col tb-col-md"><span class="sub-text">Section</span></div>
+                                                 <div class="nk-tb-col tb-col-md"><span class="sub-text">Session</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Start Date</span></div>
                                                  <div class="nk-tb-col tb-col-lg"><span class="sub-text">End Date</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Created Date</span></div>
@@ -42,11 +42,6 @@
                                                         <div class="nk-tb-col">
                                                                <a href="html/ecommerce/customer-details.html">
                                                                       <div class="user-card">
-                                                                             <div class="user-avatar bg-primary">
-                                                                                    <span>
-                                                                                    {{ substr($term->name, 0,1) }}
-                                                                                    </span>
-                                                                             </div>
                                                                              <div class="user-info">
                                                                                     <span class="tb-lead">{{ $term->name }} <span class="ml-1 dot dot-success d-md-none"></span></span>
                                                                              </div>

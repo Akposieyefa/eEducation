@@ -12,7 +12,7 @@
        <!-- Modal -->
        @admin
               @if($isStudentOpen)
-              <div class="modal d-block" id="exampleModalLong" style="background: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal d-block" id="exampleModalLong" style="background: rgba(0,0,0,0.5); overflow:auto !important;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                      <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                    <div class="modal-header">
@@ -32,51 +32,65 @@
                                    <x-alerts.error />
                                           <div class="form-group row">
                                                  <div class="col-md-6">
+                                                        <label class="form-label">First Name</label>
                                                         <x-forms.input wire:model="fname" type="text" placeholder="Enter First Name" title="First Name of Student" />
                                                                @error('fname') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                                  <div class="col-md-6">
+                                                        <label class="form-label">Middle Name</label>
                                                         <x-forms.input wire:model="mname" type="text" placeholder="Enter Middle Name" title="Middle Name of Student" />
                                                                @error('mname') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>
                                           <div class="form-group row">
                                                  <div class="col-md-6">
+                                                        <label class="form-label">Last Name</label>
                                                         <x-forms.input wire:model="lname" type="text" placeholder="Enter Last Name" title="Last Name of Student" />
                                                                @error('lname') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                                  <div class="col-md-6">
+                                                        <label class="form-label">Date of Birth</label>
                                                         <x-forms.input wire:model="dob" type="date" title="Date of birth" />
                                                         @error('dob') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>
                                           <div class="form-group row">
                                                  <div class="col-md-6">
+                                                        <label class="form-label">Nationality</label>
                                                         <x-forms.input wire:model="nationality" type="text" placeholder="Naionality" title="Nationality of Student" />
                                                         @error('nationality') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                                  <div class="col-md-6">
+                                                        <label class="form-label">Email Address</label>
                                                         <x-forms.input wire:model="email" type="text" placeholder="Enter Email" title="Student Email Address" />
                                                                @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>
                                           <div class="form-group row">
                                                  <div class="col-md-12">
+                                                        <label class="form-label">Residential Address</label>
                                                         <x-forms.input wire:model="address" type="text" placeholder="Residential Address" title="Residental Address of Student" />
                                                                @error('address') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>
-                                          <div class="form-group row">
-                                                 <x-forms.label  class="col-md-4 text-md-right h6">  Gender </x-forms.label>
-                                                 <div class="col-md-6">
-                                                        <x-forms.radio wire:model="gender" value="Male" /> Male &nbsp
-                                                        <x-forms.radio wire:model="gender" value="Female" /> Female
+                                          <div class="form-group row">                                                 
+                                                 <div class="col-md-12">
+                                                        <label class="form-label mr-5">Gender</label>
+                                                        <div class="custom-control custom-control-lg custom-radio mr-5 ml-3">
+                                                               <x-forms.radio wire:model="gender" id="male" name="gender"  value="Male" />
+                                                               <label class="custom-control-label" for="male">Male</label>
+                                                        </div>
+                                                        <div class="custom-control custom-control-lg custom-radio">
+                                                               <x-forms.radio wire:model="gender" id="female" name="gender" value="Female" /> 
+                                                               <label class="custom-control-label" for="female">Female</label>
+                                                        </div>
                                                  </div>
                                                         @error('gender') <span class="text-danger">{{ $message }}</span> @enderror
                                           </div>
 
                                           <div class="form-group row">
                                                  <div class="col-md-6">
+                                                        <label class="form-label">State of Origin</label>
                                                         <x-forms.select wire:model="selectedState" title="State of Origin of Student">
                                                                <x-forms.option value="">Select State</x-forms.option>
                                                                @foreach($states as $state)
@@ -86,7 +100,7 @@
                                                                @error('selectedState') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                                  <div class="col-md-6">
-
+                                                        <label class="form-label">Local Government Area</label>
                                                         <x-forms.select wire:model="selectedLga" title="Local Government of Origin">
                                                                <x-forms.option value=""> Select Local Government Area</x-forms.option>
                                                                @if(!is_null($selectedState))
@@ -100,16 +114,16 @@
                                                  </div>
                                           </div>
                                           <div class="form-group row">
-                                                 <div class="col-md-6">
+                                                 <div class="col-md-12">
+                                                        <label class="form-label">Select Class</label>
                                                         <x-forms.select wire:model="selectedClass" title="Student Class">
-                                                               <x-forms.option value="">Select Class</x-forms.option>
                                                                @foreach($levels as $level)
                                                                              <x-forms.option value="{{ $level->id }}"> {{ $level->name }}</x-forms.option>
                                                                @endforeach
                                                         </x-forms.select>
                                                                @error('selectedClass') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
-                                                 <div class="col-md-6">
+                                                 <!--<div class="col-md-6">
                                                         <x-forms.select wire:model="selectedArm" title="Student Arm">
                                                                <x-forms.option value="">Select Class Arm</x-forms.option>
                                                                @if(!is_null($selectedClass))
@@ -119,10 +133,11 @@
                                                                @endif
                                                         </x-forms.select>
                                                                @error('selectedArm') <span class="text-danger">{{ $message }}</span> @enderror
-                                                 </div>
+                                                 </div>-->
                                           </div>
                                           <div class="form-group row">
                                                  <div class="col-md-12">
+                                                        <label class="form-label">Upload Passport </label>
                                                         <x-forms.input wire:model="passport" type="file" title="Student Recent Passport" />
                                                                @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>

@@ -14,6 +14,7 @@ use App\Models\Arm;
 use App\Models\User;
 use App\Models\Role;
 use Intervention\Image\ImageManager;
+use Illuminate\Support\Facades\DB;
 
 class Student extends Component
 {
@@ -22,7 +23,7 @@ class Student extends Component
     public $states;
     public $lgas;
     public $levels;
-    public $arms;
+    public $arms = NULL;
     
     public $selectedState = NULL;
     public $selectedClass = NULL;
@@ -55,14 +56,14 @@ class Student extends Component
 
     protected $rules = [
         'fname' => 'required',
-        'mname' => 'required',
+        'mname' => 'string|max:255|nullable',
         'lname' => 'required',
         'email' => 'required|email|unique:users',
         'dob' => 'required',
         'nationality' => 'required',
         'address' => 'required',
         'selectedLga' => 'required',
-        'selectedArm' => 'required',
+        'selectedArm' => 'string|max:255|nullable',
         'selectedState' => 'required',
         'selectedClass' => 'required',
         'gender' => 'required',
@@ -181,51 +182,64 @@ class Student extends Component
     public function submit()
     {
        $this->validate();
-       $imageHasName;//local variable
+       $imageHasName = NULL;//local variable
        $t=time(); //local variable
 
-        if (!empty($this->passport)) {
-            $imageHasName = $this->passport->hashName();
+        session()->flash('info', 'Please wait...');
 
-            $validate = array_merge($this->validate(), [
-                'passport' => 'image'
+        DB::beginTransaction();
+
+        try {
+
+            if (!empty($this->passport)) {
+                $imageHasName = $this->passport->hashName();
+
+                $validate = array_merge($this->validate(), [
+                    'passport' => 'image'
+                ]);
+                $this->passport->store('public/passports');
+
+                $manager = new ImageManager();
+                $image = $manager->make('storage/passports/'.$imageHasName)->resize(300, 200);
+                $image->save('storage/passports_thumb/'.$imageHasName);
+            }
+
+            $user = User::create([
+                'email' => $this->email,
+                'password' => Hash::make('password'),
             ]);
-            $this->passport->store('public/passports');
 
-            $manager = new ImageManager();
-            $image = $manager->make('storage/passports/'.$imageHasName)->resize(300, 200);
-            $image->save('storage/passports_thumb/'.$imageHasName);
-        }
+            $role = Role::where('name', "Student",)->first();
+            $user->roles()->attach($role->id);
 
-        $user = User::create([
-            'email' => $this->email,
-            'password' => Hash::make('password'),
-        ]);
-        $role = Role::where('name', "Student",)->first();
-        $user->roles()->attach($role->id);
+            $student = StudentData::create([
+                'user_id' => $user->id,
+                'student_id' => Helpers::customIDGenerator(new StudentData, 'student_id', 5, 'STD'),
+                'fname' => $this->fname,
+                'mname' => $this->mname,
+                'lname' => $this->lname,
+                'dob' => $this->dob,
+                'gender' => $this->gender,
+                'nationality' => $this->nationality,
+                'address' => $this->address,
+                'state_id' => $this->selectedState,
+                'lga_id' => $this->selectedLga,
+                'level_id' => $this->selectedClass,
+                'addmited_date' => date("Y-m-d",$t),
+                'passport' => $imageHasName
+            ]);
 
-        $student = StudentData::create([
-            'user_id' => $user->id,
-            'student_id' => Helpers::customIDGenerator(new StudentData, 'student_id', 5, 'STD'),
-            'fname' => $this->fname,
-            'mname' => $this->mname,
-            'lname' => $this->lname,
-            'dob' => $this->dob,
-            'gender' => $this->gender,
-            'nationality' => $this->nationality,
-            'address' => $this->address,
-            'state_id' => $this->selectedState,
-            'lga_id' => $this->selectedLga,
-            'level_id' => $this->selectedClass,
-            'arm_id' => $this->selectedArm,
-            'addmited_date' => date("Y-m-d",$t),
-            'passport' => $imageHasName
-        ]);
-        if ($student) {
-            session()->flash('success', 'Student profile created successfully');
-        }else {
-            User::where('id', $user->id)->delete();
-            session()->flash('errMsg', 'Sorry an error occured');
+            DB::commit();
+
+            if ($student) {
+                session()->flash('success', 'Student profile created successfully');
+            }else {
+                User::where('id', $user->id)->delete();
+                session()->flash('errMsg', 'Sorry an error occured');
+            }
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            session()->flash('errMsg', 'Sorry an error occured. Try again');
         }
     }
 

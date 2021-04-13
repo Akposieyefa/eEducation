@@ -44,14 +44,6 @@
                                                         <div class="nk-tb-col">
                                                                <a href="#">
                                                                       <div class="user-card">
-                                                                             <div class="user-avatar bg-primary">
-                                                                                    <span>
-                                                                                           <img class="profile-user-img img-fluid img-circle"
-                                                                                           src="{{asset('storage/passports/'.$guardian->profileimage) }}"
-                                                                                           alt="Student Passport"
-                                                                                           >
-                                                                                    </span>
-                                                                             </div>
                                                                              <div class="user-info">
                                                                                     <span class="tb-lead">{{ $guardian->fullname }} <span class="ml-1 dot dot-success d-md-none"></span></span>
                                                                                     <span>{{ $guardian->user->email }}</span>

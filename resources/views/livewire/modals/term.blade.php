@@ -24,7 +24,7 @@
                                           <div class="form-group row">
                                                  <div class="col-md-12">
                                                         <x-forms.select title="Select class" wire:model="section_id">
-                                                               <x-forms.option value="">Select Sections</x-forms.option>
+                                                               <x-forms.option value="">Select Session</x-forms.option>
                                                                @foreach($sections as $section)
                                                                       <x-forms.option value="{{ $section->id }}">{{ $section->name }}</x-forms.option>
                                                                @endforeach

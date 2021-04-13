@@ -44,14 +44,6 @@
                                                         <div class="nk-tb-col">
                                                                <a href="#">
                                                                       <div class="user-card">
-                                                                             <div class="user-avatar bg-primary">
-                                                                                    <span>
-                                                                                           <img class="profile-user-img img-fluid img-circle"
-                                                                                           src="{{asset('storage/passports/'.$admin->profileimage) }}"
-                                                                                           alt="Passport"
-                                                                                           >
-                                                                                    </span>
-                                                                             </div>
                                                                              <div class="user-info">
                                                                                     <span class="tb-lead">{{ $admin->fullname }} <span class="ml-1 dot dot-success d-md-none"></span></span>
                                                                                     <span>{{ $admin->user->email }}</span>

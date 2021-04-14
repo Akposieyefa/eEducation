@@ -71,12 +71,12 @@
                                             <span class="nk-menu-text">Manage Classes</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
-                                    <li class="nk-menu-item">
+                                    {{-- <li class="nk-menu-item">
                                         <a href="{{ route('result-upload') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-check-circle"></em></span>
                                             <span class="nk-menu-text">Manage Results</span>
                                         </a>
-                                    </li><!-- .nk-menu-item -->
+                                    </li><!-- .nk-menu-item --> --}}
                                     <li class="nk-menu-item">
                                         <a href="{{ route('sections') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>

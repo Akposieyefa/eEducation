@@ -51,8 +51,7 @@ class Subjects extends Component
     public function exportStudents()
     {
         $level = auth()->user()->teacher->level_id;
-        $arm = auth()->user()->teacher->arm_id;
-        return Excel::download(new SubjectResultSheet($level, $arm), 'result-sheet.xlsx');
+        return Excel::download(new SubjectResultSheet($level), 'result-sheet.xlsx');
     }
     /**
      * render the livewire view

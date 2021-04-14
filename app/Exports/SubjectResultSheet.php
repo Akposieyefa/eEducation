@@ -10,12 +10,10 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 class SubjectResultSheet implements FromCollection, WithHeadings
 {
     protected $level_id;
-    protected $arm_id;
 
-    public function __construct($level_id,$arm_id)
+    public function __construct($level_id)
     {
         $this->level_id = $level_id;
-        $this->arm_id = $arm_id;
     }
 
     /**
@@ -24,7 +22,6 @@ class SubjectResultSheet implements FromCollection, WithHeadings
     public function collection()
     {
         return  Student::where('level_id', '=', $this->level_id)
-            ->where('arm_id', '=', $this->arm_id)
             ->get(['student_id','fname','mname','lname']);
     }
 

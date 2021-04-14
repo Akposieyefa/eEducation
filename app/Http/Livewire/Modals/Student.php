@@ -23,7 +23,7 @@ class Student extends Component
     public $states;
     public $lgas;
     public $levels;
-    public $arms = NULL;
+    // public $arms = NULL;
     
     public $selectedState = NULL;
     public $selectedClass = NULL;
@@ -40,7 +40,7 @@ class Student extends Component
     public $nationality;
     public $address;
     public $selectedLga;
-    public $selectedArm;
+    // public $selectedArm;
     public $email;
     public $gender;
     public $passport;
@@ -87,7 +87,7 @@ class Student extends Component
         $this->selectedState = $student->state_id;
         $this->selectedClass = $student->level_id;    
         $this->selectedLga = $student->lga_id;
-        $this->selectedArm = $student->arm_id;
+        // $this->selectedArm = $student->arm_id;
         $this->passport = $student->passport;
         $this->isStudentOpen  = true;
     }
@@ -109,7 +109,7 @@ class Student extends Component
             'state_id' => $this->selectedState,
             'lga_id' => $this->selectedLga,
             'level_id' => $this->selectedClass,
-            'arm_id' => $this->selectedArm
+            // 'arm_id' => $this->selectedArm
         ]);
         if ($student) {
             $user = User::where('id', $student->user_id)->update([
@@ -170,7 +170,7 @@ class Student extends Component
         $this->nationality = "";
         $this->address = "";
         $this->selectedLga = "";
-        $this->selectedArm = "";
+        // $this->selectedArm = "";
         $this->selectedClass = "";
         $this->selectedState = "";
         $this->email = "";

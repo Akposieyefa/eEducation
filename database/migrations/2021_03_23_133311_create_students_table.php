@@ -27,7 +27,7 @@ class CreateStudentsTable extends Migration
             $table->bigInteger('state_id')->unsigned();
             $table->bigInteger('lga_id')->unsigned();
             $table->bigInteger('level_id')->unsigned();
-            $table->bigInteger('arm_id')->unsigned();
+            // $table->bigInteger('arm_id')->unsigned();
             $table->bigInteger('guardian_id')->unsigned()->nullable();
             $table->binary('passport');
 
@@ -35,7 +35,7 @@ class CreateStudentsTable extends Migration
             $table->foreign('lga_id')->references('id')->on('lgas');
             $table->foreign('level_id')->references('id')->on('levels');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('arm_id')->references('id')->on('arms');
+            // $table->foreign('arm_id')->references('id')->on('arms');
             $table->foreign('guardian_id')->references('id')->on('guardians');
             $table->date('addmited_date');
             $table->softDeletes();

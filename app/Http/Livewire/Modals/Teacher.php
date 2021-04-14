@@ -23,7 +23,7 @@ class Teacher extends Component
     public $states;
     public $lgas;
     public $levels;
-    public $arms = NULL;
+    // public $arms = NULL;
     public $selectedState = NULL;
     public $selectedClass = NULL;
 
@@ -39,7 +39,7 @@ class Teacher extends Component
     public $nationality;
     public $address;
     public $selectedLga;
-    public $selectedArm;
+    // public $selectedArm;
     public $email;
     public $gender;
     public $passport;

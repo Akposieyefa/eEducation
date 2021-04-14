@@ -27,7 +27,7 @@ class CreateTeachersTable extends Migration
             $table->bigInteger('state_id')->unsigned();
             $table->bigInteger('lga_id')->unsigned();
             $table->bigInteger('level_id')->unsigned();
-            $table->bigInteger('arm_id')->unsigned();
+            // $table->bigInteger('arm_id')->unsigned();
             $table->binary('passport');
             $table->binary('resume');
 
@@ -35,7 +35,7 @@ class CreateTeachersTable extends Migration
             $table->foreign('lga_id')->references('id')->on('lgas');
             $table->foreign('level_id')->references('id')->on('levels');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('arm_id')->references('id')->on('arms');
+            // $table->foreign('arm_id')->references('id')->on('arms');
             $table->date('employment_date');
             $table->softDeletes();
             $table->timestamps();

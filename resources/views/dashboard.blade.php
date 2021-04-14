@@ -141,7 +141,7 @@
                                                 <div class="card-inner">
                                                     <div class="card-title-group">
                                                         <div class="card-title">
-                                                            <h4 class="title">List of all Students</h4>
+                                                            <h4 class="title">My Wards</h4>
                                                         </div>
                                                     </div>
                                                 </div>

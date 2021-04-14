@@ -42,10 +42,12 @@ function allStudents() {
             return Student::with(['level','user','state','lga','guardian'])->latest()->paginate(10);
         }elseif($userRoles[0] == 'Teacher'){
             $level_id = auth()->user()->teacher->level_id;
-            $arm_id = auth()->user()->teacher->arm_id;
             return Student::with(['level','user','state','lga','guardian'])
-                    ->where('level_id', $level_id)
-                    ->where('arm_id', $arm_id)->latest()->paginate(10);
+                    ->where('level_id', $level_id)->latest()->paginate(10);
+        }elseif($userRoles[0] == 'Guardian') {
+              $guardian_id = auth()->user()->guardian->level_id;
+              return Student::with(['level','user','state','lga','guardian'])
+                      ->where('guardian_id',  $guardian_id)->latest()->paginate(10);
         }
 }
 

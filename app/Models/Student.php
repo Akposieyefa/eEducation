@@ -14,7 +14,7 @@ class Student extends Model
 
     protected $fillable = [
         'user_id','student_id','fname', 'mname', 'lname', 'dob', 'gender', 'nationality', 'address', 'religion',
-        'state_id', 'lga_id', 'level_id', 'arm_id', 'passport', 'addmited_date'
+        'state_id', 'lga_id', 'level_id', 'passport', 'addmited_date'
     ];
 
     public function getFullnameAttribute() {
@@ -37,9 +37,9 @@ class Student extends Model
        return $this->belongsTo(Lga::class, 'lga_id');
     }
 
-    public function arm() {
-        return $this->belongsTo(Arm::class, 'arm_id');
-    }
+    // public function arm() {
+    //     return $this->belongsTo(Arm::class, 'arm_id');
+    // }
 
     public function user() {
         return $this->belongsTo(User::class, 'user_id');

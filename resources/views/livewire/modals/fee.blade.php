@@ -1,3 +1,4 @@
+@admin
 <div>
        <div class="mt-5 mb-5 row">
               <div class="col-9"><h3> Manage {{ "Fees" }} </h3></div>
@@ -75,4 +76,5 @@
 
        @endif
 </div>
+@endadmin
 

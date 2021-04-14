@@ -3,7 +3,9 @@
               <div class="nk-content-inner">
                      <div class="nk-content-body">
                             <div class="nk-block">
-                                   @livewire('modals.fee')
+                                   @admin
+                                          @livewire('modals.fee')
+                                   @endadmin
                                    <div class="mb-3 nk-tb-list is-separate">
                                           <div class="nk-tb-item nk-tb-head">
                                                  <div class="nk-tb-col nk-tb-col-check">

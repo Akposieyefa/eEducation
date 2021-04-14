@@ -20,6 +20,7 @@
                                                                       <form wire:submit.prevent="submit">
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
+                                                                                           <label class="form-label">Select Subject</label>
                                                                                            <select name="cars" id="subject_id" class="form-control" wire:model="subject_id">
                                                                                             <option value="">Select Subject</option>
                                                                                                   @foreach($subjects as $subject)
@@ -31,6 +32,7 @@
                                                                              </div>
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
+                                                                                           <label class="form-label">Select Term</label>
                                                                                            <select name="cars" id="term" class="form-control" wire:model="term">
                                                                                             <option value="">Select Term</option>
                                                                                                   @foreach($terms as $term)

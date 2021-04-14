@@ -23,18 +23,21 @@
                                    <form wire:submit.prevent="submit">
                                           <div class="form-group row">
                                                  <div class="col-md-12">
+                                                        <label class="form-label">Old Password</label>
                                                         <x-forms.input type="password" wire:model="oldpassword" placeholder="Enter your old password" title="Enter your old password" />
                                                         @error('oldpassword') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>
                                            <div class="form-group row">
                                                  <div class="col-md-12">
+                                                        <label class="form-label">New Password</label>
                                                         <x-forms.input type="password" wire:model="password" placeholder="Enter new password" title="Enter new password" />
                                                         @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>
                                           <div class="form-group row">
                                                  <div class="col-md-12">
+                                                        <label class="form-label">Confirm New Password</label>
                                                         <x-forms.input type="password" wire:model="confirm_password" placeholder="Enter password confirmation" title="Enter password confirmation" />
                                                         @error('confirm_password') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>

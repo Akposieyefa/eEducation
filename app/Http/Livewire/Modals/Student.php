@@ -234,7 +234,7 @@ class Student extends Component
             if ($student) {
                 session()->flash('success', 'Student profile created successfully');
             }else {
-                User::where('id', $user->id)->delete();
+                User::where('id', $user->id)->forceDelete();
                 session()->flash('errMsg', 'Sorry an error occured');
             }
         } catch (\Throwable $e) {

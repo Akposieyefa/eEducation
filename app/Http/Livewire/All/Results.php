@@ -45,7 +45,7 @@ class Results extends Component
     public function render()
     {
         return view('livewire.all.results',[
-            'results' => 
+            'results' => $this->results
         ])->extends('layouts.app')->section('content');
     }
 }

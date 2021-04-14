@@ -184,7 +184,7 @@ class Guardian extends Component
                 ]);
                 session()->flash('success', 'Guardian profile created successfully');
             }else {
-                User::where('id', $user->id)->delete();
+                User::where('id', $user->id)->forceDelete();
                 session()->flash('errMsg', 'Sorry an error occured');
             }
         } catch (\Throwable $e) {

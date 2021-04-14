@@ -139,7 +139,7 @@ class Admin extends Component
             if ($admin) {
                 session()->flash('success', 'Administrator profile created successfully');
             }else {
-                User::where('id', $user->id)->delete();
+                User::where('id', $user->id)->forceDelete();
                 session()->flash('errMsg', 'Sorry an error occured');
             }
         } catch (\Throwable $e) {

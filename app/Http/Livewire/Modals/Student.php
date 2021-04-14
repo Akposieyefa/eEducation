@@ -10,7 +10,6 @@ use App\Models\Student as StudentData;
 use App\Models\State;
 use App\Models\Lga;
 use App\Models\Level;
-use App\Models\Arm;
 use App\Models\User;
 use App\Models\Role;
 use Intervention\Image\ImageManager;
@@ -23,10 +22,8 @@ class Student extends Component
     public $states;
     public $lgas;
     public $levels;
-    // public $arms = NULL;
     
     public $selectedState = NULL;
-    public $selectedClass = NULL;
 
     public $isStudentOpen = false;
     public $update_mode = false;
@@ -40,11 +37,11 @@ class Student extends Component
     public $nationality;
     public $address;
     public $selectedLga;
-    // public $selectedArm;
     public $email;
     public $gender;
     public $passport;
     public $studentId;
+    public $selectedClass;
 
     protected $listeners = [
         'showFormStudentModal' => 'open',
@@ -53,21 +50,6 @@ class Student extends Component
         'showProfile' => 'showProfile'
     ];
     protected $queryString = ['isStudentOpen'];
-
-    protected $rules = [
-        'fname' => 'required',
-        'mname' => 'string|max:255|nullable',
-        'lname' => 'required',
-        'email' => 'required|email|unique:users',
-        'dob' => 'required',
-        'nationality' => 'required',
-        'address' => 'required',
-        'selectedLga' => 'required',
-        'selectedArm' => 'string|max:255|nullable',
-        'selectedState' => 'required',
-        'selectedClass' => 'required',
-        'gender' => 'required',
-    ];
     /**
      * display edit form 
      */
@@ -75,7 +57,7 @@ class Student extends Component
     {
         $this->studentId = $id;
         $this->update_mode = true;
-        $student = StudentData::with(['user','level','arm','lga'])->where('id', $this->studentId)->first();
+        $student = StudentData::with(['user','level','lga'])->where('id', $this->studentId)->first();
         $this->fname = $student->fname;
         $this->mname = $student->mname;
         $this->lname = $student->lname;
@@ -87,7 +69,6 @@ class Student extends Component
         $this->selectedState = $student->state_id;
         $this->selectedClass = $student->level_id;    
         $this->selectedLga = $student->lga_id;
-        // $this->selectedArm = $student->arm_id;
         $this->passport = $student->passport;
         $this->isStudentOpen  = true;
     }
@@ -96,7 +77,19 @@ class Student extends Component
      */
     public function updateStudent()
     {
-        $this->validate();
+        $this->validate([
+            'fname' => 'required',
+            'mname' => 'string|max:255|nullable',
+            'lname' => 'required',
+            'email' => 'required|email',
+            'dob' => 'required',
+            'nationality' => 'required',
+            'address' => 'required',
+            'selectedLga' => 'required',
+            'selectedState' => 'required',
+            'selectedClass' => 'required',
+            'gender' => 'required',
+        ]);
         $student = StudentData::find($this->studentId);
         $student->update([
             'fname' => $this->fname,
@@ -108,8 +101,7 @@ class Student extends Component
             'address' => $this->address,
             'state_id' => $this->selectedState,
             'lga_id' => $this->selectedLga,
-            'level_id' => $this->selectedClass,
-            // 'arm_id' => $this->selectedArm
+            'level_id' => $this->selectedClass
         ]);
         if ($student) {
             $user = User::where('id', $student->user_id)->update([
@@ -130,7 +122,6 @@ class Student extends Component
         $this->states = State::all();
         $this->lgas = collect();
         $this->levels = Level::all();
-        $this->arms = collect();
     }
     /**
      * open modal
@@ -148,13 +139,6 @@ class Student extends Component
         $this->lgas = Lga::where('state_id', $state)->get();
     }
     /**
-     * Lifecycle Hooks for selectedClass drop down
-     */
-    public function updatedSelectedClass($class) 
-    {
-        $this->arms = Arm::where('level_id', $class)->get();
-    }
-    /**
      * close student modal
      */
     public function close()
@@ -170,7 +154,6 @@ class Student extends Component
         $this->nationality = "";
         $this->address = "";
         $this->selectedLga = "";
-        // $this->selectedArm = "";
         $this->selectedClass = "";
         $this->selectedState = "";
         $this->email = "";
@@ -181,7 +164,19 @@ class Student extends Component
      */
     public function submit()
     {
-       $this->validate();
+       $this->validate([
+        'fname' => 'required',
+        'mname' => 'string|max:255|nullable',
+        'lname' => 'required',
+        'email' => 'required|email|unique:users',
+        'dob' => 'required',
+        'nationality' => 'required',
+        'address' => 'required',
+        'selectedLga' => 'required',
+        'selectedState' => 'required',
+        'selectedClass' => 'required',
+        'gender' => 'required',
+    ]);
        $imageHasName = NULL;//local variable
        $t=time(); //local variable
 

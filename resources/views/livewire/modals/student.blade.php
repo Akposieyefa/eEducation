@@ -123,17 +123,6 @@
                                                         </x-forms.select>
                                                                @error('selectedClass') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
-                                                 <!--<div class="col-md-6">
-                                                        <x-forms.select wire:model="selectedArm" title="Student Arm">
-                                                               <x-forms.option value="">Select Class Arm</x-forms.option>
-                                                               @if(!is_null($selectedClass))
-                                                                      @foreach($arms as $arm)
-                                                                             <x-forms.option value="{{ $arm->id }}"> {{ $arm->name }}</x-forms.option>
-                                                                      @endforeach
-                                                               @endif
-                                                        </x-forms.select>
-                                                               @error('selectedArm') <span class="text-danger">{{ $message }}</span> @enderror
-                                                 </div>-->
                                           </div>
                                           <div class="form-group row">
                                                  <div class="col-md-12">

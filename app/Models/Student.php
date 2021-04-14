@@ -37,10 +37,6 @@ class Student extends Model
        return $this->belongsTo(Lga::class, 'lga_id');
     }
 
-    // public function arm() {
-    //     return $this->belongsTo(Arm::class, 'arm_id');
-    // }
-
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }

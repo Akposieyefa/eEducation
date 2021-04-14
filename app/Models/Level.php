@@ -26,7 +26,4 @@ class Level extends Model
        return $this->belongsToMany(Subject::class);
     }
 
-    public function arms() {
-            return $this->belongsToMany(Arm::class);
-    }
 }

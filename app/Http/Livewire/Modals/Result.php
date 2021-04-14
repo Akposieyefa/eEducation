@@ -37,9 +37,9 @@ class Result extends Component
         if (!empty($this->resultSheet)) {
             $level = auth()->user()->teacher->level_id;
             $result = new SubjectResultSheet($this->term,$this->subject,$level);
-            Excel::import($result,$this->resultSheet);            
+            Excel::import($result,$this->resultSheet);  
+            session()->flash('success', 'Result uploaded successfully');          
         }
-        session()->flash('success', 'Result uploaded successfully');
     }
 
     public function render()

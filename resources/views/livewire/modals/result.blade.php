@@ -20,23 +20,23 @@
                                                                       <form wire:submit.prevent="submit">
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
-                                                                                           <x-forms.select title="Select Subject" wire:model="subject">
-                                                                                                  <x-forms.option value="">Select Subjects</x-forms.option>
+                                                                                           <select name="cars" id="subject_id" class="form-control" wire:model="subject_id">
+                                                                                            <option value="">Select Subject</option>
                                                                                                   @foreach($subjects as $subject)
-                                                                                                  <x-forms.option value="{{ $subject->id }}">{{ $subject->name }}</x-forms.option>
-                                                                                                  @endforeach
-                                                                                           </x-forms.select>
-                                                                                           @error('subject') <span class="text-danger">{{ $message }}</span> @enderror
+                                                                                                  <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                                                                                   @endforeach
+                                                                                           </select>
+                                                                                           @error('subject_id') <span class="text-danger">{{ $message }}</span> @enderror
                                                                                     </div>
                                                                              </div>
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
-                                                                                           <x-forms.select title="Select Term" wire:model="term">
-                                                                                                  <x-forms.option value="">Select Term</x-forms.option>
+                                                                                           <select name="cars" id="term" class="form-control" wire:model="term">
+                                                                                            <option value="">Select Term</option>
                                                                                                   @foreach($terms as $term)
-                                                                                                  <x-forms.option value="{{ $term->id }}">{{ $term->name }}</x-forms.option>
-                                                                                                  @endforeach
-                                                                                           </x-forms.select>
+                                                                                                  <option value="{{ $term->id }}">{{ $term->name }}</option>
+                                                                                                   @endforeach
+                                                                                           </select>
                                                                                            @error('term') <span class="text-danger">{{ $message }}</span> @enderror
                                                                                     </div>
                                                                              </div>

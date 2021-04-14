@@ -19,7 +19,7 @@ class Result extends Component
 
     public $term;
     public $resultSheet;
-    public $subject;
+    public $subject_id;
 
     public function mount()
     {
@@ -29,14 +29,15 @@ class Result extends Component
 
     public function submit()
     {
+        dd($this->subject_id);
         $this->validate([
             'resultSheet' => 'required',
             'term' => 'required',
-            'subject' => 'required'
+            'subject_id' => 'required'
         ]);
         if (!empty($this->resultSheet)) {
             $level = auth()->user()->teacher->level_id;
-            $result = new SubjectResultSheet($this->term,$this->subject,$level);
+            $result = new SubjectResultSheet($this->term,$this->subject_id,$level);
             Excel::import($result,$this->resultSheet);  
             session()->flash('success', 'Result uploaded successfully');          
         }

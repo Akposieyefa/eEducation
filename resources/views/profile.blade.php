@@ -6,7 +6,7 @@
                 <div class="nk-content-body">
                     <div class="nk-block">
                         <div class="card">
-
+                          @livewire('modals.reset-password')
                             @admin
                                 <x-profiles.admin-profile />
                             @endadmin

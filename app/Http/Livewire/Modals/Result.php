@@ -29,7 +29,6 @@ class Result extends Component
 
     public function submit()
     {
-        dd($this->subject_id);
         $this->validate([
             'resultSheet' => 'required',
             'term' => 'required',

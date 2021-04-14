@@ -61,7 +61,7 @@
                                                                                            <li><a href="#"><em class="icon ni ni-trash"></em><span>Remove</span></a></li>
                                                                                            @endadmin
                                                                                            @teacher
-                                                                                                  <li><a href="#" wire:click="exportStudents()"><em class="icon ni ni-list"></em><span> Download Sheet</span></a></li>
+                                                                                                  <li><a href="#" wire:click="exportStudents()"><em class="icon ni ni-list"></em><span> Download Result Template</span></a></li>
                                                                                            @endteacher
                                                                                     </ul>
                                                                              </div>

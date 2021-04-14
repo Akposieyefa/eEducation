@@ -1,11 +1,16 @@
 <div>
        <div class="mt-3 mb-5 row">
-              <div class="col-9"><h3>Manage  {{ "Students" }} </h3> </div>
+              <div class="col-6"><h3>Manage  {{ "Students" }} </h3> </div>
               @admin
                      <div class="col-3">
                             <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormStudentModal')">
                                    <em class="ni ni-plus"></em> &nbsp;&nbsp;Create New Student
                             </x-forms.buttons.success>
+                     </div>
+                     <div class="col-3">
+                            <x-forms.buttons.secondary data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormStudentModal')">
+                                   <em class="ni ni-plus"></em> &nbsp;&nbsp;Bulk Upload Student
+                            </x-forms.buttons.secondary>
                      </div>
               @endadmin
        </div>

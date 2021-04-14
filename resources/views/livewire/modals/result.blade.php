@@ -20,6 +20,7 @@
                                                                       <form wire:submit.prevent="submit">
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
+                                                                                           <label class="form-label">Select Subject</label>
                                                                                            <x-forms.select title="Select Subject" wire:model="subject">
                                                                                                   <x-forms.option value="">Select Subjects</x-forms.option>
                                                                                                   @foreach($subjects as $subject)
@@ -31,6 +32,7 @@
                                                                              </div>
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
+                                                                                           <label class="form-label">Select Term</label>
                                                                                            <x-forms.select title="Select Term" wire:model="term">
                                                                                                   <x-forms.option value="">Select Term</x-forms.option>
                                                                                                   @foreach($terms as $term)
@@ -42,6 +44,7 @@
                                                                              </div>
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
+                                                                                           <label class="form-label">Upload Result Sheet</label>
                                                                                            <x-forms.input type="file" wire:model="resultSheet" title="Select Result Sheet" />
                                                                                            @error('resultSheet') <span class="text-danger">{{ $message }}</span> @enderror
                                                                                     </div>

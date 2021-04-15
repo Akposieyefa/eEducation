@@ -7,6 +7,7 @@ use Livewire\WithPagination;
 use App\Models\Student;
 use App\Models\User;
 use Auth;
+use App\Models\Promotion;
 
 class Students extends Component
 {
@@ -82,11 +83,19 @@ class Students extends Component
     public function promoteStudent($id)
     {
         $data = Student::findOrFail($id);
-        $data->update(
-            [
-                'level_id' => $data->level_id +1
-            ]
-        );
+        $current_level = $data->level_id;
+            $promote = Promotion::create([
+                'student_id' => $data->student_id,
+                'from' => $current_level,
+                'to'  => $current_level +1,
+                'section_id' => activeSectionId(),
+                'teacher_id' => auth()->user()->teacher->teacher_id
+            ]);
+            if ($promote) {
+                $update = $data->update([
+                    'level_id' => $data->level_id +1
+                ]);
+            }
         session()->flash('success', 'Student have been promoted successfully');
     }
     /**

@@ -92,7 +92,7 @@
                                                                                                   @teacher
                                                                                                          <li><a href="#" onclick="return confirm('Are you sure you want to promote this student?') || even.stopImmediatePropagation()" wire:click="promoteStudent({{ $student->id }})"><em class="icon ni ni-plane"></em><span> Promote</span></a></li>
                                                                                                   @endteacher
-                                                                                                  <li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteSingleRecord({{ $student->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
+                                                                                                  <li><button onclick="return confirm('Are you sure you want to delete this...?') ||  even.stopImmediatePropagation()" wire:click="deleteSingleRecord({{ $student->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></button></li>
                                                                                            </ul>
                                                                                     </div>
                                                                              </div>

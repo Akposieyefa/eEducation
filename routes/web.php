@@ -38,3 +38,8 @@ Route::get('/fees', App\Http\Livewire\All\Fees::class)->name('fees');
 Route::get('/fees-payment', [App\Http\Controllers\HomeController::class, 'feesPayment'])->name('fees-payment');
 Route::get('/my-profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('my-profile');
 Route::get('/result-upload',App\Http\Livewire\Modals\Result::class)->name('result-upload');
+/**payment routes */
+Route::get('/fee-payment',[App\Http\Controllers\PaymentController::class, 'paymentForm'])->name('fee-payment');
+Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'initialize'])->name('pay');
+Route::get('/verify/{id}', [App\Http\Controllers\PaymentController::class, 'verify']);
+Route::get('/verify-confirmed', [App\Http\Controllers\PaymentController::class, 'confirmed'])->name('verify-confirmed');

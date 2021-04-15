@@ -62,6 +62,19 @@ function activeSection(){
       }
 }
 
+function activeSectionId(){
+       $sections = Section::where('status', 'open')->get();
+       foreach($sections as $section){
+        return $id = $section->id;
+       }
+}
+function activeTermId(){
+       $terms = Term::where('status', 'open')->get();
+       foreach($terms as $term){
+        return $id = $term->id;
+       }
+}
+
 function activeTerm(){
        $terms = Term::where('status', 'open')->get();
       foreach($terms as $term){

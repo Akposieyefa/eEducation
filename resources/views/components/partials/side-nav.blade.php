@@ -163,13 +163,13 @@
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
-                                        <a href="{{ route('fees') }}" class="nk-menu-link">
+                                        <a href="{{ route('fee-payment') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
-                                            <span class="nk-menu-text">Payment</span>
+                                            <span class="nk-menu-text">Fees Payment</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                      <li class="nk-menu-item">
-                                        <a href="{{ route('fees') }}" class="nk-menu-link">
+                                        <a href="#" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">Result</span>
                                         </a>

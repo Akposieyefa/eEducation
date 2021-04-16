@@ -13,12 +13,13 @@
                                                                <input type="checkbox" class="custom-control" wire:model="selectAll">
                                                         </div>
                                                  </div>
-                                                 <div class="nk-tb-col"><span class="sub-text">School Fee</span></div>
+                                                 <div class="nk-tb-col"><span class="sub-text">Ward</span></div>
+                                                 <div class="nk-tb-col"><span class="sub-text">Amount Paid</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Section</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Term</span></div>
                                                  <div class="nk-tb-col tb-col-lg"><span class="sub-text">Class</span></div>
-                                                 <div class="nk-tb-col tb-col-md"><span class="sub-text">Created Date</span></div>
-                                                 <div class="nk-tb-col nk-tb-col-tools">
+                                                 <div class="nk-tb-col tb-col-md"><span class="sub-text"> Date Paid</span></div>
+                                                 <!--<div class="nk-tb-col nk-tb-col-tools">
                                                         <ul class="nk-tb-actions gx-1 my-n1">
                                                                <li>
                                                                       <div class="drodown">
@@ -31,7 +32,7 @@
                                                                       </div>
                                                                </li>
                                                         </ul>
-                                                 </div>
+                                                 </div>-->
                                           </div><!-- .nk-tb-item -->
                                           @foreach($fees as $fee)
                                                  <div class="nk-tb-item">
@@ -41,16 +42,14 @@
                                                                <label class="custom-control"></label>
                                                         </div>
                                                  </div>
+                                                        <div class="nk-tb-col tb-col-mb">
+                                                               <span class="tb-amount"></span>
+                                                        </div>
                                                         <div class="nk-tb-col">
-                                                               <a href="html/ecommerce/customer-details.html">
+                                                               <a href="#">
                                                                       <div class="user-card">
-                                                                             <div class="user-avatar bg-primary">
-                                                                                    <span>
-                                                                                    {{ substr($fee->amount, 0,1) }}
-                                                                                    </span>
-                                                                             </div>
                                                                              <div class="user-info">
-                                                                                    <span class="tb-lead">{{ $fee->amount }} <span class="ml-1 dot dot-success d-md-none"></span></span>
+                                                                                    <span class="tb-lead">{{ \App\Helpers\Helpers::formatAmount($fee->amount) }} <span class="ml-1 dot dot-success d-md-none"></span></span>
                                                                              </div>
                                                                       </div>
                                                                </a>
@@ -67,7 +66,7 @@
                                                         <div class="nk-tb-col tb-col-md">
                                                                <span>{{ $fee->created_at->diffForHumans() }}</span>
                                                         </div>
-                                                        <div class="nk-tb-col nk-tb-col-tools">
+                                                        <!--<div class="nk-tb-col nk-tb-col-tools">
                                                                <ul class="nk-tb-actions gx-1">
                                                                       <li>
                                                                              <div class="drodown">
@@ -80,7 +79,7 @@
                                                                              </div>
                                                                       </li>
                                                                </ul>
-                                                        </div>
+                                                        </div>-->
                                                  </div><!-- .nk-tb-item -->
                                           @endforeach
                                    </div><!-- .nk-tb-list -->

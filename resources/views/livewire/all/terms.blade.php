@@ -15,7 +15,7 @@
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Session</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Start Date</span></div>
                                                  <div class="nk-tb-col tb-col-lg"><span class="sub-text">End Date</span></div>
-                                                 <div class="nk-tb-col tb-col-md"><span class="sub-text">Created Date</span></div>
+                                                 <!--<div class="nk-tb-col tb-col-md"><span class="sub-text">Created Date</span></div>-->
                                                  <div class="nk-tb-col nk-tb-col-tools">
                                                         <ul class="nk-tb-actions gx-1 my-n1">
                                                                <li>
@@ -57,9 +57,9 @@
                                                         <div class="nk-tb-col tb-col-mb">
                                                                <span class="tb-amount">{{ $term->end_date }}</span>
                                                         </div>
-                                                        <div class="nk-tb-col tb-col-md">
+                                                        <!--<div class="nk-tb-col tb-col-md">
                                                                <span>{{ $term->created_at->diffForHumans() }}</span>
-                                                        </div>
+                                                        </div>-->
                                                         <div class="nk-tb-col nk-tb-col-tools">
                                                                <ul class="nk-tb-actions gx-1">
                                                                       <li>

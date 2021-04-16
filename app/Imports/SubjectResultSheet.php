@@ -13,7 +13,7 @@ class SubjectResultSheet  implements ToModel, WithStartRow
     public $level_id;
     public $subject_id;
 
-    public function __construct($term_id,$subject_id,$level_id)
+    public function __construct($term_id, $subject_id, $level_id)
     {
         $this->term_id = $term_id;
         $this->subject_id = $subject_id;
@@ -36,7 +36,7 @@ class SubjectResultSheet  implements ToModel, WithStartRow
             'student_id'     => $row[0],
             'score'    =>  $row[4],
             'term_id' => $this->term_id,
-            'subjcet_id' => $this->subject_id,
+            'subject_id' => $this->subject_id,
             'level_id' => $this->level_id
         ]);
     }

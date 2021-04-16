@@ -31,15 +31,15 @@ class Student extends Component
     public $modal_id;
 
     public $fname;
-    public $mname;
+    public $mname = NULL;
     public $lname;
     public $dob;
     public $nationality;
     public $address;
     public $selectedLga;
-    public $email;
+    public $email = NULL;
     public $gender;
-    public $passport;
+    public $passport = NULL;
     public $studentId;
     public $selectedClass;
 
@@ -79,9 +79,9 @@ class Student extends Component
     {
         $this->validate([
             'fname' => 'required',
-            'mname' => 'string|max:255|nullable',
+            'mname' => 'nullable|string|max:255',
             'lname' => 'required',
-            'email' => 'required|email',
+            'email' => 'nullable|email|unique:users',
             'dob' => 'required',
             'nationality' => 'required',
             'address' => 'required',
@@ -166,9 +166,9 @@ class Student extends Component
     {
        $this->validate([
         'fname' => 'required',
-        'mname' => 'string|max:255|nullable',
+        'mname' => 'nullable|string|max:255',
         'lname' => 'required',
-        'email' => 'required|email|unique:users',
+        'email' => 'nullable|email|unique:users',
         'dob' => 'required',
         'nationality' => 'required',
         'address' => 'required',

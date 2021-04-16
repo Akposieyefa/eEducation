@@ -1,9 +1,9 @@
 <div>
        <div class="row mt-5 mb-5">
-              <div class="col-9"><h3> Manage {{ "Session" }} </h3></div>
+              <div class="col-9"><h3> Add {{ "Session" }} </h3></div>
               <div class="col-3">
                      <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormSectionModal')">
-                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Create New Session
+                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Add New Session
                      </x-forms.buttons.success>
               </div>
        </div>
@@ -13,7 +13,7 @@
               <div class="modal-dialog" role="document">
                      <div class="modal-content">
                             <div class="modal-header">
-                                   <h5 class="modal-title" id="exampleModalLongTitle">Create New Session</h5>
+                                   <h5 class="modal-title" id="exampleModalLongTitle">Add New Session</h5>
                                    <button type="button" wire:click="close()" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                    </button>

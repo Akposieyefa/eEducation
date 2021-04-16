@@ -1,10 +1,10 @@
 @admin
 <div>
        <div class="mt-5 mb-5 row">
-              <div class="col-9"><h3> Manage {{ "Fees" }} </h3></div>
+              <div class="col-9"><h3> Add {{ "Fees" }} </h3></div>
               <div class="col-3">
                      <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormFeeModal')">
-                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Create Term Fee
+                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Add Term Fee
                      </x-forms.buttons.success>
               </div>
        </div>
@@ -14,7 +14,7 @@
               <div class="modal-dialog" role="document">
                      <div class="modal-content">
                             <div class="modal-header">
-                                   <h5 class="modal-title" id="exampleModalLongTitle">Create Term School Fee</h5>
+                                   <h5 class="modal-title" id="exampleModalLongTitle">Add Term School Fee</h5>
                                    <button type="button" wire:click="close()" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                    </button>

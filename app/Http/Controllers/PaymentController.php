@@ -29,43 +29,48 @@ class PaymentController extends Controller
     public function initialize()
     {
         request()->validate([
-            'student_id' =>'required'
+            'student_id' => 'required'
         ]);
 
-        $student = Student::where('student_id',request()->student_id)->first();
+        $student = Student::where('student_id', request()->student_id)->first();
         $level = $student->level_id;
 
         $fee = Fee::where('level_id', $level)->where('term_id', activeTermId())->first();
-        $amount = $fee->amount;
-        $paymentReference = "VS".sprintf("%0.9s",str_shuffle(rand(12,30000) * time()));
 
-        $tr = PaymentData::create([
-            'student_id' => request()->student_id,
-            'trans_ref' => $paymentReference,
-            'guardian_id' => auth()->user()->guardian->id,
-            'term_id' => activeTermId(),
-            'amount' =>  $amount,
-            'status' => false
-       ]);
+        if ($fee) {
+            $amount = $fee->amount;
+            $paymentReference = "VS" . sprintf("%0.9s", str_shuffle(rand(12, 30000) * time()));
 
-        $payStack = new Paystack('sk_test_2a3345566113793b468c574ea74028fa50c2497d');
-        $trx = $payStack->transaction->initialize(
-            [
-                'amount'=> $amount * 100, /* in kobo */
-                'email'=>auth()->user()->email,
-                'reference' => $paymentReference,
-                'callback_url'=>"http://127.0.0.1:8000/verify/$paymentReference",
-                'metadata'=> [
-                    'student_id'=> request()->student_id,
-                    'reference'=> $paymentReference,
-                    'transaction_id' => $tr->id,
-                ],
-            ]
-        );
-        if(!$trx) {
-            exit($trx->data->message);
+            $tr = PaymentData::create([
+                'student_id' => request()->student_id,
+                'trans_ref' => $paymentReference,
+                'guardian_id' => auth()->user()->guardian->id,
+                'term_id' => activeTermId(),
+                'amount' =>  $amount,
+                'status' => false
+            ]);
+
+            $payStack = new Paystack('sk_test_2a3345566113793b468c574ea74028fa50c2497d');
+            $trx = $payStack->transaction->initialize(
+                [
+                    'amount' => $amount * 100, /* in kobo */
+                    'email' => auth()->user()->email,
+                    'reference' => $paymentReference,
+                    'callback_url' => "http://127.0.0.1:8000/verify/$paymentReference",
+                    'metadata' => [
+                        'student_id' => request()->student_id,
+                        'reference' => $paymentReference,
+                        'transaction_id' => $tr->id,
+                    ],
+                ]
+            );
+            if (!$trx) {
+                exit($trx->data->message);
+            }
+            return redirect($trx->data->authorization_url);
+        } else {
+            return view('fee-payment')->with('error', 'Cannot make payment for this ward. Contact School Administrator');
         }
-        return redirect($trx->data->authorization_url);
     }
 
     /**
@@ -80,29 +85,27 @@ class PaymentController extends Controller
         }
         $payStack = new Paystack('sk_test_2a3345566113793b468c574ea74028fa50c2497d');
         $trx = $payStack->transaction->verify([
-            'reference'=>$reference
+            'reference' => $reference
         ]);
 
-        if(!$trx->data->status="success"){ 
+        if (!$trx->data->status = "success") {
             exit($trx->message);
         }
         $trans_ref = $trx->data->metadata->reference;
 
-        PaymentData::where('trans_ref',$trans_ref)
-            ->where('guardian_id',auth()->user()->guardian->id)
+        PaymentData::where('trans_ref', $trans_ref)
+            ->where('guardian_id', auth()->user()->guardian->id)
             ->update([
                 'status' => true,
             ]);
-        return redirect('http://127.0.0.1:8000/verify-confirmed');
+        return redirect(url('verify-confirmed'));
     }
 
-     /**
+    /**
      * confirmation page
      */
     public function confirmed()
     {
-        echo "Thanks";
+        return view('fee-payment')->with('success', 'Payment Successful.');
     }
-
-
 }

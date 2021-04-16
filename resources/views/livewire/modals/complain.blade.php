@@ -1,12 +1,12 @@
 <div>
        <div class="row mt-3 mb-5">
               @admin
-                     <div class="col-9"><h3> Manage {{ "Complain" }} </h3></div>
+                     <div class="col-9"><h3> Add {{ "Complain" }} </h3></div>
                      @else
-                     <div class="col-9"><h3> Manage {{ "Complain" }} </h3></div>
+                     <div class="col-9"><h3> Add {{ "Complain" }} </h3></div>
                      <div class="col-3">
                             <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormComplainModal')">
-                                   <em class="ni ni-plus"></em> &nbsp;&nbsp; Create New Case
+                                   <em class="ni ni-plus"></em> &nbsp;&nbsp; Add New Case
                             </x-forms.buttons.success>
                      </div>
               @endadmin
@@ -17,7 +17,7 @@
               <div class="modal-dialog" role="document">
                      <div class="modal-content">
                             <div class="modal-header">
-                                   <h5 class="modal-title" id="exampleModalLongTitle">Send Complian</h5>
+                                   <h5 class="modal-title" id="exampleModalLongTitle">Send Complain</h5>
                                    <button type="button" wire:click="close()" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                    </button>

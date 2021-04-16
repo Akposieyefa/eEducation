@@ -26,25 +26,25 @@
                                     <li class="nk-menu-item">
                                         <a href="{{ route('students') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
-                                            <span class="nk-menu-text">Manage Students</span>
+                                            <span class="nk-menu-text">Add Students</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('teachers') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
-                                            <span class="nk-menu-text">Manage Staff</span>
+                                            <span class="nk-menu-text">Add Staff</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('guardians') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-user-check"></em></span>
-                                            <span class="nk-menu-text">Manage Guardians</span>
+                                            <span class="nk-menu-text">Add Guardians</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('subjects') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-book-read"></em></span>
-                                            <span class="nk-menu-text">Manage Subjects</span>
+                                            <span class="nk-menu-text">Add Subjects</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                      <li class="nk-menu-item">
@@ -68,7 +68,7 @@
                                     <li class="nk-menu-item">
                                         <a href="{{ route('classes') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-property-add"></em></span>
-                                            <span class="nk-menu-text">Manage Classes</span>
+                                            <span class="nk-menu-text">Add Classes</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     {{-- <li class="nk-menu-item">
@@ -80,25 +80,25 @@
                                     <li class="nk-menu-item">
                                         <a href="{{ route('sections') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
-                                            <span class="nk-menu-text">Manage Sessions</span>
+                                            <span class="nk-menu-text">Add Sessions</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('terms') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
-                                            <span class="nk-menu-text">Manage Terms</span>
+                                            <span class="nk-menu-text">Add Terms</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('fees') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
-                                            <span class="nk-menu-text">Manage Fees</span>
+                                            <span class="nk-menu-text">Add Fees</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('fees-payment') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
-                                            <span class="nk-menu-text">Manage Fees Payments</span>
+                                            <span class="nk-menu-text">Add Fees Payments</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-heading">
@@ -113,7 +113,7 @@
                                     <li class="nk-menu-item">
                                         <a href="{{ route('admins') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
-                                            <span class="nk-menu-text">Manage Admins</span>
+                                            <span class="nk-menu-text">Add Admins</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                 @endadmin
@@ -133,7 +133,7 @@
                                     <li class="nk-menu-item">
                                         <a href="{{ route('subjects') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-book-read"></em></span>
-                                            <span class="nk-menu-text">Manage Subjects</span>
+                                            <span class="nk-menu-text">Add Subjects</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">

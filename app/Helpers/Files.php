@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 use App\Models\Notification;
 use App\Models\Complain;
 use Carbon\Carbon;
@@ -9,101 +10,112 @@ use App\Models\Role;
 use App\Models\Section;
 use App\Models\Term;
 
-function notification() {
+function notification()
+{
        return $message = Notification::whereDate(
-            'created_at', Carbon::today()
+              'created_at',
+              Carbon::today()
        )->get();
 }
 
-function complains() {
+function complains()
+{
        return  $complain = Complain::where(
-             'status', NULL
+              'status',
+              NULL
        )->get();
 }
 
-function studentCount(){
+function studentCount()
+{
        $userRoles = auth()->user()->roles->pluck('name');
-        if ($userRoles[0] == 'Admin') {
-             return Student::count();
-        }elseif($userRoles[0] == 'Teacher'){
-            $level_id = auth()->user()->teacher->level_id;
-            $arm_id = auth()->user()->teacher->arm_id;
-            return Student::where('level_id', $level_id)
-                    ->where('arm_id', $arm_id)->count();
-        }
+       if ($userRoles[0] == 'Admin') {
+              return Student::count();
+       } elseif ($userRoles[0] == 'Teacher') {
+              $level_id = auth()->user()->teacher->level_id;
+              $arm_id = auth()->user()->teacher->arm_id;
+              return Student::where('level_id', $level_id)
+                     ->where('arm_id', $arm_id)->count();
+       }
 }
-function teacherCount(){
-       return Teacher::count(); 
+function teacherCount()
+{
+       return Teacher::count();
 }
-function allStudents() {
+function allStudents()
+{
 
        $userRoles = auth()->user()->roles->pluck('name');
-        if ($userRoles[0] == 'Admin') {
-            return Student::with(['level','user','state','lga','guardian'])->latest()->paginate(10);
-        }elseif($userRoles[0] == 'Teacher'){
-            $level_id = auth()->user()->teacher->level_id;
-            return Student::with(['level','user','state','lga','guardian'])
-                    ->where('level_id', $level_id)->latest()->paginate(10);
-        }elseif($userRoles[0] == 'Guardian') {
+       if ($userRoles[0] == 'Admin') {
+              return Student::with(['level', 'user', 'state', 'lga', 'guardian'])->latest()->paginate(10);
+       } elseif ($userRoles[0] == 'Teacher') {
+              $level_id = auth()->user()->teacher->level_id;
+              return Student::with(['level', 'user', 'state', 'lga', 'guardian'])->where('level_id', $level_id)->latest()->paginate(10);
+       } elseif ($userRoles[0] == 'Guardian') {
               $guardian_id = auth()->user()->guardian->level_id;
-              return Student::with(['level','user','state','lga','guardian'])
-                      ->where('guardian_id',  $guardian_id)->latest()->paginate(10);
-        }
+              return Student::with(['level', 'user', 'state', 'lga', 'guardian'])->where('guardian_id',  $guardian_id)->latest()->paginate(10);
+       }
 }
 
-function subjectCount(){
-       return Subject::count(); 
+function subjectCount()
+{
+       return Subject::count();
 }
 
-function activeSection(){
-      $sections = Section::where('status', 'open')->get();
-      foreach($sections as $section){
-       return $name = $section->name;
-      }
-}
-
-function activeSectionId(){
+function activeSection()
+{
        $sections = Section::where('status', 'open')->get();
-       foreach($sections as $section){
-        return $id = $section->id;
-       }
-}
-function activeTermId(){
-       $terms = Term::where('status', 'open')->get();
-       foreach($terms as $term){
-        return $id = $term->id;
+       foreach ($sections as $section) {
+              return $name = $section->name;
        }
 }
 
-function activeTerm(){
+function activeSectionId()
+{
+       $sections = Section::where('status', 'open')->get();
+       foreach ($sections as $section) {
+              return $id = $section->id;
+       }
+}
+function activeTermId()
+{
        $terms = Term::where('status', 'open')->get();
-      foreach($terms as $term){
-       return $name = $term->name;
-      }
+       foreach ($terms as $term) {
+              return $id = $term->id;
+       }
 }
 
-function username($role) {
-       if($role == "Teacher"){
-             return auth()->user()->teacher->fullname;
-       }elseif($role == "Admin") {
-             return auth()->user()->admin->fullname;
-       }elseif($role == "Guardian") {
+function activeTerm()
+{
+       $terms = Term::where('status', 'open')->get();
+       foreach ($terms as $term) {
+              return $name = $term->name;
+       }
+}
+
+function username($role)
+{
+       if ($role == "Teacher") {
+              return auth()->user()->teacher->fullname;
+       } elseif ($role == "Admin") {
+              return auth()->user()->admin->fullname;
+       } elseif ($role == "Guardian") {
               return auth()->user()->guardian->fullname;
-       }else {
+       } else {
               return auth()->user()->student->fullname;
        }
 }
 
-function userimage($role) {
+function userimage($role)
+{
 
-       if($role == "Teacher"){
+       if ($role == "Teacher") {
               return auth()->user()->teacher->profileimage;
-        }elseif($role == "Admin") {
+       } elseif ($role == "Admin") {
               return auth()->user()->admin->profileimage;
-        }elseif($role == "Guardian") {
-               return auth()->user()->guardian->profileimage;
-        }else {
-               return auth()->user()->student->profileimage;
-        }
-
+       } elseif ($role == "Guardian") {
+              return auth()->user()->guardian->profileimage;
+       } else {
+              return auth()->user()->student->profileimage;
+       }
 }

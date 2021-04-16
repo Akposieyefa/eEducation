@@ -17,9 +17,21 @@
                                             </div>
                                         <!-- /.card-header -->
                                                 <div class="card-body">
+                                                    @if (isset($error))
+                                                        <div class="alert alert-danger" role="alert">
+                                                            {{ $error }}
+                                                        </div>
+                                                    @endif
+
+                                                    @if (isset($success))
+                                                        <div class="alert alert-success" role="alert">
+                                                            {{ $success }}
+                                                        </div>
+                                                    @endif
                                                 <x-alerts.success />
                                                  <form id="quickForm" method="post"  action="{{route('pay')}}" accept-charset="UTF-8" autocomplete="off">
                                                         @csrf
+                                                        
                                                         <x-alerts.error />
                                                                <div class="form-group">
                                                                       <x-forms.label> <strong>Enter Student Registration Number </strong></x-forms.label>

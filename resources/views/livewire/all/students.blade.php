@@ -26,7 +26,7 @@
                                                                              <a href="#" class="dropdown-toggle btn btn-icon btn-trigger mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                                              <div class="dropdown-menu dropdown-menu-right">
                                                                                     <ul class="link-list-opt no-bdr">
-                                                                                           <li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteRecords()" ><em class="icon ni ni-trash"></em><span>Remove Seleted</span></a></li>
+                                                                                           <!--<li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteRecords()" ><em class="icon ni ni-trash"></em><span>Remove Seleted</span></a></li>-->
                                                                                            <li><a href="#"><em class="icon ni ni-shield-star"></em><span>Download</span></a></li>
                                                                                     </ul>
                                                                              </div>
@@ -92,7 +92,7 @@
                                                                                                   @teacher
                                                                                                          <li><a href="#" onclick="return confirm('Are you sure you want to promote this student?') || even.stopImmediatePropagation()" wire:click="promoteStudent({{ $student->id }})"><em class="icon ni ni-plane"></em><span> Promote</span></a></li>
                                                                                                   @endteacher
-                                                                                                  <li><button onclick="return confirm('Are you sure you want to delete this...?') ||  even.stopImmediatePropagation()" wire:click="deleteSingleRecord({{ $student->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></button></li>
+                                                                                                  <!--<li><button onclick="return confirm('Are you sure you want to delete this...?') ||  even.stopImmediatePropagation()" wire:click="deleteSingleRecord({{ $student->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></button></li>-->
                                                                                            </ul>
                                                                                     </div>
                                                                              </div>

@@ -1,9 +1,9 @@
 <div>
        <div class="row mt-3 mb-5">
-              <div class="col-9"><h3> Manage {{ "Administrators" }} </h3></div>
+              <div class="col-9"><h3> Add {{ "Administrators" }} </h3></div>
               <div class="col-3">
                      <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormAdminModal')">
-                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Create New Administrator
+                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Add Administrator
                      </x-forms.buttons.success>
               </div>
        </div>
@@ -93,7 +93,7 @@
                                    @if ($update_mode)
                                           <x-forms.buttons.success wire:click="updateAdmin()">Update</x-forms.buttons.success>
                                    @else
-                                          <x-forms.buttons.success wire:click="submit()">Create</x-forms.buttons.success>
+                                          <x-forms.buttons.success wire:click="submit()">Add</x-forms.buttons.success>
                                    @endif
                             </div>
                      </div>

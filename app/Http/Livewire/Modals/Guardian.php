@@ -22,16 +22,17 @@ class Guardian extends Component
     public $modal_id;
 
     public $fname;
-    public $mname;
+    public $mname = NULL;
     public $lname;
     public $occupation;
     public $email;
     public $gender;
-    public $passport;
+    public $passport = NULL;
     public $phone;
     public $home_address;
-    public $office_address;
+    public $office_address = NULL;
     public $guardianId;
+    public $student_id = NULL;
 
     protected $listeners = [
         'showFormGuardianModal' => 'open',
@@ -43,15 +44,15 @@ class Guardian extends Component
 
     protected $rules = [
         'fname' => 'required',
-        'mname' => 'string|max:255|nullable',
+        'mname' => 'nullable|string|max:255',
         'lname' => 'required',
         'email' => 'required|email|unique:users',
         'phone' => 'required',
         'home_address' => 'required',
-        'office_address' => 'string|max:255|nullable',
+        'office_address' => 'nullable|string|max:255',
         'gender' => 'required',
         'occupation' => 'required',
-        'student_id' => 'sometimes'
+        
     ];
     /**
      * display edit form 

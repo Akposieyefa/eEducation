@@ -1,9 +1,9 @@
 <div>
        <div class="row mt-5 mb-5">
-              <div class="col-9"><h3> Manage {{ "Term" }} </h3></div>
+              <div class="col-9"><h3> Add {{ "Term" }} </h3></div>
               <div class="col-3">
                      <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormTermModal')">
-                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Create New Term
+                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Add New Term
                      </x-forms.buttons.success>
               </div>
        </div>
@@ -13,7 +13,7 @@
               <div class="modal-dialog" role="document">
                      <div class="modal-content">
                             <div class="modal-header">
-                                   <h5 class="modal-title" id="exampleModalLongTitle">Create New Term</h5>
+                                   <h5 class="modal-title" id="exampleModalLongTitle">Add New Term</h5>
                                    <button type="button" wire:click="close()" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                    </button>

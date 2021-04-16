@@ -14,7 +14,7 @@
                                                  <div class="nk-tb-col"><span class="sub-text">Class </span></div>
                                                  <div class="nk-tb-col tb-col-lg"><span class="sub-text">Students</span></div>
                                                  <div class="nk-tb-col tb-col-lg"><span class="sub-text">Subjects</span></div>
-                                                 <div class="nk-tb-col tb-col-md"><span class="sub-text">Date Created</span></div>
+                                                 <!--<div class="nk-tb-col tb-col-md"><span class="sub-text">Date Created</span></div>-->
                                                  <div class="nk-tb-col nk-tb-col-tools">
                                                         <ul class="nk-tb-actions gx-1 my-n1">
                                                                <li>
@@ -53,9 +53,9 @@
                                                         <div class="nk-tb-col tb-col-mb">
                                                                <span class="tb-amount">{{ $class->subjects->count() }}</span>
                                                         </div>
-                                                        <div class="nk-tb-col tb-col-md">
+                                                        <!--<div class="nk-tb-col tb-col-md">
                                                                <span>{{ $class->created_at->diffForHumans() }}</span>
-                                                        </div>
+                                                        </div>-->
                                                         <div class="nk-tb-col nk-tb-col-tools">
                                                                <ul class="nk-tb-actions gx-1">
                                                                       <li>

@@ -1,10 +1,10 @@
 <div>
        <div class="row mt-3 mb-5">
               @admin
-                     <div class="col-9"><h3> Manage {{ "Notifications" }} </h3></div>
+                     <div class="col-9"><h3> Send {{ "Notifications" }} </h3></div>
                      <div class="col-3">
                             <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormNotificationModal')">
-                                   <em class="ni ni-plus"></em> &nbsp;&nbsp; Create New Notification
+                                   <em class="ni ni-plus"></em> &nbsp;&nbsp; Send New Notification
                             </x-forms.buttons.success>
                      </div>
               @else
@@ -52,7 +52,7 @@
                                           </div>
                                           <div class="modal-footer">
                                                  <x-forms.buttons.danger data-dismiss="modal" wire:click="close()">Close</x-forms.buttons.danger>
-                                                 <x-forms.buttons.success type="submit">Save</x-forms.buttons.success>
+                                                 <x-forms.buttons.success type="submit">Send</x-forms.buttons.success>
                                           </div>
                                    </form>
                             </div>

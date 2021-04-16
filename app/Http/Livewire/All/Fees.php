@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Fee;
 use Livewire\WithPagination;
 
+
 class Fees extends Component
 {
     use WithPagination;
@@ -17,10 +18,11 @@ class Fees extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedFees = $this->fees->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            $this->selectedFees = $this->fees->pluck('id')->map(fn ($item) => (string) $item)->toArray();
+        } else {
             $this->selectedFees = [];
         }
     }
@@ -36,7 +38,7 @@ class Fees extends Component
      */
     public function getFeesProperty()
     {
-        return Fee::with(['section','term','level'])->latest()->paginate(3);
+        return Fee::with(['section', 'term', 'level'])->latest()->paginate(3);
     }
     /**
      * render the livewire view

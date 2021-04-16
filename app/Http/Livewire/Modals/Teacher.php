@@ -33,7 +33,7 @@ class Teacher extends Component
     public $modal_id;
 
     public $fname;
-    public $mname;
+    public $mname = NULL;
     public $lname;
     public $dob;
     public $nationality;
@@ -42,9 +42,9 @@ class Teacher extends Component
     // public $selectedArm;
     public $email;
     public $gender;
-    public $passport;
-    public $resume;
-    public $employment_date;
+    public $passport = NULL;
+    public $resume = NULL;
+    public $employment_date = NULL;
     public $teacherId;
 
     protected $listeners = [
@@ -57,19 +57,18 @@ class Teacher extends Component
 
     protected $rules = [
         'fname' => 'required',
-        'mname' => 'string|max:255|nullable',
+        'mname' => 'nullable|string|max:255',
         'lname' => 'required',
         'email' => 'required|email|unique:users',
         'dob' => 'required',
         'nationality' => 'required',
         'address' => 'required',
         'selectedLga' => 'required',
-        'selectedArm' => 'string|max:255|nullable',
         'selectedState' => 'required',
         'selectedClass' => 'required',
         'gender' => 'required',
-        'employment_date' => 'string|max:255|nullable',
-        'resume' => 'string|max:255|nullable'
+        'employment_date' => 'nullable|string|max:255',
+        'resume' => 'nullable|string|max:255'
     ];
 
      /**

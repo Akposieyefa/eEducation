@@ -50,7 +50,7 @@ class Fee extends Component
     /**
      * Lifecycle Hooks for selectedSection drop down
      */
-    public function updatedSelectedSection($section) 
+    public function updatedSelectedSection($section)
     {
         $this->terms = Term::where('section_id', $section)->get();
     }
@@ -60,17 +60,17 @@ class Fee extends Component
     public function submit()
     {
         $this->validate();
-         $term = FeeData::create([
-             'amount' => $this->amount,
-             'level_id' => $this->level_id,
-             'section_id' => $this->selectedSection,
-             'term_id' => $this->selectedTerm
-         ]);
-         if ($term) {
-             session()->flash('success', 'Fess created successfully');
-         }else {
-             session()->flash('errMsg', 'Sorry an error occured');
-         }
+        $term = FeeData::create([
+            'amount' => $this->amount,
+            'level_id' => $this->level_id,
+            'section_id' => $this->selectedSection,
+            'term_id' => $this->selectedTerm
+        ]);
+        if ($term) {
+            session()->flash('success', 'Fess created successfully');
+        } else {
+            session()->flash('errMsg', 'Sorry an error occured');
+        }
     }
     /**
      * open form modal

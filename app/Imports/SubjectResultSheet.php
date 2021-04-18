@@ -34,7 +34,8 @@ class SubjectResultSheet  implements ToModel, WithStartRow
 
         return new Result([
             'student_id'     => $row[0],
-            'score'    =>  $row[4],
+            'ca_score'    =>  $row[4],
+            'exam_score'    =>  $row[5],
             'term_id' => $this->term_id,
             'subjcet_id' => $this->subject_id,
             'level_id' => $this->level_id

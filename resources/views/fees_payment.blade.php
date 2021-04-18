@@ -24,26 +24,28 @@
                                                         <div class="nk-tb-col tb-col-md"><span>Payment For</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Date Paid</span></div>
                                                     </div>
-                                                    <div class="nk-tb-item">
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-lead"><a href="#">STD/00000</a></span>
+                                                    @foreach($payments as $payment)
+                                                        <div class="nk-tb-item">
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-lead"><a href="#">{{ $payment->student_id }}</a></span>
+                                                            </div>
+                                                            <div class="nk-tb-col tb-col-sm">
+                                                                <span class="tb-lead">{{ $payment->student->fullname}}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col tb-col-md">
+                                                                <span class="tb-sub">{{$payment->student->level->name}}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-sub">{{ $payment->trans_ref  }}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-sub">{{ $payment->term->name }}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-sub">{{ $payment->created_at->diffForHumans() }}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="nk-tb-col tb-col-sm">
-                                                            <span class="tb-lead">Student Name</span>
-                                                        </div>
-                                                        <div class="nk-tb-col tb-col-md">
-                                                            <span class="tb-sub">JSS One</span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-sub">PT09kjuTy78</span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-sub">!st Term</span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-sub">12th April, 2021</span>
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
                                             </div><!-- .card -->
                                         </div>

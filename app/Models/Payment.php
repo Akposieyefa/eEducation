@@ -15,11 +15,11 @@ class Payment extends Model
     ];
 
     public function student() {
-        return $this->belongsTo(Student::class, 'student_id');
+        return $this->hasOne(Student::class, 'student_id', 'student_id');
     }
 
     public function guardian() {
-        return $this->belongsTo(Guardian::class, 'guardian_id');
+        return $this->belongsTo(Guardian::class, 'guardian_id', 'guardian_id');
     }
 
     public function term() {

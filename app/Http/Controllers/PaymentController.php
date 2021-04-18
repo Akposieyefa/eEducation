@@ -96,6 +96,12 @@ class PaymentController extends Controller
         return redirect('http://127.0.0.1:8000/verify-confirmed');
     }
 
+    public function allFees()
+    {
+        $payments = PaymentData::where('term_id',activeTermId())->get();
+        return view('fees_payment', compact('payments'));
+    }
+
      /**
      * confirmation page
      */

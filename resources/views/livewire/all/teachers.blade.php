@@ -17,7 +17,7 @@
                                                  <div class="nk-tb-col tb-col-lg"><span class="sub-text">State</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">LGA</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Class</span></div>
-                                                 <div class="nk-tb-col tb-col-md"><span class="sub-text">Addmited Date</span></div>
+                                                 <!--<div class="nk-tb-col tb-col-md"><span class="sub-text">Addmited Date</span></div>-->
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></div>
                                                  <div class="nk-tb-col nk-tb-col-tools">
                                                         <ul class="nk-tb-actions gx-1 my-n1">
@@ -69,9 +69,9 @@
                                                         <div class="nk-tb-col tb-col-lg">
                                                                <span>{{ $teacher->level->name }}</span>
                                                         </div>
-                                                        <div class="nk-tb-col tb-col-lg">
+                                                        <!--<div class="nk-tb-col tb-col-lg">
                                                                <span>{{ Carbon\Carbon::parse($teacher->addmited_date)->format('d/m/Y') }}</span>
-                                                        </div>
+                                                        </div>-->
                                                         <div class="nk-tb-col tb-col-md">
                                                                <span class="tb-status text-success">Active</span>
                                                         </div>

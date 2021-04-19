@@ -1,6 +1,6 @@
 <div>
        <div class="row mt-3 mb-5">
-              <div class="col-9"><h3> Add {{ "Classes" }} </h3></div>
+              <div class="col-9"><h3> List of {{ "Classes" }} </h3></div>
               <div class="col-3">
                      <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormClassModal')">
                             <em class="ni ni-plus"></em> &nbsp;&nbsp; Add New Class
@@ -23,14 +23,15 @@
                                    <form wire:submit.prevent="submit">
                                           <div class="form-group row">
                                                  <div class="col-md-12">
-                                                        <x-forms.input type="text" wire:model="name" placeholder="Enter Arm Name" title="Enter Arm Name" />
+                                                        <label class="form-label mr-5">Class Name <small class="text-danger">*</small></label>
+                                                        <x-forms.input type="text" wire:model="name" placeholder="Enter Class Name" title="Enter Class Name" />
                                                         @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>
 
                                           <div class="modal-footer">
                                                  <x-forms.buttons.danger data-dismiss="modal" wire:click="close()">Close</x-forms.buttons.danger>
-                                                 <x-forms.buttons.success type="submit">Save</x-forms.buttons.success>
+                                                 <x-forms.buttons.success type="submit">Add</x-forms.buttons.success>
                                           </div>
                                    </form>
                             </div>

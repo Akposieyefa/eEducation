@@ -36,10 +36,11 @@ Route::get('/sections', App\Http\Livewire\All\Sections::class)->name('sections')
 Route::get('/terms', App\Http\Livewire\All\Terms::class)->name('terms');
 Route::get('/fees', App\Http\Livewire\All\Fees::class)->name('fees');
 Route::get('/my-profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('my-profile');
-Route::get('/result-upload',App\Http\Livewire\Modals\Result::class)->name('result-upload');
+Route::get('/result-upload', App\Http\Livewire\Modals\Result::class)->name('result-upload');
+Route::get('/view-result', [App\Http\Controllers\HomeController::class, 'viewResult'])->name('view-result');
 /**payment routes */
-Route::get('/fee-payment',[App\Http\Controllers\PaymentController::class, 'paymentForm'])->name('fee-payment');
+Route::get('/fee-payment', [App\Http\Controllers\PaymentController::class, 'paymentForm'])->name('fee-payment');
 Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'initialize'])->name('pay');
-Route::get('/all-payments',[App\Http\Controllers\PaymentController::class, 'allFees'])->name('all-payments');
+Route::get('/all-payments', [App\Http\Controllers\PaymentController::class, 'allFees'])->name('all-payments');
 Route::get('/verify/{id}', [App\Http\Controllers\PaymentController::class, 'verify']);
 Route::get('/verify-confirmed', [App\Http\Controllers\PaymentController::class, 'confirmed'])->name('verify-confirmed');

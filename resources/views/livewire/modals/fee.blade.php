@@ -1,11 +1,16 @@
 @admin
 <div>
        <div class="mt-5 mb-5 row">
-              <div class="col-9"><h3> Add {{ "Fees" }} </h3></div>
-              <div class="col-3">
+              <div class="col-7"><h3> {{ "Fees" }} </h3></div>
+              <div class="col-2">
                      <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormFeeModal')">
                             <em class="ni ni-plus"></em> &nbsp;&nbsp; Add Term Fee
                      </x-forms.buttons.success>
+              </div>
+              <div class="col-3">
+                     <a href="{{ route('all-payments') }}" class="btn btn-success">
+                            <em class="ni ni-plus"></em> &nbsp;&nbsp; View Fees Payments
+                     </a>
               </div>
        </div>
        <!-- Modal -->
@@ -24,8 +29,9 @@
                                    <form wire:submit.prevent="submit">
                                           <div class="form-group row">
                                                  <div class="col-md-12">
+                                                        <label class="form-label mr-5">Select Session <small class="text-danger">*</small></label>
                                                         <x-forms.select title="Select class" wire:model="selectedSection">
-                                                               <x-forms.option value="">Select Sections</x-forms.option>
+                                                               <x-forms.option value="">Select Session</x-forms.option>
                                                                @foreach($sections as $section)
                                                                       <x-forms.option value="{{ $section->id }}">{{ $section->name }}</x-forms.option>
                                                                @endforeach
@@ -35,6 +41,7 @@
                                           </div>
                                             <div class="form-group row">
                                                  <div class="col-md-12">
+                                                        <label class="form-label mr-5">Select Term <small class="text-danger">*</small></label>
                                                         <x-forms.select title="Select class" wire:model="selectedTerm">
                                                                <x-forms.option value="">Select Term</x-forms.option>
                                                             @if(!is_null($selectedSection))
@@ -48,8 +55,9 @@
                                           </div>
                                              <div class="form-group row">
                                                  <div class="col-md-12">
+                                                        <label class="form-label mr-5">Select Class <small class="text-danger">*</small></label>
                                                         <x-forms.select title="Select class" wire:model="level_id">
-                                                               <x-forms.option value="">Select Level</x-forms.option>
+                                                               <x-forms.option value="">Select Class</x-forms.option>
                                                                @foreach($levels as $level)
                                                                       <x-forms.option value="{{ $level->id }}">{{ $level->name }}</x-forms.option>
                                                                @endforeach
@@ -59,6 +67,7 @@
                                           </div>
                                           <div class="form-group row">
                                                  <div class="col-md-12">
+                                                        <label class="form-label mr-5">Amount <small class="text-danger">*</small></label>
                                                         <x-forms.input type="text" wire:model="amount" placeholder="Enter School Fee Amount" title="Enter School Fee Amount" />
                                                         @error('amount') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
@@ -66,7 +75,7 @@
 
                                           <div class="modal-footer">
                                                  <x-forms.buttons.danger data-dismiss="modal" wire:click="close()">Close</x-forms.buttons.danger>
-                                                 <x-forms.buttons.success type="submit">Save</x-forms.buttons.success>
+                                                 <x-forms.buttons.success type="submit">Add</x-forms.buttons.success>
                                           </div>
                                    </form>
                             </div>

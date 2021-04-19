@@ -1,6 +1,6 @@
 <div>
       <div class="row mt-3 mb-5">
-              <div class="col-9"><h3> Add {{ "Guardian" }} </h3></div>
+              <div class="col-9"><h3> List of {{ "Guardians" }} </h3></div>
               <div class="col-3">
                      <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormGuardianModal')">
                             <em class="ni ni-plus"></em> &nbsp;&nbsp;Add Guardian

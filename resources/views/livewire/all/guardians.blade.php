@@ -16,7 +16,7 @@
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Occupation</span></div>
                                                  <div class="nk-tb-col tb-col-lg"><span class="sub-text">Home Address</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Office Address</span></div>
-                                                 <div class="nk-tb-col tb-col-md"><span class="sub-text">Date</span></div>
+                                                 <!--<div class="nk-tb-col tb-col-md"><span class="sub-text">Date</span></div>-->
                                                  <div class="nk-tb-col nk-tb-col-tools">
                                                         <ul class="nk-tb-actions gx-1 my-n1">
                                                                <li>
@@ -63,9 +63,9 @@
                                                         <div class="nk-tb-col tb-col-lg">
                                                                <span>{{ $guardian->office_address }}</span>
                                                         </div>
-                                                        <div class="nk-tb-col tb-col-lg">
+                                                        <!--<div class="nk-tb-col tb-col-lg">
                                                                <span>{{ $guardian->created_at->diffForHumans() }}</span>
-                                                        </div>
+                                                        </div>-->
                                                         <div class="nk-tb-col nk-tb-col-tools">
                                                                <ul class="nk-tb-actions gx-1">
                                                                       <li class="nk-tb-action-hidden">

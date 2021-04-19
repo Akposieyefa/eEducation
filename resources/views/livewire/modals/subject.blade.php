@@ -1,11 +1,16 @@
 <div>
        <div class="mt-3 mb-5 row">
-              <div class="col-9"><h3> Add {{ "Subject" }} </h3></div>
+              <div class="col-7"><h3> List of {{ "Subjects" }} </h3></div>
               @admin
-                     <div class="col-3">
+                     <div class="col-2">
                             <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormSubjectModal')">
                                    <em class="ni ni-plus"></em> &nbsp;&nbsp; Add New Subject
                             </x-forms.buttons.success>
+                     </div>
+                     <div class="col-3">
+                            <a href="{{ route('assign-subjects') }}" class="btn btn-success">
+                                   <em class="ni ni-plus"></em> &nbsp;&nbsp; Add Subject to Class
+                            </a>
                      </div>
               @endadmin
        </div>
@@ -25,6 +30,7 @@
                                           <x-alerts.success />
                                           <div class="form-group row">
                                                  <div class="col-md-12">
+                                                        <label class="form-label mr-5">Subject Title <small class="text-danger">*</small></label>
                                                  <x-forms.input type="text" wire:model="name" placeholder="Enter Subject Name" title="Enter Subject Name" />
                                                  @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>

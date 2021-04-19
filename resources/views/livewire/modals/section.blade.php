@@ -1,10 +1,15 @@
 <div>
        <div class="row mt-5 mb-5">
-              <div class="col-9"><h3> Add {{ "Session" }} </h3></div>
-              <div class="col-3">
+              <div class="col-8"><h3> List of {{ "Sessions" }} </h3></div>
+              <div class="col-2">
                      <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormSectionModal')">
                             <em class="ni ni-plus"></em> &nbsp;&nbsp; Add New Session
                      </x-forms.buttons.success>
+              </div>
+              <div class="col-2">
+                     <a href="{{ route('terms') }}" class="btn btn-success">
+                            <em class="ni ni-plus"></em> &nbsp;&nbsp; List of Terms
+                     </a>
               </div>
        </div>
        <!-- Modal -->
@@ -49,7 +54,7 @@
                      </div>
               </div>
        </div>
-
        @endif
+
 </div>
 

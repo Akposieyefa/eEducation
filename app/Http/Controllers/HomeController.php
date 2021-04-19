@@ -36,13 +36,8 @@ class HomeController extends Controller
         return view('fees_payment');
     }
 
-    public function staffIndex()
+    public function viewResult()
     {
-        return view('staff-dashboard');
-    }
-
-    public function guardianIndex()
-    {
-        return view('guardian-dashboard');
+        return view('view_result');
     }
 }

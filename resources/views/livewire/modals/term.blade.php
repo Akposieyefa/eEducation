@@ -53,7 +53,7 @@
 
                                           <div class="modal-footer">
                                                  <x-forms.buttons.danger data-dismiss="modal" wire:click="close()">Close</x-forms.buttons.danger>
-                                                 <x-forms.buttons.success type="submit">Save</x-forms.buttons.success>
+                                                 <x-forms.buttons.success type="submit">Add</x-forms.buttons.success>
                                           </div>
                                    </form>
                             </div>

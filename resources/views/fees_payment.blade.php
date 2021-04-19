@@ -5,7 +5,15 @@
                         <div class="nk-content-inner">
                             <div class="nk-content-body">
                                 <div class="nk-block">
-                                    <div class="row g-gs">
+                                    <div class="mt-5 mb-5 row">
+                                            <div class="col-8">&nbsp;</div>
+                                            <div class="col-4">
+                                                    <a href="{{ route('fees') }}" class="btn btn-success">
+                                                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Add Term Fee
+                                                    </a>
+                                            </div>
+                                        </div>
+                                    <div class="row g-gs">                                        
                                         <div class="col-xxl-12">
                                             <div class="card card-full">
                                                 <div class="card-inner">

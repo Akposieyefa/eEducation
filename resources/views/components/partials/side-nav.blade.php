@@ -26,49 +26,44 @@
                                     <li class="nk-menu-item">
                                         <a href="{{ route('students') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
-                                            <span class="nk-menu-text">Add Students</span>
+                                            <span class="nk-menu-text">Students</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('teachers') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
-                                            <span class="nk-menu-text">Add Staff</span>
+                                            <span class="nk-menu-text"> Teachers</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('guardians') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-user-check"></em></span>
-                                            <span class="nk-menu-text">Add Guardians</span>
+                                            <span class="nk-menu-text">Guardians</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('subjects') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-book-read"></em></span>
-                                            <span class="nk-menu-text">Add Subjects</span>
+                                            <span class="nk-menu-text">Subjects</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
-                                     <li class="nk-menu-item">
+                                    <!--<li class="nk-menu-item">
                                         <a href="{{ route('assign-subjects') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
                                             <span class="nk-menu-text">Assign Subject</span>
                                         </a>
-                                    </li><!-- .nk-menu-item -->
+                                    </li>--><!-- .nk-menu-item -->
                                     <!--<li class="nk-menu-item">
                                         <a href="{{ route('class-arm') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
                                             <span class="nk-menu-text">Arms</span>
                                         </a>
                                     </li>--><!-- .nk-menu-item -->
-                                    <li class="nk-menu-item">
-                                        <a href="{{ route('notifications') }}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-notice"></em></span>
-                                            <span class="nk-menu-text">Notification</span>
-                                        </a>
-                                    </li><!-- .nk-menu-item -->
+                                    
                                     <li class="nk-menu-item">
                                         <a href="{{ route('classes') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-property-add"></em></span>
-                                            <span class="nk-menu-text">Add Classes</span>
+                                            <span class="nk-menu-text">Classes</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     {{-- <li class="nk-menu-item">
@@ -78,31 +73,44 @@
                                         </a>
                                     </li><!-- .nk-menu-item --> --}}
                                     <li class="nk-menu-item">
-                                        <a href="{{ route('sections') }}" class="nk-menu-link">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
-                                            <span class="nk-menu-text">Add Sessions</span>
+                                        <a href="" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-server-fill"></em></span>
+                                            <span class="nk-menu-text"> Results</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
+                                        <a href="{{ route('sections') }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
+                                            <span class="nk-menu-text">Sessions</span>
+                                        </a>
+                                    </li><!-- .nk-menu-item -->
+                                    <!--<li class="nk-menu-item">
                                         <a href="{{ route('terms') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
                                             <span class="nk-menu-text">Add Terms</span>
                                         </a>
-                                    </li><!-- .nk-menu-item -->
+                                    </li>--><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('fees') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
-                                            <span class="nk-menu-text">Add Fees</span>
+                                            <span class="nk-menu-text"> Fees</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
-                                    <li class="nk-menu-item">
+                                    
+                                    <!--<li class="nk-menu-item">
                                         <a href="{{ route('all-payments') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
-                                            <span class="nk-menu-text">Add Fees Payments</span>
+                                            <span class="nk-menu-text">View Fees Payments</span>
                                         </a>
-                                    </li><!-- .nk-menu-item -->
+                                    </li>--><!-- .nk-menu-item -->
                                     <li class="nk-menu-heading">
                                         <h6 class="overline-title text-primary-alt">More Links</h6>
+                                    </li><!-- .nk-menu-item -->
+                                    <li class="nk-menu-item">
+                                        <a href="{{ route('notifications') }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-notice"></em></span>
+                                            <span class="nk-menu-text">Notification</span>
+                                        </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{ route('mails') }}" class="nk-menu-link">
@@ -113,7 +121,7 @@
                                     <li class="nk-menu-item">
                                         <a href="{{ route('admins') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
-                                            <span class="nk-menu-text">Add Admins</span>
+                                            <span class="nk-menu-text">Admins</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                 @endadmin
@@ -133,13 +141,13 @@
                                     <li class="nk-menu-item">
                                         <a href="{{ route('subjects') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-book-read"></em></span>
-                                            <span class="nk-menu-text">Add Subjects</span>
+                                            <span class="nk-menu-text">Subjects</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
                                         <a href="{{route('result-upload')}}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-server-fill"></em></span>
-                                            <span class="nk-menu-text">Upload Results</span>
+                                            <span class="nk-menu-text">Results</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                 @endteacher
@@ -169,7 +177,7 @@
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                      <li class="nk-menu-item">
-                                        <a href="#" class="nk-menu-link">
+                                        <a href="{{ route('view-result') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">Result</span>
                                         </a>

@@ -78,13 +78,13 @@
                                                 </div>
                                                 <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                                             </div><!-- data-item -->
-                                            <div class="data-item" data-toggle="modal" data-target="#profile-edit" data-tab-target="#address">
+                                            <!--<div class="data-item" data-toggle="modal" data-target="#profile-edit" data-tab-target="#address">
                                                 <div class="data-col">
                                                     <span class="data-label">Arm</span>
                                                     <span class="data-value">{{ auth()->user()->student->arm->name }}</span>
                                                 </div>
                                                 <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
-                                            </div><!-- data-item -->
+                                            </div>--><!-- data-item -->
                                         </div><!-- data-list -->
                                     </div><!-- .nk-block -->
                                 </div>

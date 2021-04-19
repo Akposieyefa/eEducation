@@ -27,6 +27,7 @@
                                    <form wire:submit.prevent="submit">
                                           <div class="form-group row">
                                                  <div class="col-md-12">
+                                                        <label class="form-label mr-5">Select Role <small class="text-danger">*</small></label>
                                                         <x-forms.select title="Notify role" wire:model="role_id">
                                                                <x-forms.option value="">Specific for role</x-forms.option>
                                                                @foreach($roles as $role)
@@ -38,6 +39,7 @@
                                           </div>
                                           <div class="form-group row">
                                                  <div class="col-md-12">
+                                                        <label class="form-label mr-5">Subject <small class="text-danger">*</small></label>
                                                         <x-forms.input type="text" wire:model="title" placeholder="Enter Subject" title="Enter Notification Subject" />
                                                         @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
@@ -45,6 +47,7 @@
 
                                           <div class="form-group row" wire:model="body" wire:ignore>
                                                  <div class="col-md-12">
+                                                        <label class="form-label mr-5">Message <small class="text-danger">*</small></label>
                                                        <input id="body"  value=""  type="hidden"  name="content" />
                                                         <trix-editor input="body"></trix-editor>
                                                         @error('body') <span class="text-danger">{{ $message }}</span> @enderror

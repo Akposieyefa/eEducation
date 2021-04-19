@@ -36,7 +36,8 @@ class SubjectResultSheet implements FromCollection, WithHeadings
             'FIRST NAME',
             'MIDDLE NAME',
             'LAST NAME',
-            'SCORE',
+            'CA SCORE',
+            'EXAM SCORE',
         ];
     }
 }

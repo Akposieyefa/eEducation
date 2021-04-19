@@ -101,6 +101,13 @@ class PaymentController extends Controller
         return redirect(url('verify-confirmed'));
     }
 
+
+    public function allFees()
+    {
+        $payments = PaymentData::where('term_id', activeTermId())->get();
+        return view('fees_payment', compact('payments'));
+    }
+
     /**
      * confirmation page
      */

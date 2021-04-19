@@ -11,13 +11,13 @@
                                                                <input type="checkbox" class="custom-control" wire:model="selectAll">
                                                         </div>
                                                  </div>
-                                                 <div class="nk-tb-col"><span class="sub-text">Student</span></div>
+                                                 <div class="nk-tb-col"><span class="sub-text">Student ID</span></div>
+                                                 <div class="nk-tb-col tb-col-mb"><span class="sub-text">Name</span></div>
                                                  <div class="nk-tb-col tb-col-mb"><span class="sub-text">Gender</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">DOB</span></div>
                                                  <div class="nk-tb-col tb-col-lg"><span class="sub-text">State</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">LGA</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Class</span></div>
-                                                 <div class="nk-tb-col tb-col-md"><span class="sub-text">Addmited Date</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></div>
                                                  <div class="nk-tb-col nk-tb-col-tools">
                                                         <ul class="nk-tb-actions gx-1 my-n1">
@@ -47,12 +47,17 @@
                                                                <a href="#">
                                                                       <div class="user-card">
                                                                              <div class="user-info">
-                                                                                    <span class="tb-lead">{{ $student->fullname }} <span class="ml-1 dot dot-success d-md-none"></span></span>
-                                                                                    <span>{{ $student->user->email }}</span>
-                                                                                    <span>Reg Number : {{ $student->student_id }}</span>
+                                                                                    <span>{{ $student->student_id }}</span>
                                                                              </div>
                                                                       </div>
                                                                </a>
+                                                        </div>
+                                                        <div class="nk-tb-col tb-col-mb">
+                                                               <div class="user-card">
+                                                                      <div class="user-info">
+                                                                             <span class="tb-lead">{{ $student->fullname }} <span class="ml-1 dot dot-success d-md-none"></span></span>
+                                                                      </div>
+                                                               </div>
                                                         </div>
                                                         <div class="nk-tb-col tb-col-mb">
                                                                <span class="tb-amount">{{ $student->gender }}</span>
@@ -68,9 +73,6 @@
                                                         </div>
                                                         <div class="nk-tb-col tb-col-lg">
                                                                <span>{{ $student->level->name }}</span>
-                                                        </div>
-                                                        <div class="nk-tb-col tb-col-lg">
-                                                               <span>{{ Carbon\Carbon::parse($student->addmited_date)->format('d/m/Y') }}</span>
                                                         </div>
                                                         <div class="nk-tb-col tb-col-md">
                                                                <span class="tb-status text-success">Active</span>

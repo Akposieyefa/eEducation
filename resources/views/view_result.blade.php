@@ -11,26 +11,17 @@
                                             </div><!-- .invoice-actions -->
                                             <div class="invoice-wrap">
                                                 <div class="invoice-brand text-center" style="border:0px solid red;">
-                                                    <img src="{{ asset('assets/result-logo.png') }}" srcset="{{ asset('assets/result-logo.png') }}" alt="" style="width:100%; height:auto; min-height:200px">
+                                                    <img src="{{ asset('assets/result-logo.png') }}" srcset="{{ asset('assets/images/result-logo.png') }}" alt="" style="width:100%; height:auto; min-height:200px">
                                                 </div>
                                                 <div class="invoice-head mt-5">
                                                     <div class="invoice-contact">
                                                         <span class="overline-title"></span>
                                                         <div class="invoice-contact-info">
+                                                            <h4 class="title">ADM. No.: &nbsp;&nbsp; <u>{{ $student->student_id }}</u></h4>
                                                             <h4 class="title">Name: &nbsp;&nbsp; <u>{{ $student->fullname }}</u></h4>
                                                             <h4 class="title">Class: &nbsp;&nbsp; <u>{{ $student->level->name }}</u></h4>
-                                                            <h4 class="title">Position: &nbsp;&nbsp; <u>1st</u></h4>
-                                                            <!--<ul class="list-plain">
-                                                                <li><em class="icon ni ni-map-pin-fill"></em><span>House #65, 4328 Marion Street<br>Newbury, VT 05051</span></li>
-                                                                <li><em class="icon ni ni-call-fill"></em><span>+012 8764 556</span></li>
-                                                            </ul>-->
-                                                        </div>
-                                                    </div>
-                                                    <div class="invoice-contact">
-                                                        <div class="invoice-contact-info">
-                                                            <h4 class="title">ADM. No.: &nbsp;&nbsp; <u>{{ $student->student_id }}</u></h4>
+                                                            <h4 class="title">Position: &nbsp;&nbsp; <u>1st</u> &nbsp;&nbsp; Out of: &nbsp;&nbsp; <u>34</u></h4>
                                                             <h4 class="title">Term/Session: &nbsp;&nbsp; <u>1st Term  -  2020/2021</u></h4>
-                                                            <h4 class="title">Out of: &nbsp;&nbsp; <u>34</u></h4>
                                                             <!--<ul class="list-plain">
                                                                 <li><em class="icon ni ni-map-pin-fill"></em><span>House #65, 4328 Marion Street<br>Newbury, VT 05051</span></li>
                                                                 <li><em class="icon ni ni-call-fill"></em><span>+012 8764 556</span></li>
@@ -40,7 +31,7 @@
                                                 </div><!-- .invoice-head -->
                                                 <div class="invoice-head mt-3 mb-3 row">
                                                     <div class="invoice-contact col-12">
-                                                        <h2 class=" text-center text-bold" style="color:red;"><u>Cognitive Domain (Academic Report) &nbsp;&nbsp; كشف الدرجات</u></h2>
+                                                        <h4 class=" text-center text-bold" style="color:red;"><u>Cognitive Domain (Academic Report) &nbsp;&nbsp; كشف الدرجات</u></h4>
                                                     </div>
                                                 </div>
                                                 <div class="invoice-bills">
@@ -48,12 +39,12 @@
                                                         <table class="table table-striped table-bordered">
                                                             <thead>
                                                                 <tr style="border-top:1px solid !important;">
-                                                                    <th style="padding:10px; text-align:center"><h2>Subjects</h2></th>
-                                                                    <th><h4>C.A</h4></th>
-                                                                    <th><h4>Exams</h4></th>
-                                                                    <th><h4>Total</h4></th>
-                                                                    <th><h4>Grade</h4></th>
-                                                                    <th><h4>Remarks</h4></th>
+                                                                    <th style="padding:10px; text-align:center"><h4>Subjects</h4></th>
+                                                                    <th><h5>C.A</h5></th>
+                                                                    <th><h5>Exams</h5></th>
+                                                                    <th><h5>Total</h5></th>
+                                                                    <th><h5>Grade</h5></th>
+                                                                    <th><h5>Remarks</h5></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="text-left">
@@ -70,12 +61,12 @@
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr>
-                                                                    <td colspan="2" style="vertical-align: bottom !important;"><h4>TOTAL MARKS: &nbsp;&nbsp; <span>907</span> </h4></td>
-                                                                    <td colspan="2"><h4>MARKS OBTAINED: &nbsp;&nbsp; <span>460</span></h4> </td>
-                                                                    <td colspan="2"><h4>AVERAGE: &nbsp;&nbsp; <span>56.7</span> </h4></td>
+                                                                    <td colspan="2" style="vertical-align: bottom !important;"><h5>TOTAL MARKS: &nbsp;&nbsp; <span>907</span> </h5></td>
+                                                                    <td colspan="2"><h5>MARKS OBTAINED: &nbsp;&nbsp; <span>460</span></h5> </td>
+                                                                    <td colspan="2"><h5>AVERAGE: &nbsp;&nbsp; <span>56.7</span> </h5></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td colspan="6" style="vertical-align: bottom !important; text-align:center"><h4 class="text-warning mb-2 mt-2">Next Term Begins: 4th January, 2021 and Ends: 16th December,2021 </h4></td>
+                                                                    <td colspan="6" style="vertical-align: bottom !important; text-align:center"><h5 class="text-warning mb-2 mt-2">Next Term Begins: 4th January, 2021 and Ends: 16th December,2021 </h5></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td colspan="6" style="vertical-align: bottom !important; text-align:center" class="pt-3 pb-3">&nbsp;&nbsp;</td>
@@ -86,7 +77,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td colspan="6" style=" padding-top:2%; padding-right:5%; text-align:center">
-                                                                        <img src="{{ asset('assets/stamp.png') }}" style="margin:auto !important;" />
+                                                                        <img src="{{ asset('assets/images/stamp.png') }}" style="margin:auto !important;" />
                                                                     </td>
                                                                 </tr>
                                                                 

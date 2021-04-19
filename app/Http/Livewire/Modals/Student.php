@@ -22,7 +22,7 @@ class Student extends Component
     public $states;
     public $lgas;
     public $levels;
-    
+
     public $selectedState = NULL;
 
     public $isStudentOpen = false;
@@ -57,7 +57,7 @@ class Student extends Component
     {
         $this->studentId = $id;
         $this->update_mode = true;
-        $student = StudentData::with(['user','level','lga'])->where('id', $this->studentId)->first();
+        $student = StudentData::with(['user', 'level', 'lga'])->where('id', $this->studentId)->first();
         $this->fname = $student->fname;
         $this->mname = $student->mname;
         $this->lname = $student->lname;
@@ -67,7 +67,7 @@ class Student extends Component
         $this->email = $student->user->email;
         $this->gender = $student->gender;
         $this->selectedState = $student->state_id;
-        $this->selectedClass = $student->level_id;    
+        $this->selectedClass = $student->level_id;
         $this->selectedLga = $student->lga_id;
         $this->passport = $student->passport;
         $this->isStudentOpen  = true;
@@ -108,7 +108,7 @@ class Student extends Component
                 'email' => $this->email
             ]);
             session()->flash('success', 'Student profile updated successfully');
-        }else {
+        } else {
             session()->flash('errMsg', 'Sorry an error occured');
         }
         $this->update_mode = false;
@@ -134,7 +134,7 @@ class Student extends Component
     /**
      * Lifecycle Hooks for selectedState drop down
      */
-    public function updatedSelectedState($state) 
+    public function updatedSelectedState($state)
     {
         $this->lgas = Lga::where('state_id', $state)->get();
     }
@@ -164,21 +164,21 @@ class Student extends Component
      */
     public function submit()
     {
-       $this->validate([
-        'fname' => 'required',
-        'mname' => 'nullable|string|max:255',
-        'lname' => 'required',
-        'email' => 'nullable|email|unique:users',
-        'dob' => 'required',
-        'nationality' => 'required',
-        'address' => 'required',
-        'selectedLga' => 'required',
-        'selectedState' => 'required',
-        'selectedClass' => 'required',
-        'gender' => 'required',
-    ]);
-       $imageHasName = NULL;//local variable
-       $t=time(); //local variable
+        $this->validate([
+            'fname' => 'required',
+            'mname' => 'nullable|string|max:255',
+            'lname' => 'required',
+            'email' => 'nullable|email|unique:users',
+            'dob' => 'required',
+            'nationality' => 'required',
+            'address' => 'required',
+            'selectedLga' => 'required',
+            'selectedState' => 'required',
+            'selectedClass' => 'required',
+            'gender' => 'required',
+        ]);
+        $imageHasName = NULL; //local variable
+        $t = time(); //local variable
 
         session()->flash('info', 'Please wait...');
 
@@ -195,12 +195,14 @@ class Student extends Component
                 $this->passport->store('public/passports');
 
                 $manager = new ImageManager();
-                $image = $manager->make('storage/passports/'.$imageHasName)->resize(300, 200);
-                $image->save('storage/passports_thumb/'.$imageHasName);
+                $image = $manager->make('storage/passports/' . $imageHasName)->resize(300, 200);
+                $image->save('storage/passports_thumb/' . $imageHasName);
             }
 
+            $student_id = Helpers::customIDGenerator(new StudentData, 'student_id', 5, 'STD');
+
             $user = User::create([
-                'email' => $this->email,
+                'email' => $student_id,
                 'password' => Hash::make('password'),
             ]);
 
@@ -209,7 +211,7 @@ class Student extends Component
 
             $student = StudentData::create([
                 'user_id' => $user->id,
-                'student_id' => Helpers::customIDGenerator(new StudentData, 'student_id', 5, 'STD'),
+                'student_id' => $student_id,
                 'fname' => $this->fname,
                 'mname' => $this->mname,
                 'lname' => $this->lname,
@@ -220,7 +222,7 @@ class Student extends Component
                 'state_id' => $this->selectedState,
                 'lga_id' => $this->selectedLga,
                 'level_id' => $this->selectedClass,
-                'addmited_date' => date("Y-m-d",$t),
+                'addmited_date' => date("Y-m-d", $t),
                 'passport' => $imageHasName
             ]);
 
@@ -228,13 +230,13 @@ class Student extends Component
 
             if ($student) {
                 session()->flash('success', 'Student profile created successfully');
-            }else {
+            } else {
                 User::where('id', $user->id)->forceDelete();
                 session()->flash('errMsg', 'Sorry an error occured');
             }
         } catch (\Throwable $e) {
             DB::rollBack();
-            session()->flash('errMsg', 'Sorry an error occured. Try again');
+            session()->flash('errMsg', 'Sorry an error occured. Try again ' . $e . '');
         }
     }
 

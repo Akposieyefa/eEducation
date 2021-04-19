@@ -71,6 +71,11 @@
                                                                 <tr>
                                                                     <td colspan="6" style="vertical-align: bottom !important; text-align:center" class="pt-3 pb-3">&nbsp;&nbsp;</td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <td colspan="5" style="vertical-align: bottom !important; text-align:center;" class="pt-2 pb-2 fs-17px">
+                                                                        Headmaster’s Comment: &nbsp;&nbsp; PROMOTED TO NURSERY TWO
+                                                                    </td>
+                                                                </tr>
 
                                                                 <tr>
                                                                     <td colspan="6" style="vertical-align: bottom !important; text-align:center" class="pt-3 pb-3">&nbsp;&nbsp;</td>

@@ -8,6 +8,8 @@ use App\Models\Student;
 use App\Models\User;
 use Auth;
 use App\Models\Promotion;
+use App\Exports\StudentExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Students extends Component
 {
@@ -59,7 +61,14 @@ class Students extends Component
     {
         $student = Student::whereKey($this->checked)->delete();
         User::whereKey('id', $student->user_id)->delete();
-        $this->checked = []; 
+        $this->checked = [];
+    }
+     /**
+     * download excel file
+     */
+    public function exportBulkStudents()
+    {
+        return Excel::download(new StudentExport(), 'bulk-student-upload.xlsx');
     }
     /**
      * delete single record
@@ -106,6 +115,6 @@ class Students extends Component
         return view('livewire.all.students', [
             'students' =>  $this->students
         ])->extends('layouts.app')->section('content');
-    } 
+    }
 
 }

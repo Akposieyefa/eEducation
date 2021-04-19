@@ -51,7 +51,7 @@ class Student extends Component
     ];
     protected $queryString = ['isStudentOpen'];
     /**
-     * display edit form 
+     * display edit form
      */
     public function editForm($id)
     {
@@ -115,7 +115,7 @@ class Student extends Component
         $this->close();
     }
     /**
-     * works like the __construct() function 
+     * works like the __construct() function
      */
     public function mount()
     {

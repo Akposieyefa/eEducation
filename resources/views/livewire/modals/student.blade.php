@@ -8,9 +8,9 @@
                             </x-forms.buttons.success>
                      </div>
                      <div class="col-3">
-                            <x-forms.buttons.secondary data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormStudentModal')">
+                            <a class="btn btn-sm btn-primary" href="{{ route('bulk-student-upload') }}">
                                    <em class="ni ni-plus"></em> &nbsp;&nbsp;Bulk Upload Student
-                            </x-forms.buttons.secondary>
+                            </a>
                      </div>
               @endadmin
        </div>
@@ -79,7 +79,7 @@
                                                                @error('address') <span class="text-danger">{{ $message }}</span> @enderror
                                                  </div>
                                           </div>
-                                          <div class="form-group row">                                                 
+                                          <div class="form-group row">
                                                  <div class="col-md-12">
                                                         <label class="form-label mr-5">Gender <small class="text-danger">*</small></label>
                                                         <div class="custom-control custom-control-lg custom-radio mr-5 ml-3">
@@ -87,7 +87,7 @@
                                                                <label class="custom-control-label" for="male">Male</label>
                                                         </div>
                                                         <div class="custom-control custom-control-lg custom-radio">
-                                                               <x-forms.radio wire:model="gender" id="female" name="gender" value="Female" /> 
+                                                               <x-forms.radio wire:model="gender" id="female" name="gender" value="Female" />
                                                                <label class="custom-control-label" for="female">Female</label>
                                                         </div>
                                                  </div>
@@ -111,11 +111,11 @@
                                                                <x-forms.option value=""> Select Local Government Area</x-forms.option>
                                                                @if(!is_null($selectedState))
                                                                       @foreach($lgas as $lga)
-                                                                             <x-forms.option value="{{ $lga->id }}"> {{ $lga->name }}</x-forms.option>  
+                                                                             <x-forms.option value="{{ $lga->id }}"> {{ $lga->name }}</x-forms.option>
                                                                       @endforeach
                                                                @endif
                                                                       @error('selectedLga') <span class="text-danger">{{ $message }}</span> @enderror
-                                                               
+
                                                         </x-forms.select>
                                                  </div>
                                           </div>

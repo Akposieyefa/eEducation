@@ -1,7 +1,7 @@
 <div class="nk-content ">
        <div class="container-fluid">
               <div class="nk-content-inner">
-                     <div class="nk-content-body">  
+                     <div class="nk-content-body">
                             <div class="nk-block">
                                    @livewire('modals.student')
                                    <div class="mb-3 nk-tb-list is-separate">
@@ -27,7 +27,7 @@
                                                                              <div class="dropdown-menu dropdown-menu-right">
                                                                                     <ul class="link-list-opt no-bdr">
                                                                                            <!--<li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteRecords()" ><em class="icon ni ni-trash"></em><span>Remove Seleted</span></a></li>-->
-                                                                                           <li><a href="#"><em class="icon ni ni-shield-star"></em><span>Download</span></a></li>
+                                                                                           <li><a href="#" wire:click="exportBulkStudents()"><em class="icon ni ni-shield-star"></em><span>Download</span></a></li>
                                                                                     </ul>
                                                                              </div>
                                                                       </div>

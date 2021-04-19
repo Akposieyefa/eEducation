@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Faker;
 use App\Helpers\Helpers;
+use App\Models\Role;
 
 class StudentImport implements ToModel, WithStartRow
 {
@@ -38,6 +39,9 @@ class StudentImport implements ToModel, WithStartRow
             'email' =>  $row[3],
             'password' => Hash::make($row[3]),
         ]);
+
+        $role = Role::where('name', "Student",)->first();
+        $user->roles()->attach($role->id);
 
         $student = Student::create([
             'user_id' => $user->id,

@@ -183,6 +183,14 @@
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                 @endguardian
+                                @student
+                                     <li class="nk-menu-item">
+                                        <a href="{{ route('view-result', auth()->user()->student->id) }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
+                                            <span class="nk-menu-text">Result</span>
+                                        </a>
+                                    </li><!-- .nk-menu-item -->
+                                @endstudent
 
                             </ul><!-- .nk-menu -->
                         </div><!-- .nk-sidebar-menu -->

@@ -191,6 +191,7 @@
                                         </div>
                                     </div><!-- .row -->
                                     @endguardian
+
                                 </div><!-- .nk-block -->
                             </div>
                         </div>

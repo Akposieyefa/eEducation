@@ -22,55 +22,55 @@
                                                 </div>
                                                 <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                                             </div><!-- data-item -->
-                                            <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                                            <!--<div class="data-item" data-toggle="modal" data-target="#profile-edit">
                                                 <div class="data-col">
                                                     <span class="data-label">Gender</span>
-                                                    <span class="data-value">{{ auth()->user()->student->gender }}</span>
+                                                    <span class="data-value">{{"" /*auth()->user()->student->gender*/ }}</span>
                                                 </div>
                                                 <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
-                                            </div><!-- data-item -->
+                                            </div>
                                             <div class="data-item">
                                                 <div class="data-col">
                                                     <span class="data-label">Email</span>
-                                                    <span class="data-value">{{ auth()->user()->email }}</span>
+                                                    <span class="data-value">{{ "" /*auth()->user()->email*/ }}</span>
                                                 </div>
                                                 <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
-                                            </div><!-- data-item -->
+                                            </div>
                                             <div class="data-item" data-toggle="modal" data-target="#profile-edit">
                                                 <div class="data-col">
                                                     <span class="data-label">Date of Birth</span>
-                                                    <span class="data-value">{{ auth()->user()->student->dob }}</span>
+                                                    <span class="data-value">{{ "" /*auth()->user()->student->dob*/ }}</span>
                                                 </div>
                                                 <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
-                                            </div><!-- data-item -->
+                                            </div>
                                             <div class="data-item" data-toggle="modal" data-target="#profile-edit">
                                                 <div class="data-col">
                                                     <span class="data-label">Nationality</span>
-                                                    <span class="data-value">{{ auth()->user()->student->nationality }}</span>
+                                                    <span class="data-value">{{ "" /*auth()->user()->student->nationality*/ }}</span>
                                                 </div>
                                                 <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
-                                            </div><!-- data-item -->
+                                            </div>
                                             <div class="data-item" data-toggle="modal" data-target="#profile-edit">
                                                 <div class="data-col">
                                                     <span class="data-label">State</span>
-                                                    <span class="data-value">{{ auth()->user()->student->state->name }}</span>
+                                                    <span class="data-value">{{ "" /*auth()->user()->student->state->name*/ }}</span>
                                                 </div>
                                                 <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
-                                            </div><!-- data-item -->
+                                            </div>
                                             <div class="data-item" data-toggle="modal" data-target="#profile-edit">
                                                 <div class="data-col">
                                                     <span class="data-label">Local Government Area</span>
-                                                    <span class="data-value">{{ auth()->user()->student->lga->name }}</span>
+                                                    <span class="data-value">{{ "" /*auth()->user()->student->lga->name*/ }}</span>
                                                 </div>
                                                 <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
-                                            </div><!-- data-item -->
+                                            </div>
                                             <div class="data-item" data-toggle="modal" data-target="#profile-edit" data-tab-target="#address">
                                                 <div class="data-col">
                                                     <span class="data-label">Address</span>
-                                                    <span class="data-value">{{ auth()->user()->student->address }}</span>
+                                                    <span class="data-value">{{ "" /*auth()->user()->student->address*/ }}</span>
                                                 </div>
                                                 <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
-                                            </div><!-- data-item -->
+                                            </div> -->
                                             <div class="data-item" data-toggle="modal" data-target="#profile-edit" data-tab-target="#address">
                                                 <div class="data-col">
                                                     <span class="data-label">Class</span>
@@ -78,13 +78,6 @@
                                                 </div>
                                                 <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                                             </div><!-- data-item -->
-                                            <!--<div class="data-item" data-toggle="modal" data-target="#profile-edit" data-tab-target="#address">
-                                                <div class="data-col">
-                                                    <span class="data-label">Arm</span>
-                                                    <span class="data-value">{{ auth()->user()->student->arm->name }}</span>
-                                                </div>
-                                                <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
-                                            </div>--><!-- data-item -->
                                         </div><!-- data-list -->
                                     </div><!-- .nk-block -->
                                 </div>

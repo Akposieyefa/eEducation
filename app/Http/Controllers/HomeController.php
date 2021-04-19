@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Result;
+use App\Models\Payment;
+use App\Models\Student;
+
 
 class HomeController extends Controller
 {
@@ -36,8 +40,13 @@ class HomeController extends Controller
         return view('fees_payment');
     }
 
-    public function viewResult()
+    /**
+     * View current result
+     */
+    public function viewResult($id)
     {
-        return view('view_result');
+        $student = Student::findOrFail($id);
+        $results = Result::where('student_id', $student->student_id)->where('term_id',activeTermId())->get();
+        return view('view_result', compact('results','student'));
     }
 }

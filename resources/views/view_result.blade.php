@@ -17,8 +17,8 @@
                                                     <div class="invoice-contact">
                                                         <span class="overline-title"></span>
                                                         <div class="invoice-contact-info">
-                                                            <h4 class="title">Name: &nbsp;&nbsp; <u>Gregory Anderson</u></h4>
-                                                            <h4 class="title">Class: &nbsp;&nbsp; <u>Junior Arabic and Islamic School 1 (JAIS 1)</u></h4>
+                                                            <h4 class="title">Name: &nbsp;&nbsp; <u>{{ $student->fullname }}</u></h4>
+                                                            <h4 class="title">Class: &nbsp;&nbsp; <u>{{ $student->level->name }}</u></h4>
                                                             <h4 class="title">Position: &nbsp;&nbsp; <u>1st</u></h4>
                                                             <!--<ul class="list-plain">
                                                                 <li><em class="icon ni ni-map-pin-fill"></em><span>House #65, 4328 Marion Street<br>Newbury, VT 05051</span></li>
@@ -28,7 +28,7 @@
                                                     </div>
                                                     <div class="invoice-contact">
                                                         <div class="invoice-contact-info">
-                                                            <h4 class="title">ADM. No.: &nbsp;&nbsp; <u>2018ASIAZ144NPS</u></h4>
+                                                            <h4 class="title">ADM. No.: &nbsp;&nbsp; <u>{{ $student->student_id }}</u></h4>
                                                             <h4 class="title">Term/Session: &nbsp;&nbsp; <u>1st Term  -  2020/2021</u></h4>
                                                             <h4 class="title">Out of: &nbsp;&nbsp; <u>34</u></h4>
                                                             <!--<ul class="list-plain">
@@ -39,7 +39,7 @@
                                                     </div>
                                                 </div><!-- .invoice-head -->
                                                 <div class="invoice-head mt-3 mb-3 row">
-                                                    <div class="invoice-contact col-12">   
+                                                    <div class="invoice-contact col-12">
                                                         <h2 class=" text-center text-bold" style="color:red;"><u>Cognitive Domain (Academic Report) &nbsp;&nbsp; كشف الدرجات</u></h2>
                                                     </div>
                                                 </div>
@@ -57,42 +57,16 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="text-left">
-                                                                <tr>
-                                                                    <td>AL-QUR’AAN</td>
-                                                                    <td>20</td>
-                                                                    <td>0</td>
-                                                                    <td>20</td>
-                                                                    <td>F</td>
-                                                                    <td rowspan="5" style="writing-mode: tb-rl; transform: rotate(-180deg); font-size:1.5em; font-weight:700; padding-left:7%; text-align:center"> USMAN IDRISH Shehu Abdullahi</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>HADEETH</td>
-                                                                    <td>34</td>
-                                                                    <td>40</td>
-                                                                    <td>64</td>
-                                                                    <td class="text-left">B</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>AZKAAR</td>
-                                                                    <td>16</td>
-                                                                    <td>30</td>
-                                                                    <td>46</td>
-                                                                    <td class="text-left">D</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>ARABIYYAH</td>
-                                                                    <td>15</td>
-                                                                    <td>55</td>
-                                                                    <td>70</td>
-                                                                    <td class="text-left">A</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>MA’ALUMATUL-AMAH</td>
-                                                                    <td>28</td>
-                                                                    <td>40</td>
-                                                                    <td>68</td>
-                                                                    <td class="text-left">A</td>
-                                                                </tr>
+                                                                @foreach ($results as $result)
+                                                                    <tr>
+                                                                        <td>{{ $result->subject->name }}</td>
+                                                                        <td>{{ $result->ca_score }}</td>
+                                                                        <td>{{ $result->exam_score }}</td>
+                                                                        <td>{{ $result->ca_score + $result->exam_score }}</td>
+                                                                        <td>{{ myGrades( $result->ca_score + $result->exam_score ) }}</td>
+                                                                        <td rowspan="5" style="writing-mode: tb-rl; transform: rotate(-180deg); font-size:1.5em; font-weight:700; padding-left:7%; text-align:center"> USMAN IDRISH Shehu Abdullahi</td>
+                                                                    </tr>
+                                                                @endforeach
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr>
@@ -106,7 +80,7 @@
                                                                 <tr>
                                                                     <td colspan="6" style="vertical-align: bottom !important; text-align:center" class="pt-3 pb-3">&nbsp;&nbsp;</td>
                                                                 </tr>
-                                                                
+
                                                                 <!--<tr>
                                                                     <td colspan="2"></td>
                                                                     <td colspan="2">Processing fee</td>

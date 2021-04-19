@@ -104,7 +104,12 @@ class PaymentController extends Controller
 
     public function allFees()
     {
-        $payments = PaymentData::where('term_id', activeTermId())->get();
+        $userRoles = auth()->user()->roles->pluck('name');
+        if ($userRoles[0] == 'Admin') {
+            $payments = PaymentData::where('term_id', activeTermId())->get();
+        }elseif ($userRoles[0] == 'Guardian') {
+            $payments = PaymentData::where('guardian_id', auth()->user()->guardian->id)->get();
+        }
         return view('fees_payment', compact('payments'));
     }
 

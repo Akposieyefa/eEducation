@@ -5,21 +5,23 @@
                         <div class="nk-content-inner">
                             <div class="nk-content-body">
                                 <div class="nk-block">
-                                    <div class="mt-5 mb-5 row">
+                                    @admin
+                                        <div class="mt-5 mb-5 row">
                                             <div class="col-8">&nbsp;</div>
-                                            <div class="col-4">
-                                                    <a href="{{ route('fees') }}" class="btn btn-success">
-                                                            <em class="ni ni-plus"></em> &nbsp;&nbsp; Add Term Fee
-                                                    </a>
-                                            </div>
+                                                <div class="col-4">
+                                                        <a href="{{ route('fees') }}" class="btn btn-success">
+                                                                <em class="ni ni-plus"></em> &nbsp;&nbsp; Add Term Fee
+                                                        </a>
+                                                </div>
                                         </div>
-                                    <div class="row g-gs">                                        
+                                    @endadmin
+                                    <div class="row g-gs">
                                         <div class="col-xxl-12">
                                             <div class="card card-full">
                                                 <div class="card-inner">
                                                     <div class="card-title-group">
                                                         <div class="card-title">
-                                                            <h4 class="title">List of all Payments</h4>
+                                                            <h4 class="title">@admin List of all Payments @else My Payments @endadmin</h4>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -28,7 +30,7 @@
                                                         <div class="nk-tb-col"><span>Student ID.</span></div>
                                                         <div class="nk-tb-col tb-col-sm"><span>Student Name</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Class</span></div>
-                                                        <div class="nk-tb-col"><span>Payment Reference</span></div>                                                        
+                                                        <div class="nk-tb-col"><span>Payment Reference</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Payment For</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Date Paid</span></div>
                                                     </div>
@@ -58,7 +60,7 @@
                                             </div><!-- .card -->
                                         </div>
                                     </div><!-- .row -->
-                                    
+
                                 </div><!-- .nk-block -->
                             </div>
                         </div>

@@ -59,7 +59,7 @@
                                             <span class="nk-menu-text">Arms</span>
                                         </a>
                                     </li>--><!-- .nk-menu-item -->
-                                    
+
                                     <li class="nk-menu-item">
                                         <a href="{{ route('classes') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-property-add"></em></span>
@@ -96,7 +96,7 @@
                                             <span class="nk-menu-text"> Fees</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
-                                    
+
                                     <!--<li class="nk-menu-item">
                                         <a href="{{ route('all-payments') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
@@ -165,7 +165,7 @@
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                      <li class="nk-menu-item">
-                                        <a href="{{ route('fees') }}" class="nk-menu-link">
+                                        <a href="{{ route('all-payments') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">School Fees</span>
                                         </a>
@@ -177,7 +177,7 @@
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                      <li class="nk-menu-item">
-                                        <a href="{{ route('view-result') }}" class="nk-menu-link">
+                                        <a href="#" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">Result</span>
                                         </a>

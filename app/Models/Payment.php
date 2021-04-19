@@ -19,7 +19,7 @@ class Payment extends Model
     }
 
     public function guardian() {
-        return $this->belongsTo(Guardian::class, 'guardian_id', 'guardian_id');
+        return $this->belongsTo(Guardian::class, 'guardian_id', 'id');
     }
 
     public function term() {

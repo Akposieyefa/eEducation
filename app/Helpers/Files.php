@@ -52,7 +52,7 @@ function allStudents()
               $level_id = auth()->user()->teacher->level_id;
               return Student::with(['level', 'user', 'state', 'lga', 'guardian'])->where('level_id', $level_id)->latest()->paginate(10);
        } elseif ($userRoles[0] == 'Guardian') {
-              $guardian_id = auth()->user()->guardian->level_id;
+              $guardian_id = auth()->user()->guardian->id;
               return Student::with(['level', 'user', 'state', 'lga', 'guardian'])->where('guardian_id',  $guardian_id)->latest()->paginate(10);
        }
 }
@@ -119,3 +119,21 @@ function userimage($role)
               return auth()->user()->student->profileimage;
        }
 }
+
+function myGrades($score)
+{
+        //Display the result
+        if ($score>=80) {
+            $grade = "A";
+        }elseif($score>=60 && $score<80){
+            $grade = "B";
+        }elseif($score>=50 && $score<60){
+            $grade = "C";
+        }elseif($score>=40 && $score<50){
+            $grade = "D";
+        }elseif($score>=0 && $score<40){
+            $grade = "F";
+        }
+        return $grade;
+}
+

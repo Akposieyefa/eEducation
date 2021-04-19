@@ -8,7 +8,7 @@
                                     <div class="row mb-5">
                                         <div class="col-12">
                                             <div class="card">
-                                                <div class="card-inner">                                            
+                                                <div class="card-inner">
                                                     <div class="w-100">
                                                         <h4 class="text-center">Welcome {{ auth()->user()->roles[0]['name'] }}</h4>
                                                         <h4 class="text-center mt-3 mb-5">Today's Date is {{ date('F d, Y') }}</h4>
@@ -41,7 +41,7 @@
                                                         </div>
                                                     </div><!-- .card-inner -->
                                                 </div><!-- .nk-ecwg -->
-                                            </div><!-- .card -->                                                   
+                                            </div><!-- .card -->
                                         </div><!-- .col -->
                                         <div class="col-xxl-4">
                                             <div class="card">
@@ -135,7 +135,7 @@
 
                                     @guardian
                                     <div class="row g-gs">
-                                        
+
                                         <div class="col-xxl-12">
                                             <div class="card card-full">
                                                 <div class="card-inner">
@@ -154,6 +154,7 @@
                                                         <div class="nk-tb-col tb-col-md"><span>Parent Name</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Mobile Number</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Address</span></div>
+                                                        <div class="nk-tb-col tb-col-md"><span>Action</span></div>
                                                     </div>
                                                     @foreach(allStudents() as $student)
                                                         <div class="nk-tb-item">
@@ -177,6 +178,11 @@
                                                             </div>
                                                             <div class="nk-tb-col">
                                                                 <span class="tb-sub">{{ $student->address }}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-sub">
+                                                                    <a href="{{ route('view-result',$student->id) }}" class="btn btn-sm btn-success"><em class="icon ni ni-list"></em>Result</a>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     @endforeach

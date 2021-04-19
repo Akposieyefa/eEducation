@@ -8,14 +8,15 @@ use Maatwebsite\Excel\Concerns\WithStartRow;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
+use Faker;
+use App\Helpers\Helpers;
 class StudentImport implements ToModel, WithStartRow
 {
     public $level_id;
 
     public function __construct($level_id)
     {
-        $this->term_id = $level_id;
+        $this->level_id = $level_id;
     }
     /**
      * @return int
@@ -27,20 +28,20 @@ class StudentImport implements ToModel, WithStartRow
 
     public function model(array $row)
     {
+        $faker = Faker\Factory::create();
         $id = 0;
         // TODO: Implement model() method.
         $t=time();
-        $user =  User::create([
-            'email' =>  $this->faker->unique()->safeEmail,
+        $user = User::create([
+            'email' =>  $faker->unique()->safeEmail,
             'password' => Hash::make('password'),
         ]);
-        $student = Student::create([
-            'user_id' => $user->id,
+        $user->student()->create([
             'student_id' => Helpers::customIDGenerator(new Student, 'student_id', 5, 'STD'),
             'fname' => $row[0],
             'mname' => $row[1],
             'lname' => $row[2],
-            'dob' => $this->dob,
+            'dob' => date("Y-m-d",$t),
             'gender' => 'male',
             'nationality' => 'Nigeria',
             'address' => 'Kaduna State',
@@ -48,8 +49,8 @@ class StudentImport implements ToModel, WithStartRow
             'lga_id' => 12,
             'level_id' => $this->level_id,
             'addmited_date' => date("Y-m-d",$t),
-            'passport' => $imageHasName
+            'passport' => 'akpos'
         ]);
-        return true;
+        return $user;
     }
 }

@@ -122,18 +122,34 @@ function userimage($role)
 
 function myGrades($score)
 {
-        //Display the result
-        if ($score>=80) {
-            $grade = "A";
-        }elseif($score>=60 && $score<80){
-            $grade = "B";
-        }elseif($score>=50 && $score<60){
-            $grade = "C";
-        }elseif($score>=40 && $score<50){
-            $grade = "D";
-        }elseif($score>=0 && $score<40){
-            $grade = "F";
-        }
-        return $grade;
+       //Display the result
+       if ($score >= 70) {
+              $grade = "A";
+       } elseif ($score >= 60 && $score < 70) {
+              $grade = "B";
+       } elseif ($score >= 50 && $score < 60) {
+              $grade = "C";
+       } elseif ($score >= 40 && $score < 50) {
+              $grade = "D";
+       } elseif ($score >= 0 && $score < 40) {
+              $grade = "F";
+       }
+       return $grade;
 }
 
+function myGradesRemark($score)
+{
+       //Display the result
+       if ($score >= 70) {
+              $grade = "Excellent";
+       } elseif ($score >= 60 && $score < 70) {
+              $grade = "Very Good";
+       } elseif ($score >= 50 && $score < 60) {
+              $grade = "Good";
+       } elseif ($score >= 40 && $score < 50) {
+              $grade = "Pass";
+       } elseif ($score >= 0 && $score < 40) {
+              $grade = "Failed";
+       }
+       return $grade;
+}

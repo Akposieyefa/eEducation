@@ -53,7 +53,7 @@
                                                                     <th><h4>Exams</h4></th>
                                                                     <th><h4>Total</h4></th>
                                                                     <th><h4>Grade</h4></th>
-                                                                    <th><h4>Teacher's Name</h4></th>
+                                                                    <th><h4>Remarks</h4></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="text-left">
@@ -64,7 +64,7 @@
                                                                         <td>{{ $result->exam_score }}</td>
                                                                         <td>{{ $result->ca_score + $result->exam_score }}</td>
                                                                         <td>{{ myGrades( $result->ca_score + $result->exam_score ) }}</td>
-                                                                        <td rowspan="5" style="writing-mode: tb-rl; transform: rotate(-180deg); font-size:1.5em; font-weight:700; padding-left:7%; text-align:center"> USMAN IDRISH Shehu Abdullahi</td>
+                                                                        <td>{{ myGradesRemark( $result->ca_score + $result->exam_score ) }}</td>
                                                                     </tr>
                                                                 @endforeach
                                                             </tbody>
@@ -81,6 +81,15 @@
                                                                     <td colspan="6" style="vertical-align: bottom !important; text-align:center" class="pt-3 pb-3">&nbsp;&nbsp;</td>
                                                                 </tr>
 
+                                                                <tr>
+                                                                    <td colspan="6" style="vertical-align: bottom !important; text-align:center" class="pt-3 pb-3">&nbsp;&nbsp;</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="6" style=" padding-top:2%; padding-right:5%; text-align:center">
+                                                                        <img src="{{ asset('assets/stamp.png') }}" style="margin:auto !important;" />
+                                                                    </td>
+                                                                </tr>
+                                                                
                                                                 <!--<tr>
                                                                     <td colspan="2"></td>
                                                                     <td colspan="2">Processing fee</td>
@@ -95,7 +104,7 @@
                                                                     <td colspan="2"></td>
                                                                     <td colspan="2">Grand Total</td>
                                                                     <td>$478.50</td>
-                                                                </tr>-->
+                                                                </tr>
                                                                 <tr>
                                                                     <td colspan="5" style="vertical-align: bottom !important; text-align:left; border:0px" class="pt-5 pb-2 fs-17px">
                                                                         Class Master’s Comment: &nbsp;&nbsp; GOOD PERFORMANCE, you can do better next term!
@@ -113,10 +122,14 @@
                                                                     <td colspan="5" style="vertical-align: bottom !important; text-align:left; border:0px" class="pt-2 pb-5 fs-17px">
                                                                         Signature and Date: &nbsp;&nbsp; 4th January, 2021
                                                                     </td>
-                                                                </tr>
+                                                                </tr>-->
                                                             </tfoot>
                                                         </table>
-                                                        <div class="nk-notes ff-italic fs-15px text-soft; text-center"> <span style="color:red;font-weight:700;font-size:1.5em">OUR MISSION :</span> To Develop, Educate and Train Future Leaders who are Righteous, Kind-Hearted and Altruistic under the Spirit of Islaamic Culture and Philosophy </div>
+                                                        <!--<div class="nk-notes ff-italic fs-15px text-soft; text-center"> 
+                                                            <span style="color:red;font-weight:700;font-size:1.5em">OUR MISSION :</span> 
+                                                            To Develop, Educate and Train Future Leaders who are Righteous, Kind-Hearted and 
+                                                            Altruistic under the Spirit of Islaamic Culture and Philosophy 
+                                                        </div>-->
                                                     </div>
                                                 </div><!-- .invoice-bills -->
                                             </div><!-- .invoice-wrap -->

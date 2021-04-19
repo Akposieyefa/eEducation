@@ -46,7 +46,7 @@ class Admin extends Component
        'gender' => 'required',
     ];
         /**
-     * display edit form 
+     * display edit form
      */
     public function editForm($id)
     {
@@ -61,7 +61,7 @@ class Admin extends Component
         $this->email = $admin->user->email;
         $this->passport = $admin->passport;
         $this->isCreateAdminOpen  = true;
-        
+
     }
     /**
      * update admin details
@@ -105,24 +105,24 @@ class Admin extends Component
 
             if (!empty($this->passport)) {
                 $imageHasName = $this->passport->hashName();
-    
+
                 $validate = array_merge($this->validate(), [
                     'passport' => 'image'
                 ]);
                 $this->passport->store('public/passports');
-    
+
                 $manager = new ImageManager();
                 $image = $manager->make('storage/passports/'.$imageHasName)->resize(300, 200);
                 $image->save('storage/passports_thumb/'.$imageHasName);
             }
-    
+
             $user = User::create([
                 'email' => $this->email,
                 'password' => Hash::make('password'),
             ]);
             $role = Role::where('name', "Admin",)->first();
             $user->roles()->attach($role->id);
-    
+
             $admin = AdminData::create([
                 'user_id' => $user->id,
                 'fname' => $this->fname,
@@ -146,7 +146,7 @@ class Admin extends Component
             DB::rollBack();
             session()->flash('errMsg', 'Sorry an error occured. Try again');
         }
-        
+
     }
     /**
      * open form modal

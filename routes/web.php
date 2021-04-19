@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 Route::get('/students', App\Http\Livewire\All\Students::class)->name('students');
+Route::get('/bulk-student-upload', App\Http\Livewire\Modals\BulkStudent::class)->name('bulk-student-upload');
 Route::get('/teachers', App\Http\Livewire\All\Teachers::class)->name('teachers');
 Route::get('/notifications', App\Http\Livewire\All\Notifications::class)->name('notifications');
 Route::get('/class-arm', App\Http\Livewire\All\Arms::class)->name('class-arm');

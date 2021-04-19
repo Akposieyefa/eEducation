@@ -22,7 +22,7 @@ class Student extends Component
     public $states;
     public $lgas;
     public $levels;
-    
+
     public $selectedState = NULL;
 
     public $isStudentOpen = false;
@@ -51,7 +51,7 @@ class Student extends Component
     ];
     protected $queryString = ['isStudentOpen'];
     /**
-     * display edit form 
+     * display edit form
      */
     public function editForm($id)
     {
@@ -67,7 +67,7 @@ class Student extends Component
         $this->email = $student->user->email;
         $this->gender = $student->gender;
         $this->selectedState = $student->state_id;
-        $this->selectedClass = $student->level_id;    
+        $this->selectedClass = $student->level_id;
         $this->selectedLga = $student->lga_id;
         $this->passport = $student->passport;
         $this->isStudentOpen  = true;
@@ -115,7 +115,7 @@ class Student extends Component
         $this->close();
     }
     /**
-     * works like the __construct() function 
+     * works like the __construct() function
      */
     public function mount()
     {
@@ -134,7 +134,7 @@ class Student extends Component
     /**
      * Lifecycle Hooks for selectedState drop down
      */
-    public function updatedSelectedState($state) 
+    public function updatedSelectedState($state)
     {
         $this->lgas = Lga::where('state_id', $state)->get();
     }

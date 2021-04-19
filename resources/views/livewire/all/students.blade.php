@@ -90,9 +90,19 @@
                                                                                     <div class="dropdown-menu dropdown-menu-right">
                                                                                            <ul class="link-list-opt no-bdr">
                                                                                                   <li><a href="#"><em class="icon ni ni-eye"></em><span>Profile</span></a></li>
-                                                                                                  <li><a href="#" wire:click="editStudent({{ $student->id }})"><em class="icon ni ni-edit"></em><span>Edit </span></a></li>
+                                                                                                  <li>
+                                                                                                         <a href="#" wire:click="editStudent({{ $student->id }})">
+                                                                                                         <em class="icon ni ni-edit"></em><span>Edit </span></a>
+                                                                                                  </li>
                                                                                                   @teacher
-                                                                                                         <li><a href="#" onclick="return confirm('Are you sure you want to promote this student?') || even.stopImmediatePropagation()" wire:click="promoteStudent({{ $student->id }})"><em class="icon ni ni-plane"></em><span> Promote</span></a></li>
+                                                                                                         <li>
+                                                                                                                <a href="#" 
+                                                                                                                       onclick="return confirm('Are you sure you want to promote this student?') || 
+                                                                                                                       even.stopImmediatePropagation()" wire:click="promoteStudent({{ $student->id }})">
+                                                                                                                       <em class="icon ni ni-plane"></em>
+                                                                                                                       <span> Promote</span>
+                                                                                                                </a>
+                                                                                                         </li>
                                                                                                   @endteacher
                                                                                                   <!--<li><button onclick="return confirm('Are you sure you want to delete this...?') ||  even.stopImmediatePropagation()" wire:click="deleteSingleRecord({{ $student->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></button></li>-->
                                                                                            </ul>

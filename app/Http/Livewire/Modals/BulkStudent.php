@@ -30,7 +30,7 @@ class BulkStudent extends Component
         ]);
         if (!empty($this->studentSheet)) {
             $student = new StudentImport($this->level_id);
-            Excel::import($student,$this->studentSheet);
+            Excel::import($student, $this->studentSheet);
             session()->flash('success', 'Student records uploaded successfully');
         }
     }

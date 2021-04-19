@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Faker;
 use App\Helpers\Helpers;
+
 class StudentImport implements ToModel, WithStartRow
 {
     public $level_id;
@@ -31,8 +32,24 @@ class StudentImport implements ToModel, WithStartRow
         $faker = Faker\Factory::create();
         $id = 0;
         // TODO: Implement model() method.
-        $t=time();
-        $user = User::create([
+        $t = time();
+
+        $user =  User::create([
+            'email' =>  $row[3],
+            'password' => Hash::make($row[3]),
+        ]);
+
+        $student = Student::create([
+            'user_id' => $user->id,
+            'student_id' => Helpers::customIDGenerator(new Student, 'student_id', 5, 'STD'),
+            'fname' => $row[0],
+            'mname' => $row[1],
+            'lname' => $row[2],
+            'level_id' => $this->level_id,
+            'admission_no' => $row[3]
+        ]);
+
+        /*$user = User::create([
             'email' =>  $faker->unique()->safeEmail,
             'password' => Hash::make('password'),
         ]);
@@ -41,16 +58,16 @@ class StudentImport implements ToModel, WithStartRow
             'fname' => $row[0],
             'mname' => $row[1],
             'lname' => $row[2],
-            'dob' => date("Y-m-d",$t),
+            'dob' => date("Y-m-d", $t),
             'gender' => 'male',
             'nationality' => 'Nigeria',
             'address' => 'Kaduna State',
             'state_id' => 12,
             'lga_id' => 12,
             'level_id' => $this->level_id,
-            'addmited_date' => date("Y-m-d",$t),
+            'addmited_date' => date("Y-m-d", $t),
             'passport' => 'akpos'
-        ]);
+        ]);*/
         return $user;
     }
 }

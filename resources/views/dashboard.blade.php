@@ -94,18 +94,18 @@
                                                 </div>
                                                 <div class="nk-tb-list mt-n2">
                                                     <div class="nk-tb-item nk-tb-head">
-                                                        <div class="nk-tb-col"><span>ID.</span></div>
+                                                        <div class="nk-tb-col"><span>Admission No.</span></div>
                                                         <div class="nk-tb-col tb-col-sm"><span>Name</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Class</span></div>
-                                                        <div class="nk-tb-col"><span>Date of Birth</span></div>
+                                                        <!--<div class="nk-tb-col"><span>Date of Birth</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Parent Name</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Mobile Number</span></div>
-                                                        <div class="nk-tb-col tb-col-md"><span>Address</span></div>
+                                                        <div class="nk-tb-col tb-col-md"><span>Address</span></div>-->
                                                     </div>
                                                     @foreach(allStudents() as $student)
                                                         <div class="nk-tb-item">
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-lead"><a href="#">{{ $student->student_id }}</a></span>
+                                                                <span class="tb-lead"><a href="#">{{ $student->admission_no }}</a></span>
                                                             </div>
                                                             <div class="nk-tb-col tb-col-sm">
                                                                 <span class="tb-lead">{{ $student->fullname}}</span>
@@ -113,18 +113,18 @@
                                                             <div class="nk-tb-col tb-col-md">
                                                                 <span class="tb-sub">{{ $student->level->name }}</span>
                                                             </div>
-                                                            <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{ $student->dob }}</span>
+                                                            <!--<div class="nk-tb-col">
+                                                                <span class="tb-sub">{{ "" /*$student->dob*/ }}</span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{isset($student->guardian->fullname)?$student->guardian->fullname:'No Guardian Yet' }}</span>
+                                                                <span class="tb-sub">{{ "" /*isset($student->guardian->fullname)?$student->guardian->fullname:'No Guardian Yet'*/ }}</span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{isset($student->guardian->phone)?$student->guardian->phone:'No Guardian Phone Number Yet' }}</span>
+                                                                <span class="tb-sub">{{ "" /*isset($student->guardian->phone)?$student->guardian->phone:'No Guardian Phone Number Yet' */}}</span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{ $student->address }}</span>
-                                                            </div>
+                                                            <span class="tb-sub">{{ "" /*$student->address*/ }}</span>
+                                                            </div>-->
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -147,19 +147,19 @@
                                                 </div>
                                                 <div class="nk-tb-list mt-n2">
                                                     <div class="nk-tb-item nk-tb-head">
-                                                        <div class="nk-tb-col"><span>ID.</span></div>
+                                                        <div class="nk-tb-col"><span>Admission No.</span></div>
                                                         <div class="nk-tb-col tb-col-sm"><span>Name</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Class</span></div>
-                                                        <div class="nk-tb-col"><span>Date of Birth</span></div>
+                                                        <!--<div class="nk-tb-col"><span>Date of Birth</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Parent Name</span></div>
                                                         <div class="nk-tb-col tb-col-md"><span>Mobile Number</span></div>
-                                                        <div class="nk-tb-col tb-col-md"><span>Address</span></div>
+                                                        <div class="nk-tb-col tb-col-md"><span>Address</span></div>-->
                                                         <div class="nk-tb-col tb-col-md"><span>Action</span></div>
                                                     </div>
                                                     @foreach(allStudents() as $student)
                                                         <div class="nk-tb-item">
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-lead"><a href="#">{{ $student->student_id }}</a></span>
+                                                                <span class="tb-lead"><a href="#">{{ $student->admission_no }}</a></span>
                                                             </div>
                                                             <div class="nk-tb-col tb-col-sm">
                                                                 <span class="tb-lead">{{ $student->fullname}}</span>
@@ -167,18 +167,18 @@
                                                             <div class="nk-tb-col tb-col-md">
                                                                 <span class="tb-sub">{{ $student->level->name }}</span>
                                                             </div>
-                                                            <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{ $student->dob }}</span>
+                                                            <!--<div class="nk-tb-col">
+                                                                <span class="tb-sub">{{ "" /*$student->dob*/ }}</span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{isset($student->guardian->fullname)?$student->guardian->fullname:'No Guardian Yet' }}</span>
+                                                                <span class="tb-sub">{{ "" /*isset($student->guardian->fullname)?$student->guardian->fullname:'No Guardian Yet'*/ }}</span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{isset($student->guardian->phone)?$student->guardian->phone:'No Guardian Phone Number Yet' }}</span>
+                                                                <span class="tb-sub">{{ "" /*isset($student->guardian->phone)?$student->guardian->phone:'No Guardian Phone Number Yet' */}}</span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{ $student->address }}</span>
-                                                            </div>
+                                                            <span class="tb-sub">{{ "" /*$student->address*/ }}</span>
+                                                            </div>-->
                                                             <div class="nk-tb-col">
                                                                 <span class="tb-sub">
                                                                     <a href="{{ route('view-result',$student->id) }}" class="btn btn-sm btn-success"><em class="icon ni ni-list"></em>Result</a>

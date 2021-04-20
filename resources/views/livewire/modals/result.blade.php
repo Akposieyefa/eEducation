@@ -20,6 +20,18 @@
                                                                       <form wire:submit.prevent="submit">
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
+                                                                                           <label class="form-label">Select Class</label>
+                                                                                           <select name="cars" id="level_id" class="form-control" wire:model="level_id">
+                                                                                            <option value="">Select Class</option>
+                                                                                                  @foreach($levels as $level)
+                                                                                                  <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                                                                                   @endforeach
+                                                                                           </select>
+                                                                                           @error('level_id') <span class="text-danger">{{ $message }}</span> @enderror
+                                                                                    </div>
+                                                                             </div>
+                                                                             <div class="form-group row">
+                                                                                    <div class="col-md-12">
                                                                                            <label class="form-label">Select Subject</label>
                                                                                            <select name="cars" id="subject_id" class="form-control" wire:model="subject_id">
                                                                                             <option value="">Select Subject</option>

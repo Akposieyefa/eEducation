@@ -17,11 +17,11 @@
                                                     <div class="invoice-contact">
                                                         <span class="overline-title"></span>
                                                         <div class="invoice-contact-info">
-                                                            <h4 class="title">ADM. No.: &nbsp;&nbsp; <u>{{ $student->student_id }}</u></h4>
+                                                            <h4 class="title">ADM. No.: &nbsp;&nbsp; <u>{{ $student->admission_no }}</u></h4>
                                                             <h4 class="title">Name: &nbsp;&nbsp; <u>{{ $student->fullname }}</u></h4>
                                                             <h4 class="title">Class: &nbsp;&nbsp; <u>{{ $student->level->name }}</u></h4>
-                                                            <h4 class="title">Position: &nbsp;&nbsp; <u>1st</u> &nbsp;&nbsp; Out of: &nbsp;&nbsp; <u>34</u></h4>
-                                                            <h4 class="title">Term/Session: &nbsp;&nbsp; <u>1st Term  -  2020/2021</u></h4>
+                                                            <h4 class="title">Position: &nbsp;&nbsp; <u>{{ getStudentPosition($student->student_id, $student->level->id, activeTermId()) }}</u> &nbsp;&nbsp; Out of: &nbsp;&nbsp; <u>{{ subjectStudentCount($student->level->id) }}</u></h4>
+                                                            <h4 class="title">Term/Session: &nbsp;&nbsp; <u>{{ activeTerm() }}  -  {{ activeSection() }}</u></h4>
                                                             <!--<ul class="list-plain">
                                                                 <li><em class="icon ni ni-map-pin-fill"></em><span>House #65, 4328 Marion Street<br>Newbury, VT 05051</span></li>
                                                                 <li><em class="icon ni ni-call-fill"></em><span>+012 8764 556</span></li>
@@ -48,22 +48,34 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="text-left">
+                                                                @php
+                                                                    $total_marks = 0;
+                                                                    $marks_obtained = 0;
+                                                                    $average = 0;
+                                                                    $total_students = 0;
+                                                                    $counter = 0;
+                                                                @endphp
                                                                 @foreach ($results as $result)
+                                                                    @php
+                                                                        $counter++;
+                                                                        $totalscore = $result->ca_score + $result->exam_score;
+                                                                        $marks_obtained += $totalscore;
+                                                                    @endphp
                                                                     <tr>
                                                                         <td>{{ $result->subject->name }}</td>
                                                                         <td>{{ $result->ca_score }}</td>
                                                                         <td>{{ $result->exam_score }}</td>
                                                                         <td>{{ $result->ca_score + $result->exam_score }}</td>
-                                                                        <td>{{ myGrades( $result->ca_score + $result->exam_score ) }}</td>
-                                                                        <td>{{ myGradesRemark( $result->ca_score + $result->exam_score ) }}</td>
+                                                                        <td>{{ myGrades( $totalscore ) }}</td>
+                                                                        <td>{{ myGradesRemark( $totalscore ) }}</td>
                                                                     </tr>
                                                                 @endforeach
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr>
-                                                                    <td colspan="2" style="vertical-align: bottom !important;"><h5>TOTAL MARKS: &nbsp;&nbsp; <span>907</span> </h5></td>
-                                                                    <td colspan="2"><h5>MARKS OBTAINED: &nbsp;&nbsp; <span>460</span></h5> </td>
-                                                                    <td colspan="2"><h5>AVERAGE: &nbsp;&nbsp; <span>56.7</span> </h5></td>
+                                                                    <td colspan="2" style="vertical-align: bottom !important;"><h5>TOTAL MARKS: &nbsp;&nbsp; <span>{{ $counter * 100 }}</span> </h5></td>
+                                                                    <td colspan="2"><h5>MARKS OBTAINED: &nbsp;&nbsp; <span>{{ $marks_obtained }}</span></h5> </td>
+                                                                    <td colspan="2"><h5>AVERAGE: &nbsp;&nbsp; <span>{{ $marks_obtained / $counter  }}</span> </h5></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td colspan="6" style="vertical-align: bottom !important; text-align:center"><h5 class="text-warning mb-2 mt-2">Next Term Begins: 4th January, 2021 and Ends: 16th December,2021 </h5></td>
@@ -73,7 +85,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td colspan="6" style="vertical-align: bottom !important; text-align:center;" class="pt-2 pb-2 fs-17px">
-                                                                        Headmaster’s Comment: &nbsp;&nbsp; PROMOTED TO NURSERY TWO
+                                                                        Headmaster’s Comment: &nbsp;&nbsp; PROMOTED 
                                                                     </td>
                                                                 </tr>
 

@@ -153,35 +153,35 @@
                                 @endteacher
                                 @guardian
                                     <li class="nk-menu-item">
-                                        <a href="{{ route('complains') }}" class="nk-menu-link">
+                                        <a href="{{ "#"/*route('complains')*/ }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">Complain</span>
                                         </a>
-                                    </li><!-- .nk-menu-item -->
+                                    </li>
                                      <li class="nk-menu-item">
-                                        <a href="{{ route('notifications') }}" class="nk-menu-link">
+                                        <a href="{{ "#"/*route('notifications')*/ }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">Notifications</span>
                                         </a>
-                                    </li><!-- .nk-menu-item -->
+                                    </li>
                                      <li class="nk-menu-item">
-                                        <a href="{{ route('all-payments') }}" class="nk-menu-link">
+                                        <a href="{{ "#"/*route('all-payments')*/ }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">School Fees</span>
                                         </a>
-                                    </li><!-- .nk-menu-item -->
+                                    </li>
                                     <li class="nk-menu-item">
-                                        <a href="{{ route('fee-payment') }}" class="nk-menu-link">
+                                        <a href="{{ "#"/*route('fee-payment')*/ }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">Fees Payment</span>
                                         </a>
-                                    </li><!-- .nk-menu-item -->
-                                     <li class="nk-menu-item">
+                                    </li>
+                                    <!--<li class="nk-menu-item">
                                         <a href="#" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">Result</span>
                                         </a>
-                                    </li><!-- .nk-menu-item -->
+                                    </li>-->
                                 @endguardian
                                 @student
                                      <li class="nk-menu-item">

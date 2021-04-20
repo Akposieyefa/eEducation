@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Modals\Result;
 use App\Models\Notification;
 use App\Models\Complain;
 use Carbon\Carbon;
@@ -60,6 +61,48 @@ function allStudents()
 function subjectCount()
 {
        return Subject::count();
+}
+
+function subjectStudentCount($level_id)
+{
+       return Student::where('level_id', $level_id)->count();
+}
+
+function getStudentPosition($student_id, $level_id, $term_id)
+{
+       $positions = getClassPositions($level_id, $term_id);
+       if (is_array($positions)) {
+              arsort($positions);
+              $cur_position = array_search($student_id, array_keys($positions));
+              //dd($cur_position);
+              if ($cur_position >= 0 && $cur_position !== false) {
+                     return ($cur_position + 1);
+              } else {
+                     return 0;
+              }
+       } else {
+              return false;
+       }
+}
+
+function getClassPositions($level_id, $term_id)
+{
+       $records =  App\Models\Result::where('level_id', '=',  $level_id)->where('term_id', '=', $term_id)->get();
+       $positions = array();
+       if (count($records) > 0) {
+
+
+              for ($i = 0; $i < count($records); $i++) {
+                     $marks_obtained = 0;
+                     $totalscore = $records[$i]['ca_score'] + $records[$i]['exam_score'];
+                     $marks_obtained += $totalscore;
+                     $positions[$records[$i]['student_id']] = $marks_obtained;
+              }
+
+              return $positions;
+       }
+
+       return false;
 }
 
 function activeSection()

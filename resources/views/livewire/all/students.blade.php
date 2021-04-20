@@ -4,6 +4,8 @@
                      <div class="nk-content-body">
                             <div class="nk-block">
                                    @livewire('modals.student')
+                                   <div class="row mb-5">
+              
                                    <div class="mb-3 nk-tb-list is-separate">
                                           <div class="nk-tb-item nk-tb-head">
                                                  <div class="nk-tb-col nk-tb-col-check">
@@ -11,7 +13,7 @@
                                                                <input type="checkbox" class="custom-control" wire:model="selectAll">
                                                         </div>
                                                  </div>
-                                                 <div class="nk-tb-col"><span class="sub-text">Student ID</span></div>
+                                                 <div class="nk-tb-col"><span class="sub-text">Admission No.</span></div>
                                                  <div class="nk-tb-col tb-col-mb"><span class="sub-text">Name</span></div>
                                                  <!--<div class="nk-tb-col tb-col-mb"><span class="sub-text">Gender</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">DOB</span></div>

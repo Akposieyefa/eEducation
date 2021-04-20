@@ -17,12 +17,12 @@ class SubjectResultSheet implements FromCollection, WithHeadings
     }
 
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
         return  Student::where('level_id', '=', $this->level_id)
-            ->get(['student_id','fname','mname','lname']);
+            ->get(['student_id', 'admission_no', 'fname', 'mname', 'lname']);
     }
 
     /**
@@ -33,11 +33,13 @@ class SubjectResultSheet implements FromCollection, WithHeadings
     {
         return [
             'REG NUMBER',
+            'ADMISSION NO.',
             'FIRST NAME',
             'MIDDLE NAME',
             'LAST NAME',
             'CA SCORE',
             'EXAM SCORE',
+
         ];
     }
 }

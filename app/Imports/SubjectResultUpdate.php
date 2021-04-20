@@ -15,30 +15,30 @@ class SubjectResultUpdate implements ToModel, WithStartRow
 
   public function __construct($term_id, $subject_id, $level_id)
   {
-      $this->term_id = $term_id;
-      $this->subject_id = $subject_id;
-      $this->level_id = $level_id;
+    $this->term_id = $term_id;
+    $this->subject_id = $subject_id;
+    $this->level_id = $level_id;
   }
   /**
    * @return int
    */
   public function startRow(): int
   {
-      return 2;
+    return 2;
   }
 
   public function model(array $row)
   {
-      $id = 0;
-      // TODO: Implement model() method.
+    $id = 0;
+    // TODO: Implement model() method.
 
-    $result = Result::whereKey('student_id',$row[0]);
-      return $result->update([
-          'ca_score'    =>  $row[4],
-          'exam_score'    =>  $row[5],
-          'term_id' => $this->term_id,
-          'subject_id' => $this->subject_id,
-          'level_id' => $this->level_id
-      ]);
+    $result = Result::whereKey('student_id', $row[0]);
+    return $result->update([
+      'ca_score'    =>  $row[5],
+      'exam_score'    =>  $row[6],
+      'term_id' => $this->term_id,
+      'subject_id' => $this->subject_id,
+      'level_id' => $this->level_id
+    ]);
   }
 }

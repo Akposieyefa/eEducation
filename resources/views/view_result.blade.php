@@ -57,7 +57,7 @@
                                                                 @endphp
                                                                 @foreach ($results as $result)
                                                                     @php
-                                                                        $counter++;
+                                                                        $counter += 1;
                                                                         $totalscore = $result->ca_score + $result->exam_score;
                                                                         $marks_obtained += $totalscore;
                                                                     @endphp

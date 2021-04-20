@@ -3,12 +3,14 @@
 namespace App\Http\Livewire\Modals;
 
 use Livewire\Component;
-use App\Models\Reuslt as SubjectResult;
+use App\Models\Result as SubjectResult;
 use App\Imports\SubjectResultSheet;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Subject;
 use App\Models\Term;
 use Livewire\WithFileUploads;
+use App\Imports\SubjectResultUpdate;
+use Illuminate\Support\Facades\DB;
 
 class Result extends Component
 {
@@ -35,10 +37,10 @@ class Result extends Component
             'subject_id' => 'required'
         ]);
         if (!empty($this->resultSheet)) {
-            $level = auth()->user()->teacher->level_id;
-            $result = new SubjectResultSheet($this->term,$this->subject_id,$level);
-            Excel::import($result,$this->resultSheet);  
-            session()->flash('success', 'Result uploaded successfully');          
+              $level = auth()->user()->teacher->level_id;
+              $result = new SubjectResultSheet($this->term,$this->subject_id,$level);
+              Excel::import($result,$this->resultSheet);
+              session()->flash('success', 'Result uploaded successfully');
         }
     }
 

@@ -12,6 +12,7 @@
                                                         </div>
                                                  </div>
                                                  <div class="nk-tb-col"><span class="sub-text">Subject Name</span></div>
+                                                 <div class="nk-tb-col"><span class="sub-text">Download Result Template</span></div>
                                                  <!--<div class="nk-tb-col tb-col-md"><span class="sub-text">Date</span></div>-->
                                                  <div class="nk-tb-col nk-tb-col-tools">
                                                         <ul class="nk-tb-actions gx-1 my-n1">
@@ -47,9 +48,10 @@
                                                                </div>
                                                         </a>
                                                  </div>
-                                                 <!--<div class="nk-tb-col tb-col-md">
-                                                        <span>{{ $subject->created_at->diffForHumans() }}</span>
-                                                 </div>-->
+                                                 <div class="nk-tb-col tb-col-md">
+                                                        <a href="#" wire:click="exportStudents()"><em class="icon ni ni-download"></em><span> Download Result Template</span></a>
+                                                        <!--<span>{{ "" /*$subject->created_at->diffForHumans()*/ }}</span>-->
+                                                 </div>
                                                  <div class="nk-tb-col nk-tb-col-tools">
                                                         <ul class="nk-tb-actions gx-1">
                                                                <li>

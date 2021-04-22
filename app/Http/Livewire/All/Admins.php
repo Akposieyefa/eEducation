@@ -17,10 +17,11 @@ class Admins extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedAdmins = $this->admins->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            //$this->selectedAdmins = $this->admins->pluck('id')->map(fn($item) => (string) $item)->toArray();
+        } else {
             $this->selectedAdmins = [];
         }
     }
@@ -59,7 +60,7 @@ class Admins extends Component
      */
     public function render()
     {
-        return view('livewire.all.admins',[
+        return view('livewire.all.admins', [
             'admins' => $this->admins
         ])->extends('layouts.app')->section('content');
     }

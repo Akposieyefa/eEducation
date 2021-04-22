@@ -17,10 +17,11 @@ class MailBlasts extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedMails = $this->mails->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            //$this->selectedMails = $this->mails->pluck('id')->map(fn($item) => (string) $item)->toArray();
+        } else {
             $this->selectedMails = [];
         }
     }

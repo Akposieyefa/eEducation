@@ -17,10 +17,11 @@ class Classes extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedClasses = $this->classes->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            //$this->selectedClasses = $this->classes->pluck('id')->map(fn($item) => (string) $item)->toArray();
+        } else {
             $this->selectedClasses = [];
         }
     }
@@ -36,11 +37,11 @@ class Classes extends Component
      */
     public function getClassesProperty()
     {
-        return Level::with(['students','subjects'])->latest()->paginate(10);
+        return Level::with(['students', 'subjects'])->latest()->paginate(10);
     }
     public function render()
     {
-        return view('livewire.all.classes',[
+        return view('livewire.all.classes', [
             'classes' => $this->classes
         ])->extends('layouts.app')->section('content');
     }

@@ -21,7 +21,7 @@ class Fees extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-            $this->selectedFees = $this->fees->pluck('id')->map(fn ($item) => (string) $item)->toArray();
+            //$this->selectedFees = $this->fees->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedFees = [];
         }

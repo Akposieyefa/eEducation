@@ -26,10 +26,11 @@ class Students extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedStudents = $this->students->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            //$this->selectedStudents = $this->students->pluck('id')->map(fn($item)) => (string) $item)->toArray();
+        } else {
             $this->selectedStudents = [];
         }
     }
@@ -47,11 +48,11 @@ class Students extends Component
     {
         $userRoles = auth()->user()->roles->pluck('name');
         if ($userRoles[0] == 'Admin') {
-            return Student::with(['level','user','state','lga'])->latest()->paginate(10);
-        }elseif($userRoles[0] == 'Teacher'){
+            return Student::with(['level', 'user', 'state', 'lga'])->latest()->paginate(10);
+        } elseif ($userRoles[0] == 'Teacher') {
             $level_id = auth()->user()->teacher->level_id;
-            return Student::with(['level','user','state','lga'])
-                    ->where('level_id', $level_id)->latest()->paginate(10);
+            return Student::with(['level', 'user', 'state', 'lga'])
+                ->where('level_id', $level_id)->latest()->paginate(10);
         }
     }
     /**
@@ -63,7 +64,7 @@ class Students extends Component
         User::whereKey('id', $student->user_id)->delete();
         $this->checked = [];
     }
-     /**
+    /**
      * download excel file
      */
     public function exportBulkStudents()
@@ -93,18 +94,18 @@ class Students extends Component
     {
         $data = Student::findOrFail($id);
         $current_level = $data->level_id;
-            $promote = Promotion::create([
-                'student_id' => $data->student_id,
-                'from' => $current_level,
-                'to'  => $current_level +1,
-                'section_id' => activeSectionId(),
-                'teacher_id' => auth()->user()->teacher->teacher_id
+        $promote = Promotion::create([
+            'student_id' => $data->student_id,
+            'from' => $current_level,
+            'to'  => $current_level + 1,
+            'section_id' => activeSectionId(),
+            'teacher_id' => auth()->user()->teacher->teacher_id
+        ]);
+        if ($promote) {
+            $update = $data->update([
+                'level_id' => $data->level_id + 1
             ]);
-            if ($promote) {
-                $update = $data->update([
-                    'level_id' => $data->level_id +1
-                ]);
-            }
+        }
         session()->flash('success', 'Student have been promoted successfully');
     }
     /**
@@ -116,5 +117,4 @@ class Students extends Component
             'students' =>  $this->students
         ])->extends('layouts.app')->section('content');
     }
-
 }

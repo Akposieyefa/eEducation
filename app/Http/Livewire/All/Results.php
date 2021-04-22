@@ -18,10 +18,11 @@ class Results extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedResults = $this->results->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            //$this->selectedResults = $this->results->pluck('id')->map(fn($item) => (string) $item)->toArray();
+        } else {
             $this->selectedResults = [];
         }
     }
@@ -37,14 +38,14 @@ class Results extends Component
      */
     public function getResultsProperty()
     {
-        return Result::with(['student','subject','level'])->latest()->paginate(30);
+        return Result::with(['student', 'subject', 'level'])->latest()->paginate(30);
     }
     /**
      * render the livewire view
      */
     public function render()
     {
-        return view('livewire.all.results',[
+        return view('livewire.all.results', [
             'results' => $this->results
         ])->extends('layouts.app')->section('content');
     }

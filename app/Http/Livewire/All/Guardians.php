@@ -17,10 +17,11 @@ class Guardians extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedGuardians = $this->guardians->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            //$this->selectedGuardians = $this->guardians->pluck('id')->map(fn($item) => (string) $item)->toArray();
+        } else {
             $this->selectedGuardians = [];
         }
     }
@@ -31,14 +32,14 @@ class Guardians extends Component
     {
         $this->checkedAll = false;
     }
-     /**
+    /**
      *  delete mutiple guardians records
      */
     public function deleteRecords()
     {
         $guardian = Guardian::whereKey($this->checked)->delete();
         User::whereKey('id', $guardian->user_id)->delete();
-        $this->checked = []; 
+        $this->checked = [];
     }
     /**
      * delete single record
@@ -68,7 +69,7 @@ class Guardians extends Component
      */
     public function render()
     {
-        return view('livewire.all.guardians',[
+        return view('livewire.all.guardians', [
             'guardians' => $this->guardians
         ])->extends('layouts.app')->section('content');
     }

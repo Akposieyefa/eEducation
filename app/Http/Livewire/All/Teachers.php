@@ -19,10 +19,11 @@ class Teachers extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedTeachers = $this->teachers->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            //$this->selectedTeachers = $this->teachers->pluck('id')->map(fn($item) => (string) $item)->toArray();
+        } else {
             $this->selectedTeachers = [];
         }
     }
@@ -38,7 +39,7 @@ class Teachers extends Component
      */
     public function getTeachersProperty()
     {
-        return Teacher::with(['level','user','state','lga'])->latest()->paginate(10);
+        return Teacher::with(['level', 'user', 'state', 'lga'])->latest()->paginate(10);
     }
     /**
      *  delete mutiple teachers records
@@ -47,7 +48,7 @@ class Teachers extends Component
     {
         $teacher = Teacher::whereKey($this->checked)->delete();
         User::whereKey('id', $teacher->user_id)->delete();
-        $this->checked = []; 
+        $this->checked = [];
     }
     /**
      * delete single record
@@ -70,7 +71,7 @@ class Teachers extends Component
      */
     public function render()
     {
-        return view('livewire.all.teachers',[
+        return view('livewire.all.teachers', [
             'teachers' => $this->teachers
         ])->extends('layouts.app')->section('content');
     }

@@ -17,10 +17,11 @@ class Arms extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedArms = $this->arms->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            // $this->selectedArms = $this->arms->pluck('id')->map(fn($item) => (string) $item)->toArray();
+        } else {
             $this->selectedArms = [];
         }
     }
@@ -36,7 +37,7 @@ class Arms extends Component
      */
     public function getArmsProperty()
     {
-        return Arm::with(['level','students'])->latest()->paginate(3);
+        return Arm::with(['level', 'students'])->latest()->paginate(3);
     }
     /**
      * render the arms livewire view

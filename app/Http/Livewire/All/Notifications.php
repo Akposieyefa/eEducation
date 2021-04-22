@@ -16,10 +16,11 @@ class Notifications extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedNotifications = $this->notifications->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            //$this->selectedNotifications = $this->notifications->pluck('id')->map(fn($item) => (string) $item)->toArray();
+        } else {
             $this->selectedNotifications = [];
         }
     }
@@ -38,7 +39,7 @@ class Notifications extends Component
         $userRoles = auth()->user()->roles->pluck('name');
         if ($userRoles == "Admin") {
             return Notification::with(['role'])->latest()->paginate(3);
-        }else {
+        } else {
             return Notification::with(['role'])->where('role_id', auth()->user()->roles[0]['name'])->latest()->paginate(3);
         }
     }

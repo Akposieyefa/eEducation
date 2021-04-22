@@ -23,7 +23,7 @@ class Subjects extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-            $this->selectedSubjects = $this->subjects->pluck('id')->map(fn ($item) => (string) $item)->toArray();
+            //$this->selectedSubjects = $this->subjects->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedSubjects = [];
         }

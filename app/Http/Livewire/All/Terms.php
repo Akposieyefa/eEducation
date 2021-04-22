@@ -17,10 +17,11 @@ class Terms extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedTerms = $this->terms->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            //$this->selectedTerms = $this->terms->pluck('id')->map(fn($item) => (string) $item)->toArray();
+        } else {
             $this->selectedTerms = [];
         }
     }

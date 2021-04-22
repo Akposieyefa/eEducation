@@ -17,10 +17,11 @@ class Sections extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedSections = $this->sections->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            //$this->selectedSections = $this->sections->pluck('id')->map(fn($item) => (string) $item)->toArray();
+        } else {
             $this->selectedSections = [];
         }
     }

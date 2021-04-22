@@ -33,6 +33,7 @@ class Result extends Component
         $this->levels = Level::all();
     }
 
+
     public function submit()
     {
         $this->validate([
@@ -47,15 +48,19 @@ class Result extends Component
             $result = new SubjectResultSheet($this->term, $this->subject_id, $level);
             //dd('ok');
             $res = Excel::import($result, $this->resultSheet);
-            //dd($res);
+            //session()->flash('success', 'Result uploaded successfully');
+            session()->flash('error', 'error');
             dd($res);
+
+
+            /*dd($res);
             if ($res == 'ok') {
 
                 session()->flash('error', '' . $result[1]);
             } else {
 
                 session()->flash('success', 'Result uploaded successfully');
-            }
+            }*/
         }
     }
 

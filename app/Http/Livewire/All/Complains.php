@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\All;
+
 use Livewire\WithPagination;
 use App\Models\Complain;
 
@@ -16,10 +17,11 @@ class Complains extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedComplains = $this->complains->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            //$this->selectedComplains = $this->complains->pluck('id')->map(fn($item) => (string) $item)->toArray();
+        } else {
             $this->selectedComplains = [];
         }
     }

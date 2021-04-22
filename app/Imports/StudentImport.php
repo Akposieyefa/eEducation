@@ -36,8 +36,8 @@ class StudentImport implements ToModel, WithStartRow
         $t = time();
 
         $user =  User::create([
-            'email' =>  $row[3],
-            'password' => Hash::make($row[3]),
+            'email' =>  $row[1],
+            'password' => Hash::make($row[1]),
         ]);
 
         $role = Role::where('name', "Student",)->first();
@@ -47,11 +47,19 @@ class StudentImport implements ToModel, WithStartRow
             'user_id' => $user->id,
             'student_id' => Helpers::customIDGenerator(new Student, 'student_id', 5, 'STD'),
             'fname' => $row[0],
+            'level_id' => $this->level_id,
+            'admission_no' => $row[1]
+        ]);
+
+        /*$student = Student::create([
+            'user_id' => $user->id,
+            'student_id' => Helpers::customIDGenerator(new Student, 'student_id', 5, 'STD'),
+            'fname' => $row[0],
             'mname' => $row[1],
             'lname' => $row[2],
             'level_id' => $this->level_id,
             'admission_no' => $row[3]
-        ]);
+        ]);*/
 
         /*$user = User::create([
             'email' =>  $faker->unique()->safeEmail,

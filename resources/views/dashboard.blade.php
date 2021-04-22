@@ -10,8 +10,10 @@
                                             <div class="card">
                                                 <div class="card-inner">
                                                     <div class="w-100">
-                                                        <h4 class="text-center">Welcome {{ auth()->user()->student->fullname }}</h4>
-                                                        <h4 class="text-center mt-4 mb-3">Today's Date is {{ date('F d, Y') }}</h4>
+                                                        <h4 class="text-center">Welcome 
+                                                            {{ (auth()->user()->roles[0]['name'] == 'Student') ? auth()->user()->student->fullname : auth()->user()->roles[0]['name'] }}
+                                                        </h4>
+                                                        <h4 class="text-center mt-3 mb-3">Today's Date is {{ date('F d, Y') }}</h4>
                                                         <div class="fs-20px text-center fw-bold mt-5">
                                                             @student
                                                                 &nbsp;&nbsp;&nbsp;&nbsp;

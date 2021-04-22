@@ -38,14 +38,14 @@ class Admin extends Component
     protected $queryString = ['isCreateAdminOpen'];
 
     protected $rules = [
-       'fname' => 'required',
-       'mname' => 'string|max:255|nullable',
-       'lname' => 'required',
-       'email' => 'required|email|unique:users',
-       'phone' => 'required',
-       'gender' => 'required',
+        'fname' => 'required',
+        'mname' => 'string|max:255|nullable',
+        'lname' => 'required',
+        'email' => 'required|email|unique:users',
+        'phone' => 'required',
+        'gender' => 'required',
     ];
-        /**
+    /**
      * display edit form
      */
     public function editForm($id)
@@ -61,7 +61,6 @@ class Admin extends Component
         $this->email = $admin->user->email;
         $this->passport = $admin->passport;
         $this->isCreateAdminOpen  = true;
-
     }
     /**
      * update admin details
@@ -83,7 +82,7 @@ class Admin extends Component
                 'email' => $this->email
             ]);
             session()->flash('success', 'Administrator profile updated successfully');
-        }else {
+        } else {
             session()->flash('errMsg', 'Sorry an error occured');
         }
         $this->update_mode = false;
@@ -112,8 +111,8 @@ class Admin extends Component
                 $this->passport->store('public/passports');
 
                 $manager = new ImageManager();
-                $image = $manager->make('storage/passports/'.$imageHasName)->resize(300, 200);
-                $image->save('storage/passports_thumb/'.$imageHasName);
+                $image = $manager->make('storage/passports/' . $imageHasName)->resize(300, 200);
+                $image->save('storage/passports_thumb/' . $imageHasName);
             }
 
             $user = User::create([
@@ -138,7 +137,7 @@ class Admin extends Component
 
             if ($admin) {
                 session()->flash('success', 'Administrator profile created successfully');
-            }else {
+            } else {
                 User::where('id', $user->id)->forceDelete();
                 session()->flash('errMsg', 'Sorry an error occured');
             }
@@ -146,7 +145,6 @@ class Admin extends Component
             DB::rollBack();
             session()->flash('errMsg', 'Sorry an error occured. Try again');
         }
-
     }
     /**
      * open form modal
@@ -173,6 +171,7 @@ class Admin extends Component
         $phone = "";
         $passport = "";
         $email = "";
+        return redirect()->to('/admins');
     }
     public function render()
     {

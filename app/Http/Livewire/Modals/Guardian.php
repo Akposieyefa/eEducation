@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\GuardainStudent;
 use Intervention\Image\ImageManager;
 use App\Models\Student;
+use Illuminate\Support\Facades\DB;
 
 class Guardian extends Component
 {
@@ -52,7 +53,7 @@ class Guardian extends Component
         'office_address' => 'nullable|string|max:255',
         'gender' => 'required',
         'occupation' => 'required',
-        
+
     ];
     /**
      * display edit form 
@@ -61,7 +62,7 @@ class Guardian extends Component
     {
         $this->guardianId = $id;
         $this->update_mode = true;
-        $guardian = GuardianData::with(['user','students'])->where('id', $this->guardianId)->first();
+        $guardian = GuardianData::with(['user', 'students'])->where('id', $this->guardianId)->first();
         $this->fname = $guardian->fname;
         $this->mname = $guardian->mname;
         $this->lname = $guardian->lname;
@@ -79,27 +80,41 @@ class Guardian extends Component
      */
     public function updateGuardian()
     {
-        $this->validate();
-        $guardian = GuardianData::find($this->studentId);
-        $guardian->update([
-            'fname' => $this->fname,
-            'mname' => $this->mname,
-            'lname' => $this->lname,
-            'occupation' => $this->occupation,
-            'home_address' => $this->home_address,
-            'office_address' => $this->office_address,
-            'phone' => $this->phone
-        ]);
-        if ($guardian) {
-            $user = User::where('id', $guardian->user_id)->update([
-                'email' => $this->email
+        DB::beginTransaction();
+
+        try {
+            $guardian = GuardianData::find($this->studentId);
+
+            $this->validate([
+                'email' => 'required|email|unique:users,email,' . $guardian->user_id,
             ]);
-            session()->flash('success', 'Guardian profile updated successfully');
-        }else {
-            session()->flash('errMsg', 'Sorry an error occured');
+
+            $guardian->update([
+                'fname' => $this->fname,
+                'mname' => $this->mname,
+                'lname' => $this->lname,
+                'occupation' => $this->occupation,
+                'home_address' => $this->home_address,
+                'office_address' => $this->office_address,
+                'phone' => $this->phone
+            ]);
+            if ($guardian) {
+                $user = User::where('id', $guardian->user_id)->update([
+                    'email' => $this->email
+                ]);
+
+                DB::commit();
+                session()->flash('success', 'Guardian profile updated successfully');
+
+                $this->update_mode = false;
+                $this->close();
+            } else {
+                session()->flash('errMsg', 'Sorry an error occured');
+            }
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            session()->flash('errMsg', 'Sorry an error occured. Try again');
         }
-        $this->update_mode = false;
-        $this->close();
     }
     /**
      * open modal
@@ -128,14 +143,15 @@ class Guardian extends Component
         $this->gender = "";
         $this->passport = "";
         $this->phone = "";
+        return redirect()->to('/guardians');
     }
     /**
      * submit guardian form
      */
     public function submit()
     {
-       $this->validate();
-       $imageHasName; //local variable
+        $this->validate();
+        $imageHasName = NULL; //local variable
 
         session()->flash('info', 'Please wait...');
 
@@ -152,8 +168,8 @@ class Guardian extends Component
                 $this->passport->store('public/passports');
 
                 $manager = new ImageManager();
-                $image = $manager->make('storage/passports/'.$imageHasName)->resize(300, 200);
-                $image->save('storage/passports_thumb/'.$imageHasName);
+                $image = $manager->make('storage/passports/' . $imageHasName)->resize(300, 200);
+                $image->save('storage/passports_thumb/' . $imageHasName);
             }
 
             $user = User::create([
@@ -177,14 +193,16 @@ class Guardian extends Component
                 'passport' => $imageHasName
             ]);
 
-            DB::commit();
-            
+
+
             if ($guardian) {
                 $student = Student::where('student_id', $this->student_id)->update([
                     'guardian_id' => $guardian->id
                 ]);
+                DB::commit();
                 session()->flash('success', 'Guardian profile created successfully');
-            }else {
+                $this->close();
+            } else {
                 User::where('id', $user->id)->forceDelete();
                 session()->flash('errMsg', 'Sorry an error occured');
             }

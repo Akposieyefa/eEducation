@@ -89,6 +89,7 @@ class Fee extends Component
         $this->isCreateFeeOpen = false;
         $this->update_mode = false;
         $this->profile_mood = false;
+        return redirect()->to('/fees');
     }
 
     public function render()

@@ -15,11 +15,12 @@ use App\Models\User;
 use App\Models\Role;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class Teacher extends Component
 {
     use WithFileUploads;
-    
+
     public $states;
     public $lgas;
     public $levels;
@@ -60,25 +61,26 @@ class Teacher extends Component
         'mname' => 'nullable|string|max:255',
         'lname' => 'required',
         'email' => 'required|email|unique:users',
-        'dob' => 'required',
-        'nationality' => 'required',
-        'address' => 'required',
-        'selectedLga' => 'required',
-        'selectedState' => 'required',
+        'dob' => 'nullable',
+        'nationality' => 'nullable',
+        'address' => 'nullable',
+        'address' => 'nullable',
+        'selectedLga' => 'nullable',
+        'selectedState' => 'nullable',
         'selectedClass' => 'required',
         'gender' => 'required',
         'employment_date' => 'nullable|string|max:255',
         'resume' => 'nullable|string|max:255'
     ];
 
-     /**
+    /**
      * display edit form 
      */
     public function editForm($id)
     {
         $this->teacherId = $id;
         $this->update_mode = true;
-        $teacher = TeacherData::with(['user','level','arm','lga'])->where('id', $this->teacherId)->first();
+        $teacher = TeacherData::with(['user', 'level', 'lga'])->where('id', $this->teacherId)->first();
         $this->fname = $teacher->fname;
         $this->mname = $teacher->mname;
         $this->lname = $teacher->lname;
@@ -88,7 +90,7 @@ class Teacher extends Component
         $this->email = $teacher->user->email;
         $this->gender = $teacher->gender;
         $this->selectedState = $teacher->state_id;
-        $this->selectedClass = $teacher->level_id;    
+        $this->selectedClass = $teacher->level_id;
         $this->selectedLga = $teacher->lga_id;
         //$this->selectedArm = $teacher->arm_id;
         $this->passport = $teacher->passport;
@@ -100,33 +102,58 @@ class Teacher extends Component
      */
     public function updateTeacher()
     {
-        $this->validate();
-        $teacher = TeacherData::find($this->teacherId);
-        $teacher->update([
-            'fname' => $this->fname,
-            'mname' => $this->mname,
-            'lname' => $this->lname,
-            'dob' => $this->dob,
-            'gender' => $this->gender,
-            'nationality' => $this->nationality,
-            'address' => $this->address,
-            'state_id' => $this->selectedState,
-            'lga_id' => $this->selectedLga,
-            'level_id' => $this->selectedClass,
-            'employment_date' => $this->employment_date
-        ]);
-        if ($teacher) {
-            $user = User::where('id', $teacher->user_id)->update([
+
+
+
+        try {
+
+            DB::beginTransaction();
+
+            $teacher = TeacherData::find($this->teacherId);
+
+            $this->validate([
+                'email' => 'required|email|unique:users,email,' . $teacher->user_id,
+            ]);
+
+            /*if ($teacher->user->email == $this->email) {
+                $this->validate([
+                    'email' => 'required|email|unique:users,email,' . $teacher->user_id,
+                ]);
+            }*/
+
+            $teacher->update([
+                'fname' => $this->fname,
+                'mname' => $this->mname,
+                'lname' => $this->lname,
+                'dob' => $this->dob,
+                'gender' => $this->gender,
+                'nationality' => $this->nationality,
+                'address' => $this->address,
+                'state_id' => $this->selectedState,
+                'lga_id' => $this->selectedLga,
+                'level_id' => $this->selectedClass,
+                'employment_date' => $this->employment_date
+            ]);
+            //dd($this->email);
+
+
+            User::where('id', $teacher->user_id)->update([
                 'email' => $this->email
             ]);
+
+            DB::commit();
+
             session()->flash('success', 'Teacher profile updated successfully');
-        }else {
-            session()->flash('errMsg', 'Sorry an error occured');
+
+            $this->update_mode = false;
+            $this->close();
+        } catch (\Throwable $e) {
+            //dd($e);
+            DB::rollBack();
+            session()->flash('errMsg', 'Sorry an error occured. Try again');
         }
-        $this->update_mode = false;
-        $this->close();
     }
-   /**
+    /**
      * works like the __construct() function 
      */
     public function mount()
@@ -147,14 +174,14 @@ class Teacher extends Component
     /**
      * Lifecycle Hooks for selectedState drop down
      */
-    public function updatedSelectedState($state) 
+    public function updatedSelectedState($state)
     {
         $this->lgas = Lga::where('state_id', $state)->get();
     }
     /**
      * Lifecycle Hooks for selectedClass drop down
      */
-    public function updatedSelectedClass($class) 
+    public function updatedSelectedClass($class)
     {
         $this->arms = Arm::where('level_id', $class)->get();
     }
@@ -164,42 +191,43 @@ class Teacher extends Component
     public function submit()
     {
         $this->validate();
-        $imageHasName;//local variable
-        $fileNameToStore;
-        $t=time(); //local variable
+        $imageHasName = NULL; //local variable
+        $fileNameToStore = NULL;
+        $t = time(); //local variable
 
         session()->flash('info', 'Please wait...');
 
         DB::beginTransaction();
 
         try {
- 
+
             if (!empty($this->passport) && !empty($this->resume)) {
                 $imageHasName = $this->passport->hashName();
-    
+
                 $validate = array_merge($this->validate(), [
                     'passport' => 'image',
                 ]);
                 $this->passport->store('public/passports');
                 $manager = new ImageManager();
-                $image = $manager->make('storage/passports/'.$imageHasName)->resize(300, 200);
-                $image->save('storage/passports_thumb/'.$imageHasName);
+                $image = $manager->make('storage/passports/' . $imageHasName)->resize(300, 200);
+                $image->save('storage/passports_thumb/' . $imageHasName);
                 //reume
                 $this->resume->store('public/resume');
                 $filenameWithExt = $this->resume->getClientOriginalName();
-                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME );
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                 $extension = $this->resume->getClientOriginalExtension();
-                $fileNameToStore = $filename  .'_'.time().'.'.$extension;
+                $fileNameToStore = $filename  . '_' . time() . '.' . $extension;
                 $path = $this->resume->storeAs('public/resume', $fileNameToStore);
             }
-    
+
             $user = User::create([
                 'email' => $this->email,
                 'password' => Hash::make('password'),
             ]);
+
             $role = Role::where('name', "Teacher",)->first();
             $user->roles()->attach($role->id);
-    
+
             $teacher = TeacherData::create([
                 'user_id' => $user->id,
                 'teacher_id' => Helpers::customIDGenerator(new TeacherData, 'teacher_id', 5, 'NHS'),
@@ -222,11 +250,13 @@ class Teacher extends Component
 
             if ($teacher) {
                 session()->flash('success', 'Teacher profile created successfully');
-            }else {
+            } else {
                 User::where('id', $user->id)->forceDelete();
                 session()->flash('errMsg', 'Sorry an error occured');
             }
+            $this->close();
         } catch (\Throwable $e) {
+            //dd($e);
             DB::rollBack();
             session()->flash('errMsg', 'Sorry an error occured. Try again');
         }
@@ -240,6 +270,7 @@ class Teacher extends Component
         $this->isTeacherOpen = false;
         $this->update_mode = false;
         $this->profile_mood = false;
+        return redirect()->to('/teachers');
     }
 
     public function render()

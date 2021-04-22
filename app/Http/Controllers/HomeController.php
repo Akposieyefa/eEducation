@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Result;
+use App\Models\Level;
 use App\Models\Payment;
 use App\Models\Student;
 
@@ -46,7 +47,7 @@ class HomeController extends Controller
     public function viewResult($id)
     {
         $student = Student::findOrFail($id);
-        $results = Result::where('student_id', $student->student_id)->where('term_id',activeTermId())->get();
-        return view('view_result', compact('results','student'));
+        $results = Result::where('student_id', $student->student_id)->where('term_id', activeTermId())->get();
+        return view('view_result', compact('results', 'student'));
     }
 }

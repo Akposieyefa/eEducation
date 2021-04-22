@@ -39,7 +39,7 @@
                                                         </div>
                                                  </div>
                                                         <div class="nk-tb-col">
-                                                               <a href="html/ecommerce/customer-details.html">
+                                                               <a href="#">
                                                                       <div class="user-card">
                                                                              <div class="user-info">
                                                                                     <span class="tb-lead">{{ $class->name }} <span class="ml-1 dot dot-success d-md-none"></span></span>

@@ -7,6 +7,7 @@ use App\Models\Subject;
 use App\Exports\SubjectResultSheet;
 use Maatwebsite\Excel\Facades\Excel;
 use Livewire\WithPagination;
+use App\Models\User;
 
 class Subjects extends Component
 {
@@ -19,10 +20,11 @@ class Subjects extends Component
     /**
      * update the select all value
      */
-    public function updatedSelectAll($value) {
+    public function updatedSelectAll($value)
+    {
         if ($value) {
-            $this->selectedSubjects = $this->subjects->pluck('id')->map(fn($item) => (string) $item)->toArray();
-        }else{
+            $this->selectedSubjects = $this->subjects->pluck('id')->map(fn ($item) => (string) $item)->toArray();
+        } else {
             $this->selectedSubjects = [];
         }
     }
@@ -41,10 +43,25 @@ class Subjects extends Component
         $userRoles = auth()->user()->roles->pluck('name');
         if ($userRoles[0] == 'Admin') {
             return Subject::latest()->paginate(10);
-        }elseif($userRoles[0] == 'Teacher'){
+        } elseif ($userRoles[0] == 'Teacher') {
             return auth()->user()->teacher->level->subjects;
         }
     }
+
+    public function deleteRecords()
+    {
+        $subject = Subject::whereKey($this->checked)->delete();
+        $this->checked = [];
+    }
+    /**
+     * delete single record
+     */
+    public function deleteSingleRecord($subject_id)
+    {
+        $subject = Subject::findOrFail($subject_id);
+        $subject->delete();
+    }
+
     /**
      * download excel file
      */

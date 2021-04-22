@@ -13,11 +13,11 @@
                                                  </div>
                                                  <div class="nk-tb-col"><span class="sub-text">Name</span></div>
                                                  <div class="nk-tb-col tb-col-mb"><span class="sub-text">Gender</span></div>
-                                                 <div class="nk-tb-col tb-col-md"><span class="sub-text">DOB</span></div>
+                                                 <!--<div class="nk-tb-col tb-col-md"><span class="sub-text">DOB</span></div>
                                                  <div class="nk-tb-col tb-col-lg"><span class="sub-text">State</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">LGA</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Class</span></div>
-                                                 <!--<div class="nk-tb-col tb-col-md"><span class="sub-text">Addmited Date</span></div>-->
+                                                 <div class="nk-tb-col tb-col-md"><span class="sub-text">Addmited Date</span></div>-->
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></div>
                                                  <div class="nk-tb-col nk-tb-col-tools">
                                                         <ul class="nk-tb-actions gx-1 my-n1">
@@ -57,7 +57,7 @@
                                                         <div class="nk-tb-col tb-col-mb">
                                                                <span class="tb-amount">{{ $teacher->gender }}</span>
                                                         </div>
-                                                        <div class="nk-tb-col tb-col-md">
+                                                        {{--<div class="nk-tb-col tb-col-md">
                                                                <span>{{ $teacher->dob }}</span>
                                                         </div>
                                                         <div class="nk-tb-col tb-col-lg">
@@ -69,9 +69,9 @@
                                                         <div class="nk-tb-col tb-col-lg">
                                                                <span>{{ $teacher->level->name }}</span>
                                                         </div>
-                                                        <!--<div class="nk-tb-col tb-col-lg">
+                                                        <div class="nk-tb-col tb-col-lg">
                                                                <span>{{ Carbon\Carbon::parse($teacher->addmited_date)->format('d/m/Y') }}</span>
-                                                        </div>-->
+                                                        </div>--}}
                                                         <div class="nk-tb-col tb-col-md">
                                                                <span class="tb-status text-success">Active</span>
                                                         </div>
@@ -89,7 +89,13 @@
                                                                                            <ul class="link-list-opt no-bdr">
                                                                                                   <li><a href="#"><em class="icon ni ni-eye"></em><span>Profile</span></a></li>
                                                                                                   <li><a href="#" wire:click="editTeacher({{ $teacher->id }})"><em class="icon ni ni-edit"></em><span>Edit </span></a></li>
-                                                                                                  <!--<li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteSingleRecord({{ $teacher->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>-->
+                                                                                                  <li>
+                                                                                                         <a href="javascript:void(0)" class="text-danger"
+                                                                                                                onclick="return confirm('Are you sure you want to delete?') ? @this.deleteSingleRecord({{$teacher->id}}) : false">
+                                                                                                                <em class="icon ni ni-trash"></em>
+                                                                                                                Delete
+                                                                                                         </a>
+                                                                                                  </li>
                                                                                            </ul>
                                                                                     </div>
                                                                              </div>

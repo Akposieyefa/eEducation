@@ -62,6 +62,8 @@ class Notification extends Component
         $this->title = "";
         $this->body = "";
         $this->role_id = "";
+
+        return redirect()->to('/notifications');
     }
     /**
      * submit form data

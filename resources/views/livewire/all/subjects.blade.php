@@ -72,7 +72,11 @@
                                                                              <div class="dropdown-menu dropdown-menu-right">
                                                                                     <ul class="link-list-opt no-bdr">
                                                                                            @admin
-                                                                                           <li><a href="#"><em class="icon ni ni-trash"></em><span>Remove</span></a></li>
+                                                                                           <a href="javascript:void(0)" class="text-danger"
+                                                                                                  onclick="return confirm('Are you sure you want to delete?') ? @this.deleteSingleRecord({{$subject->id}}) : false">
+                                                                                                  <em class="icon ni ni-trash"></em>
+                                                                                                  Delete
+                                                                                           </a>
                                                                                            @endadmin
                                                                                            @teacher
                                                                                                   <li><a href="#" wire:click="exportStudents()"><em class="icon ni ni-list"></em><span> Download Result Template</span></a></li>

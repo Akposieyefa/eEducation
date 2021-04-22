@@ -51,6 +51,7 @@ class Complain extends Component
         $this->profile_mood = false;
         $this->title = "";
         $this->body = "";
+        return redirect()->to('/complains');
     }
     /**
      * submit form data
@@ -63,12 +64,12 @@ class Complain extends Component
             'title' => $this->title,
             'body' => $this->body
         ]);
-            $data = array(
-                'title' => $this->title,
-                'body' => $this->body,
-                'email' => $this->email
-            );
-            Mail::to(auth()->user()->email)->send(new ComplainNotify($data));
+        $data = array(
+            'title' => $this->title,
+            'body' => $this->body,
+            'email' => $this->email
+        );
+        Mail::to(auth()->user()->email)->send(new ComplainNotify($data));
         session()->flash('success', 'Thanks your complain have been sent successfully');
         $this->close();
     }

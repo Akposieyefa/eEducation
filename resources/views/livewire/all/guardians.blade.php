@@ -24,6 +24,13 @@
                                                                              <a href="#" class="dropdown-toggle btn btn-icon btn-trigger mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                                              <div class="dropdown-menu dropdown-menu-right">
                                                                                     <ul class="link-list-opt no-bdr">
+                                                                                           <li>
+                                                                                                  <a href="javascript:void(0)" class="text-danger"
+                                                                                                  onclick="return confirm('Are you sure you want to delete?') ? @this.deleteRecirds() : false">
+                                                                                                         <em class="icon ni ni-trash"></em>
+                                                                                                         Remove Selected
+                                                                                                  </a>
+                                                                                           </li>
                                                                                            <!--<li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteRecords()" ><em class="icon ni ni-trash"></em><span>Remove Seleted</span></a></li>-->
                                                                                            <li><a href="#"><em class="icon ni ni-shield-star"></em><span>Download</span></a></li>
                                                                                     </ul>
@@ -80,7 +87,13 @@
                                                                                            <ul class="link-list-opt no-bdr">
                                                                                                   <li><a href="#"><em class="icon ni ni-eye"></em><span>Profile</span></a></li>
                                                                                                   <li><a href="#" wire:click="editGuardian({{ $guardian->id }})"><em class="icon ni ni-edit"></em><span>Edit </span></a></li>
-                                                                                                  <!--<li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteSingleRecord({{ $guardian->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>-->
+                                                                                                  <li>
+                                                                                                         <a href="javascript:void(0)" class="text-danger"
+                                                                                                                onclick="return confirm('Are you sure you want to delete?') ? @this.deleteSingleRecord({{$guardian->id}}) : false">
+                                                                                                                <em class="icon ni ni-trash"></em>
+                                                                                                                Delete
+                                                                                                         </a>
+                                                                                                  </li>
                                                                                            </ul>
                                                                                     </div>
                                                                              </div>

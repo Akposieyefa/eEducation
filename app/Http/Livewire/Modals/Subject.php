@@ -38,6 +38,7 @@ class Subject extends Component
         $this->isSubjectOpen = false;
         $this->update_mode = false;
         $this->name = "";
+        return redirect()->to('/subjects');
     }
     /**
      * submit form data
@@ -56,5 +57,10 @@ class Subject extends Component
     public function render()
     {
         return view('livewire.modals.subject');
+    }
+
+    public function deleteSubject($id)
+    {
+        Subject::where('id', $id)->delete();
     }
 }

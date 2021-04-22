@@ -61,6 +61,7 @@ class MailBlast extends Component
     {
         $this->model_id = '';
         $this->isCreateMailOpen = false;
+        return redirect()->to('/mails');
     }
 
     public function render()

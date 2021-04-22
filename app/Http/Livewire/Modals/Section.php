@@ -37,17 +37,17 @@ class Section extends Component
     public function submit()
     {
         $this->validate();
-         $section = SectionData::create([
-             'name' => $this->name,
-             'start_date' => $this->start_date,
-             'end_date' => $this->end_date,
-             'status' => $this->status
-         ]);
-         if ($section) {
-             session()->flash('success', 'Section created successfully');
-         }else {
-             session()->flash('errMsg', 'Sorry an error occured');
-         }
+        $section = SectionData::create([
+            'name' => $this->name,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'status' => $this->status
+        ]);
+        if ($section) {
+            session()->flash('success', 'Section created successfully');
+        } else {
+            session()->flash('errMsg', 'Sorry an error occured');
+        }
     }
     /**
      * open form modal
@@ -66,6 +66,7 @@ class Section extends Component
         $this->isCreateSectionOpen = false;
         $this->update_mode = false;
         $this->profile_mood = false;
+        return redirect()->to('/sections');
     }
 
     public function render()

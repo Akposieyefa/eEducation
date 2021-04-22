@@ -158,6 +158,7 @@ class Student extends Component
         $this->selectedState = "";
         $this->email = "";
         $this->passport = "";
+        return redirect()->to('/students');
     }
     /**
      * submit student form

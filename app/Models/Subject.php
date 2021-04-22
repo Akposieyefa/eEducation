@@ -13,8 +13,9 @@ class Subject extends Model
     protected $fillable = [
         'name'
     ];
-  
-    public function level() {
-         return $this->belongsTo(Level::class);
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
     }
 }

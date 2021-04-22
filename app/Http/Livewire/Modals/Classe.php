@@ -36,14 +36,14 @@ class Classe extends Component
         $this->validate([
             'name' => 'required'
         ]);
-         $class = Level::create([
-             'name' => $this->name
-         ]);
-         if ($class) {
-             session()->flash('success', 'Class created successfully');
-         }else {
-             session()->flash('errMsg', 'Sorry an error occured');
-         }
+        $class = Level::create([
+            'name' => $this->name
+        ]);
+        if ($class) {
+            session()->flash('success', 'Class created successfully');
+        } else {
+            session()->flash('errMsg', 'Sorry an error occured');
+        }
     }
     /**
      * open form modal
@@ -61,6 +61,7 @@ class Classe extends Component
         $this->model_id = '';
         $this->isCreateClasseOpen = false;
         $this->update_mode = false;
+        return redirect()->to('/classes');
     }
 
     public function render()

@@ -108,7 +108,15 @@
                                                                                                                 </a>
                                                                                                          </li>
                                                                                                   @endteacher
-                                                                                                  <!--<li><button onclick="return confirm('Are you sure you want to delete this...?') ||  even.stopImmediatePropagation()" wire:click="deleteSingleRecord({{ $student->id }})"><em class="icon ni ni-trash"></em><span>Delete</span></button></li>-->
+                                                                                                  @admin
+                                                                                                         <li>
+                                                                                                                <a href="javascript:void(0)" class="text-danger"
+                                                                                                                       onclick="return confirm('Are you sure you want to delete?') ? @this.deleteSingleRecord({{$student->id}}) : false">
+                                                                                                                       <em class="icon ni ni-trash"></em>
+                                                                                                                       Delete
+                                                                                                                </a>
+                                                                                                         </li>
+                                                                                                  @endadmin
                                                                                            </ul>
                                                                                     </div>
                                                                              </div>

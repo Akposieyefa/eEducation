@@ -44,7 +44,7 @@ class ResetPassword extends Component
                 ]);
                 if ($reset) {
                     session()->flash('success', 'Password updated successfully');
-                }else {
+                } else {
                     session()->flash('errMsg', 'Sorry an error occured');
                 }
             }
@@ -65,6 +65,7 @@ class ResetPassword extends Component
     {
         $this->model_id = '';
         $this->isPasswordResetOpen = false;
+        return redirect()->to('/teachers');
     }
 
 

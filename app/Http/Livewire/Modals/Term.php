@@ -48,18 +48,18 @@ class Term extends Component
     public function submit()
     {
         $this->validate();
-         $term = TermData::create([
-             'section_id' => $this->section_id,
-             'name' => $this->name,
-             'start_date' => $this->start_date,
-             'end_date' => $this->end_date,
-             'status' => $this->status
-         ]);
-         if ($term) {
-             session()->flash('success', 'Term created successfully');
-         }else {
-             session()->flash('errMsg', 'Sorry an error occured');
-         }
+        $term = TermData::create([
+            'section_id' => $this->section_id,
+            'name' => $this->name,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'status' => $this->status
+        ]);
+        if ($term) {
+            session()->flash('success', 'Term created successfully');
+        } else {
+            session()->flash('errMsg', 'Sorry an error occured');
+        }
     }
     /**
      * open form modal
@@ -78,6 +78,7 @@ class Term extends Component
         $this->isCreateTermOpen = false;
         $this->update_mode = false;
         $this->profile_mood = false;
+        return redirect()->to('/terms');
     }
 
     public function render()

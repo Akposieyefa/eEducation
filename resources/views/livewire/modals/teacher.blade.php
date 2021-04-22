@@ -46,14 +46,14 @@
                                                         @error('lname') <span class="text-danger">{{ $message }}</span> @enderror
                                           </div>
                                           <div class="col-md-6">
-                                                 <label class="form-label">Date of Birth <small class="text-danger">*</small></label>
+                                                 <label class="form-label">Date of Birth <small class="text-info">(optional)</small></label>
                                                  <x-forms.input wire:model="dob" type="date" title="Date of birth" />
                                                         @error('dob') <span class="text-danger">{{ $message }}</span> @enderror
                                           </div>
                                    </div>
                                    <div class="form-group row">
                                           <div class="col-md-6">
-                                                 <label class="form-label">Nationality <small class="text-danger">*</small></label>
+                                                 <label class="form-label">Nationality <small class="text-info">(optional)</small></label>
                                                  <x-forms.input wire:model="nationality" type="text" placeholder="Naionality" title="Nationality of Teacher" />
                                                         @error('nationality') <span class="text-danger">{{ $message }}</span> @enderror
                                           </div>
@@ -65,7 +65,7 @@
                                    </div>
                                    <div class="form-group row">
                                           <div class="col-md-12">
-                                                 <label class="form-label">Residential Address <small class="text-danger">*</small></label>
+                                                 <label class="form-label">Residential Address <small class="text-info">(optional)</small></label>
                                                  <x-forms.input wire:model="address" type="text" placeholder="Residential Address" title="Residental Address of Teacher" />
                                                         @error('address') <span class="text-danger">{{ $message }}</span> @enderror
                                           </div>
@@ -93,7 +93,7 @@
                                    </div>
                                    <div class="form-group row">
                                           <div class="col-md-6">
-                                                 <label class="form-label">Select State of Origin <small class="text-danger">*</small></label>
+                                                 <label class="form-label">Select State of Origin <small class="text-info">(optional)</small></label>
                                                  <x-forms.select wire:model="selectedState" title="State of Origin of Student">
                                                         <x-forms.option value="">Select State</x-forms.option>
                                                         @foreach($states as $state)
@@ -103,7 +103,7 @@
                                                         @error('selectedState') <span class="text-danger">{{ $message }}</span> @enderror
                                           </div>
                                           <div class="col-md-6">
-                                                 <label class="form-label">Select Local Government Area <small class="text-danger">*</small></label>
+                                                 <label class="form-label">Select Local Government Area <small class="text-info">(optional)</small></label>
                                                  <x-forms.select wire:model="selectedLga" title="Local Government of Origin">
                                                         <x-forms.option value=""> Select Local Government Area</x-forms.option>
                                                         @if(!is_null($selectedState))

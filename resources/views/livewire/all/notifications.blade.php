@@ -67,8 +67,8 @@
                                                                              <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                                              <div class="dropdown-menu dropdown-menu-right">
                                                                                     <ul class="link-list-opt no-bdr">
-                                                                                           <li><a href="html/ecommerce/customer-details.html"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                                                           <li><a href="html/ecommerce/customer-details.html"><em class="icon ni ni-trash"></em><span>Remove</span></a></li>
+                                                                                           <li><a href="#"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
+                                                                                           <li><a href="#"><em class="icon ni ni-trash"></em><span>Remove</span></a></li>
                                                                                     </ul>
                                                                              </div>
                                                                       </div>

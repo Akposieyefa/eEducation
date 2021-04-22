@@ -45,8 +45,17 @@ class Result extends Component
             //$level = auth()->user()->teacher->level_id;
             $level = $this->level_id;
             $result = new SubjectResultSheet($this->term, $this->subject_id, $level);
-            Excel::import($result, $this->resultSheet);
-            session()->flash('success', 'Result uploaded successfully');
+            //dd('ok');
+            $res = Excel::import($result, $this->resultSheet);
+            //dd($res);
+            dd($res);
+            if ($res == 'ok') {
+
+                session()->flash('error', '' . $result[1]);
+            } else {
+
+                session()->flash('success', 'Result uploaded successfully');
+            }
         }
     }
 

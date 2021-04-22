@@ -11,21 +11,21 @@ class Result extends Model
     use HasFactory;
 
     protected $fillable = [
-        'student_id', 'ca_score','exam_score', 'term_id', 'subject_id', 'level_id'
+        'student_id', 'ca_score', 'exam_score', 'term_id', 'subject_id', 'level_id'
     ];
 
-    public function student() {
+    public function student()
+    {
         return $this->belongsTo(Student::class, 'student_id');
     }
 
-    public function subject() {
+    public function subject()
+    {
         return $this->belongsTo(Subject::class, 'subject_id');
     }
 
-    public function level() {
+    public function level()
+    {
         return $this->belongsTo(Level::class, 'level_id');
     }
-
-
-
 }

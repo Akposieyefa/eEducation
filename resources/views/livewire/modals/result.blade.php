@@ -16,6 +16,7 @@
                                                                <!-- /.card-header -->
                                                                <div class="card-body">
                                                                       <x-alerts.success />
+                                                                      <x-alerts.error />
 
                                                                       <form wire:submit.prevent="submit">
                                                                              <div class="form-group row">
@@ -35,6 +36,7 @@
                                                                                            <label class="form-label">Select Subject</label>
                                                                                            <select name="cars" id="subject_id" class="form-control" wire:model="subject_id">
                                                                                             <option value="">Select Subject</option>
+                                                                                            
                                                                                                   @foreach($subjects as $subject)
                                                                                                   <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                                                                                                    @endforeach

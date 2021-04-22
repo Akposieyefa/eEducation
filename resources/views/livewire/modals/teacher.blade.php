@@ -116,7 +116,7 @@
                                                  </x-forms.select>
                                           </div>
                                    </div>
-                                   <div class="form-group row">
+                                   {{--<div class="form-group row">
                                           <div class="col-md-12">
                                                  <label class="form-label">Select Class <small class="text-danger">*</small></label>
                                                  <x-forms.select wire:model="selectedClass" title="Student Class">
@@ -127,7 +127,7 @@
                                                  </x-forms.select>
                                                         @error('selectedClass') <span class="text-danger">{{ $message }}</span> @enderror
                                           </div>
-                                   </div>
+                                   </div>--}}
                                    <div class="form-group row">
                                           <div class="col-md-12">
                                                  <label class="form-label">Upload Passport <small class="text-info">(optional)</small></label>

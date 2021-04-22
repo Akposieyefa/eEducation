@@ -67,7 +67,7 @@ class Teacher extends Component
         'address' => 'nullable',
         'selectedLga' => 'nullable',
         'selectedState' => 'nullable',
-        'selectedClass' => 'required',
+        'selectedClass' => 'nullable',
         'gender' => 'required',
         'employment_date' => 'nullable|string|max:255',
         'resume' => 'nullable|string|max:255'
@@ -90,7 +90,7 @@ class Teacher extends Component
         $this->email = $teacher->user->email;
         $this->gender = $teacher->gender;
         $this->selectedState = $teacher->state_id;
-        $this->selectedClass = $teacher->level_id;
+        //$this->selectedClass = $teacher->level_id;
         $this->selectedLga = $teacher->lga_id;
         //$this->selectedArm = $teacher->arm_id;
         $this->passport = $teacher->passport;
@@ -102,8 +102,6 @@ class Teacher extends Component
      */
     public function updateTeacher()
     {
-
-
 
         try {
 
@@ -131,7 +129,7 @@ class Teacher extends Component
                 'address' => $this->address,
                 'state_id' => $this->selectedState,
                 'lga_id' => $this->selectedLga,
-                'level_id' => $this->selectedClass,
+                //'level_id' => $this->selectedClass,
                 'employment_date' => $this->employment_date
             ]);
             //dd($this->email);
@@ -240,7 +238,7 @@ class Teacher extends Component
                 'address' => $this->address,
                 'state_id' => $this->selectedState,
                 'lga_id' => $this->selectedLga,
-                'level_id' => $this->selectedClass,
+                //'level_id' => $this->selectedClass,
                 'employment_date' => $this->employment_date,
                 'passport' => $imageHasName,
                 'resume' => $fileNameToStore

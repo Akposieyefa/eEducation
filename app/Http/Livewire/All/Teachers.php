@@ -22,7 +22,7 @@ class Teachers extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-            //$this->selectedTeachers = $this->teachers->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedTeachers = $this->teachers->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedTeachers = [];
         }

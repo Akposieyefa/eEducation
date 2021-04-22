@@ -63,8 +63,6 @@ class SubjectResultSheet  implements ToModel, WithStartRow
         */
 
         $student = Student::where(['admission_no' => $row['0']])->get();
-        $err = 0;
-
         if (count($student) > 0) {
             $student_id = $student[0]['student_id'];
             $resultCheck = Result::where(['student_id' => $student_id, 'subject_id' => $this->subject_id, 'term_id' => $this->term_id, 'level_id' => $this->level_id])->get();
@@ -88,16 +86,16 @@ class SubjectResultSheet  implements ToModel, WithStartRow
                     return array('error', 'No Record found for student  ' . $row['0'] . '');
                 }
             }
-        } else {;
-            return $this->customValidationMessages();
-            $err++;
-        }
+        // } else {;
+        //     return $this->customValidationMessages();
+        //     $err++;
+        // }
     }
 
-    public function customValidationMessages()
-    {
-        return [
-            '1.in' => 'Custom message for :attribute.',
-        ];
-    }
+    // public function customValidationMessages()
+    // {
+    //     return [
+    //         '1.in' => 'Custom message for :attribute.',
+    //     ];
+    // }
 }

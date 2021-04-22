@@ -43,18 +43,21 @@ class Result extends Component
         ]);
         if (!empty($this->resultSheet)) {
             //$level = auth()->user()->teacher->level_id;
-            $level = $this->level_id;
-            $result = new SubjectResultSheet($this->term, $this->subject_id, $level);
-            //dd('ok');
-            $res = Excel::import($result, $this->resultSheet);
-            //dd($res);
-            dd($res);
-            if ($res == 'ok') {
+            try {
+                $level = $this->level_id;
+                $result = new SubjectResultSheet($this->term, $this->subject_id, $level);
+                //dd('ok');
+                $res = Excel::import($result, $this->resultSheet);
+                //dd($res);
+                dd($res);
+                if ($res == 'ok') {
+                    session()->flash('error', '' . $result[1]);
+                } else {
+                    session()->flash('success', 'Result uploaded successfully');
+                }
 
-                session()->flash('error', '' . $result[1]);
-            } else {
-
-                session()->flash('success', 'Result uploaded successfully');
+            } catch(Exception $e) {
+                dd('Error occured');
             }
         }
     }

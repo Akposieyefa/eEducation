@@ -3,6 +3,7 @@
 use App\Http\Livewire\Modals\Result;
 use App\Models\Notification;
 use App\Models\Complain;
+use App\Models\Level;
 use Carbon\Carbon;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -39,6 +40,17 @@ function studentCount()
                      ->where('arm_id', $arm_id)->count();
        }
 }
+
+function studentCurrentClass($level_id)
+{
+       $level = Level::where('id', $level_id)->get();
+       if (count($level) > 0) {
+              return $level[0]['name'];
+       } else {
+              return '';
+       }
+}
+
 function teacherCount()
 {
        return Teacher::count();

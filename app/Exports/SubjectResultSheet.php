@@ -21,8 +21,9 @@ class SubjectResultSheet implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        return  Student::where('level_id', '=', $this->level_id)
-            ->get(['student_id', 'admission_no', 'fname', 'mname', 'lname']);
+        return  Student::where('level_id', '=', $this->level_id)->get(['admission_no']);
+
+        //return  Student::where('level_id', '=', $this->level_id)->get(['student_id', 'admission_no', 'fname', 'mname', 'lname']);
     }
 
     /**
@@ -32,6 +33,13 @@ class SubjectResultSheet implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
+            'ADMISSION NO.',
+            'CA SCORE',
+            'EXAM SCORE',
+
+        ];
+
+        /*return [
             'REG NUMBER',
             'ADMISSION NO.',
             'FIRST NAME',
@@ -40,6 +48,6 @@ class SubjectResultSheet implements FromCollection, WithHeadings
             'CA SCORE',
             'EXAM SCORE',
 
-        ];
+        ];*/
     }
 }

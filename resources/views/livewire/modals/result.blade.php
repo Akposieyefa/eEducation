@@ -59,6 +59,18 @@
                                                                              </div>
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
+                                                                                           <label class="form-label">Select Session</label>
+                                                                                           <select name="cars" id="session" class="form-control" wire:model="session">
+                                                                                            <option value="">Select Session</option>
+                                                                                                  @foreach($sessions as $session)
+                                                                                                  <option value="{{ $session->id }}">{{ $session->name }}</option>
+                                                                                                   @endforeach
+                                                                                           </select>
+                                                                                           @error('session') <span class="text-danger">{{ $message }}</span> @enderror
+                                                                                    </div>
+                                                                             </div>
+                                                                             <div class="form-group row">
+                                                                                    <div class="col-md-12">
                                                                                            <label class="form-label">Upload Result Sheet</label>
                                                                                            <x-forms.input type="file" wire:model="resultSheet" title="Select Result Sheet" />
                                                                                            @error('resultSheet') <span class="text-danger">{{ $message }}</span> @enderror

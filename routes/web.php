@@ -38,7 +38,9 @@ Route::get('/terms', App\Http\Livewire\All\Terms::class)->name('terms');
 Route::get('/fees', App\Http\Livewire\All\Fees::class)->name('fees');
 Route::get('/my-profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('my-profile');
 Route::get('/result-upload', App\Http\Livewire\Modals\Result::class)->name('result-upload');
-Route::get('/view-result/{id}', [App\Http\Controllers\HomeController::class, 'viewResult'])->name('view-result');
+Route::get('/view-result/{id}', [App\Http\Controllers\HomeController::class, 'viewStudentResult'])->name('view-student-result');
+Route::get('/view-result', [App\Http\Controllers\HomeController::class, 'viewResult'])->name('view-result');
+Route::post('/my-result', [App\Http\Controllers\HomeController::class, 'getStudentResult'])->name('my-result');
 /**payment routes */
 Route::get('/fee-payment', [App\Http\Controllers\PaymentController::class, 'paymentForm'])->name('fee-payment');
 Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'initialize'])->name('pay');

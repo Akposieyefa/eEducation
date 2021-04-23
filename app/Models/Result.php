@@ -11,7 +11,7 @@ class Result extends Model
     use HasFactory;
 
     protected $fillable = [
-        'student_id', 'ca_score', 'exam_score', 'term_id', 'subject_id', 'level_id'
+        'student_id', 'ca_score', 'exam_score', 'term_id', 'subject_id', 'level_id', 'session_id'
     ];
 
     public function student()
@@ -27,5 +27,10 @@ class Result extends Model
     public function level()
     {
         return $this->belongsTo(Level::class, 'level_id');
+    }
+
+    public function session()
+    {
+        return $this->belongsTo(Section::class, 'session_id');
     }
 }

@@ -4,7 +4,12 @@
                      <div class="nk-content-body">
                             <div class="nk-block">
                                    @livewire('modals.student')
-                                   <div class="row mb-5">
+                                   <div class="row mb-3" style="border:0px solid red;">
+                                          <div class="col-md-3 offset-8">
+                                          <input type="search" class="form-control form-control-sm" placeholder="Type in to Search" />
+                                          </div>
+                                          <div class="col-md-1"></div>
+                                   </div>
               
                                    <div class="mb-3 nk-tb-list is-separate">
                                           <div class="nk-tb-item nk-tb-head">

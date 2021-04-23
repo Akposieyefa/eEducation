@@ -105,9 +105,15 @@
                                                 <div class="card-inner">
                                                     <div class="card-title-group">
                                                         <div class="card-title">
-                                                            <h4 class="title">List of all Students</h4>
+                                                            <h4 class="title">List of all Students</h4>                                                            
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="row mb-3" style="border:0px solid red;">
+                                                    <div class="col-md-3 offset-8">
+                                                        <input type="search" class="form-control form-control-sm" placeholder="Type in to Search" />
+                                                    </div>
+                                                    <div class="col-md-1"></div>
                                                 </div>
                                                 <div class="nk-tb-list mt-n2">
                                                     <div class="nk-tb-item nk-tb-head">

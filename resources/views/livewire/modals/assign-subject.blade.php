@@ -21,15 +21,15 @@
                                                     <div class="form-group">
                                                         <label for="schoolName">Class</label>
                                                         <x-forms.select wire:model="level_id" title="Student Class">
-                                                            <x-forms.option value="">Select Class</x-forms.option>
-                                                                            @foreach($levels as $level)
-                                                                                <x-forms.option value="{{ $level->id }}"> {{ $level->name }}</x-forms.option>
-                                                                            @endforeach
-                                                                    </x-forms.select>
-                                                                    @error('level_id') <span class="text-danger">{{ $message }}</span> @enderror
+                                                            <x-forms.option value="-1"> Select Class</x-forms.option>
+                                                            @foreach($levels as $level)
+                                                                <x-forms.option value="{{ $level->id }}"> {{ $level->name }}</x-forms.option>
+                                                            @endforeach
+                                                        </x-forms.select>
+                                                        @error('level_id') <span class="text-danger">{{ $message }}</span> @enderror
                                                     </div>
 
-                                                    <table id="example1" class="table table-bordered table-striped">
+                                                    <table id="example1" class="table table-bordered table-striped datatable-init" data-auto-responsive="false">
                                                         <thead>
                                                         <tr>
                                                             <th>No.</th>

@@ -15,8 +15,9 @@
                                             </div>
                                         <!-- /.card-header -->
                                                 <div class="card-body">
-                                                <x-alerts.success />
-                                                <x-alerts.error />
+                                                    <x-alerts.success />
+                                                    <x-alerts.error />
+                                                    <x-alerts.info />
                                                     <div class="form-group">
                                                         <label for="schoolName">Class</label>
                                                         <x-forms.select wire:model="level_id" title="Student Class">

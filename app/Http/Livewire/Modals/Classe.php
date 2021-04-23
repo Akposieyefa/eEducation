@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Modals;
 
 use Livewire\Component;
 use App\Models\Level;
+use Session;
 
 class Classe extends Component
 {
@@ -33,9 +34,13 @@ class Classe extends Component
      */
     public function submit()
     {
+
         $this->validate([
             'name' => 'required'
         ]);
+
+        session()->flash('info', 'Please wait...');
+
         $class = Level::create([
             'name' => $this->name
         ]);
@@ -44,6 +49,8 @@ class Classe extends Component
         } else {
             session()->flash('errMsg', 'Sorry an error occured');
         }
+
+        Session::forget('info');
     }
     /**
      * open form modal

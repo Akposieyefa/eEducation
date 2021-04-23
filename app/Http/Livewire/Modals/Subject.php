@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Modals;
 
 use Livewire\Component;
 use App\Models\Subject as SubjectData;
+use Session;
 
 class Subject extends Component
 {

@@ -49,6 +49,8 @@ class Result extends Component
         if (!empty($this->resultSheet)) {
             //$level = auth()->user()->teacher->level_id;
 
+            session()->flash('info', 'Please wait...');
+
             $import = new SubjectResultSheet($this->term, $this->subject_id, $this->level_id);
             Excel::import($import, $this->resultSheet);
 
@@ -105,6 +107,8 @@ class Result extends Component
                 DB::rollBack();
                 session()->flash('errMsg', 'Error! Result upload failed. Try again');
             }
+
+            Session::forget('info');
 
 
             /*try {

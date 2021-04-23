@@ -25,8 +25,9 @@
                                    </button>
                             </div>
                             <div class="modal-body">
-                            <x-alerts.success />
-                            <x-alerts.error />
+                                   <x-alerts.success />
+                                   <x-alerts.error />
+                                   <x-alerts.info />
                                    <div class="form-group row">
                                           <div class="col-md-6">
                                                  <label class="form-label">First Name</label>

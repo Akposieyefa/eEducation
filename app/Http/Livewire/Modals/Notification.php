@@ -8,6 +8,7 @@ use App\Models\Notification as Notify;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Notification as MailNotification;
+use Session;
 
 class Notification extends Component
 {
@@ -76,7 +77,7 @@ class Notification extends Component
             'title' => $this->title,
             'body' => $this->body
         ]);
-        $users = User::whereHas('roles', function($q) {
+        $users = User::whereHas('roles', function ($q) {
             $q->where('name', $this->role_id);
         })->get();
         foreach ($users as $user) {

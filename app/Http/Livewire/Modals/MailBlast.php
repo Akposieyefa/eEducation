@@ -7,6 +7,7 @@ use App\Models\MailBlast as Blast;
 use App\Mail\MailBlasts;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
+use Session;
 
 class MailBlast extends Component
 {

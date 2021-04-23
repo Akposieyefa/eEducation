@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Complain as ComplainData;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Complain as ComplainNotify;
+use Session;
 
 class Complain extends Component
 {
@@ -58,12 +59,17 @@ class Complain extends Component
      */
     public function submit()
     {
+
         $this->validate();
+
+        session()->flash('info', 'Please wait...');
+
         ComplainData::create([
             'user_id' => auth()->user()->id,
             'title' => $this->title,
             'body' => $this->body
         ]);
+
         $data = array(
             'title' => $this->title,
             'body' => $this->body,
@@ -71,6 +77,7 @@ class Complain extends Component
         );
         Mail::to(auth()->user()->email)->send(new ComplainNotify($data));
         session()->flash('success', 'Thanks your complain have been sent successfully');
+        Session::forget('info');
         $this->close();
     }
     public function render()

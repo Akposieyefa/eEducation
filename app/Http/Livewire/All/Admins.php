@@ -5,6 +5,8 @@ namespace App\Http\Livewire\All;
 use Livewire\Component;
 use App\Models\Admin;
 use Livewire\WithPagination;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class Admins extends Component
 {
@@ -44,9 +46,19 @@ class Admins extends Component
      */
     public function deleteSingleRecord($admin_id)
     {
-        $admin = Admin::findOrFail($admin_id);
-        User::where('id', $admin->user_id)->delete();
-        $admin->delete();
+
+        DB::beginTransaction();
+
+        try {
+            $admin = Admin::findOrFail($admin_id);
+            User::where('id', $admin->user_id)->delete();
+            $admin->delete();
+            DB::commit();
+        } catch (\Throwable $e) {
+            //dd($e);
+            DB::rollBack();
+            session()->flash('errMsg', 'Sorry an error occured. Try again ');
+        }
     }
     /**
      * edit  record

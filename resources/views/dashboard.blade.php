@@ -122,7 +122,7 @@
                                                     @foreach(allStudents() as $student)
                                                         <div class="nk-tb-item">
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-lead"><a href="#">{{ $student->admission_no }}</a></span>
+                                                                <span class="tb-lead">{{ $student->admission_no }}</span>
                                                             </div>
                                                             <div class="nk-tb-col tb-col-sm">
                                                                 <span class="tb-lead">{{ $student->fullname}}</span>

@@ -13,12 +13,12 @@
                                                                <input type="checkbox" class="custom-control" wire:model="selectAll">
                                                         </div>
                                                  </div>
-                                                 <div class="nk-tb-col"><span class="sub-text">Ward</span></div>
-                                                 <div class="nk-tb-col"><span class="sub-text">Amount Paid</span></div>
+                                                 <!--<div class="nk-tb-col"><span class="sub-text">Ward</span></div>-->
+                                                 <div class="nk-tb-col"><span class="sub-text">Amount</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Section</span></div>
                                                  <div class="nk-tb-col tb-col-md"><span class="sub-text">Term</span></div>
                                                  <div class="nk-tb-col tb-col-lg"><span class="sub-text">Class</span></div>
-                                                 <div class="nk-tb-col tb-col-md"><span class="sub-text"> Date Paid</span></div>
+                                                 <!--<div class="nk-tb-col tb-col-md"><span class="sub-text"> Date Paid</span></div>-->
                                                  <!--<div class="nk-tb-col nk-tb-col-tools">
                                                         <ul class="nk-tb-actions gx-1 my-n1">
                                                                <li>
@@ -42,14 +42,14 @@
                                                                <label class="custom-control"></label>
                                                         </div>
                                                  </div>
-                                                        <div class="nk-tb-col tb-col-mb">
+                                                        <!--<div class="nk-tb-col tb-col-mb">
                                                                <span class="tb-amount"></span>
-                                                        </div>
+                                                        </div>-->
                                                         <div class="nk-tb-col">
                                                                <a href="#">
                                                                       <div class="user-card">
                                                                              <div class="user-info">
-                                                                                    <span class="tb-lead">{{ \App\Helpers\Helpers::formatAmount($fee->amount) }} <span class="ml-1 dot dot-success d-md-none"></span></span>
+                                                                                    <span class="tb-lead">NGN {{ \App\Helpers\Helpers::formatAmount($fee->amount) }} <span class="ml-1 dot dot-success d-md-none"></span></span>
                                                                              </div>
                                                                       </div>
                                                                </a>
@@ -63,9 +63,9 @@
                                                         <div class="nk-tb-col tb-col-mb">
                                                                <span class="tb-amount">{{ $fee->level->name }}</span>
                                                         </div>
-                                                        <div class="nk-tb-col tb-col-md">
+                                                        {{--<div class="nk-tb-col tb-col-md">
                                                                <span>{{ $fee->created_at->diffForHumans() }}</span>
-                                                        </div>
+                                                        </div>--}}
                                                         <!--<div class="nk-tb-col nk-tb-col-tools">
                                                                <ul class="nk-tb-actions gx-1">
                                                                       <li>

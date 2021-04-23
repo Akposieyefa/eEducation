@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\Role;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class Student extends Component
 {
@@ -30,6 +31,7 @@ class Student extends Component
     public $profile_mood = false;
     public $modal_id;
 
+    public $admission_no;
     public $fname;
     public $mname = NULL;
     public $lname;
@@ -49,6 +51,7 @@ class Student extends Component
         'editForm' =>  'editForm',
         'showProfile' => 'showProfile'
     ];
+
     protected $queryString = ['isStudentOpen'];
     /**
      * display edit form
@@ -58,6 +61,7 @@ class Student extends Component
         $this->studentId = $id;
         $this->update_mode = true;
         $student = StudentData::with(['user', 'level', 'lga'])->where('id', $this->studentId)->first();
+        $this->admission_no = $student->admission_no;
         $this->fname = $student->fname;
         $this->mname = $student->mname;
         $this->lname = $student->lname;
@@ -78,6 +82,7 @@ class Student extends Component
     public function updateStudent()
     {
         $this->validate([
+            'admission_no' => 'required',
             'fname' => 'required',
             'mname' => 'nullable|string|max:255',
             'lname' => 'required',
@@ -90,8 +95,12 @@ class Student extends Component
             'selectedClass' => 'required',
             'gender' => 'required',
         ]);
+
+        session()->flash('info', 'Please wait...');
+
         $student = StudentData::find($this->studentId);
         $student->update([
+            'admission_no' => $this->admission_no,
             'fname' => $this->fname,
             'mname' => $this->mname,
             'lname' => $this->lname,
@@ -108,11 +117,13 @@ class Student extends Component
                 'email' => $this->email
             ]);
             session()->flash('success', 'Student profile updated successfully');
+            $this->update_mode = false;
+            $this->close();
         } else {
             session()->flash('errMsg', 'Sorry an error occured');
         }
-        $this->update_mode = false;
-        $this->close();
+
+        Session::forget('info');
     }
     /**
      * works like the __construct() function
@@ -166,6 +177,7 @@ class Student extends Component
     public function submit()
     {
         $this->validate([
+            'admission_no' => 'required',
             'fname' => 'required',
             'mname' => 'nullable|string|max:255',
             'lname' => 'required',
@@ -213,6 +225,7 @@ class Student extends Component
             $student = StudentData::create([
                 'user_id' => $user->id,
                 'student_id' => $student_id,
+                'admission_no' => $this->admission_no,
                 'fname' => $this->fname,
                 'mname' => $this->mname,
                 'lname' => $this->lname,
@@ -231,6 +244,7 @@ class Student extends Component
 
             if ($student) {
                 session()->flash('success', 'Student profile created successfully');
+                $this->close();
             } else {
                 User::where('id', $user->id)->forceDelete();
                 session()->flash('errMsg', 'Sorry an error occured');
@@ -239,6 +253,8 @@ class Student extends Component
             DB::rollBack();
             session()->flash('errMsg', 'Sorry an error occured. Try again ' . $e . '');
         }
+
+        Session::forget('info');
     }
 
     public function render()

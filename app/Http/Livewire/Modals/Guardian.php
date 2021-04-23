@@ -12,6 +12,7 @@ use App\Models\GuardainStudent;
 use Intervention\Image\ImageManager;
 use App\Models\Student;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class Guardian extends Component
 {
@@ -89,6 +90,8 @@ class Guardian extends Component
                 'email' => 'required|email|unique:users,email,' . $guardian->user_id,
             ]);
 
+            session()->flash('info', 'Please wait...');
+
             $guardian->update([
                 'fname' => $this->fname,
                 'mname' => $this->mname,
@@ -115,6 +118,8 @@ class Guardian extends Component
             DB::rollBack();
             session()->flash('errMsg', 'Sorry an error occured. Try again');
         }
+
+        Session::forget('info');
     }
     /**
      * open modal
@@ -210,6 +215,8 @@ class Guardian extends Component
             DB::rollBack();
             session()->flash('errMsg', 'Sorry an error occured. Try again');
         }
+
+        Session::forget('info');
     }
 
     public function render()

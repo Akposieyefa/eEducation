@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Modals;
 use Livewire\Component;
 use App\Models\Term as TermData;
 use App\Models\Section;
+use Session;
 
 class Term extends Component
 {
@@ -48,6 +49,10 @@ class Term extends Component
     public function submit()
     {
         $this->validate();
+
+        session()->flash('info', 'Please wait...');
+
+
         $term = TermData::create([
             'section_id' => $this->section_id,
             'name' => $this->name,
@@ -57,9 +62,12 @@ class Term extends Component
         ]);
         if ($term) {
             session()->flash('success', 'Term created successfully');
+            $this->close();
         } else {
             session()->flash('errMsg', 'Sorry an error occured');
         }
+
+        Session::forget('info');
     }
     /**
      * open form modal

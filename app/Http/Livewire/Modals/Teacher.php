@@ -16,6 +16,7 @@ use App\Models\Role;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class Teacher extends Component
 {
@@ -112,6 +113,8 @@ class Teacher extends Component
             $this->validate([
                 'email' => 'required|email|unique:users,email,' . $teacher->user_id,
             ]);
+
+            session()->flash('info', 'Please wait...');
 
             /*if ($teacher->user->email == $this->email) {
                 $this->validate([
@@ -256,8 +259,10 @@ class Teacher extends Component
         } catch (\Throwable $e) {
             //dd($e);
             DB::rollBack();
-            session()->flash('errMsg', 'Sorry an error occured. Try again');
+            session()->flash('errMsg', 'Sorry an error occured. Try again ');
         }
+
+        Session::forget('info');
     }
     /**
      * close form modal

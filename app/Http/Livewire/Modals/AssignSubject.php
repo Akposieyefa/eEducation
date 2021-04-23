@@ -7,6 +7,7 @@ use App\Models\Subject;
 use App\Models\Level;
 use App\Models\LevelSubject;
 use Livewire\WithPagination;
+use Session;
 
 class AssignSubject extends Component
 {
@@ -37,16 +38,18 @@ class AssignSubject extends Component
         $this->validate([
             'level_id' => 'required',
             'subject_id' => 'required|array',
-          ]);
-          
-          foreach($this->subject_id as $subject)
-          {
+        ]);
+
+        session()->flash('info', 'Please wait...');
+
+        foreach ($this->subject_id as $subject) {
             LevelSubject::create([
-                  'level_id' => $this->level_id,
-                  'subject_id' => $subject,
+                'level_id' => $this->level_id,
+                'subject_id' => $subject,
             ]);
-          }
+        }
         session()->flash('success', 'Subject assigned to level successfully...!');
+        Session::forget('info');
     }
     public function render()
     {

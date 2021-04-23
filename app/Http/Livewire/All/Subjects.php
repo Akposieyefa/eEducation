@@ -8,6 +8,7 @@ use App\Exports\SubjectResultSheet;
 use Maatwebsite\Excel\Facades\Excel;
 use Livewire\WithPagination;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class Subjects extends Component
 {
@@ -50,16 +51,36 @@ class Subjects extends Component
 
     public function deleteRecords()
     {
-        $subject = Subject::whereKey($this->checked)->delete();
-        $this->checked = [];
+
+        DB::beginTransaction();
+
+        try {
+            $subject = Subject::whereKey($this->checked)->delete();
+            $this->checked = [];
+            DB::commit();
+        } catch (\Throwable $e) {
+            //dd($e);
+            DB::rollBack();
+            session()->flash('errMsg', 'Sorry an error occured. Try again ');
+        }
     }
     /**
      * delete single record
      */
     public function deleteSingleRecord($subject_id)
     {
-        $subject = Subject::findOrFail($subject_id);
-        $subject->delete();
+
+        DB::beginTransaction();
+
+        try {
+            $subject = Subject::findOrFail($subject_id);
+            $subject->delete();
+            DB::commit();
+        } catch (\Throwable $e) {
+            //dd($e);
+            DB::rollBack();
+            session()->flash('errMsg', 'Sorry an error occured. Try again ');
+        }
     }
 
     /**

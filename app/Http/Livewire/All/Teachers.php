@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Teacher;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class Teachers extends Component
 {
@@ -46,18 +47,37 @@ class Teachers extends Component
      */
     public function deleteRecords()
     {
-        $teacher = Teacher::whereKey($this->checked)->delete();
-        User::whereKey('id', $teacher->user_id)->delete();
-        $this->checked = [];
+
+        DB::beginTransaction();
+
+        try {
+            $teacher = Teacher::whereKey($this->checked)->delete();
+            User::whereKey('id', $teacher->user_id)->delete();
+            $this->checked = [];
+            DB::commit();
+        } catch (\Throwable $e) {
+            //dd($e);
+            DB::rollBack();
+            session()->flash('errMsg', 'Sorry an error occured. Try again ');
+        }
     }
     /**
      * delete single record
      */
     public function deleteSingleRecord($teacher_id)
     {
-        $teacher = Teacher::findOrFail($teacher_id);
-        User::where('id', $teacher->user_id)->delete();
-        $teacher->delete();
+        DB::beginTransaction();
+
+        try {
+            $teacher = Teacher::findOrFail($teacher_id);
+            User::where('id', $teacher->user_id)->delete();
+            $teacher->delete();
+            DB::commit();
+        } catch (\Throwable $e) {
+            //dd($e);
+            DB::rollBack();
+            session()->flash('errMsg', 'Sorry an error occured. Try again ');
+        }
     }
     /**
      * edit teacher record

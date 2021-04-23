@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Student;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\Promotion;
 use App\Exports\StudentExport;
@@ -60,9 +61,19 @@ class Students extends Component
      */
     public function deleteRecords()
     {
-        $student = Student::whereKey($this->checked)->delete();
-        User::whereKey('id', $student->user_id)->delete();
-        $this->checked = [];
+
+        DB::beginTransaction();
+
+        try {
+            $student = Student::whereKey($this->checked)->delete();
+            User::whereKey('id', $student->user_id)->delete();
+            $this->checked = [];
+            DB::commit();
+        } catch (\Throwable $e) {
+            //dd($e);
+            DB::rollBack();
+            session()->flash('errMsg', 'Sorry an error occured. Try again ');
+        }
     }
     /**
      * download excel file
@@ -76,9 +87,18 @@ class Students extends Component
      */
     public function deleteSingleRecord($student_id)
     {
-        $student = Student::findOrFail($student_id);
-        User::where('id', $student->user_id)->delete();
-        $student->delete();
+        DB::beginTransaction();
+
+        try {
+            $student = Student::findOrFail($student_id);
+            User::where('id', $student->user_id)->delete();
+            $student->delete();
+            DB::commit();
+        } catch (\Throwable $e) {
+            //dd($e);
+            DB::rollBack();
+            session()->flash('errMsg', 'Sorry an error occured. Try again ');
+        }
     }
     /**
      * edit record

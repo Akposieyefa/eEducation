@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Modals;
 
 use Livewire\Component;
 use App\Models\Section as SectionData;
+use Session;
 
 class Section extends Component
 {
@@ -37,6 +38,9 @@ class Section extends Component
     public function submit()
     {
         $this->validate();
+
+        session()->flash('info', 'Please wait...');
+
         $section = SectionData::create([
             'name' => $this->name,
             'start_date' => $this->start_date,
@@ -45,9 +49,12 @@ class Section extends Component
         ]);
         if ($section) {
             session()->flash('success', 'Section created successfully');
+            $this->close();
         } else {
             session()->flash('errMsg', 'Sorry an error occured');
         }
+
+        Session::forget('info');
     }
     /**
      * open form modal

@@ -29,6 +29,8 @@
                                    </div>
                                    <div class="modal-body">
                                           <x-alerts.success />
+                                          <x-alerts.error />
+                                          <x-alerts.info />
                                           <div class="form-group row">
                                                  <div class="col-md-12">
                                                         <label class="form-label mr-5">Subject Title <small class="text-danger">*</small></label>

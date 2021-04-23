@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManager;
 use App\Models\Role;
 use App\Models\User;
+use Session;
 
 class Admin extends Component
 {
@@ -68,6 +69,9 @@ class Admin extends Component
     public function updateAdmin()
     {
         $this->validate();
+
+        session()->flash('info', 'Please wait...');
+
         $admin = AdminData::find($this->adminId);
         $admin->update([
             'fname' => $this->fname,
@@ -85,6 +89,7 @@ class Admin extends Component
         } else {
             session()->flash('errMsg', 'Sorry an error occured');
         }
+        Session::forget('info');
         $this->update_mode = false;
         $this->close();
     }
@@ -145,6 +150,8 @@ class Admin extends Component
             DB::rollBack();
             session()->flash('errMsg', 'Sorry an error occured. Try again');
         }
+
+        Session::forget('info');
     }
     /**
      * open form modal

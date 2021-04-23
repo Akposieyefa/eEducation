@@ -7,6 +7,7 @@ use App\Models\Fee as FeeData;
 use App\Models\Section;
 use App\Models\Term;
 use App\Models\Level;
+use Session;
 
 class Fee extends Component
 {
@@ -60,6 +61,9 @@ class Fee extends Component
     public function submit()
     {
         $this->validate();
+
+        session()->flash('info', 'Please wait...');
+
         $term = FeeData::create([
             'amount' => $this->amount,
             'level_id' => $this->level_id,
@@ -71,6 +75,8 @@ class Fee extends Component
         } else {
             session()->flash('errMsg', 'Sorry an error occured');
         }
+
+        Session::forget('info');
     }
     /**
      * open form modal

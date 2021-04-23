@@ -7,6 +7,7 @@ use App\Models\Level;
 use App\Imports\StudentImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Livewire\WithFileUploads;
+use Session;
 
 class BulkStudent extends Component
 {
@@ -28,11 +29,15 @@ class BulkStudent extends Component
             'studentSheet' => 'required',
             'level_id' => 'required'
         ]);
+
+        session()->flash('info', 'Please wait...');
+
         if (!empty($this->studentSheet)) {
             $student = new StudentImport($this->level_id);
             Excel::import($student, $this->studentSheet);
             session()->flash('success', 'Student records uploaded successfully');
         }
+        Session::forget('info');
     }
     public function render()
     {

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Modals;
 use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Session;
 
 class ResetPassword extends Component
 {
@@ -33,6 +34,9 @@ class ResetPassword extends Component
             'password' => 'required',
             'confirm_password' => 'required',
         ]);
+
+        session()->flash('info', 'Please wait...');
+
         if ($this->password != $this->confirm_password) {
             session()->flash('errMsg', 'Sorry the password do not match');
         } else {
@@ -44,11 +48,14 @@ class ResetPassword extends Component
                 ]);
                 if ($reset) {
                     session()->flash('success', 'Password updated successfully');
+                    $this->close();
                 } else {
                     session()->flash('errMsg', 'Sorry an error occured');
                 }
             }
         }
+
+        Session::forget('info');
     }
     /**
      * open form modal

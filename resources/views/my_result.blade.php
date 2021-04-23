@@ -92,7 +92,7 @@
                                                     <h5>MARKS OBTAINED: &nbsp;&nbsp; <span>{{ $marks_obtained }}</span></h5>
                                                 </td>
                                                 <td colspan="2">
-                                                    <h5>AVERAGE: &nbsp;&nbsp; <span>{{ $marks_obtained / $counter  }}</span> </h5>
+                                                    <h5>AVERAGE: &nbsp;&nbsp; <span>{{ round ( ($marks_obtained / $counter), 2)  }}</span> </h5>
                                                 </td>
                                             </tr>
                                             <tr>

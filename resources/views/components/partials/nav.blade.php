@@ -32,12 +32,12 @@
                                                         <li class="chat-item">
                                                             <a class="chat-link" href="{{ route('complains') }}">
                                                                 <div class="chat-media user-avatar">
-                                                                    <span> {{ substr($complain->name, 0,1) }}</span>
+                                                                    <span> {{ substr($complain->title, 0,1) }}</span>
                                                                     <span class="status dot dot-lg dot-gray"></span>
                                                                 </div>
                                                                 <div class="chat-info">
                                                                     <div class="chat-from">
-                                                                        <div class="name">{{$complain->user()->name}}</div>
+                                                                        <div class="name">{{$complain->title}}</div>
                                                                         <span class="time">{{ $complain->created_at->diffForHumans() }}</span>
                                                                     </div>
                                                                     <div class="chat-context">

@@ -23,10 +23,13 @@ function notification()
 
 function complains()
 {
-       return  $complain = Complain::where(
-              'status',
-              NULL
-       )->get();
+       return Complain::where('status', NULL)->get();
+}
+
+function mycomplains()
+{
+       $id = auth()->user()->id;
+       return Complain::where('user_id', $id)->where('status', NULL)->get();
 }
 
 function studentCount()

@@ -20,7 +20,7 @@ class Terms extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-            //$this->selectedTerms = $this->terms->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedTerms = $this->terms->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedTerms = [];
         }

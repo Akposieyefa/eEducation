@@ -13,7 +13,7 @@ class Guardian extends Model
 
     protected $fillable = [
         'user_id','fname', 'mname', 'lname', 'email' ,'occupation','gender','phone','home_address','office_address' ,
-        'passport' 
+        'passport'
     ];
 
     public function user() {
@@ -23,13 +23,30 @@ class Guardian extends Model
     public function getProfileimageAttribute() {
         return $this->passport;
     }
-    
+
     public function getFullnameAttribute() {
         return $this->fname." ". $this->mname." ". $this->lname;
     }
 
     public function students() {
         return $this->hasMany(Student::class);
+    }
+
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('fname', 'like', $term)
+                ->orWhere('mname', 'like', $term)
+                ->orWhere('lname', 'like', $term)
+                ->orWhere('home_address', 'like', $term)
+                ->orWhere('office_address', 'like', $term)
+                ->orWhere('phone', 'like', $term)
+                ->orWhere('occupation', 'like', $term)
+                ->orWhereHas('user', function ($query) use ($term) {
+                    $query->where('email', 'like', $term);
+                });
+        });
     }
 }
 

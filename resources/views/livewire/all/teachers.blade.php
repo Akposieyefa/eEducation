@@ -1,12 +1,12 @@
 <div class="nk-content ">
        <div class="container-fluid">
               <div class="nk-content-inner">
-                     <div class="nk-content-body">     
+                     <div class="nk-content-body">
                             <div class="nk-block">
                                    @livewire('modals.teacher')
                                    <div class="row mb-3" style="border:0px solid red;">
                                           <div class="col-md-3 offset-8">
-                                          <input type="search" class="form-control form-control-sm" placeholder="Type in to Search" />
+                                          <input type="search" wire:model="searchString" class="form-control form-control-sm" placeholder="Type in to Search" />
                                           </div>
                                           <div class="col-md-1"></div>
                                    </div>

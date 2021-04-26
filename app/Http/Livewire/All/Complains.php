@@ -14,13 +14,14 @@ class Complains extends Component
 
     public $selectedComplains = [];
     public $selectAll = false;
+    public $searchString;
     /**
      * update the select all value
      */
     public function updatedSelectAll($value)
     {
         if ($value) {
-            //$this->selectedComplains = $this->complains->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedComplains = $this->complains->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedComplains = [];
         }

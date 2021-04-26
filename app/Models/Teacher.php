@@ -51,4 +51,19 @@ class Teacher extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('fname', 'like', $term)
+                ->orWhere('mname', 'like', $term)
+                ->orWhere('lname', 'like', $term)
+                ->orWhere('teacher_id', 'like', $term)
+                ->orWhere('gender', 'like', $term)
+                ->orWhereHas('user', function ($query) use ($term) {
+                    $query->where('email', 'like', $term);
+                });
+        });
+    }
 }

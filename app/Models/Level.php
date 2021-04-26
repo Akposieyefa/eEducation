@@ -13,7 +13,7 @@ class Level extends Model
     protected $fillable =[
        'name'
     ];
-     
+
     public function students() {
        return $this->hasMany(Student::class);
     }
@@ -24,6 +24,14 @@ class Level extends Model
 
     public function subjects() {
        return $this->belongsToMany(Subject::class);
+    }
+
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('name', 'like', $term);
+        });
     }
 
 }

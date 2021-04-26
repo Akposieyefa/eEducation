@@ -17,4 +17,15 @@ class Notification extends Model
     public function role() {
         return $this->belongsTo(Role::class, 'role_id');
     }
+
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('title', 'like', $term)
+                ->orWhereHas('role', function ($query) use ($term) {
+                    $query->where('name', 'like', $term);
+                });
+        });
+    }
 }

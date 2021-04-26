@@ -17,6 +17,7 @@ class Subjects extends Component
 
     public $selectedSubjects = [];
     public $selectAll = false;
+    public $searchString = "";
 
     /**
      * update the select all value
@@ -24,7 +25,7 @@ class Subjects extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-            //$this->selectedSubjects = $this->subjects->pluck('id')->map(fn ($item) => (string) $item)->toArray();
+            $this->selectedSubjects = $this->subjects->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedSubjects = [];
         }
@@ -43,7 +44,7 @@ class Subjects extends Component
     {
         $userRoles = auth()->user()->roles->pluck('name');
         if ($userRoles[0] == 'Admin') {
-            return Subject::latest()->paginate(10);
+            return Subject::with('level')->search(trim($this->searchString))->latest()->paginate(10);
         } elseif ($userRoles[0] == 'Teacher') {
             return auth()->user()->teacher->level->subjects;
         }

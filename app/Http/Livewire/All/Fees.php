@@ -14,6 +14,7 @@ class Fees extends Component
 
     public $selectedFees = [];
     public $selectAll = false;
+    public $searchString = "";
 
     /**
      * update the select all value
@@ -21,7 +22,7 @@ class Fees extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-            //$this->selectedFees = $this->fees->pluck('id')->map(fn ($item) => (string) $item)->toArray();
+            $this->selectedFees = $this->fees->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedFees = [];
         }
@@ -38,7 +39,7 @@ class Fees extends Component
      */
     public function getFeesProperty()
     {
-        return Fee::with(['section', 'term', 'level'])->latest()->paginate(3);
+        return Fee::with(['section', 'term', 'level'])->search(trim($this->searchString))->latest()->paginate(3);
     }
     /**
      * render the livewire view

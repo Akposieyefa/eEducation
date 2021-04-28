@@ -15,13 +15,14 @@ class Guardians extends Component
 
     public $selectedGuardians = [];
     public $selectAll = false;
+    public $searchString = "";
     /**
      * update the select all value
      */
     public function updatedSelectAll($value)
     {
         if ($value) {
-            //$this->selectedGuardians = $this->guardians->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedGuardians = $this->guardians->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedGuardians = [];
         }
@@ -74,7 +75,7 @@ class Guardians extends Component
      */
     public function getGuardiansProperty()
     {
-        return Guardian::with(['user'])->latest()->paginate(3);
+        return Guardian::with(['user'])->search(trim($this->searchString))->latest()->paginate(3);
     }
     /**
      * edit  record

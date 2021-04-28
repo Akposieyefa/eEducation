@@ -13,6 +13,7 @@ class Sections extends Component
 
     public $selectedSections = [];
     public $selectAll = false;
+    public $searchString = "";
 
     /**
      * update the select all value
@@ -20,7 +21,7 @@ class Sections extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-            //$this->selectedSections = $this->sections->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedSections = $this->sections->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedSections = [];
         }
@@ -37,7 +38,7 @@ class Sections extends Component
      */
     public function getSectionsProperty()
     {
-        return Section::latest()->paginate(3);
+        return Section::search(trim($this->searchString))->latest()->paginate(3);
     }
     /**
      * render the livewire view

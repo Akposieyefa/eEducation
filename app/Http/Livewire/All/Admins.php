@@ -15,6 +15,7 @@ class Admins extends Component
 
     public $selectedAdmins = [];
     public $selectAll = false;
+    public $searchString = "";
 
     /**
      * update the select all value
@@ -22,7 +23,7 @@ class Admins extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-            //$this->selectedAdmins = $this->admins->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedAdmins = $this->admins->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedAdmins = [];
         }
@@ -39,7 +40,7 @@ class Admins extends Component
      */
     public function getAdminsProperty()
     {
-        return Admin::with(['user'])->latest()->paginate(5);
+        return Admin::with(['user'])->search(trim($this->searchString))->latest()->paginate(5);
     }
     /**
      * delete single record

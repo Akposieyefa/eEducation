@@ -25,4 +25,21 @@ class Fee extends Model
     public function level() {
         return $this->belongsTo(Level::class, 'level_id');
     }
+
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('amount', 'like', $term)
+                ->orWhereHas('term', function ($query) use ($term) {
+                    $query->where('name', 'like', $term);
+                })
+                ->orWhereHas('section', function ($query) use ($term) {
+                    $query->where('name', 'like', $term);
+                })
+                ->orWhereHas('level', function ($query) use ($term) {
+                    $query->where('name', 'like', $term);
+                });
+        });
+    }
 }

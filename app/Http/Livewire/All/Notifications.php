@@ -13,13 +13,14 @@ class Notifications extends Component
 
     public $selectedNotifications = [];
     public $selectAll = false;
+    public $searchString = "";
     /**
      * update the select all value
      */
     public function updatedSelectAll($value)
     {
         if ($value) {
-            //$this->selectedNotifications = $this->notifications->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedNotifications = $this->notifications->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedNotifications = [];
         }
@@ -38,7 +39,7 @@ class Notifications extends Component
     {
         $userRoles = auth()->user()->roles->pluck('name');
         if ($userRoles == "Admin") {
-            return Notification::with(['role'])->latest()->paginate(3);
+            return Notification::with(['role'])->search(trim($this->searchString))->latest()->paginate(3);
         } else {
             return Notification::with(['role'])->where('role_id', auth()->user()->roles[0]['name'])->latest()->paginate(3);
         }

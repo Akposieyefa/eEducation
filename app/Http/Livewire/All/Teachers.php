@@ -16,6 +16,7 @@ class Teachers extends Component
     public $selectedTeachers = [];
     public $selectAll = false;
     public $bulkDisabled = true;
+    public $searchString = "";
 
     /**
      * update the select all value
@@ -40,7 +41,7 @@ class Teachers extends Component
      */
     public function getTeachersProperty()
     {
-        return Teacher::with(['level', 'user', 'state', 'lga'])->latest()->paginate(10);
+        return Teacher::with(['level', 'user', 'state', 'lga'])->search(trim($this->searchString))->latest()->paginate(10);
     }
     /**
      *  delete mutiple teachers records

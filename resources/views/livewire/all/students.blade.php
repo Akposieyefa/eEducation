@@ -6,11 +6,11 @@
                                    @livewire('modals.student')
                                    <div class="row mb-3" style="border:0px solid red;">
                                           <div class="col-md-3 offset-8">
-                                          <input type="search" class="form-control form-control-sm" placeholder="Type in to Search" />
+                                          <input type="search" wire:model="searchString" class="form-control form-control-sm" placeholder="Type in to Search" />
                                           </div>
                                           <div class="col-md-1"></div>
                                    </div>
-              
+
                                    <div class="mb-3 nk-tb-list is-separate">
                                           <div class="nk-tb-item nk-tb-head">
                                                  <div class="nk-tb-col nk-tb-col-check">
@@ -105,8 +105,8 @@
                                                                                                   </li>
                                                                                                   @teacher
                                                                                                          <li>
-                                                                                                                <a href="#" 
-                                                                                                                       onclick="return confirm('Are you sure you want to promote this student?') || 
+                                                                                                                <a href="#"
+                                                                                                                       onclick="return confirm('Are you sure you want to promote this student?') ||
                                                                                                                        even.stopImmediatePropagation()" wire:click="promoteStudent({{ $student->id }})">
                                                                                                                        <em class="icon ni ni-plane"></em>
                                                                                                                        <span> Promote</span>

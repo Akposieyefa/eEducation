@@ -22,6 +22,7 @@ class Students extends Component
     public $bulkDisabled = true;
     public $student_id;
 
+    public $searchString = "";
     protected $listeners = ['refreshStudents' => '$refresh'];
 
     /**
@@ -30,7 +31,7 @@ class Students extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-            //$this->selectedStudents = $this->students->pluck('id')->map(fn($item)) => (string) $item)->toArray();
+             $this->selectedStudents = $this->students->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedStudents = [];
         }
@@ -49,7 +50,7 @@ class Students extends Component
     {
         $userRoles = auth()->user()->roles->pluck('name');
         if ($userRoles[0] == 'Admin') {
-            return Student::with(['level', 'user', 'state', 'lga'])->latest()->paginate(10);
+            return Student::with(['level', 'user', 'state', 'lga'])->search(trim($this->searchString))->latest()->paginate(10);
         } elseif ($userRoles[0] == 'Teacher') {
             $level_id = auth()->user()->teacher->level_id;
             return Student::with(['level', 'user', 'state', 'lga'])

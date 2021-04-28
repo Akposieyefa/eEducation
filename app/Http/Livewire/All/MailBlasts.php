@@ -14,13 +14,14 @@ class MailBlasts extends Component
     public $selectedMails = [];
     public $selectAll = false;
     public $bulkDisabled = true;
+    public $searchString;
     /**
      * update the select all value
      */
     public function updatedSelectAll($value)
     {
         if ($value) {
-            //$this->selectedMails = $this->mails->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedMails = $this->mails->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedMails = [];
         }

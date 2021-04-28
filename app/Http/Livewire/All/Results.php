@@ -21,7 +21,7 @@ class Results extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-            //$this->selectedResults = $this->results->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedResults = $this->results->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedResults = [];
         }

@@ -13,6 +13,7 @@ class Arms extends Component
 
     public $selectedArms = [];
     public $selectAll = false;
+    public $searchString;
 
     /**
      * update the select all value
@@ -20,7 +21,7 @@ class Arms extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-            // $this->selectedArms = $this->arms->pluck('id')->map(fn($item) => (string) $item)->toArray();
+             $this->selectedArms = $this->arms->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedArms = [];
         }

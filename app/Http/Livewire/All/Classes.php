@@ -13,6 +13,7 @@ class Classes extends Component
 
     public $selectedClasses = [];
     public $selectAll = false;
+    public $searchString = "";
 
     /**
      * update the select all value
@@ -20,7 +21,7 @@ class Classes extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-            //$this->selectedClasses = $this->classes->pluck('id')->map(fn($item) => (string) $item)->toArray();
+            $this->selectedClasses = $this->classes->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedClasses = [];
         }
@@ -37,7 +38,7 @@ class Classes extends Component
      */
     public function getClassesProperty()
     {
-        return Level::with(['students', 'subjects'])->latest()->paginate(10);
+        return Level::with(['students', 'subjects'])->search(trim($this->searchString))->latest()->paginate(10);
     }
     public function render()
     {

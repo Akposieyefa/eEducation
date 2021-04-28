@@ -25,4 +25,20 @@ class Admin extends Model
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('fname', 'like', $term)
+                ->orWhere('mname', 'like', $term)
+                ->orWhere('lname', 'like', $term)
+                ->orWhere('address', 'like', $term)
+                ->orWhere('phone', 'like', $term)
+                ->orWhere('gender', 'like', $term)
+                ->orWhereHas('user', function ($query) use ($term) {
+                    $query->where('email', 'like', $term);
+                });
+        });
+    }
 }

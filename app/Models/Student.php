@@ -58,7 +58,9 @@ class Student extends Model
         $query->where(function ($query) use ($term) {
             $query->where('fname', 'like', $term)
                 ->orWhere('mname', 'like', $term)
-                ->orWhereHas('lga', function ($query) use ($term) {
+                ->orWhere('lname', 'like', $term)
+                ->orWhere('admission_no', 'like', $term)
+                ->orWhereHas('level', function ($query) use ($term) {
                     $query->where('name', 'like', $term);
                 });
         });

@@ -1,7 +1,7 @@
 <div class="nk-content ">
        <div class="container-fluid">
               <div class="nk-content-inner">
-                     <div class="nk-content-body">            
+                     <div class="nk-content-body">
                             <div class="nk-block">
                                    <div class="row">
                                           <div class="col-8"></div>
@@ -16,7 +16,7 @@
                                    @livewire('modals.subject')
                                    <div class="row mb-3" style="border:0px solid red;">
                                           <div class="col-md-3 offset-8">
-                                          <input type="search" class="form-control form-control-sm" placeholder="Type in to Search" />
+                                          <input type="search" wire:model="searchString" class="form-control form-control-sm" placeholder="Type in to Search" />
                                           </div>
                                           <div class="col-md-1"></div>
                                    </div>
@@ -28,12 +28,12 @@
                                                         </div>
                                                  </div>
                                                  <div class="nk-tb-col">
-                                                        <span class="sub-text">Subject Name</span>                                                        
+                                                        <span class="sub-text">Subject Name</span>
                                                  </div>
                                                  <!--<div class="nk-tb-col"><span class="sub-text">Download Result Template</span></div>-->
                                                  <!--<div class="nk-tb-col tb-col-md"><span class="sub-text">Date</span></div>-->
                                                  <div class="nk-tb-col nk-tb-col-tools">
-                                                        
+
                                                         <ul class="nk-tb-actions gx-1 my-n1">
                                                                <li>
                                                                       <div class="drodown">

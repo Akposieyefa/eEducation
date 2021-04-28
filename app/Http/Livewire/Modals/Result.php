@@ -25,6 +25,8 @@ class Result extends Component
     public $levels;
     public $sessions;
 
+    public $selectedLevel = NULL;
+
     public $term;
     public $resultSheet;
     public $subject_id;
@@ -34,13 +36,22 @@ class Result extends Component
     public function mount()
     {
         //$this->subjects = auth()->user()->teacher->level->subjects;
-        $this->subjects = Subject::all();
+        //$this->subjects = Subject::all();
         //$this->terms = Term::where('status', 'open')->get();
         $this->terms = Term::all();
         $this->levels = Level::all();
+        $this->subjects = collect();
         $this->sessions = Section::all();
     }
 
+    /**
+     * Lifecycle Hooks for selectedState drop down
+     */
+    public function updatedSelectedLevel($id)
+    {
+        $this->subjects = Level::find($id);
+        $this->subjects = $this->subjects->subjects;
+    }
 
     public function submit()
     {

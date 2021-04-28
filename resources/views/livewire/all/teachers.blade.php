@@ -55,7 +55,7 @@
                                                                              <div class="user-info">
                                                                                     <span class="tb-lead">{{ $teacher->fullname }} <span class="ml-1 dot dot-success d-md-none"></span></span>
                                                                                     <span>{{ $teacher->user->email }}</span> <br/>
-                                                                                    <span>{{ $teacher->teacher_id }}</span>
+                                                                                    {{--<span>{{ $teacher->teacher_id }}</span>--}}
                                                                              </div>
                                                                       </div>
                                                                </a>

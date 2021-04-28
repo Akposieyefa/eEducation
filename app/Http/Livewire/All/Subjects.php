@@ -46,7 +46,8 @@ class Subjects extends Component
         if ($userRoles[0] == 'Admin') {
             return Subject::with('level')->search(trim($this->searchString))->latest()->paginate(10);
         } elseif ($userRoles[0] == 'Teacher') {
-            return auth()->user()->teacher->level->subjects;
+            //return auth()->user()->teacher->level->subjects;
+            return Subject::all();
         }
     }
 

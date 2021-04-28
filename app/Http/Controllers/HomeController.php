@@ -12,6 +12,8 @@ use App\Models\Term;
 
 class HomeController extends Controller
 {
+    public $searchString = "";
+
     /**
      * Create a new controller instance.
      *
@@ -76,5 +78,10 @@ class HomeController extends Controller
         $student = Student::findOrFail($id);
         $results = Result::where('student_id', $student->student_id)->where('term_id', activeTermId())->get();
         return view('view_result', compact('results', 'student'));
+    }
+
+    public function getClassesProperty()
+    {
+        return Level::with(['students', 'subjects'])->search(trim($this->searchString))->latest()->paginate(10);
     }
 }

@@ -12,7 +12,7 @@
                                                     <div class="w-100">
                                                         <h4 class="text-center">Welcome 
                                                             {{ (auth()->user()->roles[0]['name'] == 'Admin') ? auth()->user()->admin->fullname : '' }}
-                                                            {{ (auth()->user()->roles[0]['name'] == 'Student') ? auth()->user()->student->fullname : '' }}
+                                                            {{ (auth()->user()->roles[0]['name'] == 'Student') ? auth()->user()->student->fullname. ' ('. auth()->user()->student->admission_no.')' : '' }}
                                                             {{ (auth()->user()->roles[0]['name'] == 'Teacher') ? auth()->user()->teacher->fullname : '' }}
                                                             {{ (auth()->user()->roles[0]['name'] == 'Guardian') ? auth()->user()->guardian->fullname : '' }}
                                                         </h4>
@@ -170,6 +170,12 @@
                                                 </div>
                                             </div>
                                             <div class="nk-tb-list mt-n2">
+                                                {{--<div class="row mb-3" style="border:0px solid red;">
+                                                    <div class="col-md-3 offset-8">
+                                                    <input type="search" wire:model="searchString" class="form-control form-control-sm" placeholder="Type in to Search" />
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                </div>--}}
                                                 <div class="mb-3 nk-tb-list is-separate">
                                                         <div class="nk-tb-item nk-tb-head">
                                                                 <div class="nk-tb-col">

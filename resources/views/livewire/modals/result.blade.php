@@ -23,7 +23,7 @@
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
                                                                                            <label class="form-label">Select Class</label>
-                                                                                           <select name="cars" id="level_id" class="form-control" wire:model="level_id">
+                                                                                           <select name="cars" id="level_id" class="form-control" wire:model="selectedLevel">
                                                                                             <option value="">Select Class</option>
                                                                                                   @foreach($levels as $level)
                                                                                                   <option value="{{ $level->id }}">{{ $level->name }}</option>
@@ -35,14 +35,14 @@
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
                                                                                            <label class="form-label">Select Subject</label>
-                                                                                           <x-forms.select wire:model="selectedClass" name="cars" id="subject_id" class="form-control" wire:model="subject_id">
-                                                                                                  <option value="">Select Subject</option>
-                                                                                                  @if (!is_null($selectedClass))
-                                                                                                         @foreach($subjects as $subject)
-                                                                                                         <option value="{{ $subject->id }}">{{ $subject->name }}</option>
-                                                                                                         @endforeach
-                                                                                                  @endif
-                                                                                           </x-forms.select>
+                                                                                           <select name="cars" id="subject_id" class="form-control" wire:model="subject_id">
+                                                                                            <option value="">Select Subject</option>
+                                                                                                @if(!is_null($selectedLevel))
+                                                                                                  @foreach($subjects as $subject)
+                                                                                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                                                                                  @endforeach
+                                                                                                @endif
+                                                                                           </select>
                                                                                            @error('subject_id') <span class="text-danger">{{ $message }}</span> @enderror
                                                                                     </div>
                                                                              </div>

@@ -139,9 +139,9 @@
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">
-                                        <a href="{{ route('subjects') }}" class="nk-menu-link">
+                                        <a href="{{ route('classes') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-book-read"></em></span>
-                                            <span class="nk-menu-text">Subjects</span>
+                                            <span class="nk-menu-text">Classes</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     <li class="nk-menu-item">

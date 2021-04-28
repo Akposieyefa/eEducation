@@ -53,7 +53,7 @@ class StudentImport implements ToCollection, WithValidation
         $t = time();
 
         $user =  User::create([
-            'email' =>  $row[1],
+            'email' =>  $faker->unique()->safeEmail,
             'password' => Hash::make($row[1]),
         ]);
 

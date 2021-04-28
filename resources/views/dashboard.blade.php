@@ -19,12 +19,12 @@
                                                         <h4 class="text-center mt-3 mb-3">Today's Date is {{ date('F d, Y') }}</h4>
                                                         <div class="fs-20px text-center fw-bold mt-5">
                                                             @student
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                {{--&nbsp;&nbsp;&nbsp;&nbsp;
                                                                     Admission No.: 
                                                                         <span class="badge badge-primary badge-pill fs-20px p-2"> 
                                                                             {{ auth()->user()->student->admission_no  }}
                                                                         </span>
-                                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    &nbsp;&nbsp;&nbsp;&nbsp;--}}
                                                             @endstudent
                                                             Current Session: <span class="badge badge-primary badge-pill badge-outline fs-20px p-2"> {{ activeSection() }}</span>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;

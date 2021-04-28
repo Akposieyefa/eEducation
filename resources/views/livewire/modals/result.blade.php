@@ -35,26 +35,15 @@
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
                                                                                            <label class="form-label">Select Subject</label>
-                                                                                           <select name="cars" id="subject_id" class="form-control" wire:model="subject_id">
-                                                                                            <option value="">Select Subject</option>
-                                                                                            
-                                                                                                  @foreach($subjects as $subject)
-                                                                                                  <option value="{{ $subject->id }}">{{ $subject->name }}</option>
-                                                                                                   @endforeach
-                                                                                           </select>
+                                                                                           <x-forms.select wire:model="selectedClass" name="cars" id="subject_id" class="form-control" wire:model="subject_id">
+                                                                                                  <option value="">Select Subject</option>
+                                                                                                  @if (!is_null($selectedClass))
+                                                                                                         @foreach($subjects as $subject)
+                                                                                                         <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                                                                                         @endforeach
+                                                                                                  @endif
+                                                                                           </x-forms.select>
                                                                                            @error('subject_id') <span class="text-danger">{{ $message }}</span> @enderror
-                                                                                    </div>
-                                                                             </div>
-                                                                             <div class="form-group row">
-                                                                                    <div class="col-md-12">
-                                                                                           <label class="form-label">Select Term</label>
-                                                                                           <select name="cars" id="term" class="form-control" wire:model="term">
-                                                                                            <option value="">Select Term</option>
-                                                                                                  @foreach($terms as $term)
-                                                                                                  <option value="{{ $term->id }}">{{ $term->name }}</option>
-                                                                                                   @endforeach
-                                                                                           </select>
-                                                                                           @error('term') <span class="text-danger">{{ $message }}</span> @enderror
                                                                                     </div>
                                                                              </div>
                                                                              <div class="form-group row">
@@ -69,6 +58,18 @@
                                                                                            @error('session') <span class="text-danger">{{ $message }}</span> @enderror
                                                                                     </div>
                                                                              </div>
+                                                                             <div class="form-group row">
+                                                                                    <div class="col-md-12">
+                                                                                           <label class="form-label">Select Term</label>
+                                                                                           <select name="cars" id="term" class="form-control" wire:model="term">
+                                                                                            <option value="">Select Term</option>
+                                                                                                  @foreach($terms as $term)
+                                                                                                  <option value="{{ $term->id }}">{{ $term->name }}</option>
+                                                                                                   @endforeach
+                                                                                           </select>
+                                                                                           @error('term') <span class="text-danger">{{ $message }}</span> @enderror
+                                                                                    </div>
+                                                                             </div>                                                                             
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
                                                                                            <label class="form-label">Upload Result Sheet</label>

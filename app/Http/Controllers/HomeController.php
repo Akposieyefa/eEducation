@@ -29,7 +29,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $classes = Level::all();
+        return view('dashboard', compact('classes'));
     }
 
     public function profile()

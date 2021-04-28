@@ -13,6 +13,7 @@ use App\Models\Section;
 use App\Models\Student;
 use Livewire\WithFileUploads;
 use App\Imports\SubjectResultUpdate;
+use App\Models\LevelSubject;
 use Illuminate\Support\Facades\DB;
 use Session;
 
@@ -31,14 +32,26 @@ class Result extends Component
     public $level_id;
     public $session;
 
+    public $selectedClass = NULL;
+
     public function mount()
     {
         //$this->subjects = auth()->user()->teacher->level->subjects;
-        $this->subjects = Subject::all();
+        //$this->subjects = Subject::all();
         //$this->terms = Term::where('status', 'open')->get();
+
         $this->terms = Term::all();
         $this->levels = Level::all();
         $this->sessions = Section::all();
+        $this->subjects = collect();
+    }
+
+    public function updatedSelectedClass($class)
+    {
+        if (!is_null($class)) {
+            $this->subjects = Subject::all();
+            //$this->subjects = LevelSubject::where('level_id', $class)->get();
+        }
     }
 
 

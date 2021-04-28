@@ -8,13 +8,19 @@ use Maatwebsite\Excel\Concerns\WithStartRow;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\WithValidation;
 use Faker;
 use App\Helpers\Helpers;
 use App\Models\Role;
+use Illuminate\Support\Facades\DB;
 
-class StudentImport implements ToModel, WithStartRow
+class StudentImport implements ToCollection, WithValidation
 {
     public $level_id;
+
+    use Importable;
 
     public function __construct($level_id)
     {
@@ -27,6 +33,17 @@ class StudentImport implements ToModel, WithStartRow
     {
         return 2;
     }
+
+    public function rules(): array
+    {
+        return [];
+    }
+
+    public function collection(Collection $rows)
+    {
+        $this->data = $rows;
+    }
+
 
     public function model(array $row)
     {

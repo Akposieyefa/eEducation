@@ -30,7 +30,7 @@ class Result extends Component
     public $term;
     public $resultSheet;
     public $subject_id;
-    public $level_id;
+    // public $level_id;
     public $session;
 
     public function mount()
@@ -60,7 +60,7 @@ class Result extends Component
             'resultSheet' => 'required',
             'term' => 'required',
             'subject_id' => 'required',
-            'level_id' => 'required',
+            'selectedLevel' => 'required',
             'session' => 'required',
         ]);
 
@@ -85,7 +85,7 @@ class Result extends Component
 
                     if (count($student) > 0) {
                         $student_id = $student[0]['student_id'];
-                        $resultCheck = SubjectResult::where(['student_id' => $student_id, 'subject_id' => $this->subject_id, 'term_id' => $this->term, 'level_id' => $this->level_id, 'session_id' => $this->session])->get();
+                        $resultCheck = SubjectResult::where(['student_id' => $student_id, 'subject_id' => $this->subject_id, 'term_id' => $this->term, 'level_id' => $this->selectedLevel, 'session_id' => $this->session])->get();
                         if (count($resultCheck) > 0) {
                             //dd('fgdfhdfhfdh');
                             DB::table('results')->where('student_id', $student_id)->update([
@@ -101,7 +101,7 @@ class Result extends Component
                             $result_row->exam_score    =  $records[$i][2];
                             $result_row->term_id = $this->term;
                             $result_row->subject_id = $this->subject_id;
-                            $result_row->level_id = $this->level_id;
+                            $result_row->level_id = $this->selectedLevel;
                             $result_row->session_id = $this->session;
 
                             $result_row->save();

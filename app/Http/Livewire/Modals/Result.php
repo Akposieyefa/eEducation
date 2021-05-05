@@ -116,7 +116,7 @@ class Result extends Component
                         //session()->flash('error', 'No Record found for student  ' . $records[$i][0] . '');
                         //return  'No Record found for student  ' . $records[$i][0] . '';
                         $error =  'No Record found for student  ' . $records[$i][0];
-                        //dd($error);
+                        //dd($error);;
                         session()->flash('errMsg', '' . $error);
                         break;
                     }

@@ -67,7 +67,7 @@ class HomeController extends Controller
         $student = Student::findOrFail($id);
         $results = Result::where('student_id', $student->student_id)->where('session_id', $request->session)->where('term_id', $request->term)->get();
         if (count($results) > 0) {
-            return view('my_result', compact('results', 'student'));
+            return view('my_result', compact('results', 'student', 'request'));
         } else {
             return redirect()->back()->withErrors(['Sorry! Result for the selected session and term is not yet uploaded', 'The Message']);
         }

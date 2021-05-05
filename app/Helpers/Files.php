@@ -12,6 +12,7 @@ use App\Models\Subject;
 use App\Models\Role;
 use App\Models\Section;
 use App\Models\Term;
+use Illuminate\Support\Facades\DB;
 
 function notification()
 {
@@ -84,9 +85,9 @@ function subjectStudentCount($level_id)
        return Student::where('level_id', $level_id)->count();
 }
 
-function getStudentPosition($student_id, $level_id, $term_id)
+function getStudentPosition($student_id, $level_id, $term_id, $session_id)
 {
-       $positions = getClassPositions($level_id, $term_id);
+       $positions = getClassPositions2($level_id, $term_id, $session_id);
        if (is_array($positions)) {
               arsort($positions);
               $cur_position = array_search($student_id, array_keys($positions));
@@ -113,6 +114,29 @@ function getClassPositions($level_id, $term_id)
                      $totalscore = $records[$i]['ca_score'] + $records[$i]['exam_score'];
                      $marks_obtained += $totalscore;
                      $positions[$records[$i]['student_id']] = $marks_obtained;
+              }
+
+              return $positions;
+       }
+
+       return false;
+}
+
+function getClassPositions2($level_id, $term_id, $session_id)
+{
+       $results = DB::table('results')
+              ->select(DB::raw('student_id,  SUM(ca_score + exam_score) AS total, ROUND(SUM(ca_score + exam_score) / COUNT(*), 2) AS avg'))
+              ->where('level_id', '=', $level_id)
+              ->where('term_id', '=', $term_id)
+              ->where('session_id', '=', $session_id)
+              ->groupBy('student_id')
+              ->get()
+              ->toArray();
+       $positions = array();
+       if (count($results) > 0) {
+
+              for ($i = 0; $i < count($results); $i++) {
+                     $positions[$results[$i]->student_id] = $results[$i]->avg;
               }
 
               return $positions;

@@ -98,8 +98,9 @@ class Subjects extends Component
      */
     public function render()
     {
+        $subjects = DB::table('subjects')->orderByRaw('name ASC')->paginate();
         return view('livewire.all.subjects', [
-            'subjects' => $this->subjects
+            'subjects' => $subjects
         ])->extends('layouts.app')->section('content');
     }
 }

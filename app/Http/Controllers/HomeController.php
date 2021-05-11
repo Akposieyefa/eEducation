@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\Term;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -43,6 +44,63 @@ class HomeController extends Controller
     public function feesPayment()
     {
         return view('fees_payment');
+    }
+
+    public function addUnit()
+    {
+        $units = DB::table('units')->select('*')->get();
+        return view('add_unit', compact('units'));
+    }
+
+    public function createUnit(Request $request)
+    {
+        if (strlen($request->unit_name) > 2) {
+            $res = DB::insert('insert into units (name) values (?)', [ucwords($request->unit_name)]);
+
+            //dd($res);
+
+            if ($res) {
+                return redirect()->back()->with('message', 'Unit Successfully Added!');
+            } else {
+                return redirect()->back()->withErrors(['Error! Request not Completed.']);
+            }
+        } else {
+            return redirect()->back()->withErrors(['Error! Please type in a valid unit name']);
+        }
+    }
+
+    public function editUnit(Request $request)
+    {
+        if (strlen($request->unitname) > 2) {
+            $res = DB::update('update units set name = ? where id = ?', [ucwords($request->unitname), $request->unitid]);
+
+            //dd($res);
+
+            if ($res > 0) {
+                return redirect()->back()->with('message', 'Unit Successfully Updated!');
+            } else {
+                return redirect()->back()->withErrors(['Error! Request not Completed.']);
+            }
+        } else {
+            return redirect()->back()->withErrors(['Error! Request Declined']);
+        }
+    }
+
+    public function deleteUnit(Request $request)
+    {
+        if ($request->unitid > 0) {
+            $res = DB::delete('delete from units where id = ?', [$request->unitid]);
+
+            //dd($res);
+
+            if ($res > 0) {
+                return redirect()->back()->with('message', 'Unit Successfully Deleted!');
+            } else {
+                return redirect()->back()->withErrors(['Error! Request not Completed.']);
+            }
+        } else {
+            return redirect()->back()->withErrors(['Error! Request Declined']);
+        }
     }
 
     /**

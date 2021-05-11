@@ -92,7 +92,7 @@ class Result extends Component
                         $resultCheck = SubjectResult::where(['student_id' => $student_id, 'subject_id' => $this->subject_id, 'term_id' => $this->term, 'level_id' => $this->selectedLevel, 'session_id' => $this->session])->get();
                         if (count($resultCheck) > 0) {
                             //dd('fgdfhdfhfdh');
-                            DB::table('results')->where('student_id', $student_id)->update([
+                            DB::table('results')->where(['student_id' => $student_id, 'subject_id' => $this->subject_id, 'term_id' => $this->term, 'level_id' => $this->selectedLevel, 'session_id' => $this->session])->update([
                                 'ca_score'    =>  $records[$i][1],
                                 'exam_score'    =>  $records[$i][2],
                             ]);

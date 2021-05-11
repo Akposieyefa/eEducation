@@ -44,6 +44,26 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @student
+                                        <div class="row g-gs">
+                                            <div class="col-sm-6 col-lg-6 col-xxl-6 offset-3">
+                                                <div class="card">
+                                                    <div class="card-inner">
+                                                        <div class="team">
+                                                            <div class="user-card user-card-s2">
+                                                                <div class="user-info">
+                                                                        <h3 style="color:#006600;"> {{ studentCurrentClass(auth()->user()->student->level_id)  }} </h3>
+                                                                </div>
+                                                            </div>
+                                                            <div class="team-view">
+                                                                <a href="view-result" class="btn btn-round btn-outline-light w-150px"><span>View Result</span></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>   
+                                        </div>
+                                    @endstudent
                                     @admin
                                     <div class="row g-gs">
                                         <div class="col-xxl-4">

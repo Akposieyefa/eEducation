@@ -33,6 +33,18 @@
                                                  </div>
                                           </div>
 
+                                          <div class="form-group row">
+                                                 <div class="col-md-12">
+                                                        <label class="form-label">Select Unit</label>
+                                                        <select name="unit" class="form-control" wire:model="unit">
+                                                               <option value="">Select Unit</option>
+                                                               @foreach($units as $unit)
+                                                                      <option value="{{ $unit->name }}">{{ $unit->name }}</option>
+                                                               @endforeach
+                                                        </select>
+                                                 </div>
+                                          </div>
+
                                           <div class="modal-footer">
                                                  <x-forms.buttons.danger data-dismiss="modal" wire:click="close()">Close</x-forms.buttons.danger>
                                                  <x-forms.buttons.success type="submit">Add</x-forms.buttons.success>

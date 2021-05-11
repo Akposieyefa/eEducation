@@ -61,6 +61,12 @@
                                     </li>--}}
 
                                     <li class="nk-menu-item">
+                                        <a href="{{ route('add-unit') }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-book-read"></em></span>
+                                            <span class="nk-menu-text">Units</span>
+                                        </a>
+                                    </li><!-- .nk-menu-item -->
+                                    <li class="nk-menu-item">
                                         <a href="{{ route('classes') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-property-add"></em></span>
                                             <span class="nk-menu-text">Classes</span>
@@ -137,8 +143,8 @@
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">Complain</span>
                                         </a>
-                                    </li><!-- .nk-menu-item -->
-                                    <li class="nk-menu-item">
+                                    </li><!-- .nk-menu-item -->                                    
+                                     <li class="nk-menu-item">
                                         <a href="{{ route('classes') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-book-read"></em></span>
                                             <span class="nk-menu-text">Classes</span>

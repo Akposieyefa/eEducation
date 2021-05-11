@@ -51,6 +51,7 @@
                                                  </div>
                                           </div><!-- .nk-tb-item -->
                                           @foreach($subjects as $subject)
+
                                           <div class="nk-tb-item">
                                                  <div class="nk-tb-col nk-tb-col-check">
                                                         <div class="custom-control custom-control-sm custom-checkbox notext">

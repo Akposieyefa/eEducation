@@ -16,7 +16,7 @@
                         {{-- dd($pst) --}}
                         <div class="invoice-wrap">
                             <h4 style="text-align:center; color:#1C501C;"><em>DAARUL HADEETHIS SALAFIYYAH NIGERIA</em></h4>
-                            <h5 style="text-align:center; color:#3797DE;">Sheikh Albaniy College of Higher Islamic Studies</h5>
+                            <h5 style="text-align:center; color:#3797DE;">{{ strtoupper($student->level->unit) }}</h5>
                             <table style="width:100%">
                                 <tr>
                                     <td style="text-align: center; vertical-align: middle; width:25%;"><img src="{{ asset('assets/images/dhsn.png') }}" srcset="{{ asset('assets/images/dhsn.png') }}" alt="" style="width:70%; height:70%"></td>
@@ -81,7 +81,8 @@
                                                     $marks_obtained += $totalscore;
                                                 @endphp
                                                 <tr>
-                                                    <td>{{ $result->subject->name }}</td>
+                                                    {{-- <td>$result->subject->name --}}</td>--}}
+                                                    <td>{{ $result->name }}</td>
                                                     <td>{{ $result->ca_score }}</td>
                                                     <td>{{ $result->exam_score }}</td>
                                                     <td>{{ $result->ca_score + $result->exam_score }}</td>

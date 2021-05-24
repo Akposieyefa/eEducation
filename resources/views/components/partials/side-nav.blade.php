@@ -171,13 +171,13 @@
                                         </a>
                                     </li>
                                      <li class="nk-menu-item">
-                                        <a href="{{ "#"/*route('all-payments')*/ }}" class="nk-menu-link">
+                                        <a href="{{ route('all-payments') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">School Fees</span>
                                         </a>
                                     </li>
                                     <li class="nk-menu-item">
-                                        <a href="{{ "#"/*route('fee-payment')*/ }}" class="nk-menu-link">
+                                        <a href="{{ route('fee-payment') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">Fees Payment</span>
                                         </a>

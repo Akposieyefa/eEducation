@@ -123,7 +123,17 @@ class HomeController extends Controller
         $id = auth()->user()->student->id;
 
         $student = Student::findOrFail($id);
-        $results = Result::where('student_id', $student->student_id)->where('session_id', $request->session)->where('term_id', $request->term)->get();
+        //$results = Result::where('student_id', $student->student_id)->where('session_id', $request->session)->where('term_id', $request->term)->get();
+        $results = DB::table('results')
+                    ->join('subjects', 'subjects.id', '=', 'results.subject_id')
+                    ->where('results.student_id', '=', $student->student_id)
+                    ->where('results.session_id', '=', $request->session)
+                    ->where('results.term_id', '=', $request->term)
+                    ->select('*')                    
+                    ->orderBy('subjects.name', 'ASC')
+                    ->get();
+        //dd($results);
+
         if (count($results) > 0) {
             return view('my_result', compact('results', 'student', 'request'));
         } else {

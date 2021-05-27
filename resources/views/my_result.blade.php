@@ -7,7 +7,7 @@
                 <div class="nk-block">
                     <div class="invoice">
                         <div class="invoice-action">
-                            <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-primary" href="#" target="_blank"><em class="icon ni ni-printer-fill"></em></a>
+                            <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-primary" href="./" target="_blank"><em class="icon ni ni-printer-fill"></em></a>
                         </div>
                         @php
                             //$pst = getClassPositions2($student->level->id, $request->term, $request->session);  
@@ -81,7 +81,7 @@
                                                     $marks_obtained += $totalscore;
                                                 @endphp
                                                 <tr>
-                                                    {{-- <td>$result->subject->name --}}</td>--}}
+                                                    {{--<td>{{ $result->subject->name }}</td>--}}
                                                     <td>{{ $result->name }}</td>
                                                     <td>{{ $result->ca_score }}</td>
                                                     <td>{{ $result->exam_score }}</td>
@@ -111,7 +111,7 @@
                                           
                                             <tr>
                                                 <td colspan="6" style="vertical-align: bottom !important; text-align:center;" class="pt-2 pb-2 fs-17px">
-                                                    Promotion Status:  XXXXX
+                                                    Headmaster's/Principal's Remarks:
                                                 </td>
                                             </tr>
 

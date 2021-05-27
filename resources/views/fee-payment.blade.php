@@ -32,14 +32,30 @@
                                                 <div id="dispmsg" role="alert"></div>
                                                  <form id="quickForm" method="post"  action="javascript:void(0)" accept-charset="UTF-8" autocomplete="off">
                                                         @csrf
-                                                        
-                                                        <x-alerts.error />
-                                                               <div class="form-group">
-                                                                      <x-forms.label> <strong>Enter Student Registration Number </strong></x-forms.label>
-                                                                      <x-forms.input type="text" name="student_id" id="student_id" placeholder="Enter Student Registration Number" title="Enter Student Registration Number" />
-                                                                      @error('student_id') <span class="text-danger">{{ $message }}</span> @enderror
-                                                               </div>
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                    <label class="form-label">Select Session</label>
+                                                                    <select name="session_id" id="session" class="form-control">
+                                                                    <option value="">Select Session</option>
+                                                                            @foreach($sessions as $session)
+                                                                            <option value="{{ $session->id }}">{{ $session->name }}</option>
+                                                                            @endforeach
+                                                                    </select>
+                                                                    @error('session') <span class="text-danger">{{ $message }}</span> @enderror
+                                                            </div>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                    <label class="form-label">Select Term</label>
+                                                                    <select name="term_id" id="term" class="form-control">
+                                                                    <option value="">Select Term</option>
+                                                                            @foreach($terms as $term)
+                                                                            <option value="{{ $term->id }}">{{ $term->name }}</option>
+                                                                            @endforeach
+                                                                    </select>
+                                                                    @error('term') <span class="text-danger">{{ $message }}</span> @enderror
+                                                            </div>
+                                                        </div>     
                                                         <div class="card-footer">
                                                                <button type="button" id="btnProceed" class="btn btn-primary">Procced With Payment</button>
                                                         </div>
@@ -87,10 +103,11 @@
             e.preventDefault();
 
             //get user input
-            var student_id = $('#student_id').val();
+            var session = $('#session').val();
+            var term = $('#term').val();
 
-            if(student_id.length < 5){
-                $('#dispmsg').html('<div class="alert alert-danger">Please provide a valid student ID</div>');
+            if(session < 1 || term < 1){
+                $('#dispmsg').html('<div class="alert alert-danger">Please select both term and session</div>');
                 return false;
             }
 
@@ -99,7 +116,7 @@
             $.ajax({
                 url: "{{ route('pay') }}",
                 type: 'POST',
-                data: 'student_id='+student_id,
+                data: '&session_id='+session+'&term_id='+term,
                 dataType: 'json',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -157,8 +174,8 @@
                             })
                             },
                             onClose: function() {
-                            console.log('Window Closed.');
-                            alert('WIndow Closed by User');
+                                alert('WIndow Closed by User');
+                                $('#dispmsg').html("");
                             }
                         });
                         handler.openIframe();

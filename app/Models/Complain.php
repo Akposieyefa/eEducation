@@ -13,10 +13,11 @@ class Complain extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id','title','body','status'
+        'user_id', 'title', 'body', 'status'
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 }

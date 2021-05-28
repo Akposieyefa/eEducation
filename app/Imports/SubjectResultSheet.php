@@ -18,16 +18,18 @@ class SubjectResultSheet  implements ToCollection, WithValidation
     public $term_id;
     public $level_id;
     public $subject_id;
+    public $session_id;
     public $data;
 
     use Importable;
 
 
-    public function __construct($term_id, $subject_id, $level_id)
+    public function __construct($term_id, $subject_id, $level_id, $session_id)
     {
         $this->term_id = $term_id;
         $this->subject_id = $subject_id;
         $this->level_id = $level_id;
+        $this->session_id = $session_id;
     }
     /**
      * @return int

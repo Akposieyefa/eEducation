@@ -67,50 +67,56 @@ class Result extends Component
         if (!empty($this->resultSheet)) {
             //$level = auth()->user()->teacher->level_id;
 
+            //dd($this->selectedLevel);
+
             session()->flash('info', 'Please wait...');
 
-            $import = new SubjectResultSheet($this->term, $this->subject_id, $this->level_id, $this->session);
+            $import = new SubjectResultSheet($this->term, $this->subject_id, $this->selectedLevel, $this->session);
             Excel::import($import, $this->resultSheet);
 
             $records = $import->data;
             $error = '';
             $counter = 1;
 
-            DB::beginTransaction();
 
             try {
+
+                DB::beginTransaction();
 
                 for ($i = 1; $i < count($records); $i++) {
                     $student = Student::where(['admission_no' => $records[$i][0]])->get();
 
                     if (count($student) > 0) {
                         $student_id = $student[0]['student_id'];
+                        $counter++;
                         $resultCheck = SubjectResult::where(['student_id' => $student_id, 'subject_id' => $this->subject_id, 'term_id' => $this->term, 'level_id' => $this->selectedLevel, 'session_id' => $this->session])->get();
                         if (count($resultCheck) > 0) {
                             //dd('fgdfhdfhfdh');
-                            DB::table('results')->where('student_id', $student_id)->update([
+                            DB::table('results')->where(['student_id' => $student_id, 'subject_id' => $this->subject_id, 'term_id' => $this->term, 'level_id' => $this->selectedLevel, 'session_id' => $this->session])->update([
                                 'ca_score'    =>  $records[$i][1],
                                 'exam_score'    =>  $records[$i][2],
                             ]);
                         } else {
+                            if (strlen($records[$i][0]) > 3) {
+                                //dd($student_id);
+                                $result_row =  new SubjectResult;
 
-                            $result_row =  new SubjectResult;
+                                $result_row->student_id = $student_id;
+                                $result_row->ca_score    =  $records[$i][1];
+                                $result_row->exam_score    =  $records[$i][2];
+                                $result_row->term_id = $this->term;
+                                $result_row->subject_id = $this->subject_id;
+                                $result_row->level_id = $this->selectedLevel;
+                                $result_row->session_id = $this->session;
 
-                            $result_row->student_id = $student_id;
-                            $result_row->ca_score    =  $records[$i][1];
-                            $result_row->exam_score    =  $records[$i][2];
-                            $result_row->term_id = $this->term;
-                            $result_row->subject_id = $this->subject_id;
-                            $result_row->level_id = $this->selectedLevel;
-                            $result_row->session_id = $this->session;
-
-                            $result_row->save();
-                            $counter++;
+                                $result_row->save();
+                            }
                         }
                     } else {
                         //session()->flash('error', 'No Record found for student  ' . $records[$i][0] . '');
                         //return  'No Record found for student  ' . $records[$i][0] . '';
                         $error =  'No Record found for student  ' . $records[$i][0];
+                        //dd($error);;
                         session()->flash('errMsg', '' . $error);
                         break;
                     }
@@ -118,16 +124,22 @@ class Result extends Component
 
                 DB::commit();
 
+                session()->flash('success', 'Result uploaded successfully');
+
                 if ($counter == count($records)) {
                     session()->flash('success', 'Result uploaded successfully');
                 } else {
+                    //dd($counter . ' -- ' . count($records));
+                    session()->flash('errMsg', 'Error! Result upload failed.. Try again');
+                    //dd('ok');
                 }
             } catch (\Throwable $e) {
                 DB::rollBack();
-                session()->flash('errMsg', 'Error! Result upload failed. Try again');
+                session()->flash('errMsg', 'Error! Result upload failed. Try again' . $e);
             }
 
             Session::forget('info');
+
 
 
             /*try {

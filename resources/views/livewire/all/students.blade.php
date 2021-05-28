@@ -38,6 +38,8 @@
                                                                                            <!--<li><a href="#" onclick="return confirm('Are you sure you want to delete this...?') || even.stopImmediatePropagation()" wire:click="deleteRecords()" ><em class="icon ni ni-trash"></em><span>Remove Seleted</span></a></li>-->
                                                                                            <li><a href="#" wire:click="exportBulkStudents()"><em class="icon ni ni-shield-star"></em><span>Download</span></a></li>
                                                                                            <li><a href="#" onclick="return confirm('Are you sure you want to promote this students...?') || even.stopImmediatePropagation()" wire:click="promoteMultiStudents()"><em class="icon ni ni-shield-star"></em><span>Promote Students</span></a></li>
+                                                                                           <li><a href="#" wire:click="exportBulkStudents()"><em class="icon ni ni-shield-star"></em><span>Promote Students</span></a></li>
+
                                                                                     </ul>
                                                                              </div>
                                                                       </div>

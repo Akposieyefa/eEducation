@@ -64,18 +64,21 @@ class Complain extends Component
 
         session()->flash('info', 'Please wait...');
 
+        $email = auth()->user()->email;
+
         ComplainData::create([
             'user_id' => auth()->user()->id,
             'title' => $this->title,
-            'body' => $this->body
+            'body' => htmlentities($this->body)
         ]);
 
         $data = array(
+            'name' =>  auth()->user()->fname,
             'title' => $this->title,
             'body' => $this->body,
-            'email' => $this->email
+            'email' => $email
         );
-        Mail::to(auth()->user()->email)->send(new ComplainNotify($data));
+        //Mail::to($email)->send(new ComplainNotify($data));
         session()->flash('success', 'Thanks your complain have been sent successfully');
         Session::forget('info');
         $this->close();

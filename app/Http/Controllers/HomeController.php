@@ -9,9 +9,12 @@ use App\Models\Payment;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\Term;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    public $searchString = "";
+
     /**
      * Create a new controller instance.
      *
@@ -29,7 +32,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $classes = Level::all();
+        return view('dashboard', compact('classes'));
     }
 
     public function profile()
@@ -40,6 +44,63 @@ class HomeController extends Controller
     public function feesPayment()
     {
         return view('fees_payment');
+    }
+
+    public function addUnit()
+    {
+        $units = DB::table('units')->select('*')->get();
+        return view('add_unit', compact('units'));
+    }
+
+    public function createUnit(Request $request)
+    {
+        if (strlen($request->unit_name) > 2) {
+            $res = DB::insert('insert into units (name) values (?)', [ucwords($request->unit_name)]);
+
+            //dd($res);
+
+            if ($res) {
+                return redirect()->back()->with('message', 'Unit Successfully Added!');
+            } else {
+                return redirect()->back()->withErrors(['Error! Request not Completed.']);
+            }
+        } else {
+            return redirect()->back()->withErrors(['Error! Please type in a valid unit name']);
+        }
+    }
+
+    public function editUnit(Request $request)
+    {
+        if (strlen($request->unitname) > 2) {
+            $res = DB::update('update units set name = ? where id = ?', [ucwords($request->unitname), $request->unitid]);
+
+            //dd($res);
+
+            if ($res > 0) {
+                return redirect()->back()->with('message', 'Unit Successfully Updated!');
+            } else {
+                return redirect()->back()->withErrors(['Error! Request not Completed.']);
+            }
+        } else {
+            return redirect()->back()->withErrors(['Error! Request Declined']);
+        }
+    }
+
+    public function deleteUnit(Request $request)
+    {
+        if ($request->unitid > 0) {
+            $res = DB::delete('delete from units where id = ?', [$request->unitid]);
+
+            //dd($res);
+
+            if ($res > 0) {
+                return redirect()->back()->with('message', 'Unit Successfully Deleted!');
+            } else {
+                return redirect()->back()->withErrors(['Error! Request not Completed.']);
+            }
+        } else {
+            return redirect()->back()->withErrors(['Error! Request Declined']);
+        }
     }
 
     /**
@@ -62,9 +123,19 @@ class HomeController extends Controller
         $id = auth()->user()->student->id;
 
         $student = Student::findOrFail($id);
-        $results = Result::where('student_id', $student->student_id)->where('session_id', $request->session)->where('term_id', $request->term)->get();
+        //$results = Result::where('student_id', $student->student_id)->where('session_id', $request->session)->where('term_id', $request->term)->get();
+        $results = DB::table('results')
+                    ->join('subjects', 'subjects.id', '=', 'results.subject_id')
+                    ->where('results.student_id', '=', $student->student_id)
+                    ->where('results.session_id', '=', $request->session)
+                    ->where('results.term_id', '=', $request->term)
+                    ->select('*')                    
+                    ->orderBy('subjects.name', 'ASC')
+                    ->get();
+        //dd($results);
+
         if (count($results) > 0) {
-            return view('my_result', compact('results', 'student'));
+            return view('my_result', compact('results', 'student', 'request'));
         } else {
             return redirect()->back()->withErrors(['Sorry! Result for the selected session and term is not yet uploaded', 'The Message']);
         }
@@ -75,5 +146,10 @@ class HomeController extends Controller
         $student = Student::findOrFail($id);
         $results = Result::where('student_id', $student->student_id)->where('term_id', activeTermId())->get();
         return view('view_result', compact('results', 'student'));
+    }
+
+    public function getClassesProperty()
+    {
+        return Level::with(['students', 'subjects'])->search(trim($this->searchString))->latest()->paginate(10);
     }
 }

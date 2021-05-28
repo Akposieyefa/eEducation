@@ -8,68 +8,179 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Yabacon\Paystack;
 use App\Models\Student;
+use App\Models\Section;
 use App\Models\Fee;
+use App\Models\Level;
+use App\Models\Term;
 use Auth;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
+
+
 
     /**
      * payment form display
      */
     public function  paymentForm()
     {
-        return view('fee-payment');
+        return view('fee-payment')->with('sessions', Section::all())->with('terms', Term::all());
     }
 
     /**
      * @return Application|RedirectResponse|Redirector
      * initialize paystack payment
      */
-    public function initialize()
+    public function initialize_old()
     {
         request()->validate([
             'student_id' => 'required'
         ]);
 
-        $student = Student::where('student_id', request()->student_id)->first();
-        $level = $student->level_id;
+        $student = Student::where('admission_no', request()->student_id)->get()->toArray();
 
-        $fee = Fee::where('level_id', $level)->where('term_id', activeTermId())->first();
+        if (count($student) > 0) {
+            $level_id = $student[0]['level_id'];
 
-        if ($fee) {
-            $amount = $fee->amount;
-            $paymentReference = "VS" . sprintf("%0.9s", str_shuffle(rand(12, 30000) * time()));
+            $fee = Fee::where('level_id', $level_id)->where('term_id', activeTermId())->first();
+            $level = Level::where('id', $level_id)->get()->toArray();
 
-            $tr = PaymentData::create([
-                'student_id' => request()->student_id,
-                'trans_ref' => $paymentReference,
-                'guardian_id' => auth()->user()->guardian->id,
-                'term_id' => activeTermId(),
-                'amount' =>  $amount,
-                'status' => false
-            ]);
+            if ($fee) {
+                $amount = $fee->amount;
+                $paymentReference = "VS" . sprintf("%0.9s", str_shuffle(rand(12, 30000) * time()));
 
-            $payStack = new Paystack('sk_test_2a3345566113793b468c574ea74028fa50c2497d');
-            $trx = $payStack->transaction->initialize(
-                [
-                    'amount' => $amount * 100, /* in kobo */
-                    'email' => auth()->user()->email,
-                    'reference' => $paymentReference,
-                    'callback_url' => "http://127.0.0.1:8000/verify/$paymentReference",
-                    'metadata' => [
-                        'student_id' => request()->student_id,
-                        'reference' => $paymentReference,
+                $tr = PaymentData::create([
+                    'student_id' => $student[0]['student_id'],
+                    'trans_ref' => $paymentReference,
+                    'guardian_id' => auth()->user()->guardian->id,
+                    'term_id' => activeTermId(),
+                    'amount' =>  $amount,
+                    'status' => false
+                ]);
+
+                $current = Carbon::now();
+                $duedate = $current->format('m/d/Y');
+
+                return json_encode(
+                    array(
+                        'status' => 'success',
+                        'message' => 'Successfully verified student',
+                        'amount' => $amount,
+                        'item' => 'Daarul Hadeethis Salafiyyah Nigeria (DHSN) Fees Payment for ' . request()->student_id,
+                        'description' => 'Payment for ' . $level[0]['name'],
+                        'duedate' => $duedate,
+                        'first_name' => '' . $student[0]['fname'],
+                        'email' => '' . auth()->user()->guardian->email,
+                        'phone' => '' . auth()->user()->guardian->phone,
+                        'in_app_reference' => $paymentReference,
                         'transaction_id' => $tr->id,
-                    ],
-                ]
-            );
-            if (!$trx) {
-                exit($trx->data->message);
+                    )
+                );
+
+                /*$payStack = new Paystack('sk_test_2a3345566113793b468c574ea74028fa50c2497d');
+                $trx = $payStack->transaction->initialize(
+                    [
+                        'amount' => $amount * 100,
+                        'email' => auth()->user()->email,
+                        'reference' => $paymentReference,
+                        'callback_url' => "http://127.0.0.1:8000/verify/$paymentReference",
+                        'metadata' => [
+                            'student_id' => request()->student_id,
+                            'reference' => $paymentReference,
+                            'transaction_id' => $tr->id,
+                        ],
+                    ]
+                );
+                if (!$trx) {
+                    exit($trx->data->message);
+                }
+                return redirect($trx->data->authorization_url);*/
+            } else {
+                return json_encode(array('status' => 'error', 'message' => 'Error retrieving fee information. Contact School Administrator'));
+                //return view('fee-payment')->with('error', 'Cannot make payment for this ward. Contact School Administrator');
             }
-            return redirect($trx->data->authorization_url);
         } else {
-            return view('fee-payment')->with('error', 'Cannot make payment for this ward. Contact School Administrator');
+            return json_encode(array('status' => 'error', 'message' => 'Student with Registration Number : ' . request()->student_id . ' not found. Contact School Administrator'));
+        }
+    }
+
+    public function initialize()
+    {
+        request()->validate([
+            'session_id' => 'required',
+            'term_id' => 'required'
+        ]);
+
+        $student = Student::where('admission_no', auth()->user()->student->admission_no)->get()->toArray();
+
+        if (count($student) > 0) {
+            $level_id = $student[0]['level_id'];
+
+            $fee = Fee::where('level_id', $level_id)->where('term_id', request()->term_id)->where('section_id', request()->session_id)->first();
+            $level = Level::where('id', $level_id)->get()->toArray();
+
+            if ($fee) {
+                //$fee_paid = PaymentData::where('student_id', $student[0]['student_id'])->where('term_id', request()->term_id)->where('section_id', request()->session_id)->first();
+                $fee_paid = PaymentData::where('student_id', $student[0]['student_id'])->where('term_id', request()->term_id)->where('status', '1')->first();
+                if (!$fee_paid) {
+                    $amount = $fee->amount;
+                    $paymentReference = "VS" . sprintf("%0.9s", str_shuffle(rand(12, 30000) * time()));
+
+                    $tr = PaymentData::create([
+                        'student_id' => $student[0]['student_id'],
+                        'trans_ref' => $paymentReference,
+                        'term_id' => activeTermId(),
+                        'amount' =>  $amount,
+                        'status' => false
+                    ]);
+
+                    $current = Carbon::now();
+                    $duedate = $current->format('m/d/Y');
+
+                    return json_encode(
+                        array(
+                            'status' => 'success',
+                            'message' => 'Successfully verified student',
+                            'amount' => $amount,
+                            'item' => 'Daarul Hadeethis Salafiyyah Nigeria (DHSN) Fees Payment for ' . request()->student_id,
+                            'description' => 'Payment for ' . $level[0]['name'],
+                            'duedate' => $duedate,
+                            'first_name' => '' . $student[0]['fname'],
+                            'email' => 'salisugaya@gmail.com',
+                            'phone' => '07036890546',
+                            'in_app_reference' => $paymentReference,
+                            'transaction_id' => $tr->id,
+                        )
+                    );
+                } else {
+                    return json_encode(array('status' => 'error', 'message' => 'School Fees for selected session and term has been paid already'));
+                }
+
+                /*$payStack = new Paystack('sk_test_2a3345566113793b468c574ea74028fa50c2497d');
+                $trx = $payStack->transaction->initialize(
+                    [
+                        'amount' => $amount * 100,
+                        'email' => auth()->user()->email,
+                        'reference' => $paymentReference,
+                        'callback_url' => "http://127.0.0.1:8000/verify/$paymentReference",
+                        'metadata' => [
+                            'student_id' => request()->student_id,
+                            'reference' => $paymentReference,
+                            'transaction_id' => $tr->id,
+                        ],
+                    ]
+                );
+                if (!$trx) {
+                    exit($trx->data->message);
+                }
+                return redirect($trx->data->authorization_url);*/
+            } else {
+                return json_encode(array('status' => 'error', 'message' => 'Error retrieving fee information. Contact School Administrator'));
+                //return view('fee-payment')->with('error', 'Cannot make payment for this ward. Contact School Administrator');
+            }
+        } else {
+            return json_encode(array('status' => 'error', 'message' => 'Student with Registration Number : ' . auth()->user()->student->admission_no . ' not found. Contact School Administrator'));
         }
     }
 
@@ -81,9 +192,10 @@ class PaymentController extends Controller
     public function verify($reference)
     {
         if (!$reference) {
-            die('No reference supplied');
+            return json_encode(array('status' => 'error', 'message' => 'Error Verifying Transaction.'));
+            //die('No reference supplied');
         }
-        $payStack = new Paystack('sk_test_2a3345566113793b468c574ea74028fa50c2497d');
+        /*$payStack = new Paystack('sk_test_2a3345566113793b468c574ea74028fa50c2497d');
         $trx = $payStack->transaction->verify([
             'reference' => $reference
         ]);
@@ -91,14 +203,15 @@ class PaymentController extends Controller
         if (!$trx->data->status = "success") {
             exit($trx->message);
         }
-        $trans_ref = $trx->data->metadata->reference;
+        $trans_ref = $trx->data->metadata->reference;*/
 
-        PaymentData::where('trans_ref', $trans_ref)
+        PaymentData::where('trans_ref', $reference)
             ->where('guardian_id', auth()->user()->guardian->id)
             ->update([
-                'status' => true,
+                'status' => 1,
             ]);
-        return redirect(url('verify-confirmed'));
+        return json_encode(array('status' => 'success', 'message' => 'Transaction Successfull.', 'url' => url('verify-confirmed')));
+        //return redirect(url('verify-confirmed'));
     }
 
 
@@ -107,7 +220,7 @@ class PaymentController extends Controller
         $userRoles = auth()->user()->roles->pluck('name');
         if ($userRoles[0] == 'Admin') {
             $payments = PaymentData::where('term_id', activeTermId())->get();
-        }elseif ($userRoles[0] == 'Guardian') {
+        } elseif ($userRoles[0] == 'Guardian') {
             $payments = PaymentData::where('guardian_id', auth()->user()->guardian->id)->get();
         }
         return view('fees_payment', compact('payments'));

@@ -15,9 +15,9 @@
                                                             </div>
                                                             <!-- /.card-header -->
                                                             <div class="card-body">
-                                                                   <x-alerts.success />
-                                                                    <x-alerts.error />
-                                                                    <x-alerts.info />
+                                                                      <x-alerts.success />
+                                                                      <x-alerts.error />
+                                                                      <x-alerts.info_status />
 
                                                                    <form wire:submit.prevent="submit">
                                                                           <div class="form-group row">

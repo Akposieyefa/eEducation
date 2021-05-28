@@ -1,11 +1,13 @@
 <div>
        <div class="row mt-3 mb-5">
               <div class="col-9"><h3> List of {{ "Classes" }} </h3></div>
+              @admin
               <div class="col-3">
                      <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormClassModal')">
                             <em class="ni ni-plus"></em> &nbsp;&nbsp; Add New Class
                      </x-forms.buttons.success>
               </div>
+              @endadmin
        </div>
        <!-- Modal -->
        @if($isCreateClasseOpen)
@@ -28,6 +30,18 @@
                                                         <label class="form-label mr-5">Class Name <small class="text-danger">*</small></label>
                                                         <x-forms.input type="text" wire:model="name" placeholder="Enter Class Name" title="Enter Class Name" />
                                                         @error('name') <span class="text-danger">{{ $message }}</span> @enderror
+                                                 </div>
+                                          </div>
+
+                                          <div class="form-group row">
+                                                 <div class="col-md-12">
+                                                        <label class="form-label">Select Unit</label>
+                                                        <select name="unit" class="form-control" wire:model="unit">
+                                                               <option value="">Select Unit</option>
+                                                               @foreach($units as $unit)
+                                                                      <option value="{{ $unit->name }}">{{ $unit->name }}</option>
+                                                               @endforeach
+                                                        </select>
                                                  </div>
                                           </div>
 

@@ -48,18 +48,6 @@
                                                                              </div>
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
-                                                                                           <label class="form-label">Select Term</label>
-                                                                                           <select name="cars" id="term" class="form-control" wire:model="term">
-                                                                                            <option value="">Select Term</option>
-                                                                                                  @foreach($terms as $term)
-                                                                                                  <option value="{{ $term->id }}">{{ $term->name }}</option>
-                                                                                                   @endforeach
-                                                                                           </select>
-                                                                                           @error('term') <span class="text-danger">{{ $message }}</span> @enderror
-                                                                                    </div>
-                                                                             </div>
-                                                                             <div class="form-group row">
-                                                                                    <div class="col-md-12">
                                                                                            <label class="form-label">Select Session</label>
                                                                                            <select name="cars" id="session" class="form-control" wire:model="session">
                                                                                             <option value="">Select Session</option>
@@ -70,6 +58,18 @@
                                                                                            @error('session') <span class="text-danger">{{ $message }}</span> @enderror
                                                                                     </div>
                                                                              </div>
+                                                                             <div class="form-group row">
+                                                                                    <div class="col-md-12">
+                                                                                           <label class="form-label">Select Term</label>
+                                                                                           <select name="cars" id="term" class="form-control" wire:model="term">
+                                                                                            <option value="">Select Term</option>
+                                                                                                  @foreach($terms as $term)
+                                                                                                  <option value="{{ $term->id }}">{{ $term->name }}</option>
+                                                                                                   @endforeach
+                                                                                           </select>
+                                                                                           @error('term') <span class="text-danger">{{ $message }}</span> @enderror
+                                                                                    </div>
+                                                                             </div>                                                                             
                                                                              <div class="form-group row">
                                                                                     <div class="col-md-12">
                                                                                            <label class="form-label">Upload Result Sheet</label>

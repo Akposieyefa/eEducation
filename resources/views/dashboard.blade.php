@@ -11,17 +11,20 @@
                                                 <div class="card-inner">
                                                     <div class="w-100">
                                                         <h4 class="text-center">Welcome 
-                                                            {{ (auth()->user()->roles[0]['name'] == 'Student') ? auth()->user()->student->fullname : auth()->user()->roles[0]['name'] }}
+                                                            {{ (auth()->user()->roles[0]['name'] == 'Admin') ? auth()->user()->admin->fullname : '' }}
+                                                            {{ (auth()->user()->roles[0]['name'] == 'Student') ? auth()->user()->student->fullname. ' ('. auth()->user()->student->admission_no.')' : '' }}
+                                                            {{ (auth()->user()->roles[0]['name'] == 'Teacher') ? auth()->user()->teacher->fullname : '' }}
+                                                            {{ (auth()->user()->roles[0]['name'] == 'Guardian') ? auth()->user()->guardian->fullname : '' }}
                                                         </h4>
                                                         <h4 class="text-center mt-3 mb-3">Today's Date is {{ date('F d, Y') }}</h4>
                                                         <div class="fs-20px text-center fw-bold mt-5">
                                                             @student
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                {{--&nbsp;&nbsp;&nbsp;&nbsp;
                                                                     Admission No.: 
                                                                         <span class="badge badge-primary badge-pill fs-20px p-2"> 
                                                                             {{ auth()->user()->student->admission_no  }}
                                                                         </span>
-                                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    &nbsp;&nbsp;&nbsp;&nbsp;--}}
                                                             @endstudent
                                                             Current Session: <span class="badge badge-primary badge-pill badge-outline fs-20px p-2"> {{ activeSection() }}</span>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -41,6 +44,26 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @student
+                                        <div class="row g-gs">
+                                            <div class="col-sm-6 col-lg-6 col-xxl-6 offset-3">
+                                                <div class="card">
+                                                    <div class="card-inner">
+                                                        <div class="team">
+                                                            <div class="user-card user-card-s2">
+                                                                <div class="user-info">
+                                                                        <h3 style="color:#006600;"> {{ studentCurrentClass(auth()->user()->student->level_id)  }} </h3>
+                                                                </div>
+                                                            </div>
+                                                            <div class="team-view">
+                                                                <a href="view-result" class="btn btn-round btn-outline-light w-150px"><span>View Result</span></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>   
+                                        </div>
+                                    @endstudent
                                     @admin
                                     <div class="row g-gs">
                                         <div class="col-xxl-4">
@@ -157,7 +180,7 @@
                                     @endadmin
 
                                     @teacher
-                                    {{--<div class="col-xxl-12">
+                                    <div class="col-xxl-12">
                                         <div class="card card-full">
                                             <div class="card-inner">
                                                 <div class="card-title-group">
@@ -167,40 +190,26 @@
                                                 </div>
                                             </div>
                                             <div class="nk-tb-list mt-n2">
+                                                {{--<div class="row mb-3" style="border:0px solid red;">
+                                                    <div class="col-md-3 offset-8">
+                                                    <input type="search" wire:model="searchString" class="form-control form-control-sm" placeholder="Type in to Search" />
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                </div>--}}
                                                 <div class="mb-3 nk-tb-list is-separate">
                                                         <div class="nk-tb-item nk-tb-head">
-                                                                <div class="nk-tb-col nk-tb-col-check">
-                                                                        <div class="custom-control custom-control-sm custom-checkbox notext">
-                                                                            <input type="checkbox" class="custom-control" wire:model="selectAll">
-                                                                        </div>
+                                                                <div class="nk-tb-col">
+                                                                        <span class="sub-text">S/N </span>
                                                                 </div>
                                                                 <div class="nk-tb-col"><span class="sub-text">Class </span></div>
                                                                 <div class="nk-tb-col tb-col-lg"><span class="sub-text">Students</span></div>
                                                                 <div class="nk-tb-col tb-col-lg"><span class="sub-text">Subjects</span></div>
-                                                                <!--<div class="nk-tb-col tb-col-md"><span class="sub-text">Date Created</span></div>-->
-                                                                <div class="nk-tb-col nk-tb-col-tools">
-                                                                        <ul class="nk-tb-actions gx-1 my-n1">
-                                                                            <li>
-                                                                                    <div class="drodown">
-                                                                                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                                                    <ul class="link-list-opt no-bdr">
-                                                                                                        <li><a href="#"><em class="icon ni ni-trash"></em><span>Remove Seleted</span></a></li>
-                                                                                                    </ul>
-                                                                                            </div>
-                                                                                    </div>
-                                                                            </li>
-                                                                        </ul>
-                                                                </div>
-                                                        </div><!-- .nk-tb-item -->
+                                                       </div><!-- .nk-tb-item -->
                                                         @foreach($classes as $class)
                                                                 <div class="nk-tb-item">
-                                                                        <div class="nk-tb-col nk-tb-col-check">
-                                                                        <div class="custom-control custom-control-sm custom-checkbox notext">
-                                                                            <input type="checkbox" class="custom-control" wire:model="selectedClasses" value="{{ $class->id }}">
-                                                                            <label class="custom-control"></label>
+                                                                        <div class="nk-tb-col ">
+                                                                            {{ $loop->index + 1 }}
                                                                         </div>
-                                                                </div>
                                                                         <div class="nk-tb-col">
                                                                             <a href="#">
                                                                                     <div class="user-card">
@@ -216,29 +225,12 @@
                                                                         <div class="nk-tb-col tb-col-mb">
                                                                             <span class="tb-amount">{{ $class->subjects->count() }}</span>
                                                                         </div>
-                                                                        <!--<div class="nk-tb-col tb-col-md">
-                                                                            <span>{{ $class->created_at->diffForHumans() }}</span>
-                                                                        </div>-->
-                                                                        <div class="nk-tb-col nk-tb-col-tools">
-                                                                            <ul class="nk-tb-actions gx-1">
-                                                                                    <li>
-                                                                                            <div class="drodown">
-                                                                                                    <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                                                                        <ul class="link-list-opt no-bdr">
-                                                                                                                <li><a href="#"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
-                                                                                                        </ul>
-                                                                                                    </div>
-                                                                                            </div>
-                                                                                    </li>
-                                                                            </ul>
-                                                                        </div>
                                                                 </div><!-- .nk-tb-item -->
                                                         @endforeach
                                                 </div><!-- .nk-tb-list -->
                                             </div>
                                         </div><!-- .card -->
-                                    </div>--}}
+                                    </div>
                                     @endteacher
 
                                     @guardian

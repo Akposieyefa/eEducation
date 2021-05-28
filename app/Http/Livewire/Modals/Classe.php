@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Modals;
 use Livewire\Component;
 use App\Models\Level;
 use Session;
+use Illuminate\Support\Facades\DB;
 
 class Classe extends Component
 {
@@ -13,6 +14,7 @@ class Classe extends Component
     public $modal_id;
 
     public $name;
+    public $unit;
 
     protected $listeners = [
         'showFormClassModal' => 'open',
@@ -36,13 +38,15 @@ class Classe extends Component
     {
 
         $this->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'unit' => 'required'
         ]);
 
         session()->flash('info', 'Please wait...');
 
         $class = Level::create([
-            'name' => $this->name
+            'name' => $this->name,
+            'unit' => $this->unit
         ]);
         if ($class) {
             session()->flash('success', 'Class created successfully');
@@ -73,6 +77,7 @@ class Classe extends Component
 
     public function render()
     {
-        return view('livewire.modals.classe');
+        $units = DB::table('units')->select('*')->get();
+        return view('livewire.modals.classe', compact('units'));
     }
 }

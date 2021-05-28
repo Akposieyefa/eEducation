@@ -8,30 +8,32 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Level extends Model
 {
-    use HasFactory;
+   use HasFactory;
 
-    protected $fillable =[
-       'name'
-    ];
+   protected $fillable = [
+      'name', 'unit'
+   ];
 
-    public function students() {
-       return $this->hasMany(Student::class);
-    }
+   public function students()
+   {
+      return $this->hasMany(Student::class);
+   }
 
-    public function teachers() {
-       return $this->belongsToMany(Teacher::class);
-    }
+   public function teachers()
+   {
+      return $this->belongsToMany(Teacher::class);
+   }
 
-    public function subjects() {
-       return $this->belongsToMany(Subject::class);
-    }
+   public function subjects()
+   {
+      return $this->belongsToMany(Subject::class);
+   }
 
-    public function scopeSearch($query, $term)
-    {
-        $term = "%$term%";
-        $query->where(function ($query) use ($term) {
-            $query->where('name', 'like', $term);
-        });
-    }
-
+   public function scopeSearch($query, $term)
+   {
+      $term = "%$term%";
+      $query->where(function ($query) use ($term) {
+         $query->where('name', 'like', $term);
+      });
+   }
 }

@@ -129,6 +129,27 @@ class Students extends Component
         }
         session()->flash('success', 'Student have been promoted successfully');
     }
+
+    public function promoteMultiStudents()
+    {
+        $data = Student::whereKey($this->checked)->get();
+        foreach ($data as $key) {
+            $current_level = $key->level_id;
+            $promote = Promotion::create([
+                'student_id' => $key->student_id,
+                'from' => $current_level,
+                'to'  => $current_level + 1,
+                'section_id' => activeSectionId(),
+                'teacher_id' => auth()->user()->teacher->teacher_id
+            ]);
+            if ($promote) {
+                $update = $data->update([
+                    'level_id' => $key->level_id + 1
+                ]);
+            }
+        }
+        session()->flash('success', 'Students have been promoted successfully');
+    }
     /**
      * render the students livewire view
      */

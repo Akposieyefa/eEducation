@@ -46,6 +46,7 @@
                                                         </ul>
                                                  </div>
                                           </div><!-- .nk-tb-item -->
+                                          @admin 
                                           @foreach($guardians as $guardian)
                                                  <div class="nk-tb-item">
                                                         <div class="nk-tb-col nk-tb-col-check">
@@ -110,6 +111,76 @@
                                           @endforeach
                                    </div><!-- .nk-tb-list -->
                                    {{ $guardians->links() }}
+                                @endadmin
+                                @student
+                                <div class="nk-block">
+                                    <div class="nk-data data-list">
+                                        <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                                            <div class="data-col">
+                                                <span class="data-label">Full Name</span>
+                                                <span class="data-value"></span>
+                                            </div>
+                                            <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                        </div><!-- data-item -->
+                                        <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                                            <div class="data-col">
+                                                <span class="data-label">Gender</span>
+                                                <span class="data-value">{{ auth()->user()->student  }}</span>
+                                            </div>
+                                            <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                        </div><!-- data-item -->
+                                        <div class="data-item">
+                                            <div class="data-col">
+                                                <span class="data-label">Email</span>
+                                                <span class="data-value">{{ auth()->user() }}</span>
+                                            </div>
+                                            <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
+                                        </div><!-- data-item -->
+                                        <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                                            <div class="data-col">
+                                                <span class="data-label">Phone Number</span>
+                                                <span class="data-value text-soft">{{ auth()->user() }}</span>
+                                            </div>
+                                            <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                        </div><!-- data-item -->
+                                        <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                                            <div class="data-col">
+                                                <span class="data-label">Occupation</span>
+                                                <span class="data-value">{{ auth()->user() }}</span>
+                                            </div>
+                                            <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                        </div><!-- data-item -->
+                                        <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                                            <div class="data-col">
+                                                <span class="data-label">Home Address</span>
+                                                <span class="data-value">{{ auth()->user()  }}</span>
+                                            </div>
+                                            <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                        </div><!-- data-item -->
+                                        <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                                            <div class="data-col">
+                                                <span class="data-label">Office Address</span>
+                                                <span class="data-value">{{  auth()->user() }}</span>
+                                            </div>
+                                            <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                        </div><!-- data-item -->
+                                        <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                                            <div class="data-col">
+                                                <span class="data-label">Number of Ward</span>
+                                                <span class="data-value">{{auth()->user() }}</span>
+                                            </div>
+                                            <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                        </div><!-- data-item -->
+                                        <!--<div class="data-item" data-toggle="modal" data-target="#profile-edit" data-tab-target="#address">
+                                            <div class="data-col">
+                                                <span class="data-label">Created Date</span>
+                                                <span class="data-value">{{ auth()->user() }}</span>
+                                            </div>
+                                            <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                        </div>--><!-- data-item -->
+                                    </div><!-- data-list -->
+                                </div><!-- .nk-block -->
+                                @endstudent
                             </div><!-- .nk-block -->
                      </div>
               </div>

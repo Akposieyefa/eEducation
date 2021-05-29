@@ -143,7 +143,7 @@
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
                                             <span class="nk-menu-text">Complain</span>
                                         </a>
-                                    </li><!-- .nk-menu-item -->                                    
+                                    </li><!-- .nk-menu-item -->
                                      <li class="nk-menu-item">
                                         <a href="{{ route('classes') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-book-read"></em></span>
@@ -202,6 +202,12 @@
                                             <span class="nk-menu-text">Fees Payment</span>
                                         </a>
                                     </li>
+                                    <li class="nk-menu-item">
+                                        <a href="{{ route('guardians') }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-user-check"></em></span>
+                                            <span class="nk-menu-text">Guardians</span>
+                                        </a>
+                                    </li><!-- .nk-menu-item -->
                                     {{--<li class="nk-menu-item">
                                         <a href="{{ route('view-result', auth()->user()->student->id) }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>

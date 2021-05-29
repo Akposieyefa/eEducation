@@ -7,6 +7,7 @@ use App\Models\Guardian;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
+use App\Models\Student;
 
 class Guardians extends Component
 {
@@ -75,7 +76,8 @@ class Guardians extends Component
      */
     public function getGuardiansProperty()
     {
-        return Guardian::with(['user'])->search(trim($this->searchString))->latest()->paginate(3);
+       
+        return Guardian::with(['user'])->search(trim($this->searchString))->latest()->paginate(10);
     }
     /**
      * edit  record

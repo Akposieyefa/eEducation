@@ -125,17 +125,50 @@ class HomeController extends Controller
         $student = Student::findOrFail($id);
         //$results = Result::where('student_id', $student->student_id)->where('session_id', $request->session)->where('term_id', $request->term)->get();
         $results = DB::table('results')
-                    ->join('subjects', 'subjects.id', '=', 'results.subject_id')
-                    ->where('results.student_id', '=', $student->student_id)
-                    ->where('results.session_id', '=', $request->session)
-                    ->where('results.term_id', '=', $request->term)
-                    ->select('*')                    
-                    ->orderBy('subjects.name', 'ASC')
-                    ->get();
+            ->join('subjects', 'subjects.id', '=', 'results.subject_id')
+            ->where('results.student_id', '=', $student->student_id)
+            ->where('results.session_id', '=', $request->session)
+            ->where('results.term_id', '=', $request->term)
+            ->select('*')
+            ->orderBy('subjects.name', 'ASC')
+            ->get();
         //dd($results);
 
         if (count($results) > 0) {
             return view('my_result', compact('results', 'student', 'request'));
+        } else {
+            return redirect()->back()->withErrors(['Sorry! Result for the selected session and term is not yet uploaded', 'The Message']);
+        }
+    }
+
+    public function adminViewResult()
+    {
+        $sessions = Section::all();
+        $terms = Term::all();
+        $levels = Level::all();
+
+        return view('admin_view_result', compact('sessions', 'terms', 'levels'));
+    }
+
+    public function adminGetStudentResult(Request $request)
+    {
+        //$results = Result::where('student_id', $student->student_id)->where('session_id', $request->session)->where('term_id', $request->term)->get();
+
+        $results = DB::table('results')
+            ->join('subjects', 'subjects.id', '=', 'results.subject_id')
+            ->join('students', 'students.student_id', '=', 'results.student_id')
+            ->join('levels', 'levels.id', '=', 'results.level_id')
+            ->where('results.session_id', '=', $request->session)
+            ->where('results.term_id', '=', $request->term)
+            ->where('results.level_id', '=', $request->level)
+            ->select('*')
+            ->orderBy('students.fname', 'ASC')
+            ->get();
+
+        //dd($results);
+
+        if (count($results) > 0) {
+            return view('admin_result', compact('results', 'request'));
         } else {
             return redirect()->back()->withErrors(['Sorry! Result for the selected session and term is not yet uploaded', 'The Message']);
         }

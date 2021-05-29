@@ -145,9 +145,14 @@ function getClassPositions2($level_id, $term_id, $session_id)
        return false;
 }
 
-function activeSection()
+function activeSection($session = '0')
 {
        $sections = Section::where('status', 'open')->get();
+
+       if ($session != 0) {
+              $sections = Section::where('id', $session)->get();
+       }
+
        foreach ($sections as $section) {
               return $name = $section->name;
        }
@@ -168,9 +173,14 @@ function activeTermId()
        }
 }
 
-function activeTerm()
+function activeTerm($term = '0')
 {
        $terms = Term::where('status', 'open')->get();
+
+       if ($term != 0) {
+              $terms = Term::where('id', $term)->get();
+       }
+
        foreach ($terms as $term) {
               return $name = $term->name;
        }

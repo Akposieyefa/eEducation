@@ -201,7 +201,7 @@ class Guardian extends Component
 
 
             if ($guardian) {
-                $student = Student::where('student_id', $this->student_id)->update([
+                $student = Student::where('admission_no', $this->student_id)->update([
                     'guardian_id' => $guardian->id
                 ]);
                 DB::commit();

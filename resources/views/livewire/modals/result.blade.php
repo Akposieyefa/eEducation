@@ -5,6 +5,16 @@
                             <!-- Main content -->
                             <section class="content">
                                    <div class="container-fluid"><br>
+                                          <div class="mt-3 mb-5 row">
+                                                 <div class="col-10"></div>
+                                                 @admin
+                                                        <div class="col-2">
+                                                               <a href="{{ route('admin/view-result') }}" class="btn btn-success">
+                                                                      <em class="ni ni-plus"></em> &nbsp;&nbsp;View Results
+                                                               </a>
+                                                        </div>
+                                                 @endadmin
+                                          </div>
                                           <div class="row">
                                                  <!-- left column -->
                                                  <div class="col-md-12">

@@ -155,7 +155,19 @@
                                             <span class="nk-menu-icon"><em class="icon ni ni-server-fill"></em></span>
                                             <span class="nk-menu-text">Results</span>
                                         </a>
-                                    </li><!-- .nk-menu-item -->
+                                    </li>
+                                    <li class="nk-menu-item">
+                                        <a href="{{ route('staff-profile') }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-user"></em></span>
+                                            <span class="nk-menu-text">My Profile</span>
+                                        </a>
+                                    </li>
+                                    <li class="nk-menu-item">
+                                        <a href="{{ route('staff-payslip') }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-cc-alt2"></em></span>
+                                            <span class="nk-menu-text">Payslip</span>
+                                        </a>
+                                    </li>
                                 @endteacher
                                 @guardian
                                     <li class="nk-menu-item">
@@ -182,6 +194,7 @@
                                             <span class="nk-menu-text">Fees Payment</span>
                                         </a>
                                     </li>
+                                    
                                     <!--<li class="nk-menu-item">
                                         <a href="#" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
@@ -203,9 +216,15 @@
                                         </a>
                                     </li>
                                     <li class="nk-menu-item">
-                                        <a href="{{ route('guardians') }}" class="nk-menu-link">
+                                        <a href="{{ route('my-guardian') }}" class="nk-menu-link">
                                             <span class="nk-menu-icon"><em class="icon ni ni-user-check"></em></span>
-                                            <span class="nk-menu-text">Guardians</span>
+                                            <span class="nk-menu-text">Guardian</span>
+                                        </a>
+                                    </li>
+                                    <li class="nk-menu-item">
+                                        <a href="{{ route('student-profile') }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-user"></em></span>
+                                            <span class="nk-menu-text">My Profile</span>
                                         </a>
                                     </li><!-- .nk-menu-item -->
                                     {{--<li class="nk-menu-item">

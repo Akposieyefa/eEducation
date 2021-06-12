@@ -28,21 +28,21 @@
                                                 <div class="nk-tb-list mt-n2">
                                                     <div class="nk-tb-item nk-tb-head">
                                                         <div class="nk-tb-col"><span>Student ID.</span></div>
-                                                        <div class="nk-tb-col tb-col-sm"><span>Student Name</span></div>
-                                                        <div class="nk-tb-col tb-col-md"><span>Class</span></div>
+                                                        <div class="nk-tb-col"><span>Student Name</span></div>
+                                                        <div class="nk-tb-col"><span>Class</span></div>
                                                         <div class="nk-tb-col"><span>Payment Reference</span></div>
-                                                        <div class="nk-tb-col tb-col-md"><span>Payment For</span></div>
-                                                        <div class="nk-tb-col tb-col-md"><span>Date Paid</span></div>
+                                                        <div class="nk-tb-col"><span>Payment For</span></div>
+                                                        <div class="nk-tb-col"><span>Date Paid</span></div>
                                                     </div>
                                                     @foreach($payments as $payment)
                                                         <div class="nk-tb-item">
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-lead"><a href="#">{{ $payment->student_id }}</a></span>
+                                                                <span class="tb-lead">{{ $payment->student->admission_no }}</span>
                                                             </div>
-                                                            <div class="nk-tb-col tb-col-sm">
+                                                            <div class="nk-tb-col">
                                                                 <span class="tb-lead">{{ $payment->student->fullname}}</span>
                                                             </div>
-                                                            <div class="nk-tb-col tb-col-md">
+                                                            <div class="nk-tb-col">
                                                                 <span class="tb-sub">{{$payment->student->level->name}}</span>
                                                             </div>
                                                             <div class="nk-tb-col">
@@ -52,7 +52,7 @@
                                                                 <span class="tb-sub">{{ $payment->term->name }}</span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{ $payment->created_at->diffForHumans() }}</span>
+                                                                <span class="tb-sub">{{ $payment->created_at }}</span>
                                                             </div>
                                                         </div>
                                                     @endforeach

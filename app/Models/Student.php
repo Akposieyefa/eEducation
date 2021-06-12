@@ -49,7 +49,7 @@ class Student extends Model
 
     public function guardian()
     {
-        return $this->belongsTo(Guardian::class, 'id');
+        return $this->belongsTo(Guardian::class, 'guardian_id');
     }
 
     public function scopeSearch($query, $term)

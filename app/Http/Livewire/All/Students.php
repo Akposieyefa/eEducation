@@ -31,7 +31,7 @@ class Students extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-             $this->selectedStudents = $this->students->pluck('id')->map(fn ($item) => (string) $item)->toArray();
+            $this->selectedStudents = $this->students->pluck('id')->map(fn ($item) => (string) $item)->toArray();
         } else {
             $this->selectedStudents = [];
         }
@@ -155,6 +155,8 @@ class Students extends Component
      */
     public function render()
     {
+
+        //dd($this->students);
         return view('livewire.all.students', [
             'students' =>  $this->students
         ])->extends('layouts.app')->section('content');

@@ -101,7 +101,7 @@
                                                                                     <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                                                     <div class="dropdown-menu dropdown-menu-right">
                                                                                            <ul class="link-list-opt no-bdr">
-                                                                                                  <li><a href="#"><em class="icon ni ni-eye"></em><span>Profile</span></a></li>
+                                                                                                  <li><a href="javascript:void(0)" data-toggle="modal" data-target="#modalProfile{{ $student->id }}"><em class="icon ni ni-eye"></em><span>Profile</span></a></li>
                                                                                                   <li>
                                                                                                          <a href="#" wire:click="editStudent({{ $student->id }})">
                                                                                                          <em class="icon ni ni-edit"></em><span>Edit </span></a>
@@ -132,6 +132,121 @@
                                                                </ul>
                                                         </div>
                                                  </div><!-- .nk-tb-item -->
+                                                 <!-- Modal Content Code -->
+                                                 <div class="modal fade" tabindex="-1" id="modalProfile{{ $student->id }}">
+                                                        <div class="modal-dialog modal-lg modal-dialog-top"" role="document">
+                                                               <div class="modal-content">
+                                                                      <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                                                             <em class="icon ni ni-cross"></em>
+                                                                      </a>
+                                                                      <div class="modal-header">
+                                                                             <h5 class="modal-title">{{ $student->fullname }} Profile</h5>
+                                                                      </div>
+                                                                      <div class="modal-body">
+                                                                             <div class="nk-block">
+                                                                                    <div class="nk-data data-list">
+                                                                                           <div class="data-item">
+                                                                                                  <div class="data-col">
+                                                                                                         <span class="data-label">Full Name</span>
+                                                                                                         <span class="data-value">{{ $student->fullname }}</span>
+                                                                                                  </div>
+                                                                                           </div><!-- data-item -->
+                                                                                           <div class="data-item">
+                                                                                                  <div class="data-col">
+                                                                                                         <span class="data-label">Class</span>
+                                                                                                         <span class="data-value">{{ $student->level->name }}</span>
+                                                                                                  </div>
+                                                                                           </div><!-- data-item -->
+                                                                                           <div class="data-item">
+                                                                                                  <div class="data-col">
+                                                                                                         <span class="data-label">Gender</span>
+                                                                                                         <span class="data-value">{{ $student->gender }}</span>
+                                                                                                  </div>
+                                                                                           </div><!-- data-item  JA'AFAR MUHAMMAD ADAM -->
+                                                                                           <div class="data-item">
+                                                                                                  <div class="data-col">
+                                                                                                         <span class="data-label">Date of Birth</span>
+                                                                                                         <span class="data-value">{{ date('d F, Y', strtotime($student->dob))  }}</span>
+                                                                                                  </div>
+                                                                                           </div><!-- data-item -->
+                                                                                           <div class="data-item">
+                                                                                                  <div class="data-col">
+                                                                                                         <span class="data-label">Nationality</span>
+                                                                                                         <span class="data-value">{{ $student->nationality }}</span>
+                                                                                                  </div>
+                                                                                           </div><!-- data-item -->
+                                                                                           <div class="data-item">
+                                                                                                  <div class="data-col">
+                                                                                                         <span class="data-label">State</span>
+                                                                                                         <span class="data-value">{{ ($student->state) ? $student->state->name : '' }}</span>
+                                                                                                  </div>
+                                                                                           </div><!-- data-item -->
+                                                                                           <div class="data-item">
+                                                                                                  <div class="data-col">
+                                                                                                         <span class="data-label">Local Government Area</span>
+                                                                                                         <span class="data-value">{{ ($student->lga) ? $student->lga->name : '' }}</span>
+                                                                                                  </div>
+                                                                                           </div><!-- data-item -->
+                                                                                           <div class="data-item">
+                                                                                                  <div class="data-col">
+                                                                                                         <span class="data-label">Date Admitted</span>
+                                                                                                         <span class="data-value">{{ ($student->date_admitted != NULL) ? date('d F, Y', strtotime($student->date_admitted)) : '' }}</span>
+                                                                                                  </div>
+                                                                                           </div><!-- data-item -->
+                                                                                           <br/>
+                                                                                           <h3>Guardian Information</h3>
+                                                                                           @if($student->guardian_id != NULL)  
+                                                                                                  <div class="data-item">
+                                                                                                         <div class="data-col">
+                                                                                                                <span class="data-label">Name</span>
+                                                                                                                <span class="data-value">{{ $student->guardian->fname }}</span>
+                                                                                                         </div>
+                                                                                                  </div><!-- data-item -->
+                                                                                                  <div class="data-item">
+                                                                                                         <div class="data-col">
+                                                                                                                <span class="data-label">Email Address</span>
+                                                                                                                <span class="data-value">{{  $student->guardian->email  }}</span>
+                                                                                                         </div>
+                                                                                                  </div><!-- data-item -->
+                                                                                                  <div class="data-item">
+                                                                                                         <div class="data-col">
+                                                                                                                <span class="data-label">Phone Number</span>
+                                                                                                                <span class="data-value">{{ $student->guardian->phone  }}</span>
+                                                                                                         </div>
+                                                                                                  </div><!-- data-item -->
+                                                                                                  <div class="data-item">
+                                                                                                         <div class="data-col">
+                                                                                                                <span class="data-label">Gender</span>
+                                                                                                                <span class="data-value">{{  $student->guardian->gender }}</span>
+                                                                                                         </div>
+                                                                                                  </div><!-- data-item -->
+                                                                                                  <div class="data-item">
+                                                                                                         <div class="data-col">
+                                                                                                                <span class="data-label">Occupation</span>
+                                                                                                                <span class="data-value">{{ $student->guardian->occupation }} </span>
+                                                                                                         </div>
+                                                                                                  </div><!-- data-item -->
+                                                                                                  <div class="data-item">
+                                                                                                         <div class="data-col">
+                                                                                                                <span class="data-label">Home Address</span>
+                                                                                                                <span class="data-value">{{  $student->guardian->home_address }}</span>
+                                                                                                         </div>
+                                                                                                  </div><!-- data-item -->
+                                                                                                  <div class="data-item">
+                                                                                                         <div class="data-col">
+                                                                                                                <span class="data-label">Office Address</span>
+                                                                                                                <span class="data-value">{{  $student->guardian->office_address }}</span>
+                                                                                                         </div>
+                                                                                                  </div><!-- data-item -->
+                                                                                           @else
+                                                                                                  <h4 class="text-center text-danger">No Guardian Information provided</h4>
+                                                                                           @endif
+                                                                                    </div><!-- data-list -->
+                                                                             </div><!-- .nk-block -->
+                                                                      </div>
+                                                               </div>
+                                                        </div>
+                                                 </div>
                                           @endforeach
                                    </div><!-- .nk-tb-list -->
                                    {{ $students->links() }}
@@ -140,5 +255,89 @@
               </div>
        </div>
 </div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript">
+
+    function formatErrorMessage(jqXHR, exception) 
+    {
+        if (jqXHR.status === 0) {
+            return ('Not connected.\nPlease verify your network connection.');
+        } else if (jqXHR.status == 404) {
+            return ('The requested page not found. [404]');
+        } else if (jqXHR.status == 500) {
+            return ('Internal Server Error [500].');
+        } else if (exception === 'parsererror') {
+            return ('Requested JSON parse failed.');
+        } else if (exception === 'timeout') {
+            return ('Time out error.');
+        } else if (exception === 'abort') {
+            return ('Ajax request aborted.');
+        } else {
+            return ('Uncaught Error.\n' + jqXHR.responseText);
+        }
+    }
+
+    $(document).ready(function(){
+
+        $(document).on('click', '#btnSaveChanges', function(e){
+            e.preventDefault();
+
+            //get user input
+            var formdata = $('#frmTeacher').serialize();
+
+           Swal.fire({
+                title: 'Please wait',
+                text: 'Processing request',
+                icon: 'info',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+            });
+            $('#dispmsg').html('<div class="alert alert-info">Processing request...</div>');
+           
+            
+            $.ajax({
+                url: "{{ route('add-staff-profile') }}",
+                type: 'POST',
+                data: formdata,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (msg) {
+                    //console.log(msg);
+                    if(msg['status'] == 'success'){         
+                        $('#dispmsg').html("<div class='alert alert-success' style='font-weight:700;'>"+msg['message']+"</div>");
+                         Swal.fire({
+                            title: 'Good Job!',
+                            text: ''+msg['message'],
+                            icon: 'success',
+                        });
+                    }else {
+                        $('#dispmsg').html('<div class="alert alert-danger">'+msg['message']+'</div>');
+                         Swal.fire({
+                            title: 'Error',
+                            text: ''+msg['message'],
+                            icon: 'error',
+                        });
+                    }
+                },
+                error: function(x,e) {
+                    $('#dispmsg').html('<div class="alert alert-danger">'+formatErrorMessage(x, e)+'</div>');
+                    Swal.fire({
+                        title: 'Error',
+                        text: ''+ formatErrorMessage(x, e),
+                        icon: 'error',
+                    });
+                }
+            });
+        });
+
+    });
+</script>
 
 

@@ -37,6 +37,16 @@
                                                                             {{ studentCurrentClass(auth()->user()->student->level_id)  }}
                                                                         </span>
                                                                 </div>
+                                                                <div class="mt-5">
+                                                                    School Fees Status: 
+                                                                        @php
+                                                                            if($is_fees_paid == 1){
+                                                                                echo '<span class="badge badge-success badge-pill fs-20px p-2">Paid</span>';
+                                                                            }else{
+                                                                                echo '<span class="badge badge-danger badge-pill fs-17px p-2">Not Paid</span>';
+                                                                            }
+                                                                        @endphp
+                                                                </div>
                                                             @endstudent
                                                         </div>
                                                     </div>
@@ -56,7 +66,15 @@
                                                                 </div>
                                                             </div>
                                                             <div class="team-view">
-                                                                <a href="view-result" class="btn btn-round btn-outline-light w-150px"><span>View Result</span></a>
+                                                                @php
+                                                                    if($is_fees_paid == 1 && $is_result_ready == 1){
+                                                                        echo '<a href="view-result" class="btn btn-round btn-outline-light w-150px"><span>View Result</span></a>';
+                                                                    }elseif($is_fees_paid == 0 && $is_result_ready == 1){
+                                                                        echo '<h4 class="text-danger">Cannot view result until school fees is paid.</h4>';
+                                                                    }else{
+                                                                        echo '<h4 class="text-info">Result not ready</h4>';
+                                                                    }
+                                                                @endphp
                                                             </div>
                                                         </div>
                                                     </div>

@@ -63,8 +63,44 @@
                                         </div>
                                         <!-- /.card -->
                                     </div>
-                                </div>
-                                <!-- /.row -->
+                                    <br/><br/>
+                                    <div class="col-xxl-12">
+                                        <div class="card card-full">
+                                            <div class="card-inner">
+                                                <div class="card-title-group">
+                                                    <div class="card-title">
+                                                        <h4 class="title">My Payments </h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="nk-tb-list mt-n2">
+                                                <div class="nk-tb-item nk-tb-head">
+                                                    <div class="nk-tb-col"><span>Class</span></div>
+                                                    <div class="nk-tb-col"><span>Payment Reference</span></div>
+                                                    <div class="nk-tb-col"><span>Payment For</span></div>
+                                                    <div class="nk-tb-col"><span>Date Paid</span></div>
+                                                </div>
+                                                @foreach($payments as $payment)
+                                                    <div class="nk-tb-item">
+                                                        <div class="nk-tb-col">
+                                                            <span class="tb-sub">{{$payment->student->level->name}}</span>
+                                                        </div>
+                                                        <div class="nk-tb-col">
+                                                            <span class="tb-sub">{{ $payment->trans_ref  }}</span>
+                                                        </div>
+                                                        <div class="nk-tb-col">
+                                                            <span class="tb-sub">{{ $payment->term->name }}</span>
+                                                        </div>
+                                                        <div class="nk-tb-col">
+                                                            <span class="tb-sub">{{ $payment->created_at }}</span>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div><!-- .card -->
+                                    </div>
+                                </div><!-- .row -->
+
                             </div><!-- /.container-fluid -->
                         </section>
                         <!-- /.content -->
@@ -122,7 +158,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (msg) {
-                    console.log(msg);
+                    //console.log(msg);
                     if(msg['status'] == 'success'){         
                         $('#dispmsg').html("<div class='alert alert-info' style='font-weight:700;'>Processing Payment...</div>");
                         /*139f8ef7cd9fc28a59bec057bb731ce2a92f126b*/
@@ -146,32 +182,32 @@
                             }
                             ],
                             callback: function(response) {
-                            console.log(response);
-                            exit;
-                            var paymentref = response.reference_code;
-                            var c_url = 'verify'+msg['in_app_reference'];
-                            $.ajax({
-                                async: true,
-                                url: "{{ url('"+c_url+"') }}",
-                                type: 'POST',
-                                data: "&student_id="+student_id+"&amountpaid="+msg['amount']+"&paymentref="+paymentref+"&in_app_ref="+msg['in_app_reference']+"&in_app_trx_id="+msg['transaction_id'],
-                                headers: {
-                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                },
-                                success: function (res) {
-                                    if(res['status'] == 'success'){
-                                        $('#dispmsg').html("<div class='alert alert-success' style='color:#fff;font-weight:700;'>"+res['message']+"</div>");
-                                        alert('Payment Successful');
-                                        setTimeout((function(){ window.location = res['url'] }), 3000);
-                                    }else{
-                                        $('#dispmsg').html("<div class='alert alert-danger'>"+res['message']+"</div>");
+                                //console.log(response);
+                                //exit;
+                                var paymentref = response.reference_code;
+                                var c_url = 'verify'+msg['in_app_reference'];
+                                $.ajax({
+                                    async: true,
+                                    url: "{{ url('"+c_url+"') }}",
+                                    type: 'POST',
+                                    data: "&student_id="+student_id+"&amountpaid="+msg['amount']+"&paymentref="+paymentref+"&in_app_ref="+msg['in_app_reference']+"&in_app_trx_id="+msg['transaction_id'],
+                                    headers: {
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                    },
+                                    success: function (res) {
+                                        if(res['status'] == 'success'){
+                                            $('#dispmsg').html("<div class='alert alert-success' style='color:#fff;font-weight:700;'>"+res['message']+"</div>");
+                                            alert('Payment Successful');
+                                            setTimeout((function(){ window.location = res['url'] }), 3000);
+                                        }else{
+                                            $('#dispmsg').html("<div class='alert alert-danger'>"+res['message']+"</div>");
+                                        }
+                                    },
+                                    error: function(x,e) {            
+                                        alert(formatErrorMessage(x, e));
+                                        $('#dispmsg').html("<div class='alert alert-danger'>"+formatErrorMessage(x, e)+"</div>");
                                     }
-                                },
-                                error: function(x,e) {            
-                                    alert(formatErrorMessage(x, e));
-                                    $('#dispmsg').html("<div class='alert alert-danger'>"+formatErrorMessage(x, e)+"</div>");
-                                }
-                            })
+                                })
                             },
                             onClose: function() {
                                 alert('WIndow Closed by User');

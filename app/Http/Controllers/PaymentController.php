@@ -18,15 +18,16 @@ use Carbon\Carbon;
 class PaymentController extends Controller
 {
 
-
-
     /**
      * payment form display
      */
     public function  paymentForm()
     {
-        return view('fee-payment')->with('sessions', Section::all())->with('terms', Term::all());
+        $payments = PaymentData::where('student_id', auth()->user()->student->student_id)->get();
+
+        return view('fee-payment')->with('payments', $payments)->with('sessions', Section::all())->with('terms', Term::all());
     }
+
 
     /**
      * @return Application|RedirectResponse|Redirector
@@ -105,6 +106,7 @@ class PaymentController extends Controller
         }
     }
 
+
     public function initialize()
     {
         request()->validate([
@@ -122,7 +124,7 @@ class PaymentController extends Controller
 
             if ($fee) {
                 //$fee_paid = PaymentData::where('student_id', $student[0]['student_id'])->where('term_id', request()->term_id)->where('section_id', request()->session_id)->first();
-                $fee_paid = PaymentData::where('student_id', $student[0]['student_id'])->where('term_id', request()->term_id)->where('status', '1')->first();
+                $fee_paid = PaymentData::where('student_id', $student[0]['student_id'])->where('term_id', request()->term_id)->where('session_id', request()->session_id)->where('status', '1')->first();
                 if (!$fee_paid) {
                     $amount = $fee->amount;
                     $paymentReference = "VS" . sprintf("%0.9s", str_shuffle(rand(12, 30000) * time()));
@@ -183,6 +185,7 @@ class PaymentController extends Controller
             return json_encode(array('status' => 'error', 'message' => 'Student with Registration Number : ' . auth()->user()->student->admission_no . ' not found. Contact School Administrator'));
         }
     }
+
 
     /**
      * @param $reference

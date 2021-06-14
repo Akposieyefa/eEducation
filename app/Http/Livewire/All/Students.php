@@ -158,7 +158,7 @@ class Students extends Component
 
         //dd($this->students);
         return view('livewire.all.students', [
-            'students' =>  $this->students
+            'students' =>  Student::all()
         ])->extends('layouts.app')->section('content');
     }
 }

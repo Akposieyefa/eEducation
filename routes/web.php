@@ -24,6 +24,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
     Route::get('/students', App\Http\Livewire\All\Students::class)->name('students');
+    Route::get('/promote-students', [App\Http\Controllers\HomeController::class, 'promoteStudents'])->name('promote-students');
+    Route::post('/promote-multi-student', [App\Http\Controllers\HomeController::class, 'promoteMultiStudents'])->name('promote-multi-student');
+    Route::post('/promote-single-student', [App\Http\Controllers\HomeController::class, 'promoteSingleStudent'])->name('promote-single-student');
     Route::get('/bulk-student-upload', App\Http\Livewire\Modals\BulkStudent::class)->name('bulk-student-upload');
     Route::get('/teachers', App\Http\Livewire\All\Teachers::class)->name('teachers');
     Route::get('/notifications', App\Http\Livewire\All\Notifications::class)->name('notifications');;
@@ -41,6 +44,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/add-staff-profile', [App\Http\Controllers\HomeController::class, 'saveStaffProfile'])->name('add-staff-profile');
     Route::get('/staff-payslip', [App\Http\Controllers\HomeController::class, 'getStaffPayslip'])->name('staff-payslip');
     Route::post('/view-payslip', [App\Http\Controllers\HomeController::class, 'viewPayslip'])->name('view-payslip');
+    Route::post('/upload-payslip', [App\Http\Controllers\HomeController::class, 'uploadPayslip'])->name('upload-payslip');
 
     Route::get('/admins', App\Http\Livewire\All\Admins::class)->name('admins');
     Route::get('/complains', App\Http\Livewire\All\Complains::class)->name('complains');

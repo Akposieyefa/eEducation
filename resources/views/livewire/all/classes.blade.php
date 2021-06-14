@@ -28,7 +28,7 @@
                                                                              <a href="#" class="dropdown-toggle btn btn-icon btn-trigger mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                                              <div class="dropdown-menu dropdown-menu-right">
                                                                                     <ul class="link-list-opt no-bdr">
-                                                                                           <li><a href="#"><em class="icon ni ni-trash"></em><span>Remove Seleted</span></a></li>
+                                                                                           {{-- <li><ahref="#"><emclass="iconnini-trash"></em><span>RemoveSeleted</span></a></li> --}}
                                                                                     </ul>
                                                                              </div>
                                                                       </div>
@@ -60,7 +60,7 @@
                                                                <span class="tb-amount">{{ $class->subjects->count() }}</span>
                                                         </div>
                                                         <!--<div class="nk-tb-col tb-col-md">
-                                                               <span>{{ $class->created_at->diffForHumans() }}</span>
+                                                               <span>{{ $class->created_at }}</span>
                                                         </div>-->
                                                         <div class="nk-tb-col nk-tb-col-tools">
                                                                <ul class="nk-tb-actions gx-1">
@@ -69,7 +69,7 @@
                                                                                     <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                                                     <div class="dropdown-menu dropdown-menu-right">
                                                                                            <ul class="link-list-opt no-bdr">
-                                                                                                  <li><a href="#"><em class="icon ni ni-trash"></em><span>Delete</span></a></li>
+                                                                                                  {{-- <li><ahref="#"><emclass="iconnini-trash"></em><span>Delete</span></a></li> --}}
                                                                                            </ul>
                                                                                     </div>
                                                                              </div>

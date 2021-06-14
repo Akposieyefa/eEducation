@@ -101,6 +101,12 @@
                                             <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
                                             <span class="nk-menu-text"> Fees</span>
                                         </a>
+                                    </li>
+                                    <li class="nk-menu-item">
+                                        <a href="{{ route('staff-payslip') }}" class="nk-menu-link">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
+                                            <span class="nk-menu-text"> Pay Slip</span>
+                                        </a>
                                     </li><!-- .nk-menu-item -->
 
                                     {{--<li class="nk-menu-item">

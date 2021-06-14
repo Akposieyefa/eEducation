@@ -59,11 +59,15 @@
                                                             @error('term') <span class="text-danger">{{ $message }}</span> @enderror
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <div class="col-md-6 offset-3">
-                                                        <button class="btn btn-success">Submit</button>
-                                                    </div>
-                                                </div>
+                                                @if($is_fees_paid == 1)
+                                                        <div class="form-group row">
+                                                            <div class="col-md-6 offset-3">
+                                                                <button class="btn btn-success">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                @else
+                                                        <h4 class="text-danger text-center">Cannot view result until school fees is paid.</h4>;
+                                                @endif
                                             </form>
                                         </div><!-- .invoice-wrap -->
                                     </div><!-- .invoice -->

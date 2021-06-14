@@ -1,15 +1,20 @@
 <div>
        <div class="mt-3 mb-5 row">
-              <div class="col-7"><h3>List of  {{ "Students" }} </h3> </div>
+              <div class="col-6"><h3>List of All {{ "Students" }} </h3> </div>
               @admin
                      <div class="col-2">
                             <x-forms.buttons.success data-toggle="modal" data-target="#exampleModalLong" wire:click="$emit('showFormStudentModal')">
                                    <em class="ni ni-plus"></em> &nbsp;&nbsp;Add New Student
                             </x-forms.buttons.success>
                      </div>
-                     <div class="col-3">
+                     <div class="col-2">
                             <a class="btn btn-sm btn-primary" href="{{ route('bulk-student-upload') }}">
                                    <em class="ni ni-plus"></em> &nbsp;&nbsp;Bulk Upload Student
+                            </a>
+                     </div>
+                      <div class="col-2">
+                            <a class="btn btn-sm btn-info" href="{{ route('promote-students') }}">
+                                   <em class="ni ni-plus"></em> &nbsp;&nbsp;Promote Students
                             </a>
                      </div>
               @endadmin

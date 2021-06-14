@@ -14,6 +14,7 @@ use App\Models\Guardian;
 use App\Models\State;
 use App\Models\Lga;
 use App\Models\Teacher;
+use App\Models\Promotion;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -145,7 +146,15 @@ class HomeController extends Controller
         $terms = Term::all();
         $level = auth()->user()->level_id;
 
-        return view('view_result', compact('student', 'sessions', 'terms', 'level'));
+        $is_fees_paid = 0;
+
+        $fee_paid = PaymentData::where('student_id', auth()->user()->student->student_id)->where('term_id', activeTermId())->where('session_id', activeSectionId())->where('status', '1')->first();
+
+        if ($fee_paid) {
+            $is_fees_paid = '1';
+        }
+
+        return view('view_result', compact('student', 'sessions', 'terms', 'level', 'is_fees_paid'));
     }
 
     public function getStudentResult(Request $request)
@@ -392,7 +401,60 @@ class HomeController extends Controller
 
     public function getStaffPayslip()
     {
-        return view('payslip');
+        $year = array();
+        $existing_year = DB::table('payslip')->select('year')->get();
+        //dd($existing_year);
+        if (count($existing_year) > 0) {
+            foreach ($existing_year as $yr) {
+                if ($yr->year == date('Y')) {
+                    array_push($year, date("Y"));
+                    continue;
+                }
+                array_push($year, $yr->year);
+            }
+
+            if (!in_array(date("Y"), $year)) {
+                array_push($year, date("Y"));
+            }
+            array_push($year, date("Y", strtotime("+1 year")));
+        } else {
+            $year = [date("Y", strtotime("-1 year")), date('Y'), date("Y", strtotime("+1 year"))];
+        }
+
+
+        $month = array();
+        for ($m = 1; $m <= 12; $m++) {
+            array_push($month, date('F', mktime(0, 0, 0, $m, 1, date('Y'))));
+            //$month = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
+        }
+        $staff = Teacher::all();
+
+        return view('payslip', compact('staff', 'year', 'month'));
+    }
+
+    public function uploadPayslip(Request $request)
+    {
+        //dd($request->filepath);
+        $validator = Validator::make($request->all(), [
+            'staff' => 'required|int',
+            'year' => 'required|string|min:4',
+            'month' => 'required|string|min:3',
+            'payslip' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['status' => 'error',  'message' => 'Please fill in all fields.']);
+        }
+
+        $cdate = date('Y-m-d H:i:s');
+
+        $payslip_saved = DB::insert('insert into payslip (staff_id, year, month, payslip, created_at) values (?, ?, ?, ?, ?)', [$request->staff, $request->year, $request->month, $request->payslip, $cdate]);
+
+        if ($payslip_saved > 0) {
+            return json_encode(array('status' => 'success', 'message' => 'Details Successfully Saved'));
+        } else {
+            return json_encode(array('status' => 'error', 'message' => 'Error Processing request'));
+        }
     }
 
     public function viewPayslip(Request $request)
@@ -437,6 +499,93 @@ class HomeController extends Controller
             return json_encode(array('status' => 'success', 'message' => 'Details Successfully Saved'));
         } else {
             return json_encode(array('status' => 'error', 'message' => $user));
+        }
+    }
+
+    public function promoteStudents()
+    {
+        $students = Student::all();
+        $sessions = Section::all();
+        $all_classes = Level::all();
+
+        return view('promote_students', compact('students', 'sessions', 'all_classes'));
+    }
+
+    public function promoteSingleStudent(Request $request)
+    {
+        $user_id = 0;
+        $userRoles = auth()->user()->roles->pluck('name');
+        if ($userRoles[0] == 'Admin') {
+            $user_id = auth()->user()->admin->id;
+        } elseif ($userRoles[0] == 'Teacher') {
+            $user_id = auth()->user()->teacher->id;
+        }
+
+        $data = Student::findOrFail($id);
+
+        if (count($data) > 0) {
+            $current_level = $request->from;
+            $next_level = $request->to;
+            $session = $request->session;
+
+            $promote = Promotion::create([
+                'student_id' => $key->student_id,
+                'from' => $current_level,
+                'to'  => $next_level,
+                'section_id' => $session
+            ]);
+            if ($promote) {
+                $update_student = Student::find($key->id);
+                $update_student->level_id = $next_level;
+                $update_student->save();
+            }
+
+            return json_encode(array('status' => 'success', 'message' => 'Student (' . $data->admission_no . ') have been promoted successfully'));
+        } else {
+            return json_encode(array('status' => 'error', 'message' => 'No Student available for promotion'));
+        }
+    }
+
+    public function promoteMultiStudents(Request $request)
+    {
+        $user_id = 0;
+        $userRoles = auth()->user()->roles->pluck('name');
+        if ($userRoles[0] == 'Admin') {
+            $user_id = auth()->user()->admin->id;
+        } elseif ($userRoles[0] == 'Teacher') {
+            $user_id = auth()->user()->teacher->id;
+        }
+
+        //$data = Student::whereKey($this->checked)->get();
+        $data = Student::where('level_id', '=', $request->from)->get();
+        //dd($request->from);
+        if (count($data) > 0) {
+            $success_counter = 0;
+            foreach ($data as $key) {
+                $current_level = $request->from;
+                $next_level = $request->to;
+                $session = $request->session;
+
+                $promote = Promotion::create([
+                    'student_id' => $key->student_id,
+                    'from' => $current_level,
+                    'to'  => $next_level,
+                    'section_id' => $session
+                ]);
+                if ($promote) {
+                    $update_student = Student::find($key->id);
+                    $update_student->level_id = $next_level;
+                    $update_student->save();
+                    $success_counter++;
+                }
+            }
+            if ($success_counter > 0) {
+                return json_encode(array('status' => 'success', 'message' => 'Students have been promoted successfully'));
+            } else {
+                return json_encode(array('status' => 'error', 'message' => 'Error encountered promoting students. Try again'));
+            }
+        } else {
+            return json_encode(array('status' => 'error', 'message' => 'No Student available for promotion'));
         }
     }
 }

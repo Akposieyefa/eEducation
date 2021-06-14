@@ -460,45 +460,20 @@ class HomeController extends Controller
     public function viewPayslip(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'fname' => 'required|string|min:3',
-            'mname' => 'nullable|string',
-            'lname' => 'required|string|min:3',
-            'dob' => 'required|string',
-            'employment_date' => 'required|string',
-            'nationality' => 'required|string|min:3',
-            'gender' => 'required|string|min:3',
-            'state_id' => 'required|integer',
-            'lga_id' => 'required|integer',
-            'address' => 'required|string|min:3',
+            'year' => 'required|string|min:4',
+            'month' => 'required|string|min:3',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['status' => 'error',  'message' => 'Please fill in all fields.']);
+            return response()->json(['status' => 'error',  'message' => 'Please select required fields.']);
         }
 
-        $user = Teacher::updateOrCreate(
-            [
-                'user_id' =>  auth()->user()->id
-            ],
-            [
-                'user_id' =>  auth()->user()->id,
-                'fname' =>  request('fname'),
-                'mname' =>  request('mname'),
-                'lname' =>  request('lname'),
-                'dob' =>  request('dob'),
-                'employment_date' =>  request('employment_date'),
-                'nationality' =>  request('nationality'),
-                'gender' =>  request('gender'),
-                'state_id' =>  request('state_id'),
-                'lga_id' =>  request('lga_id'),
-                'address' =>  request('address')
-            ],
-        );
-
-        if ($user) {
-            return json_encode(array('status' => 'success', 'message' => 'Details Successfully Saved'));
+        $payslip = DB::table('payslip')->where('staff_id', '=', auth()->user()->teacher->id)->where('month', '=', $request->month)->where('year', '=', $request->year)->get();
+        //dd(auth()->user()->teacher->id);
+        if (count($payslip) > 0) {
+            return json_encode(array('status' => 'success', 'message' => $payslip[0]->payslip));
         } else {
-            return json_encode(array('status' => 'error', 'message' => $user));
+            return json_encode(array('status' => 'error', 'message' => 'No record found for selected year and month'));
         }
     }
 

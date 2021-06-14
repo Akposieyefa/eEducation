@@ -89,7 +89,7 @@
                                                         <div id="dispmsg"></div>
                                                     </div>
                                                 </div>
-                                                <form action="javascript:void(0)" method="POST" name="frmPayslip" id="frmPayslip">
+                                                <form action="javascript:void(0)" method="POST" name="frmViewPayslip" id="frmViewPayslip">
                                                     <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                                                     <div class="form-group row">
                                                         <div class="col-md-6 offset-3">
@@ -115,7 +115,7 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-md-6 offset-3">
-                                                            <button class="btn btn-success" id="btnPayslip">Submit</button>
+                                                            <button class="btn btn-success" id="btnViewPayslip">Submit</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -219,41 +219,100 @@
                             });
                         });
 
+                         $(document).on('click', '#btnViewPayslip', function(e){
+                            e.preventDefault();
+
+                            //get user input
+                            var formdata = $('#frmViewPayslip').serialize();
+
+                            $('#displaypayslip').html('');
+
+                            Swal.fire({
+                                title: 'Please wait',
+                                text: 'Processing request',
+                                icon: 'info',
+                                allowOutsideClick: false,
+                                showConfirmButton: false,
+                            });
+                             
+                            $('#dispmsg').html('<div class="alert alert-info">Processing request...</div>');
+                        
+                            
+                            $.ajax({
+                                url: "{{ route('view-payslip') }}",
+                                type: 'POST',
+                                data: formdata,
+                                dataType: 'json',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                success: function (msg) {
+                                    //console.log(msg);
+                                    if(msg['status'] == 'success'){         
+                                       $('#dispmsg').html('<div class="alert alert-success">Payslip successfully displayed</div>');
+                                        Swal.fire({
+                                            title: 'Good Job!',
+                                            text: '',
+                                            icon: 'success',
+                                        });
+                                        $('#displaypayslip').html('<img src="'+msg['message']+'" style="width:400px; height:auto;" />');
+                                    }else {
+                                        $('#dispmsg').html('<div class="alert alert-danger">'+msg['message']+'</div>');
+                                        Swal.fire({
+                                            title: 'Error',
+                                            text: ''+msg['message'],
+                                            icon: 'error',
+                                        });
+                                    }
+                                },
+                                error: function(x,e) {
+                                    $('#dispmsg').html('<div class="alert alert-danger">'+formatErrorMessage(x, e)+'</div>');
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: ''+ formatErrorMessage(x, e),
+                                        icon: 'error',
+                                    });
+                                }
+                            });
+                        });
+
                         const url = "https://api.cloudinary.com/v1_1/arcane159/image/upload";
 
-                        const picture_upload = document.getElementById("filePayslip");
+                        if(document.getElementById("filePayslip")){
+                            const picture_upload = document.getElementById("filePayslip");
 
-                        picture_upload.addEventListener("change", (e) => {
-                            e.preventDefault();
-                            
-                            const files = document.querySelector("#filePayslip").files;
-                            const formData = new FormData();
+                            picture_upload.addEventListener("change", (e) => {
+                                e.preventDefault();
+                                
+                                const files = document.querySelector("#filePayslip").files;
+                                const formData = new FormData();
 
-                            for (let i = 0; i < files.length; i++) {
-                                let file = files[i];
-                                formData.append("file", file);
-                                formData.append("upload_preset", "ho0zep1z");
-                                document.getElementById("displaypayslip").innerHTML = '<div class="alert alert-info text-center col-6 offset-3">Uploading Image...</div>';
-                                fetch(url, {
-                                    method: "POST",
-                                    body: formData,
-                                })
-                                .then((response) => {
-                                    return response.text();
-                                })
-                                .then((data) => {
-                                    var obj = JSON.parse(data);
-                                    if(obj.error){
-                                        document.getElementById("displaypayslip").innerHTML = '<div class="alert alert-danger text-center col-6 offset-3">'+obj.error.message+'</div>';
-                                    }else{
-                                        document.getElementById("filepath").value = obj.secure_url;
-                                        document.getElementById("displaypayslip").innerHTML = '<img src="'+obj.secure_url+'" style="width:200px; height:auto;" />';
-                                        $('#btnSavePayslip').show();
-                                        //document.getElementById("displaypayslip").innerHTML = '<div class="alert alert-success">File Uploaded Successful</div>';
-                                    }
-                                });
-                            }
-                        });
+                                for (let i = 0; i < files.length; i++) {
+                                    let file = files[i];
+                                    formData.append("file", file);
+                                    formData.append("upload_preset", "ho0zep1z");
+                                    document.getElementById("displaypayslip").innerHTML = '<div class="alert alert-info text-center col-6 offset-3">Uploading Image...</div>';
+                                    fetch(url, {
+                                        method: "POST",
+                                        body: formData,
+                                    })
+                                    .then((response) => {
+                                        return response.text();
+                                    })
+                                    .then((data) => {
+                                        var obj = JSON.parse(data);
+                                        if(obj.error){
+                                            document.getElementById("displaypayslip").innerHTML = '<div class="alert alert-danger text-center col-6 offset-3">'+obj.error.message+'</div>';
+                                        }else{
+                                            document.getElementById("filepath").value = obj.secure_url;
+                                            document.getElementById("displaypayslip").innerHTML = '<img src="'+obj.secure_url+'" style="width:200px; height:auto;" />';
+                                            $('#btnSavePayslip').show();
+                                            //document.getElementById("displaypayslip").innerHTML = '<div class="alert alert-success">File Uploaded Successful</div>';
+                                        }
+                                    });
+                                }
+                            });
+                        }
 
                     });
                 </script>
